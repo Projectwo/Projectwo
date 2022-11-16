@@ -1,2 +1,4 @@
 # Projectwo
-일단 아무튼 레포지터리
+
+1. Notion<br>
+<a href="https://www.notion.so/b56de27ec3e942aeb712940bee495dae">눌러서 잠금해재</a>
