@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>내 강의실</title>
+</head>
+<body>
+	<table>
+		<tr>
+			<th>강의명</th>
+			<th>시작일</th>
+			<th>종료일</th>
+		</tr>
+		<tr th:each="lecture, loop : ${lectures}">
+			<td th:text="${loop.count}"></td>
+			<td th:text="${lecture.lectureName}"></td>
+			<td th:text="${lecture.startDate}"></td>
+			<td th:text="${lecture.endDate}"></td>
+		</tr>
+	</table>
+</body>
+</html>
