@@ -35,11 +35,11 @@ public class AcademyService {
     }
 	
     // by 장유란, 새 Notice 생성
-    public AcademyNotice create() {
+    public AcademyNotice create(String title, String content) {
 		AcademyNotice notice = new AcademyNotice();
-		notice.setTitle("ss");
+		notice.setTitle(title);
 		notice.setCreateDate(LocalDateTime.now());
-		notice.setContent("asdsad");
+		notice.setContent(content);
 		academyNoticeRepository.save(notice);
 		
 		return notice;
