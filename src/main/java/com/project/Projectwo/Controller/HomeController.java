@@ -20,12 +20,6 @@ public class HomeController {
 	
 	private final MemberService memberService;
 
-	// by 장유란, 임시매핑, 언제든 수정/이동/삭제가능
-	@RequestMapping("/")
-	public String index() {
-		return "index";
-	}
-	
 	// by 안준언, 회원 가입 (Get)
 	@GetMapping
 	public String signUp(MemberCreateForm memberCreateForm) {
