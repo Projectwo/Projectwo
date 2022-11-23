@@ -417,3 +417,129 @@
     text-align: right;
 }
 /* ##### member_main.html end ##### */
+
+/* ##### academy_main.html ##### */
+
+.academy-list-tab{
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.academy-list-tab button{
+    padding:4px 14px;
+    border:1px solid #aaa;
+    border-radius: 10px;
+    font-size: 20px;
+}
+
+.academy-new{
+    width: 100%;
+    height: 32px;
+    margin-top: 14px;
+}
+
+.academy-new .new-lecture{
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.academy-new .new-lecture button{
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    color:#777;
+    font-size: 16px;
+    border: 1px solid;
+    border-radius: 50%;
+    
+}
+
+.academy-new .new-lecture a{
+    display: inline-block;
+    height: 20px;
+    margin-left:14px;
+    text-align: left;
+    font-size: 20px;
+    line-height: 22px;
+}
+
+.academy-new .search-lecture{
+    width: 80px;
+    height: 24px;
+    padding: 2px 4px;
+    margin-left: 20px;
+    border:1px solid #aaa;
+    border-radius: 6px;
+}
+
+.academy-new .category-lecture{
+    width: 100px;
+    height: 24px;
+    padding:2px 4px;
+    border:1px solid #aaa;
+    border-radius: 6px;
+    color:#444;
+}
+
+.academy-lecture-list{
+    width: 100%;
+    height: 600px;
+    overflow: auto;
+}
+
+.main-lecture.academy-list{
+    margin-bottom:20px;
+}
+
+.main-lecture.academy-list .lecture-info{
+    position: absolute;
+    width: 100%;
+    top: 0;
+    right: 0;
+}
+
+.main-lecture.academy-list .lecture-teacher{
+    left: 6px;
+    top: 0;
+    margin-top: 20px;
+}
+
+.main-lecture.academy-list .lecture-info-schedule-period{
+    text-align: right;
+    height: 18px;
+    margin-top: 6px;
+    color:#eee;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.main-lecture.academy-list .lecture-info-schedule-time{
+    margin-top: 0;
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.main-lecture.academy-list .lecture-info-room{
+    position: absolute;
+    right: 6px;
+    bottom: 0;
+    text-align: right;
+    color:#eee;
+    font-size: 20px;
+}
+
+.main-lecture.academy-list .lecture-info-count{
+    text-align: left;
+    margin-top: 2px;
+    margin-left: 4px;
+    color:#eee;
+    font-size: 16px;
+}
+
+/* ##### academy_main.html end ##### */
