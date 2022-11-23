@@ -1,10 +1,20 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-<a th:href="@{/academy/notice/list}">noticeList매핑(언제든삭제가능)</a>
-</body>
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
+    <div class="index-logo">
+        <!-- 어플 로고나 학원 로고 같은 거 넣으면 될듯 -->
+    </div>
+    <div class="index-button">
+        <button class="login-button" onclick="location.href='/login'">
+            로그인
+        </button>
+        <button class="signup-button" onclick="location.href='/signup'">
+            회원가입
+        </button>
+    </div>
+    <div class="guest-login">
+        <a href="#" style="color:green; ">Guest로 시작하기</a>
+    </div>
+</div>
+
 </html>
