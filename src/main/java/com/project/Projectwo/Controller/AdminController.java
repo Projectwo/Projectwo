@@ -1,10 +1,15 @@
 package com.project.Projectwo.Controller;
 
 import java.time.LocalDate;
+<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.List;
 
 import org.aspectj.weaver.NewConstructorTypeMunger;
+=======
+import java.util.List;
+
+>>>>>>> dev
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,7 +20,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.project.Projectwo.Entity.Lecture;
+<<<<<<< HEAD
 import com.project.Projectwo.Form.LectureForm;
+=======
+>>>>>>> dev
 import com.project.Projectwo.Repository.LectureRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -39,7 +47,11 @@ public class AdminController {
         model.addAttribute("lectureList", lectureList);
 		return "admin/lecture";
 	}
+<<<<<<< HEAD
 	
+=======
+
+>>>>>>> dev
 	// by 장유란, 강의 개설
 	@PostMapping("/createLecture")
 	public String createLecture(String lectureName, String lectureDesc, String startDate, String endDate) {
@@ -55,7 +67,10 @@ public class AdminController {
 		return "redirect:/admin/lecture";
 	}
 	
+<<<<<<< HEAD
 	
+=======
+>>>>>>> dev
 	// by 장유란, 강의 수정
 	@GetMapping("/lectureModify/{id}")
 	@ResponseBody

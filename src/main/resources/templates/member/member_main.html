@@ -1,0 +1,47 @@
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
+    <div th:replace="fragments/nav_button :: navFragment"></div>
+    <div class="main-profile">
+        <div class="main-profile-img">
+            <!-- 이미지 아이콘 --></div>
+        <div class="main-profile-text">
+            Student<br><!-- b에 이름, span에 권한 -->
+            <b>홍길동</b> <span>수강생</span>님
+        </div>
+    </div>
+    <div class="main-lecture">
+        <div class="lecture-name">
+            <!-- b에 강의명, span에 학원명 -->
+            <b>임시 강의 1</b> @<span>그린 컴퓨터 아카데미</span>
+        </div>
+        <div class="lecture-info">
+            <div class="lecture-teacher">
+                - <b>Steve</b> <span>강사</span>님
+            </div>
+            <ul class="lecture-info-schedule">
+                <li>월</li>
+                <li>화</li>
+                <li>수</li>
+                <li>목</li>
+                <li>금</li>
+                <li>토</li>
+                <li>일</li>
+            </ul>
+            <ul class="lecture-info-schedule-checked">
+                <li><span>V</span></li>
+                <li><span>V</span></li>
+                <li><span>V</span></li>
+                <li><span>V</span></li>
+                <li><span>V</span></li>
+                <li><span>V</span></li>
+                <li><span>V</span></li>
+            </ul>
+            <div class="lecture-info-schedule-time">
+                AM 07:00 ~ PM 09:00
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

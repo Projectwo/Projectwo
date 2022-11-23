@@ -1,0 +1,45 @@
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
+    <button th:replace="fragments/prev_button :: prevFragment"></button>
+    <h2 class="login-text">
+        환영합니다!<br>
+        로그인 후에, 모든 서비스를<br>
+        자유롭게 사용하세요!
+    </h2>
+    <form class="login-form">
+        <div class="field">
+            <input class="userid" type="text" placeholder="Enter your ID">
+        </div>
+        <div class="field">
+            <input class="userpw" type="password" placeholder="Enter your PASSWORD">
+        </div>
+        <div class="forgot-pw">
+            <a href="#">Forgot Password?</a>
+        </div>
+        <input class="login-submit" type="submit" value="로그인">
+    </form>
+    <button onclick="location.href='member/main'">임시 로그인</button>
+    <div class="function-login">
+        <button class="fingerprint">
+            지문
+        </button>
+        <button class="face-id">
+            페이스
+        </button>
+    </div>
+    <div class="other-login">
+        <h4>or Login with</h4>
+        <ul class="other-login-button">
+            <li>facebook</li>
+            <li>google</li>
+            <li>apple</li>
+        </ul>
+    </div>
+    <div class="signup-link">
+        아직 회원이 아니신가요? &nbsp;
+        <a th:href="@{/signup}">바로 가입하기</a>
+    </div>
+</div>
+
+</html>
