@@ -10,11 +10,8 @@
 </head>
 
 <body>
-    <header>
-        <nav th:replace="fragments/nav_button :: navFragment"></nav>
-    </header>
-
-    <th:block layout:fragment="content"></th:block>
-
+    <!-- <nav th:replace="fragments/nav_button :: navFragment"></nav> -->
+    <th:block layout:fragment="content" id="wrap"></th:block>
 </body>
+
 </html>
