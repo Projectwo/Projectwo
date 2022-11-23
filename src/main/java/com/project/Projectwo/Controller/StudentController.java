@@ -28,6 +28,7 @@ public class StudentController {
 		model.addAttribute("lectures", lectures);
 		
 		return "lecture/lectures";
+		
 	}
 	
 }

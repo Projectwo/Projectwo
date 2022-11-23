@@ -5,18 +5,17 @@
 	<title>내 강의실</title>
 </head>
 <body>
-	<table>
-		<tr>
-			<th>강의명</th>
-			<th>시작일</th>
-			<th>종료일</th>
-		</tr>
-		<tr th:each="lecture, loop : ${lectures}">
-			<td th:text="${loop.count}"></td>
-			<td th:text="${lecture.lectureName}"></td>
-			<td th:text="${lecture.startDate}"></td>
-			<td th:text="${lecture.endDate}"></td>
-		</tr>
-	</table>
+	<h2>My Class</h2>
+	
+	<th:block th:each="lecture, loop : ${lectures}">
+		<div>
+			<h4 th:text="${lecture.lectureName}"></h4>
+			<span th:text="${lecture.startDate}"></span>
+			<span> ~ </span>
+			<span th:text="${lecture.endDate}"></span>
+		</div>
+	
+	</th:block>
+
 </body>
 </html>
