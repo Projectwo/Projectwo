@@ -33,7 +33,7 @@ public class ClassNotice {
 	@NotNull
 	private LocalDateTime createDate;
 	
-	@NotNull
+	//@NotNull
 	private LocalDateTime modifyDate;
 	
 	@NotNull
