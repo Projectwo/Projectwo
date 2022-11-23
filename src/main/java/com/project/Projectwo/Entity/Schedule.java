@@ -24,7 +24,7 @@ public class Schedule {
 	
 	@NotNull
 	@Column(length = 20)
-	private String day;
+	private String dayOfWeek;
 	
 	@NotNull
 	private LocalDateTime startTime;
