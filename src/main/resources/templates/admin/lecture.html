@@ -20,14 +20,14 @@
 			<form th:object="${lectureForm}"
 				th:action="@{|/admin/lectureModify/${lectureList.id}|}"
 				method="post">
-				<td th:text="${lectureList.id}"></td>
+				<td th:text="${lectureList.id}" id="lectureId" th:data-id=${lectureList.id}></td>
 				<td th:text="${lectureList.lectureName}"></td>
 				<td th:text="${lectureList.lectureDesc}"></td>
 				<td th:text="${lectureList.startDate}"></td>
 				<td th:text="${lectureList.endDate}"></td>
 				<td><input type="hidden" name="id" value="${lectureList.id}">
-					<button type="button" class="lecture_modify"
-						th:data-uri="@{|/admin/lectureModify/${lectureList.id}|}">modify</button>
+					<button type="button" class="modifyBtn">modify</button>
+					<button type='button' id='confirmBtn' style="display: none;">confirm</button>
 					<button type="button" class="lecture_delete"
 						th:data-uri="@{|/admin/lectureDelete/${lectureList.id}|}">delete</button>
 				</td>
@@ -64,27 +64,52 @@
 			;
 		});
 	});
-	var modify_target_btn = ""
-	var modify_target = ""
-	const lecture_modify = document.getElementsByClassName('lecture_modify');
+	
+	const lectureId = document.getElementById("lectureId").dataset.id;
+	const lectureName = document.getElementById("lectureName");
+	const lectureDesc = document.getElementById("lectureDesc");
+	const startDate = document.getElementById("startDate");
+	const endDate = document.getElementById("endDate");
+	var modify_target = '';
+	const confirmBtn = document.getElementById("confirmBtn")
+	$(".modifyBtn").on('click', function(e){
+		modify_target = e.currentTarget.parentElement.parentElement.getElementsByTagName('td');
+		modify_target_btn = e.currentTarget
+		modify_target[1].innerHTML = `<td><input type='text' name='lectureName' id='lectureName' value='${modify_target[1].innerText}'></td>`;
+		modify_target[2].innerHTML = `<td><input type="text" name='lectureDesc' id='lectureDesc' value="${modify_target[2].innerText}"></td>`;
+		modify_target[3].innerHTML = `<td><input type="date" name='startDate' 	id='startDate' 	 value="${modify_target[3].innerText}"></td>`;
+		modify_target[4].innerHTML = `<td><input type="date" name='endDate' 	id='endDate' 	 value="${modify_target[4].innerText}"></td>`;
+		
+		modify_target_btn.style.display="none"
+		//modify_target_btn.innerHTML = `<button type='button' id='confirmBtn'>confirm</button>`
+		document.getElementById("confirmBtn").style.display='block'
+	})
+	
+	$(document).on('click',"#confirmBtn",  function(){
+		$.ajax({
+			url: "/admin/lectureModify/"+lectureId,
+			data: {
+				
+				lectureId: lectureId,
+				lectureName: $('#lectureName').val(),
+				lectureDesc: $('#lectureDesc').val(),
+				startDate: $('#startDate').val(),
+				endDate: $('#endDate').val()
+			},
 
-	$('.lecture_modify')
-			.on(
-					'click',
-					function(e) {
-
-						modify_target = e.currentTarget.parentElement.parentElement
-								.getElementsByTagName('td');
-						modify_target_btn = e.currentTarget
-						console.log(e.currentTarget)
-						modify_target[1].innerHTML = `<td><input type='text' name='lectureName' value='${modify_target[1].innerText}'></td>`;
-						modify_target[2].innerHTML = `<td><input type="text" name="lectureDesc" value="${modify_target[2].innerText}"></td>`;
-						modify_target[3].innerHTML = `<td><input type="date" name="startDate" value="${modify_target[3].innerText}"></td>`;
-						modify_target[4].innerHTML = `<td><input type="date" name="endDate" value="${modify_target[4].innerText}"></td>`;
-
-						$('.lecture_modify').off('click')
-
-						//location.href = this.dataset.uri;
-
-					});
+			success: function(){
+				modify_target[1].innerHTML = `<td name='lectureName' id='lectureName'>${$('#lectureName').val()}</td>`;
+				modify_target[2].innerHTML = `<td name='lectureName' id='lectureName'>${$('#lectureDesc').val()}</td>`;
+				modify_target[3].innerHTML = `<td name='lectureName' id='lectureName'>${$('#startDate').val()}</td>`;
+				modify_target[4].innerHTML = `<td name='lectureName' id='lectureName'>${$('#endDate').val()}</td>`;
+				modify_target_btn.style.display="block"
+				document.getElementById("confirmBtn").style.display='none'
+			},
+			error:  function( xhr ) {
+	    		 console.log( xhr );
+	    		 //alert(xhr.status + ':' + xhr.statusText);
+			}
+		})	
+	})
+	
 </script>

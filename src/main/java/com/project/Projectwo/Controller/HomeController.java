@@ -65,7 +65,7 @@ public class HomeController {
 		} catch (DataIntegrityViolationException e) {
 			e.printStackTrace();
 			bindingResult.reject("signUpFailed", e.getMessage());
-			
+
 			return"member/signup";
 		}
 		
