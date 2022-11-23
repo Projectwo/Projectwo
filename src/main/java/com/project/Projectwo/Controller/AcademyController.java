@@ -50,7 +50,6 @@ public class AcademyController {
             return "academy/notice_form";
         }
     	
-    	System.out.println("2");
     	this.academyService.create(academyNoticeForm.getTitle(), academyNoticeForm.getContent());
         return "redirect:/academy/notice/list";
     }

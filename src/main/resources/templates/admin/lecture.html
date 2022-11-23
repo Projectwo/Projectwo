@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<!-- 강의 추가 -->
+<table
+	style="border: 1px solid black; border-collapse: collapse; width: 400px">
+	<thead>
+		<tr>
+			<th colspan="3" th:text="|< lecture 관리 >|"></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr style="border: 1px solid black;">
+			<th>no</th>
+			<th>lectureName</th>
+			<th>lectureDesc</th>
+			<th>startDate</th>
+			<th>endDate</th>
+		</tr>
+		<tr th:each="lectureList, index : ${lectureList}">
+			<form th:object="${lectureForm}"
+				th:action="@{|/admin/lectureModify/${lectureList.id}|}"
+				method="post">
+				<td th:text="${lectureList.id}"></td>
+				<td th:text="${lectureList.lectureName}"></td>
+				<td th:text="${lectureList.lectureDesc}"></td>
+				<td th:text="${lectureList.startDate}"></td>
+				<td th:text="${lectureList.endDate}"></td>
+				<td><input type="hidden" name="id" value="${lectureList.id}">
+					<button type="button" class="lecture_modify"
+						th:data-uri="@{|/admin/lectureModify/${lectureList.id}|}">modify</button>
+					<button type="button" class="lecture_delete"
+						th:data-uri="@{|/admin/lectureDelete/${lectureList.id}|}">delete</button>
+				</td>
+			</form>
+		</tr>
+	</tbody>
+	<tfoot>
+
+		<tr style="border-top: 2px solid black;">
+			<form th:action="@{/admin/createLecture}" method="post">
+				<td><label for="lectureName">new</label></td>
+				<td><input type="text" name="lectureName"></td>
+				<td><input type="text" name="lectureDesc"></td>
+				<td><input type="date" name="startDate"></td>
+				<td><input type="date" name="endDate"></td>
+				<td><button type="submit">submit</button></td>
+			</form>
+		</tr>
+	</tfoot>
+</table>
+<!-- //강의 추가 -->
+
+
+
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+<script>
+	const lecture_delete = document.getElementsByClassName("lecture_delete");
+	Array.from(lecture_delete).forEach(function(element) {
+		element.addEventListener('click', function() {
+			if (confirm("Really?")) {
+				location.href = this.dataset.uri;
+			}
+			;
+		});
+	});
+	var modify_target_btn = ""
+	var modify_target = ""
+	const lecture_modify = document.getElementsByClassName('lecture_modify');
+
+	$('.lecture_modify')
+			.on(
+					'click',
+					function(e) {
+
+						modify_target = e.currentTarget.parentElement.parentElement
+								.getElementsByTagName('td');
+						modify_target_btn = e.currentTarget
+						console.log(e.currentTarget)
+						modify_target[1].innerHTML = `<td><input type='text' name='lectureName' value='${modify_target[1].innerText}'></td>`;
+						modify_target[2].innerHTML = `<td><input type="text" name="lectureDesc" value="${modify_target[2].innerText}"></td>`;
+						modify_target[3].innerHTML = `<td><input type="date" name="startDate" value="${modify_target[3].innerText}"></td>`;
+						modify_target[4].innerHTML = `<td><input type="date" name="endDate" value="${modify_target[4].innerText}"></td>`;
+
+						$('.lecture_modify').off('click')
+
+						//location.href = this.dataset.uri;
+
+					});
+</script>
