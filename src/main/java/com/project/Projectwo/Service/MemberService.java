@@ -61,11 +61,14 @@ public class MemberService {
 	
 	//학생
 	//박은영
-	//내 강의 목록
+	//내 강의 목록// by 장유란, 전체 강의 목록
 	public List<Lecture> getLectureList(){ //HttpSession session
-		
 		List<Lecture> lectureList = lectureRepository.findAll();
-		
+		return lectureList;
+	}
+	
+	public List<Lecture> getStudentLectureList(){ //HttpSession session
+		List<Lecture> lectureList = lectureRepository.findAll();
 		return lectureList;
 	}
 	

@@ -41,6 +41,6 @@ public class ClassNotice {
 	private Lecture lecture;
 	
 	@NotNull
-	@ManyToOne
+	@ManyToOne//작성자
 	private ClassTeacher classTeacher;
 }

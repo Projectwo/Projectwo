@@ -36,8 +36,8 @@ public class AdminController {
         model.addAttribute("lectureList", lectureList);
 		return "admin/lecture";
 	}
-
-	// by 장유란, 강의 개설
+	
+	// by 장유란, 강의개설
 	@PostMapping("/createLecture")
 	public String createLecture(String lectureName, String lectureDesc, String startDate, String endDate) {
 		System.out.println(startDate + " - " + endDate);
