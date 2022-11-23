@@ -1,10 +1,5 @@
 @import url("reset.css");
 
-* {
-    margin: 0;
-    padding: 0;
-}
-
 #wrap {
     position: relative;
     text-align: center;
@@ -275,7 +270,7 @@
 
 .dropdown-member-function a {
     font-size: 12px;
-    text-decoration:underline;
+    text-decoration: underline;
 }
 
 .dropdown-member-lecture {
@@ -301,7 +296,7 @@
     border: 1px solid #aaa;
     border-radius: 6px;
     text-align: left;
-    padding-left:10px;
+    padding-left: 10px;
     cursor: pointer;
 }
 
@@ -309,7 +304,7 @@
 
 /* ##### member_main.html ##### */
 
-.main-profile{
+.main-profile {
     width: 160px;
     height: 60px;
     margin-top: 20px;
@@ -335,93 +330,94 @@
     font-size: 18px;
 }
 
-.main-lecture{
+.main-lecture {
     position: relative;
-    margin:0 auto;
+    margin: 0 auto;
     margin-top: 10px;
     width: 100%;
     height: 130px;
-    border:1px solid #444;
+    border: 1px solid #444;
     border-radius: 6px;
     background: #444;
 }
 
-.main-lecture .lecture-name{
-    padding:6px 8px;
+.main-lecture .lecture-name {
+    padding: 6px 8px;
     text-align: left;
     font-size: 14px;
-    color:#eee;
+    color: #eee;
 }
 
-.main-lecture .lecture-name b{
+.main-lecture .lecture-name b {
     font-size: 18px;
 }
 
-.main-lecture .lecture-info{
+.main-lecture .lecture-info {
     margin-top: 10px;
     padding: 4px 6px;
 }
 
-.main-lecture .lecture-teacher{
+.main-lecture .lecture-teacher {
     position: absolute;
     top: 30px;
     padding-left: 6px;
     font-size: 15px;
-    color:#eee;
+    color: #eee;
     text-align: left;
 }
 
-.main-lecture .lecture-info-schedule{
+.main-lecture .lecture-info-schedule {
     display: flex;
     justify-content: flex-end;
 
 }
 
-.main-lecture .lecture-info-schedule li{
+.main-lecture .lecture-info-schedule li {
     width: 18px;
     height: 18px;
     font-size: 14px;
     line-height: 18px;
-    margin-left:2px;
-    border:1px solid;
+    margin-left: 2px;
+    border: 1px solid;
     border-radius: 4px;
     background: #eee;
 }
 
-.main-lecture .lecture-info-schedule-checked{
+.main-lecture .lecture-info-schedule-checked {
     display: flex;
     justify-content: flex-end;
 }
 
-.main-lecture .lecture-info-schedule-checked li{
+.main-lecture .lecture-info-schedule-checked li {
     width: 18px;
     height: 18px;
-    padding:1px 2px;
-    color:#eee;
+    padding: 1px 2px;
+    color: #eee;
     margin-top: 2px;
-    margin-left:2px;
+    margin-left: 2px;
     background: #444;
 }
 
-.main-lecture .lecture-info-schedule-checked li span{
+.main-lecture .lecture-info-schedule-checked li span {
     display: block;
     width: 14px;
     height: 14px;
     font-size: 10px;
-    border:1px solid;
+    border: 1px solid;
     border-radius: 50%;
 }
 
-.main-lecture .lecture-info-schedule-time{
+.main-lecture .lecture-info-schedule-time {
     margin-top: 10px;
-    color:#eee;
+    color: #eee;
     text-align: right;
 }
+
 /* ##### member_main.html end ##### */
 
 /* ##### academy_main.html ##### */
 
-.academy-list-tab{
+.academy-list-tab {
     width: 100%;
     height: 30px;
     margin-top: 10px;
@@ -430,116 +426,116 @@
     align-items: center;
 }
 
-.academy-list-tab button{
-    padding:4px 14px;
-    border:1px solid #aaa;
+.academy-list-tab button {
+    padding: 4px 14px;
+    border: 1px solid #aaa;
     border-radius: 10px;
     font-size: 20px;
 }
 
-.academy-new{
+.academy-new {
     width: 100%;
     height: 32px;
     margin-top: 14px;
 }
 
-.academy-new .new-lecture{
+.academy-new .new-lecture {
     text-align: left;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.academy-new .new-lecture button{
+.academy-new .new-lecture button {
     position: absolute;
     width: 24px;
     height: 24px;
-    color:#777;
+    color: #777;
     font-size: 16px;
     border: 1px solid;
     border-radius: 50%;
-    
+
 }
 
-.academy-new .new-lecture a{
+.academy-new .new-lecture a {
     display: inline-block;
     height: 20px;
-    margin-left:14px;
+    margin-left: 14px;
     text-align: left;
     font-size: 20px;
     line-height: 22px;
 }
 
-.academy-new .search-lecture{
+.academy-new .search-lecture {
     width: 80px;
     height: 24px;
     padding: 2px 4px;
     margin-left: 20px;
-    border:1px solid #aaa;
+    border: 1px solid #aaa;
     border-radius: 6px;
 }
 
-.academy-new .category-lecture{
+.academy-new .category-lecture {
     width: 100px;
     height: 24px;
-    padding:2px 4px;
-    border:1px solid #aaa;
+    padding: 2px 4px;
+    border: 1px solid #aaa;
     border-radius: 6px;
-    color:#444;
+    color: #444;
 }
 
-.academy-lecture-list{
+.academy-lecture-list {
     width: 100%;
     height: 600px;
-    overflow: auto;
+    overflow-y: scroll;
 }
 
-.main-lecture.academy-list{
-    margin-bottom:20px;
+.main-lecture.academy-list {
+    margin-bottom: 20px;
 }
 
-.main-lecture.academy-list .lecture-info{
+.main-lecture.academy-list .lecture-info {
     position: absolute;
     width: 100%;
     top: 0;
     right: 0;
 }
 
-.main-lecture.academy-list .lecture-teacher{
+.main-lecture.academy-list .lecture-teacher {
     left: 6px;
     top: 0;
     margin-top: 20px;
 }
 
-.main-lecture.academy-list .lecture-info-schedule-period{
+.main-lecture.academy-list .lecture-info-schedule-period {
     text-align: right;
     height: 18px;
     margin-top: 6px;
-    color:#eee;
+    color: #eee;
     font-size: 14px;
     font-weight: 300;
 }
 
-.main-lecture.academy-list .lecture-info-schedule-time{
+.main-lecture.academy-list .lecture-info-schedule-time {
     margin-top: 0;
     font-size: 14px;
     font-weight: 300;
 }
 
-.main-lecture.academy-list .lecture-info-room{
+.main-lecture.academy-list .lecture-info-room {
     position: absolute;
     right: 6px;
     bottom: 0;
     text-align: right;
-    color:#eee;
+    color: #eee;
     font-size: 20px;
 }
 
-.main-lecture.academy-list .lecture-info-count{
+.main-lecture.academy-list .lecture-info-count {
     text-align: left;
     margin-top: 2px;
     margin-left: 4px;
-    color:#eee;
+    color: #eee;
     font-size: 16px;
 }
 
