@@ -19,8 +19,6 @@ public class AcademyService {
 	
 	// by 장유란, notice 목록 Controller에 전달
 	public List<AcademyNotice> getList() {
-
-		
 		List<AcademyNotice> noticeList = academyNoticeRepository.findAll();
 		return noticeList;
 	}
@@ -30,7 +28,7 @@ public class AcademyService {
         if (notice.isPresent()) {
             return notice.get();
         } else {
-            throw new DataNotFoundException("notice not found");
+            throw new DataNotFoundException("공지를 찾을 수 없습니다.");
         }
     }
 	
@@ -43,7 +41,6 @@ public class AcademyService {
 		academyNoticeRepository.save(notice);
 		
 		return notice;
-    	
     }
 	
 	/*

@@ -26,27 +26,29 @@ public class AcademyController {
 	private final AcademyService academyService;
 	
 	// by 장유란, Service의 목록 model로 html에 전달, 게시글 권한 없으므로 변동가능성 많음
-	@GetMapping(value = "/notice/list")
+	//			매핑 변경예정
+	@GetMapping("/notice/list")
 	public String noticeList(Model model) {
         List<AcademyNotice> noticeList = academyService.getList();
         model.addAttribute("noticeList", noticeList);
 		return "academy/notice_list";
 	}
 	
-    @RequestMapping(value = "/notice/detail/{id}")
+    @RequestMapping("/notice/detail/{id}")
     public String detail(Model model, @PathVariable("id") Integer id) {
+    	AcademyNotice academyNotice = this.academyService.getNotice(id);
+    	model.addAttribute("academyNotice", academyNotice);
         return "academy/notice_detail";
     }
     
-    @RequestMapping(value = "/notice/create")
+    @RequestMapping("/notice/create")
     public String noticeCreate(AcademyNoticeForm academyNoticeForm) {
     	return "academy/notice_form";
     }
     
-    @PostMapping(value = "/notice/create")
+    @PostMapping("/notice/create")
     public String noticeCreate(@Valid AcademyNoticeForm academyNoticeForm, BindingResult bindingResult) {
     	if (bindingResult.hasErrors()) {
-    		System.out.println("1");
             return "academy/notice_form";
         }
     	
