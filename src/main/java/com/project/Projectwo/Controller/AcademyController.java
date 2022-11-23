@@ -25,6 +25,13 @@ public class AcademyController {
 
 	private final AcademyService academyService;
 	
+    // by 조성빈, academy main template
+    @RequestMapping("/main")
+    public String academyMain(){
+        return "academy/academy_main";
+    }
+
+
 	// by 장유란, Service의 목록 model로 html에 전달, 게시글 권한 없으므로 변동가능성 많음
 	//			매핑 변경예정
 	@GetMapping("/notice/list")

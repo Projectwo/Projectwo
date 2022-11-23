@@ -234,6 +234,7 @@
     width: 220px;
     height: 700px;
     background-color: #eee;
+    z-index: 5;
 }
 
 .dropdown-profile {

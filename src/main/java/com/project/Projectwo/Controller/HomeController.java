@@ -21,30 +21,37 @@ public class HomeController {
 	private final MemberService memberService;
 
 	// by 장유란, 임시매핑, 언제든 수정/이동/삭제가능
+	// by 조성빈, 해당 매핑 그대로 fix
 	@RequestMapping("/")
 	public String index() {
 		return "index";
 	}
+
+	// by 조성빈, 로그인 매핑(차후 get / post 로 수정 or security 적용 필요)
+	@RequestMapping("/login")
+	public String login(){
+		return "member/login";
+	}
 	
 	// by 안준언, 회원 가입 (Get)
-	@GetMapping
+	@GetMapping("/signup")
 	public String signUp(MemberCreateForm memberCreateForm) {
-		return "signup";
+		return "member/signup";
 	}
 	
 	// by 안준언, 회원 가입(Post)
-	@PostMapping
+	@PostMapping("/signup")
 	public String signUp(@Valid MemberCreateForm memberCreateForm, 
 							BindingResult bindingResult) {
 		if (bindingResult.hasErrors()) {
-			return "signup";
+			return "member/signup";
 		}
 		
 		if(!memberCreateForm.getMember_pw1()
 				.equals(memberCreateForm.getMember_pw2())) {
 			bindingResult.rejectValue("member_pw2", "passwordInCorrect",
 										"2개의 패스워드가 일치하지 않습니다.");
-			return "signup";
+			return "member/signup";
 		}
 		
 		try {
@@ -59,10 +66,16 @@ public class HomeController {
 			e.printStackTrace();
 			bindingResult.reject("signUpFailed", e.getMessage());
 			
-			return"signup";
+			return"member/signup";
 		}
 		
-		return "redirect:/";
+		return "redirect:/login";
+	}
+
+	// by 조성빈, 아래부터는 임시 매핑(필요한 곳으로 가져가면 됨)
+	@RequestMapping("/member/main")
+	public String memberMain(){
+		return "member/member_main";
 	}
 
 }
