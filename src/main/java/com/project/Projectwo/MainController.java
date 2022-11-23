@@ -20,4 +20,9 @@ public class MainController {
     public String login(){
         return "member/login";
     }
+
+    @RequestMapping("/main")
+    public String main(){
+        return "member/member_main";
+    }
 }
