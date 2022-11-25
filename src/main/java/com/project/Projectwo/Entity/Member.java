@@ -41,7 +41,5 @@ public class Member {
 	
 	@Column(length = 50)
 	private String tel;
-	
-	private int auth;
 
 }

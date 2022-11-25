@@ -1,7 +1,6 @@
 package com.project.Projectwo.Entity;
 
 import java.time.LocalDateTime;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,8 +9,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
-
-import org.hibernate.annotations.ColumnDefault;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -45,8 +42,5 @@ public class ClassNotice {
 	@NotNull
 	@ManyToOne//작성자
 	private ClassTeacher classTeacher;
-	
-	@ManyToOne
-	private Boolean classNoticeCheck;
 	
 }
