@@ -24,5 +24,5 @@ public class ClassNoticeCheck {
 	@ManyToOne
 	private ClassNotice classNotice;
 	
-	private boolean check;
+	private boolean checked;
 }

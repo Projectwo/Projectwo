@@ -24,5 +24,5 @@ public class AcademyNoticeCheck {
 	@ManyToOne
 	private AcademyNotice academyNotice;
 	
-	private boolean check;
+	private boolean checked;
 }
