@@ -27,7 +27,7 @@ public class Lecture {
 	private String lectureName;
 	
 	@NotNull
-	@Column//(columnDefinition = "TEXT")
+	@Column(columnDefinition = "TEXT")
 	private String lectureDesc;
 	
 	@NotNull
@@ -36,6 +36,4 @@ public class Lecture {
 	@NotNull
 	private LocalDate endDate;
 	
-	@ManyToOne
-	private LectureList lectureList;
 }
