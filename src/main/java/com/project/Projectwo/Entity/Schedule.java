@@ -46,8 +46,9 @@ public class Schedule {
 	@NotNull
 	@ManyToOne
 	private ClassTeacher classTeacher;
-	
+
 	// 스케줄 하나당 출석 리스트
 	@OneToMany(mappedBy = "schedule")
 	private List<Attendance> attendance;
+
 }

@@ -30,7 +30,7 @@ public class Lecture {
 	private String lectureName;
 	
 	@NotNull
-	@Column//(columnDefinition = "TEXT")
+	@Column
 	private String lectureDesc;
 	
 	@NotNull
@@ -42,7 +42,7 @@ public class Lecture {
 	//by 장유란, 강의리스트가 강의 참조(ManyToOne)
 	@ManyToOne
 	private LectureList lectureList;
-	
+
 	//by 장유린, 여러 스케줄(9~12/ 13~18)을 하나로 모으는 역할
 	@OneToMany(mappedBy = "lecture", cascade = CascadeType.REMOVE)
 	private List<Schedule> schedule;

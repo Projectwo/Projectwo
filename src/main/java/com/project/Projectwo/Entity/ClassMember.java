@@ -38,6 +38,11 @@ public class ClassMember {
 	
 	@OneToMany(mappedBy = "classMember", cascade = CascadeType.REMOVE)
 	private List<Attendance> attendanceList;
+
+	@OneToMany(mappedBy = "classMember", cascade = CascadeType.REMOVE)
+	private List<ClassNoticeCheck> classNoticeCheck;
 	
+	@OneToMany(mappedBy = "classMember", cascade = CascadeType.REMOVE)
+	private List<AcademyNoticeCheck> academyNoticeCheck;
 
 }
