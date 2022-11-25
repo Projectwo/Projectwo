@@ -24,9 +24,6 @@ public class Teacher {
 	@OneToOne
 	private Member member;
 	
-	// 프로필 이미지 url 심을 필드
-	private String url;
-	
 	@Column(columnDefinition = "TEXT")
 	private String career;
 }
