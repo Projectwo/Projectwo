@@ -2,32 +2,32 @@ package com.project.Projectwo.Service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.project.Projectwo.Entity.AcademyNotice;
 import com.project.Projectwo.Entity.AcademyNoticeCheck;
 import com.project.Projectwo.Entity.Attendance;
-import com.project.Projectwo.Entity.ClassMember;
+import com.project.Projectwo.Entity.Student;
 import com.project.Projectwo.Entity.ClassNotice;
 import com.project.Projectwo.Entity.ClassNoticeCheck;
-import com.project.Projectwo.Entity.ClassTeacher;
-import com.project.Projectwo.Entity.Lecture;
+import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Room;
-import com.project.Projectwo.Entity.Schedule;
+import com.project.Projectwo.Entity.Subject;
 import com.project.Projectwo.Entity.Teacher;
 import com.project.Projectwo.Repository.AcademyNoticeCheckRepository;
 import com.project.Projectwo.Repository.AcademyNoticeRepository;
 import com.project.Projectwo.Repository.AttendanceRepository;
-import com.project.Projectwo.Repository.ClassMemberRepository;
+import com.project.Projectwo.Repository.StudentRepository;
 import com.project.Projectwo.Repository.ClassNoticeCheckRepository;
 import com.project.Projectwo.Repository.ClassNoticeRepository;
-import com.project.Projectwo.Repository.ClassTeacherRepository;
-import com.project.Projectwo.Repository.LectureRepository;
+import com.project.Projectwo.Repository.CourseRepository;
 import com.project.Projectwo.Repository.MemberRepository;
 import com.project.Projectwo.Repository.RoomRepository;
-import com.project.Projectwo.Repository.ScheduleRepository;
+import com.project.Projectwo.Repository.SubjectRepository;
 import com.project.Projectwo.Repository.TeacherRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -36,28 +36,29 @@ import lombok.RequiredArgsConstructor;
 @Service
 public class AcademyService {
 
-	private final MemberRepository memberRepository;
 	private final AcademyNoticeRepository academyNoticeRepository;
-	private final RoomRepository roomRepository;
-	private final LectureRepository lectureRepository;
-	private final ClassMemberRepository classMemberRepository;
-	private final ScheduleRepository scheduleRepository;
-	private final TeacherRepository teacherRepository;
-	private final ClassTeacherRepository classTeacherRepository;
-	private final ClassNoticeCheckRepository classNoticeCheckRepository;
-	private final ClassNoticeRepository classNoticeRepository;
-	private final AttendanceRepository attendanceRepository;
 	private final AcademyNoticeCheckRepository academyNoticeCheckRepository;
+	private final AttendanceRepository attendanceRepository;
+	private final ClassNoticeRepository classNoticeRepository;
+	private final ClassNoticeCheckRepository classNoticeCheckRepository;
+	private final CourseRepository courseRepository;
+	private final MemberRepository memberRepository;
+	private final RoomRepository roomRepository;
+	private final StudentRepository studentRepository;
+	private final SubjectRepository subjectRepository;
+	private final TeacherRepository teacherRepository;
+	
+	private final PasswordEncoder passwordEncoder;
 	
 	// by 안준언, 유저 생성
-	public void createMember(String member_id, String member_pw, String email,
-								String name, int age, String address, String tel) {
+	public void createMember(String identity, String password, String email,
+								String name, LocalDate birth_date, String address, String tel) {
 		Member member = new Member();
-		member.setMember_id(member_id);
-		member.setMember_pw(member_pw);
+		member.setIdentity(identity);
+		member.setPassword(passwordEncoder.encode(password));
 		member.setEmail(email);
 		member.setName(name);
-		member.setAge(age);
+		member.setBirth_date(birth_date);
 		member.setAddress(address);
 		member.setTel(tel);
 		
@@ -75,72 +76,62 @@ public class AcademyService {
 	}
 	
 	// by 안준언, 강의실 생성
-	public void createRoom(String roomName, int MaxSeat) {
+	public void createRoom(String name, int MaxSeat) {
 		Room room = new Room();
-		room.setRoomName(roomName);
+		room.setName(name);
 		room.setMaxSeat(MaxSeat);
 		
 		this.roomRepository.save(room);
 	}
 	
 	// by 안준언, 학원 강의(반) 생성
-	public void createLecture(String lectureName, String LectureDesc,
+	public void createCourse(String title, String description,
 								LocalDate startDate, LocalDate endDate) {
-		Lecture lecture = new Lecture();
-		lecture.setLectureName(lectureName);
-		lecture.setLectureDesc(LectureDesc);
+		Course lecture = new Course();
+		lecture.setTitle(title);
+		lecture.setDescription(description);
 		lecture.setStartDate(startDate);
 		lecture.setEndDate(endDate);
 		
-		this.lectureRepository.save(lecture);
+		this.courseRepository.save(lecture);
 	}
 	
 	// by 안준언, 수강 등록 (수강정보 생성)
-	public void createClassMember(Lecture lecture, Member member) {
-		ClassMember classMember = new ClassMember();
-		classMember.setLecture(lecture);
-		classMember.setMember(member);
+	public void createStudent(Member student, Course course) {
+		Student classMember = new Student();
+		classMember.setStudent(student);
+		classMember.setCourse(course);
 		
-		this.classMemberRepository.save(classMember);
+		this.studentRepository.save(classMember);
 	}
 	
 	// by 안준언, 스케쥴 생성
-	public void createSchedule(String dayOfWeek, LocalDateTime startTime,
-								LocalDateTime endTime, Lecture lecture,
-								Room room, ClassTeacher classTeacher) {
-		Schedule schedule = new Schedule();
+	public void createSubject(String title, String dayOfWeek, LocalTime startTime,
+								LocalTime endTime, Course course, Room room) {
+		Subject schedule = new Subject();
+		schedule.setTitle(title);
 		schedule.setDayOfWeek(dayOfWeek);
 		schedule.setStartTime(startTime);
 		schedule.setEndTime(endTime);
-		schedule.setLecture(lecture);
+		schedule.setCourse(course);
 		schedule.setRoom(room);
-		schedule.setClassTeacher(classTeacher);
 		
-		this.scheduleRepository.save(schedule);
+		this.subjectRepository.save(schedule);
 	}
 	
 	// by 안준언, 강사 등록
-	public void createTeacher(Member member, String career) {
+	public void createTeacher(Member teacher_, Course course) {
 		Teacher teacher = new Teacher();
-		teacher.setMember(member);
-		teacher.setCareer(career);
+		teacher.setTeacher(teacher_);
+		teacher.setCourse(course);
 		
 		this.teacherRepository.save(teacher);
 	}
 	
-	// by 안준언, class Teacher 등록
-	public void createClassTeacher(Teacher teacher, Lecture lecture) {
-		ClassTeacher classTeacher = new ClassTeacher();
-		classTeacher.setTeacher(teacher);
-		classTeacher.setLecture(lecture);
-		
-		this.classTeacherRepository.save(classTeacher);
-	}
-	
 	// by 안준언, 강의 공지사항 읽음 여부 생성
-	public void createClassNoticeCheck(ClassMember classMember, ClassNotice classNotice) {
+	public void createClassNoticeCheck(Student student, ClassNotice classNotice) {
 		ClassNoticeCheck classNoticeCheck = new ClassNoticeCheck();
-		classNoticeCheck.setClassMember(classMember);
+		classNoticeCheck.setStudent(student);
 		classNoticeCheck.setClassNotice(classNotice);
 		classNoticeCheck.setChecked(false);
 		
@@ -149,27 +140,25 @@ public class AcademyService {
 	
 	// by 안준언, 강의 공지사항 생성
 	public void createClassNotice(String title, String content, LocalDateTime createDate,
-									LocalDateTime modifyDate, Lecture lecture, ClassTeacher classTeacher) {
+									LocalDateTime modifyDate, Course course) {
 		ClassNotice classNotice = new ClassNotice();
 		classNotice.setTitle(title);
 		classNotice.setContent(content);
 		classNotice.setCreateDate(createDate);
 		classNotice.setModifyDate(modifyDate);
-		classNotice.setLecture(lecture);
-		classNotice.setClassTeacher(classTeacher);
+		classNotice.setCourse(course);
 		
 		this.classNoticeRepository.save(classNotice);
 	}
 	
 	// by 안준언, 출석 정보 생성
-	public void createAttendance(LocalDateTime inTime, LocalDateTime outTime, String status,
-									ClassMember classMember, Schedule schedule) {
+	public void createAttendance(LocalTime inTime, LocalTime outTime, String status,
+									Student student) {
 		Attendance attendance = new Attendance();
 		attendance.setInTime(inTime);
 		attendance.setOutTime(outTime);
 		attendance.setStatus(status);
-		attendance.setClassMember(classMember);
-		attendance.setSchedule(schedule);
+		attendance.setStudent(student);
 		
 		this.attendanceRepository.save(attendance);
 	}
