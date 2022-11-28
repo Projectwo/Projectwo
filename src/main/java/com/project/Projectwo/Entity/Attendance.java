@@ -1,6 +1,6 @@
 package com.project.Projectwo.Entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,9 +22,9 @@ public class Attendance {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	private LocalDateTime inTime;
+	private LocalTime inTime;
 	
-	private LocalDateTime outTime;
+	private LocalTime outTime;
 	
 	@NotNull
 	@Column(length = 20)
@@ -32,9 +32,5 @@ public class Attendance {
 	
 	@NotNull
 	@ManyToOne
-	private ClassMember classMember;
-	
-	@NotNull
-	@ManyToOne
-	private Schedule schedule;
+	private Student student;
 }
