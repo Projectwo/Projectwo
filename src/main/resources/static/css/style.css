@@ -137,7 +137,7 @@
 }
 
 .login-form .field {
-    margin: 12px 0;
+    margin: 10px 0;
 }
 
 .login-form .field>input {
@@ -150,9 +150,11 @@
 }
 
 .forgot-pw {
+    position: relative;
     font-size: 14px;
     text-align: right;
     color: #aaa;
+    top: -6px;
 }
 
 .login-form .login-submit {
@@ -184,16 +186,13 @@
     border-radius: 8px;
 }
 
-.signup-link {
+.contact-academy {
     height: 140px;
     position: relative;
     display: flex;
     align-items: flex-end;
     justify-content: center;
-}
-
-.signup-link a {
-    color: green;
+    color:#666;
 }
 
 /* ##### login.html end ##### */
