@@ -1,5 +1,6 @@
 package com.project.Projectwo.Controller;
 
+<<<<<<< HEAD
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -31,4 +32,11 @@ public class StudentController {
 		
 	}
 	
+=======
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class StudentController {
+
+>>>>>>> main
 }

@@ -30,7 +30,11 @@ public class AcademyNotice {
 	@NotNull
 	private LocalDateTime createDate;
 	
+<<<<<<< HEAD
 	//@NotNull 수정일자는 null가능
+=======
+	@NotNull
+>>>>>>> main
 	private LocalDateTime modifyDate;
 	
 }

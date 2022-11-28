@@ -1,5 +1,6 @@
 package com.project.Projectwo.Service;
 
+<<<<<<< HEAD
 import java.util.List;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -69,4 +70,11 @@ public class MemberService {
 		return lectureList;
 	}
 	
+=======
+import org.springframework.stereotype.Service;
+
+@Service
+public class MemberService {
+
+>>>>>>> main
 }

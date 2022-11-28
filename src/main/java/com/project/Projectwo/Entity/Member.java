@@ -21,10 +21,17 @@ public class Member {
 	
 	@NotNull
 	@Column(unique = true, length = 50)
+<<<<<<< HEAD
 	private String member_id;
 	
 	@NotNull
 	private String member_pw;
+=======
+	private String memberId;
+	
+	@NotNull
+	private String memberPw;
+>>>>>>> main
 	
 	@NotNull
 	@Column(unique = true, length = 150)

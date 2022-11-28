@@ -65,4 +65,10 @@ public class AcademyController {
     	this.academyService.create(academyNoticeForm.getTitle(), academyNoticeForm.getContent());
         return "redirect:/academy/notice/list";
     }
+=======
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class AcademyController {
+
 }

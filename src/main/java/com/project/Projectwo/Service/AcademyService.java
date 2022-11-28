@@ -1,5 +1,6 @@
 package com.project.Projectwo.Service;
 
+<<<<<<< HEAD
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -55,4 +56,11 @@ public class AcademyService {
 	수강생 관리
 	등 ?
 	 */
+=======
+import org.springframework.stereotype.Service;
+
+@Service
+public class AcademyService {
+
+>>>>>>> main
 }

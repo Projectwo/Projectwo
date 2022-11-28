@@ -27,7 +27,11 @@ public class Lecture {
 	private String lectureName;
 	
 	@NotNull
+<<<<<<< HEAD
 	@Column//(columnDefinition = "TEXT")
+=======
+	@Column(columnDefinition = "TEXT")
+>>>>>>> main
 	private String lectureDesc;
 	
 	@NotNull
