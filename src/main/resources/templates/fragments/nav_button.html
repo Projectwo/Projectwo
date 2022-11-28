@@ -1,0 +1,38 @@
+<div th:fragment="navFragment">
+    <div class="member-dropdown">
+        <button type="button" class="member-dropdown-button" onclick="menuDrop()">
+            =
+        </button>
+        <div class="member-dropdown-list">
+            <div class="dropdown-profile">
+                <div class="dropdown-profile-img">
+                    <!-- 이미지 아이콘 --></div>
+                <div class="dropdown-profile-text">
+                    반갑습니다.<br>
+                    <span>홍길동</span> 님
+                </div>
+            </div>
+            <div class="dropdown-member-function">
+                <a href="#">비밀번호 변경</a>
+                <a href="#">로그아웃</a>
+            </div>
+            <div class="dropdown-member-lecture">
+                My Class
+                <ul>
+                    <li><button>임시 강의 1</button></li>
+                    <li><button>임시 강의 2</button></li>
+                    <li><button>임시 강의 3</button></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+		function menuDrop() {
+			if ($(".member-dropdown").hasClass("active")) {
+				$(".member-dropdown").removeClass("active");
+			} else {
+				$(".member-dropdown").addClass("active");
+			}
+		}
+	</script>
+</div>
