@@ -1,20 +1,32 @@
 <html layout:decorate="~{layout/layout}">
 
 <div th:fragment="studentFragment" class="tab-content student">
-    <div class="academy-function">
-        <div class="academy-new">
-            <div class="new-lecture">
-                <button>+</button>
-                &nbsp;<a href="#">학생 추가</a>
-                <input class="search-lecture" placeholder="Search">
-                <select class="category-lecture">
-                    <option selected="">카테고리</option>
-                    <option value="임시 강의 1">임시 강의 1</option>
-                    <option value="임시 강의 2">임시 강의 2</option>
-                    <option value="임시 강의 3">임시 강의 3</option>
-                </select>
+    <div class="academy-student-list">
+        <div class="academy-student">
+            <div class="student-info">
+                <button class="student-modify-button">
+                    수정
+                </button>
+                <div class="student-title">
+                    <div class="student-name">
+                        <!-- b에 강의명, span에 학원명 -->
+                        <b>Mike</b>
+                    </div>
+                    <div class="student-class">
+                        <b>1 Class</b>
+                    </div>
+                </div>
+                <div class="student-birthday">
+                    80.12.12 <span> / </span>
+                </div>
+                <div class="student-tel">
+                    010-1234-5678
+                </div>
+                <div class="student-address">
+                    부산시 어쩌구 니맘대로 11-1
+                </div>
             </div>
-        </div>
+        </div><!-- 해당 div에 each -->
     </div>
 </div>
 
