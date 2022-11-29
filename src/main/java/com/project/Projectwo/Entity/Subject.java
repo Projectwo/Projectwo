@@ -1,6 +1,6 @@
 package com.project.Projectwo.Entity;
 
-import java.time.LocalDate;
+import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,24 +16,31 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Lecture {
-	
+public class Subject {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@NotNull
-	@Column(unique = true, length = 300)
-	private String lectureName;
+	@Column(length = 50)
+	private String title;
 	
 	@NotNull
-	@Column(columnDefinition = "TEXT")
-	private String lectureDesc;
+	@Column(length = 20)
+	private String dayOfWeek;
 	
 	@NotNull
-	private LocalDate startDate;
+	private LocalTime startTime;
 	
 	@NotNull
-	private LocalDate endDate;
+	private LocalTime endTime;
 	
+	@NotNull
+	@ManyToOne
+	private Course course;
+	
+	@NotNull
+	@ManyToOne
+	private Room room;
 }

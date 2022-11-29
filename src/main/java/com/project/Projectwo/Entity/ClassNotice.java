@@ -37,9 +37,5 @@ public class ClassNotice {
 	
 	@NotNull
 	@ManyToOne
-	private Lecture lecture;
-	
-	@NotNull
-	@ManyToOne
-	private ClassTeacher classTeacher;
+	private Course course;
 }

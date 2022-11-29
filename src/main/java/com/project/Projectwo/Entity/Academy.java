@@ -26,10 +26,10 @@ public class Academy {
 	@Column(columnDefinition = "TEXT")
 	private String history;
 	
+	@Column(length = 200)
+	private String address;
+	
 	@NotNull
 	@Column(length = 50)
 	private String tel;
-	
-	@Column(length = 200)
-	private String address;
 }
