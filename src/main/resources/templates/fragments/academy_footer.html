@@ -1,0 +1,34 @@
+<html layout:decorate="~{layout/layout}">
+
+<footer th:fragment="academyFooterFragment">
+    <div class="academy-function">
+        <div class="academy-new">
+            <div class="new-lecture">
+                <input class="search-lecture" placeholder="Search">
+                <select class="category-lecture">
+                    <option selected="">카테고리</option>
+                    <option value="임시 강의 1">임시 강의 1</option>
+                    <option value="임시 강의 2">임시 강의 2</option>
+                    <option value="임시 강의 3">임시 강의 3</option>
+                </select>
+                <div class="academy-function-button lecture-button active">
+                    <button>+</button>
+                    &nbsp;<a href="#">강의 추가</a>
+                </div>
+                <div class="academy-function-button teacher-button">
+                    <button>+</button>
+                    &nbsp;<a href="#">강사 추가</a>
+                </div>
+                <div class="academy-function-button student-button">
+                    <button>+</button>
+                    &nbsp;<a href="#">수강생 추가</a>
+                </div>
+            </div>
+        </div>
+        <button class="modify-password">비밀번호 변경</button>
+        <button class="logout" onclick="location.href='/'">로그아웃</button>
+    </div>
+    
+</footer>
+
+</html>
