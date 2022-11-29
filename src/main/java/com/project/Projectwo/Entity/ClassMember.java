@@ -26,4 +26,5 @@ public class ClassMember {
 	@NotNull
 	@ManyToOne
 	private Member member;
+	
 }

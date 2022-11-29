@@ -23,8 +23,6 @@ public class Academy {
 	@Column(length = 30)
 	private String name;
 	
-	private String url;
-	
 	@Column(columnDefinition = "TEXT")
 	private String history;
 	

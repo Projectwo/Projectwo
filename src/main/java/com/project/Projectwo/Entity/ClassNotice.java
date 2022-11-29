@@ -32,12 +32,16 @@ public class ClassNotice {
 	
 	@NotNull
 	private LocalDateTime createDate;
+<<<<<<< HEAD
 	
 <<<<<<< HEAD
 	//@NotNull
 =======
 	@NotNull
 >>>>>>> main
+=======
+
+>>>>>>> origin/dev
 	private LocalDateTime modifyDate;
 	
 	@NotNull
@@ -45,6 +49,7 @@ public class ClassNotice {
 	private Lecture lecture;
 	
 	@NotNull
-	@ManyToOne
+	@ManyToOne//작성자
 	private ClassTeacher classTeacher;
+	
 }

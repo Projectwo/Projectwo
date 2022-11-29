@@ -31,10 +31,13 @@ public class AcademyNotice {
 	private LocalDateTime createDate;
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	//@NotNull 수정일자는 null가능
 =======
 	@NotNull
 >>>>>>> main
+=======
+>>>>>>> origin/dev
 	private LocalDateTime modifyDate;
-	
+
 }
