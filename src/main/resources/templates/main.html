@@ -5,6 +5,27 @@
 	<title>Main</title>
 </head>
 <body>
+	<a th:href="@{/attendance}">출석</a>
 	
+	
+	
+	<script>
+		window.onload = function(){
+			$.ajax({
+				url: '/checkToken',
+				data:{
+					token: 'eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJpZCI6ImFkbWluIiwiZXhwIjoxNjY5Nzk3NDM3fQ.vYlZP3hUzWOzogNG1pYnAGdXKFMqglrL4laZFv5O6zY'
+				},
+				success: function(result) {
+					alert('id: ' + result);
+					
+				},
+				error: function(xhr) {
+					alert(xhr.status + ':' + xhr.statusText);
+					console.log(xhr)
+				}
+			})
+		}
+	</script>
 </body>
 </html>

@@ -3,8 +3,37 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Document</title>
+	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  
+  
 </head>
 <body>
 	출석 확인
+	
+	<div id="blank"></div>
+	
 </body>
+	<script>
+		window.onload = function(){
+			
+			var blank = document.getElementById('blank')
+			blank.innerHTML = 'hello'
+			
+			$.ajax({
+				url: '/checkToken',
+				data:{
+					token: 'eyJ0eXBlIjoiand0IiwiYWxnIjoiSFMyNTYifQ.eyJpZCI6ImFkbWluIiwiZXhwIjoxNjY5Nzk2ODMwfQ.2qSkwRyMlnsUtk74SrVXpdAbJ2SdIu4nv-ZDfL5udOw'
+				},
+				success: function(result) {
+					alert('id: ' + result);
+					
+				},
+				error: function(xhr) {
+					alert(xhr.status + ':' + xhr.statusText);
+					console.log(xhr)
+				}
+			})
+		}
+	</script>
+
 </html>

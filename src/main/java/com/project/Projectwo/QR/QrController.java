@@ -14,6 +14,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.WriterException;
@@ -26,6 +28,8 @@ import lombok.extern.slf4j.Slf4j;
 @Slf4j
 @Controller
 public class QrController {
+	
+	JwtUtil jwtUtil;
 	
 	@GetMapping("/main")
 	public String main() {
@@ -47,13 +51,36 @@ public class QrController {
 		return "cam2";
 	}
 	
-	
-	
 	@GetMapping("/attendance")
 	public String attendance() {
-		
+
 		return "/attendance";
 	}
+	
+	
+	@GetMapping("checkToken")
+	@ResponseBody
+	public String checkToken(@RequestParam String token) {
+		
+		log.info("token: " + token);
+		
+		String result = "";
+		
+		try {
+			result = this.jwtUtil.getMemberId(token);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	@GetMapping("/createQr")
 	public void createQr(HttpServletRequest request, HttpServletResponse response) {

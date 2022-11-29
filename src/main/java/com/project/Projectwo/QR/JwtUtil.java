@@ -2,22 +2,21 @@ package com.project.Projectwo.QR;
 
 import java.security.Key;
 import java.sql.Date;
-import java.util.Base64;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.xml.bind.DatatypeConverter;
 
-import org.springframework.boot.autoconfigure.neo4j.Neo4jProperties.Authentication;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 import io.jsonwebtoken.Claims;
-import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jws;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 public class JwtUtil {
 	
@@ -42,6 +41,42 @@ public class JwtUtil {
 
 	}
 	
+    //헤더에서 JWT 추출
+	//어..이거 아닌 거 같아
+    public String getJwt(){
+        HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
+        return request.getHeader("X-ACCESS-TOKEN");
+    }
+    
+    
+    //JWT에서 값 추출
+    public String getMemberId(String token) throws Exception{
+    	
+        // 헤더에서 JWT 추출
+        if(token == null || token.length() == 0){
+            throw new Exception();
+        }
+
+        // JWT 파싱
+        Jws<Claims> claims;
+        try{
+            claims = Jwts.parser()
+                    .setSigningKey(secretKey)
+                    .parseClaimsJws(token);
+        } catch (Exception ignored) {
+            throw new Exception();
+        }
+
+        // id 추출
+        String id = claims.getBody().getId();
+        
+        log.info("id: " + id);
+        
+        return id;
+    }
+    
+    
+
 //	//토큰 유효성 검증
 //    public boolean isValidToken(String token) {
 //        try {
