@@ -20,13 +20,17 @@
             console.log(tabbed);
 
             $(".tab-content").removeClass('active');
+            $(".academy-function-button").removeClass('active');
 
             if (tabbed == 'lecture') {
                 $(".tab-content.lecture").addClass(" active");
+                $(".academy-function-button.lecture-button").addClass(" active");
             } else if (tabbed == 'teacher') {
                 $(".tab-content.teacher").addClass(" active");
+                $(".academy-function-button.teacher-button").addClass(" active");
             } else {
                 $(".tab-content.student").addClass(" active");
+                $(".academy-function-button.student-button").addClass(" active");
             }
 
         }) // by 조성빈, 클릭한 tab에 active 클래스 추가하는 기능

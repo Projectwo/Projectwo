@@ -199,13 +199,7 @@
 
 /* ##### nav_button.html ##### */
 
-.member-dropdown {
-    position: absolute;
-    width: 32px;
-    height: 32px;
-    right: -34px;
-    margin: 30px 0;
-}
+.member-dropdown {}
 
 .member-dropdown.active .member-dropdown-list {
     display: block;
@@ -221,45 +215,22 @@
 
 .member-dropdown .member-dropdown-list {
     display: none;
-    position: relative;
-    float: right;
-    top: -32px;
-    right: 0;
-    width: 220px;
-    height: 700px;
-    background-color: #eee;
+    position: absolute;
+    top: -240px;
+    right: 35px;
+    width: 320px;
+    height: 240px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background-color: #444;
+    color: #fff;
     z-index: 5;
-}
-
-.dropdown-profile {
-    width: 160px;
-    height: 46px;
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-}
-
-.dropdown-profile-img {
-    margin-left: 6px;
-    width: 38px;
-    height: 38px;
-    background: #aaa;
-}
-
-.dropdown-profile-text {
-    margin-left: 10px;
-    font-size: 14px;
-    text-align: left;
-}
-
-.dropdown-profile-text span {
-    font-size: 18px;
 }
 
 .dropdown-member-function {
     position: absolute;
-    top: 24px;
-    right: 0;
+    top: 6px;
+    right: 6px;
     width: 70px;
     display: flex;
     justify-content: flex-end;
@@ -270,11 +241,13 @@
 .dropdown-member-function a {
     font-size: 12px;
     text-decoration: underline;
+    color: #eee;
+    z-index: 10;
 }
 
 .dropdown-member-lecture {
     position: relative;
-    margin-top: 16px;
+    margin-top: 10px;
     padding: 0 10px;
     text-align: left;
     font-size: 22px;
@@ -289,12 +262,17 @@
     padding: 4px 6px;
 }
 
+.dropdown-member-lecture li:first-child {
+    margin-top: 16px;
+}
+
 .dropdown-member-lecture li button {
-    width: 190px;
-    height: 40px;
+    width: 100%;
+    height: 44px;
     border: 1px solid #aaa;
     border-radius: 6px;
     text-align: left;
+    background: #eee;
     padding-left: 10px;
     cursor: pointer;
 }
@@ -312,27 +290,39 @@
     justify-content: flex-start;
 }
 
-.main-profile-img {
-    margin-left: 6px;
-    width: 56px;
-    height: 56px;
-    background: #aaa;
-}
-
 .main-profile-text {
-    margin-left: 10px;
     font-size: 14px;
     text-align: left;
 }
 
 .main-profile-text b {
-    font-size: 18px;
+    font-size: 22px;
+}
+
+.main-profile-text span {
+    font-size: 14px;
+}
+
+.notice-new-alarm {
+    position: absolute;
+    width: 160px;
+    height: 46px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    top: 66px;
+    right: 0;
+}
+
+.notice-new-alarm b {
+    line-height: 46px;
+    color: #555;
+    font-weight: 400;
 }
 
 .main-lecture {
     position: relative;
     margin: 0 auto;
-    margin-top: 20px;
+    margin-top: 10px;
     width: 100%;
     height: 130px;
     border: 1px solid #444;
@@ -368,13 +358,12 @@
 .main-lecture .lecture-info-schedule {
     display: flex;
     justify-content: flex-end;
-
 }
 
 .main-lecture .lecture-info-schedule li {
     width: 18px;
     height: 18px;
-    font-size: 14px;
+    font-size: 12px;
     line-height: 18px;
     margin-left: 2px;
     border: 1px solid;
@@ -410,6 +399,114 @@
     margin-top: 10px;
     color: #eee;
     text-align: right;
+}
+
+.student-today {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 20px;
+    text-align: left;
+}
+
+.student-today .student-daily-check {
+    width: 100%;
+    height: 52px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.student-daily-check .daily-date {
+    margin-left: 10px;
+    font-size: 24px;
+}
+
+.student-daily-check .daily-status {
+    margin-right: 10px;
+    text-align: right;
+}
+
+.student-weekly {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 20px;
+    text-align: left;
+}
+
+.student-weekly .student-weekly-check {
+    width: 100%;
+    height: 54px;
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.student-weekly-check .student-weekly-date {
+    width: 50px;
+    height: 54px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 27px;
+}
+
+.main-notice {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 20px;
+    text-align: left;
+}
+
+.main-notice .notice-category {
+    position: absolute;
+    top: 6px;
+    left: 70px;
+    display: flex;
+    font-size: 14px;
+}
+
+.notice-category .category-academy{
+    color:#777;
+}
+
+.notice-category .category-lecture{
+    
+}
+
+.main-notice .notice-area {
+    width: 100%;
+    height: 210px;
+    margin-top: 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.notice-area .notice-recent {
+    width: 300px;
+    height: 44px;
+    line-height: 44px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    font-size: 22px;
+    padding-left: 10px;
+}
+
+.notice-area .notice-recent:first-child {
+    margin-top: 4px;
+}
+
+.notice-area .notice-recent:last-child {
+    margin-bottom: 4px;
 }
 
 /* ##### member_main.html end ##### */
@@ -468,26 +565,28 @@
     position: absolute;
     margin-top: 0;
     width: 100%;
-    height: 100%;;
+    height: 100%;
+    ;
 }
 
-.main-lecture.academy-list .lecture-modify-button{
+.main-lecture.academy-list .lecture-modify-button {
     position: absolute;
     width: 28px;
     height: 28px;
     right: 6px;
     top: 6px;
-    border:1px solid #aaa;
+    border: 1px solid #aaa;
     border-radius: 50%;
     background: #aaa;
 }
 
-.main-lecture.academy-list .lecture-title{
+.main-lecture.academy-list .lecture-title {
     display: flex;
     align-items: flex-end;
     width: 100%;
-    height:36px;
+    height: 36px;
 }
+
 .main-lecture.academy-list .lecture-name {
     position: relative;
     text-align: left;
@@ -504,15 +603,15 @@
     height: 34px;
     top: 0;
     font-size: 18px;
-    color:#ccc;
+    color: #ccc;
 }
 
-.main-lecture.academy-list .lecture-info-schedule{
+.main-lecture.academy-list .lecture-info-schedule {
     justify-content: flex-start;
     margin-left: 10px;
 }
 
-.main-lecture.academy-list .lecture-info-schedule-checked{
+.main-lecture.academy-list .lecture-info-schedule-checked {
     justify-content: flex-start;
     margin-left: 10px;
 }
@@ -561,75 +660,75 @@
 
 /* ##### academy_teacher.html ##### */
 
-.academy-teacher-list{
+.academy-teacher-list {
     width: 100%;
     height: 640px;
     overflow-y: scroll;
     margin-top: 10px;
 }
 
-.academy-teacher{
+.academy-teacher {
     position: relative;
     width: 100%;
     height: 90px;
-    margin:20px 0;
-    border:1px solid #ddd;
+    margin: 20px 0;
+    border: 1px solid #ddd;
     border-radius: 6px;
-    background:#ddd;
+    background: #ddd;
 }
 
-.academy-teacher:first-child{
+.academy-teacher:first-child {
     margin-top: 10px;
 }
 
-.academy-teacher .teacher-info{
+.academy-teacher .teacher-info {
     position: absolute;
     width: 100%;
 }
 
-.teacher-modify-button{
+.teacher-modify-button {
     position: absolute;
     width: 28px;
     height: 28px;
     right: 6px;
     top: 6px;
-    border:1px solid #aaa;
+    border: 1px solid #aaa;
     border-radius: 50%;
     background: #aaa;
 }
 
-.academy-teacher .teacher-title{
+.academy-teacher .teacher-title {
     display: flex;
     justify-content: flex-start;
     align-items: baseline;
 }
 
-.academy-teacher .teacher-name b{
+.academy-teacher .teacher-name b {
     font-size: 24px;
-    margin:4px 12px;
+    margin: 4px 12px;
 }
 
-.academy-teacher .teacher-class b{
+.academy-teacher .teacher-class b {
     font-size: 18px;
     line-height: 10px;
-    color:#666;
+    color: #666;
 }
 
-.academy-teacher .teacher-birthday{
+.academy-teacher .teacher-birthday {
     position: absolute;
     top: 36px;
     left: 16px;
     text-align: left;
 }
 
-.academy-teacher .teacher-tel{
+.academy-teacher .teacher-tel {
     position: absolute;
     top: 36px;
     left: 84px;
     text-align: left;
 }
 
-.academy-teacher .teacher-address{
+.academy-teacher .teacher-address {
     position: absolute;
     text-align: left;
     top: 58px;
@@ -640,75 +739,75 @@
 
 /* ##### academy_student.html ##### */
 
-.academy-student-list{
+.academy-student-list {
     width: 100%;
     height: 640px;
     overflow-y: scroll;
     margin-top: 10px;
 }
 
-.academy-student{
+.academy-student {
     position: relative;
     width: 100%;
     height: 90px;
-    margin:20px 0;
-    border:1px solid #ddd;
+    margin: 20px 0;
+    border: 1px solid #ddd;
     border-radius: 6px;
-    background:#ddd;
+    background: #ddd;
 }
 
-.academy-student:first-child{
+.academy-student:first-child {
     margin-top: 10px;
 }
 
-.academy-student .teacher-info{
+.academy-student .teacher-info {
     position: absolute;
     width: 100%;
 }
 
-.student-modify-button{
+.student-modify-button {
     position: absolute;
     width: 28px;
     height: 28px;
     right: 6px;
     top: 6px;
-    border:1px solid #aaa;
+    border: 1px solid #aaa;
     border-radius: 50%;
     background: #aaa;
 }
 
-.academy-student .student-title{
+.academy-student .student-title {
     display: flex;
     justify-content: flex-start;
     align-items: baseline;
 }
 
-.academy-student .student-name b{
+.academy-student .student-name b {
     font-size: 24px;
-    margin:4px 12px;
+    margin: 4px 12px;
 }
 
-.academy-student .student-class b{
+.academy-student .student-class b {
     font-size: 18px;
     line-height: 10px;
-    color:#666;
+    color: #666;
 }
 
-.academy-student .student-birthday{
+.academy-student .student-birthday {
     position: absolute;
     top: 36px;
     left: 16px;
     text-align: left;
 }
 
-.academy-student .student-tel{
+.academy-student .student-tel {
     position: absolute;
     top: 36px;
     left: 84px;
     text-align: left;
 }
 
-.academy-student .student-address{
+.academy-student .student-address {
     position: absolute;
     text-align: left;
     top: 58px;
@@ -736,18 +835,25 @@
     height: 100px;
 }
 
+.academy-new .new-lecture .academy-function-button {
+    display: none;
+}
+
+.academy-new .new-lecture .academy-function-button.active {
+    display: block;
+}
+
 .academy-new .new-lecture button {
     position: absolute;
     width: 48px;
     height: 48px;
     color: #777;
-    font-size: 16px;
+    font-size: 46px;
     border: 1px solid;
     border-radius: 50%;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-
 }
 
 .academy-new .new-lecture a {
@@ -758,7 +864,7 @@
     line-height: 22px;
     top: 90px;
     transform: translate(-50%, -50%);
-    
+
 }
 
 .academy-new .search-lecture {
@@ -784,11 +890,11 @@
     top: 36px;
 }
 
-.modify-password{
+.modify-password {
     position: absolute;
-    border:1px solid #777;
+    border: 1px solid #777;
     border-radius: 6px;
-    color:#777;
+    color: #777;
     width: 100px;
     height: 24px;
     top: 48px;
@@ -796,11 +902,11 @@
 
 }
 
-.logout{
+.logout {
     position: absolute;
-    border:1px solid #777;
+    border: 1px solid #777;
     border-radius: 6px;
-    color:#777;
+    color: #777;
     width: 100px;
     height: 24px;
     top: 78px;
@@ -808,3 +914,19 @@
 }
 
 /* ##### academy_footer.html end ##### */
+
+/* ##### main_footer.html ##### */
+
+.footer-wrap {
+    position: fixed;
+    width: 100%;
+    height: 100px;
+    bottom: 0;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.footer-wrap .home-button {}
+
+/* ##### main_footer.html end ##### */
