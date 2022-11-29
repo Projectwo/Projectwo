@@ -11,6 +11,7 @@ import javax.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
@@ -31,13 +32,16 @@ class ProjectwoApplicationTests {
 	
 	@Autowired
 	private CourseRepository courseRepository;
+	
+	@Autowired
+	private PasswordEncoder passwordEncoder;
 
 //	// 계정 등록
 //	@Test
 //	void createMember() {
 //		Member member1 = new Member();
 //		member1.setIdentity("aaa");
-//		member1.setPassword("aaa");
+//		member1.setPassword(passwordEncoder.encode("aaa"));
 //		member1.setName("aaa");
 //		member1.setEmail("aaa@aaa");
 //		member1.setBirth_date(LocalDate.of(1991, 01, 01));
@@ -49,7 +53,7 @@ class ProjectwoApplicationTests {
 //		
 //		Member member2 = new Member();
 //		member2.setIdentity("bbb");
-//		member2.setPassword("bbb");
+//		member2.setPassword(passwordEncoder.encode("bbb"));
 //		member2.setName("bbb");
 //		member2.setEmail("bbb@bbb");
 //		member2.setBirth_date(LocalDate.of(1991, 01, 01));
@@ -61,7 +65,7 @@ class ProjectwoApplicationTests {
 //		
 //		Member member3 = new Member();
 //		member3.setIdentity("ccc");
-//		member3.setPassword("ccc");
+//		member3.setPassword(passwordEncoder.encode("ccc"));
 //		member3.setName("ccc");
 //		member3.setEmail("ccc@ccc");
 //		member3.setBirth_date(LocalDate.of(1991, 01, 01));
@@ -73,7 +77,7 @@ class ProjectwoApplicationTests {
 //		
 //		Member member4 = new Member();
 //		member4.setIdentity("ddd");
-//		member4.setPassword("ddd");
+//		member4.setPassword(passwordEncoder.encode("ddd"));
 //		member4.setName("ddd");
 //		member4.setEmail("ddd@ddd");
 //		member4.setBirth_date(LocalDate.of(1991, 01, 01));
@@ -137,18 +141,18 @@ class ProjectwoApplicationTests {
 //		
 //	}
 	
-	// 수업,강의 리스트 확인
-	@Transactional
-	@Test
-	void checkclassList() {
-		Optional<Member> mb1 = this.memberRepository.findById(1);
-		Member member1 = mb1.get();
-		List<Student> studentClassList = member1.getStudentClassList();
-		assertEquals(studentClassList.size(), 2);
-		
-		Optional<Member> mb3 = this.memberRepository.findById(3);
-		Member member3 = mb3.get();
-		List<Teacher> teacherClassList = member3.getTeacherClassList();
-		assertEquals(teacherClassList.size(), 2);
-	}
+//	// 수업,강의 리스트 확인
+//	@Transactional
+//	@Test
+//	void checkclassList() {
+//		Optional<Member> mb1 = this.memberRepository.findById(1);
+//		Member member1 = mb1.get();
+//		List<Student> studentClassList = member1.getStudentClassList();
+//		assertEquals(studentClassList.size(), 2);
+//		
+//		Optional<Member> mb3 = this.memberRepository.findById(3);
+//		Member member3 = mb3.get();
+//		List<Teacher> teacherClassList = member3.getTeacherClassList();
+//		assertEquals(teacherClassList.size(), 2);
+//	}
 }

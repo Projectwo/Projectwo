@@ -1,10 +1,29 @@
 package com.project.Projectwo.Service;
 
+import java.util.Optional;
+
 import org.springframework.stereotype.Service;
 
+import com.project.Projectwo.Entity.Member;
+import com.project.Projectwo.Repository.MemberRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@RequiredArgsConstructor
 @Service
 public class MemberService {
 
+	private final MemberRepository memberRepository;
+	
+	public Member getMember(String identity) {
+		Optional<Member> mb = this.memberRepository.findByIdentity(identity);
+		if(mb.isEmpty()) {
+			return null;
+		} else {
+			Member member = mb.get();
+			return member;
+		}
+	}
 	/*
 	 공통
 	 회원가입
