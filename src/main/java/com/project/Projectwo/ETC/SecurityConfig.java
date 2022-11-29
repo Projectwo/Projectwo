@@ -32,7 +32,7 @@ public class SecurityConfig {
 						XFrameOptionsHeaderWriter.XFrameOptionsMode.SAMEORIGIN))
 			.and()
 				.formLogin()
-				.loginPage("/login")
+				.loginPage("/member/login")
 				.defaultSuccessUrl("/")
 			.and()
 				.logout()
