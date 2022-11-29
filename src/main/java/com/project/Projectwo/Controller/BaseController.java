@@ -11,7 +11,7 @@ public class BaseController {
         return "member/login";
     }
 
-    @RequestMapping("/student/main")
+    @RequestMapping("/member/main")
     public String studentMain(){
         return "member/member_main";
     }
@@ -20,4 +20,5 @@ public class BaseController {
     public String academyMain(){
         return "academy/academy_main";
     }
+    
 }
