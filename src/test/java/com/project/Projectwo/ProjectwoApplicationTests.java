@@ -6,6 +6,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -92,13 +94,24 @@ class ProjectwoApplicationTests {
 //		course.setEndDate(LocalDate.of(2022, 11, 30));
 //		
 //		this.courseRepository.save(course);
+//		
+//		Course course1 = new Course();
+//		course1.setTitle("data");
+//		course1.setDescription("study database");
+//		course1.setStartDate(LocalDate.of(2022, 10, 01));
+//		course1.setEndDate(LocalDate.of(2022, 10, 30));
+//		
+//		this.courseRepository.save(course1);
 //	}
 
 //	// 강사, 학생 등록
 //	@Test
 //	void createStudentAndTeacher() {
 //		Optional<Course> cs1 = this.courseRepository.findById(1);
-//		Course course = cs1.get();
+//		Course course1 = cs1.get();
+//		
+//		Optional<Course> cs2 = this.courseRepository.findById(2);
+//		Course course2 = cs2.get();
 //		
 //		Optional<Member> mb1 = this.memberRepository.findByIdentity("aaa");
 //		Member member1 = mb1.get();
@@ -112,25 +125,30 @@ class ProjectwoApplicationTests {
 //		Optional<Member> mb4 = this.memberRepository.findByIdentity("ddd");
 //		Member member4 = mb4.get();
 //		
-//		this.academyService.createStudent(member1, course);
-//		this.academyService.createStudent(member2, course);
+//		this.academyService.createStudent(member1, course1);
+//		this.academyService.createStudent(member1, course2);
+//		this.academyService.createStudent(member2, course1);
+//		this.academyService.createStudent(member2, course2);
 //		
-//		this.academyService.createTeacher(member3, course);
-//		this.academyService.createTeacher(member4, course);
+//		this.academyService.createTeacher(member3, course1);
+//		this.academyService.createTeacher(member3, course2);
+//		this.academyService.createTeacher(member4, course1);
+//		this.academyService.createTeacher(member4, course2);
 //		
 //	}
 	
 	// 수업,강의 리스트 확인
+	@Transactional
 	@Test
 	void checkclassList() {
 		Optional<Member> mb1 = this.memberRepository.findById(1);
 		Member member1 = mb1.get();
 		List<Student> studentClassList = member1.getStudentClassList();
-		assertEquals(studentClassList.size(), 1);
+		assertEquals(studentClassList.size(), 2);
 		
-//		Optional<Member> mb3 = this.memberRepository.findById(3);
-//		Member member3 = mb3.get();
-//		List<Teacher> teacherClassList = member3.getTeacherClassList();
-//		assertEquals(teacherClassList.size(), 1);
+		Optional<Member> mb3 = this.memberRepository.findById(3);
+		Member member3 = mb3.get();
+		List<Teacher> teacherClassList = member3.getTeacherClassList();
+		assertEquals(teacherClassList.size(), 2);
 	}
 }
