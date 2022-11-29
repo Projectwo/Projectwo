@@ -2,8 +2,12 @@ package com.project.Projectwo.QR;
 
 import java.security.Key;
 import java.sql.Date;
+import java.util.Base64;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.xml.bind.DatatypeConverter;
 
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -20,100 +24,47 @@ import lombok.extern.slf4j.Slf4j;
 @RequiredArgsConstructor
 public class JwtUtil {
 	
-	Key secretKey = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+	Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
 	
+	
+	private static final String secretKey = "236979CB6F1AD6B6A6184A31E6BE37DB3818CC36871E26235DD67DCFE4041492";
     //access token 유효시간
     private final long accessTokenValidTime = 2 * 60 * 60 * 1000L;
 
     //refresh token 유효시간
     private final long refreshTokenValidTime = 2 * 7 * 24 * 60 * 60 * 1000L;
-
+	
 	
 	//토큰 생성
 	public String createJwt(String id) {
-
+		
 		return Jwts.builder()
 				   .setHeaderParam("type", "jwt")
 				   .claim("id", id)
-				   .setExpiration(new Date(System.currentTimeMillis() + 1*(1000*60*60*24)))
-				   .signWith(secretKey, SignatureAlgorithm.HS256)
+				   .setExpiration(new Date(System.currentTimeMillis() + accessTokenValidTime))
+				   .signWith(key, SignatureAlgorithm.HS256)
 				   .compact();
 
 	}
+
 	
-    //헤더에서 JWT 추출
-	//어..이거 아닌 거 같아
-    public String getJwt(){
-        HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
-        return request.getHeader("X-ACCESS-TOKEN");
+	
+	//TODO: 토큰 복호화	
+	//getSubject
+    public static String getSubject(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(secretKey.getBytes())
+                .parseClaimsJws(token).getBody();
+        return claims.getSubject();
     }
     
-    
-    //JWT에서 값 추출
-    public String getMemberId(String token) throws Exception{
-    	
-        // 헤더에서 JWT 추출
-        if(token == null || token.length() == 0){
-            throw new Exception();
-        }
-
-        // JWT 파싱
-        Jws<Claims> claims;
-        try{
-            claims = Jwts.parser()
-                    .setSigningKey(secretKey)
-                    .parseClaimsJws(token);
-        } catch (Exception ignored) {
-            throw new Exception();
-        }
-
-        // id 추출
-        String id = claims.getBody().getId();
-        
-        log.info("id: " + id);
-        
-        return id;
+    //getClaims
+    public static Claims getTokenData(String token) {
+    	Claims claims = Jwts.parser()
+    			.setSigningKey(secretKey.getBytes())
+    			.parseClaimsJws(token).getBody();
+    	return claims;
     }
-    
-    
-
-//	//토큰 유효성 검증
-//    public boolean isValidToken(String token) {
-//        try {
-//            Claims claims = getClaimsFormToken(token);
-//            return !claims.getExpiration().before(new Date());
-//        } catch (JwtException | NullPointerException exception) {
-//            return false;
-//        }
-//    }
-//    
-//    
-//    
-//    // TODO: 헤더에서 JWT 추출
-//    public String getJwt(){
-//        HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.currentRequestAttributes()).getRequest();
-//        return request.getHeader();
-//    } 
-    
-    
-    
-    
-    
-    
-    
-
-//    //토큰에서 Claim 추출
-//    private Claims getClaimsFormToken(String token) {
-//    	String secretKey = Base64.getEncoder().encodeToString(key.getBytes());
-//    	
-//        return Jwts.parser().setSigningKey(DatatypeConverter.parseBase64Binary(secretKey)).parseClaimsJws(token).getBody();
-//    }
-//
-//    //토큰에서 인증 subject 추출
-//    private String getSubject(String token) {
-//        return getClaimsFormToken(token).getSubject();
-//    }
-//
 
 
 }

@@ -2,7 +2,8 @@ package com.project.Projectwo.QR;
 
 import java.util.Optional;
 
-import org.springframework.http.HttpHeaders;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -31,9 +32,13 @@ public class LoginController {
 	
 	@GetMapping("/loginCheck")
 	@ResponseBody
-	public Member loginCheck(@RequestParam String id, @RequestParam String pw) {
+	public Member loginCheck(@RequestParam String id, @RequestParam String pw, HttpSession session) {
 
-		Optional<Member> oMember = memberRepository.findByMemberId(id);
+		Optional<Member> oMember = memberRepository.findByMemberIdAndMemberPw(id, pw);
+		
+		log.info("id: " + id);
+		log.info("pw: " + pw);
+		
 		
 		Member member = null;
 		if(oMember.isPresent()) {
@@ -41,12 +46,23 @@ public class LoginController {
 			String token = jwtUtil.createJwt(id);
 			
 			log.info("token: " + token);
+			
+			session.setAttribute("member", member);
+			
 		}
-		
-		log.info("id: " + id);
-		log.info("pw: " + pw);
 		
 		return member;
 
+	}
+	
+	@GetMapping("/checkMember")
+	@ResponseBody
+	public String checkMember(HttpSession session) {
+		Member member = (Member)session.getAttribute("member");
+		
+		log.info("id: " + member.getMemberId());
+		
+		String name = member.getName();
+		return name;
 	}
 }
