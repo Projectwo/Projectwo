@@ -3,6 +3,7 @@ package com.project.Projectwo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -15,10 +16,12 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
+import com.project.Projectwo.Entity.Room;
 import com.project.Projectwo.Entity.Student;
 import com.project.Projectwo.Entity.Teacher;
 import com.project.Projectwo.Repository.CourseRepository;
 import com.project.Projectwo.Repository.MemberRepository;
+import com.project.Projectwo.Repository.RoomRepository;
 import com.project.Projectwo.Service.AcademyService;
 
 @SpringBootTest
@@ -32,6 +35,9 @@ class ProjectwoApplicationTests {
 	
 	@Autowired
 	private CourseRepository courseRepository;
+	
+	@Autowired
+	private RoomRepository roomRepository;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
@@ -100,14 +106,32 @@ class ProjectwoApplicationTests {
 //		this.memberRepository.save(member5);
 //	}
 	
+//	// 강의실 생성
+//	@Test
+//	void createRoom() {
+//		Room room = new Room();
+//		room.setName("426호");
+//		room.setMaxSeat(30);
+//		
+//		this.roomRepository.save(room);
+//	}
+	
 //	// 강의 개설
 //	@Test
 //	void createCourse() {
+//		Optional<Room> _room = this.roomRepository.findById(1);
+//		Room room = _room.get();
+//		
 //		Course course = new Course();
 //		course.setTitle("java");
 //		course.setDescription("study basic java");
 //		course.setStartDate(LocalDate.of(2022, 11, 01));
 //		course.setEndDate(LocalDate.of(2022, 11, 30));
+//		course.setStartTime(LocalTime.of(10, 00));
+//		course.setEndTime(LocalTime.of(11, 00));
+//		course.setSat(true);
+//		course.setSun(true);
+//		course.setRoom(room);
 //		
 //		this.courseRepository.save(course);
 //		
@@ -116,6 +140,11 @@ class ProjectwoApplicationTests {
 //		course1.setDescription("study database");
 //		course1.setStartDate(LocalDate.of(2022, 10, 01));
 //		course1.setEndDate(LocalDate.of(2022, 10, 30));
+//		course1.setStartTime(LocalTime.of(10, 00));
+//		course1.setEndTime(LocalTime.of(11, 00));
+//		course1.setSat(true);
+//		course1.setSun(true);
+//		course1.setRoom(room);
 //		
 //		this.courseRepository.save(course1);
 //	}
