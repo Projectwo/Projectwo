@@ -1,11 +1,15 @@
 package com.project.Projectwo.Controller;
 
 import java.security.Principal;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
+import com.project.Projectwo.Service.AcademyService;
 import com.project.Projectwo.Service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -15,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class BaseController {
     
 	private final MemberService memberService;
+	private final AcademyService academyService;
 	
     @RequestMapping("/")
     public String root(){
@@ -42,10 +47,11 @@ public class BaseController {
     	}
     }
     
-//    @RequestMapping("/getCourse")
-//    public List<Course> getAllCourse(){
-//    	List<Course> listCourse = ;
-//    	return listCourse;
-//    }
+    @RequestMapping("/getCourse")
+    @ResponseBody
+    public List<Course> getAllCourse(){
+    	List<Course> listCourse = this.academyService.getAllCourse();
+    	return listCourse;
+    }
     
 }
