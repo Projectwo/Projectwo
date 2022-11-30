@@ -10,23 +10,24 @@ import org.springframework.stereotype.Service;
 import com.project.Projectwo.Entity.AcademyNotice;
 import com.project.Projectwo.Entity.AcademyNoticeCheck;
 import com.project.Projectwo.Entity.Attendance;
-import com.project.Projectwo.Entity.Student;
+
 import com.project.Projectwo.Entity.ClassNotice;
 import com.project.Projectwo.Entity.ClassNoticeCheck;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Room;
+import com.project.Projectwo.Entity.Student;
 import com.project.Projectwo.Entity.Subject;
 import com.project.Projectwo.Entity.Teacher;
 import com.project.Projectwo.Repository.AcademyNoticeCheckRepository;
 import com.project.Projectwo.Repository.AcademyNoticeRepository;
 import com.project.Projectwo.Repository.AttendanceRepository;
-import com.project.Projectwo.Repository.StudentRepository;
 import com.project.Projectwo.Repository.ClassNoticeCheckRepository;
 import com.project.Projectwo.Repository.ClassNoticeRepository;
 import com.project.Projectwo.Repository.CourseRepository;
 import com.project.Projectwo.Repository.MemberRepository;
 import com.project.Projectwo.Repository.RoomRepository;
+import com.project.Projectwo.Repository.StudentRepository;
 import com.project.Projectwo.Repository.SubjectRepository;
 import com.project.Projectwo.Repository.TeacherRepository;
 

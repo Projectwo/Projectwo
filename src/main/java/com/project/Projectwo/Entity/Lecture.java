@@ -1,6 +1,6 @@
 package com.project.Projectwo.Entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -15,21 +15,24 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class AcademyNotice {
+public class Lecture {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@Column(length = 50)
-	private String title;
-	
-	@Column(columnDefinition = "TEXT")
-	private String content;
+	@NotNull
+	@Column(unique = true, length = 300)
+	private String lectureName;
 	
 	@NotNull
-	private LocalDateTime createDate;
+	@Column(columnDefinition = "TEXT")
+	private String lectureDesc;
 	
-	private LocalDateTime modifyDate;
+	@NotNull
+	private LocalDate startDate;
+	
+	@NotNull
+	private LocalDate endDate;
 
 }

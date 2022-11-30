@@ -46,7 +46,7 @@ public class QrController {
 	@GetMapping("/attendance")
 	public String attendance() {
 
-		return "/attendance";
+		return "attendance";
 	}
 	
 	
@@ -80,7 +80,7 @@ public class QrController {
 		log.info(stringDate);
 		
 		String lecture = "java";
-		String content = "http://" + ip + "/" + lecture + "/" + stringDate;
+		String content = "http://" + ip + "/lecture" + lecture + "/" + stringDate;
 		
 		log.info(content);
 		
@@ -97,14 +97,16 @@ public class QrController {
 	
 	}
 	
-	@GetMapping("/{lecture}/{date}")
-	public String getAttendance(@PathVariable("lecture") String lecture, @PathVariable("date") String date,
+	@GetMapping("/lecture/{courseId}/{date}")
+	@ResponseBody
+	public String getAttendance(@PathVariable("courseId") Integer courseId, @PathVariable("date") String date,
 			Model model1, Model model2) {
 		
-		model1.addAttribute("lecture", lecture);
+		model1.addAttribute("courseId", courseId);
 		model2.addAttribute("date", date);
-		log.info("lecture: " + lecture);
+		log.info("lecture: " + courseId);
 		log.info("date: " + date);
+		
 		return "attendance";
 	}
 

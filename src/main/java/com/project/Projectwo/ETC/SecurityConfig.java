@@ -18,9 +18,9 @@ import lombok.RequiredArgsConstructor;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
-	
+
 	private final UserSecurityService userSecurityService;
-	
+
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
 		http.authorizeRequests().antMatchers("/**").permitAll()
