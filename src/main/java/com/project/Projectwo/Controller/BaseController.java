@@ -31,16 +31,21 @@ public class BaseController {
         return "academy/academy_main";
     }
     
-    @RequestMapping("/step")
+    @RequestMapping("/main")
     public String step(Principal principal) {
     	Member member = this.memberService.getMember(principal.getName());
     	System.out.println(principal.getName());
-    	
-    	if("teacher".equalsIgnoreCase(member.getRole())) {
-    		return "member/member_main";
-    	} else {
+    	if("admin".equalsIgnoreCase(member.getIdentity())) {
     		return "academy/academy_main";
+    	} else {
+    		return "member/member_main";
     	}
+    	
+//    	if("teacher".equalsIgnoreCase(member.getRole())) {
+//    		return "member/member_main";
+//    	} else {
+//    		return "academy/academy_main";
+//    	}
     	
     }
     

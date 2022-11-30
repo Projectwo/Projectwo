@@ -33,7 +33,7 @@ public class SecurityConfig {
 			.and()
 				.formLogin()
 				.loginPage("/")
-				.defaultSuccessUrl("/step")
+				.defaultSuccessUrl("/main")
 			.and()
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

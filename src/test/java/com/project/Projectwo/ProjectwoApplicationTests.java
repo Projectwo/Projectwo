@@ -86,6 +86,18 @@ class ProjectwoApplicationTests {
 //		member4.setRole("teacher");
 //		
 //		this.memberRepository.save(member4);
+//		
+//		Member member5 = new Member();
+//		member5.setIdentity("admin");
+//		member5.setPassword(passwordEncoder.encode("admin"));
+//		member5.setName("admin");
+//		member5.setEmail("admin@admin");
+//		member5.setBirth_date(LocalDate.of(1991, 01, 01));
+//		member5.setAddress("admin");
+//		member5.setTel("admin");
+//		member5.setRole("admin");
+//		
+//		this.memberRepository.save(member5);
 //	}
 	
 //	// 강의 개설
