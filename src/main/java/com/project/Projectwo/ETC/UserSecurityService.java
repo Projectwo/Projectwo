@@ -44,8 +44,6 @@ public class UserSecurityService implements UserDetailsService{
 			authorities.add(new SimpleGrantedAuthority(UserRole.STUDENT.getValue()));
 		}
 		
-		log.info("login 성공. 유저 ID [" + identity + "] 유저 권한 [" + authorities + "]");
-		
 		return new User(member.getIdentity(), member.getPassword(), authorities);
 	}
 
