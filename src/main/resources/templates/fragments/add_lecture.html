@@ -3,9 +3,6 @@
 <div th:fragment="addLectureFragment" class="add-fragment lecture" id="add-lecture" style="display:none;">
     <div class="modal-wrap addFunction">
         <form class="add-lecture-form">
-            <div class="add-confirm">
-                <button class="add-confirm-button">등록</button>
-            </div>
             <div class="add-title">
                 과정명<br>
                 <input type="text" />
@@ -45,10 +42,15 @@
                 수강인원<br>
                 <input type="text" />
             </div>
+            <div class="add-button-section">
+                <div class="add-confirm">
+                    <button type="submit" class="add-confirm-button">등록</button>
+                </div>
+                <div class="add-close">
+                    <button onclick="closeModal('add')" class="modal-close-button">취소</button>
+                </div>
+            </div>
         </form>
-        <div class="add-close">
-            <button onclick="closeModal('add')" class="modal-close-button">취소</button>
-        </div>
     </div>
 </div>
 

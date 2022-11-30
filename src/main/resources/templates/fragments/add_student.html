@@ -3,9 +3,6 @@
 <div th:fragment="addStudentFragment" class="add-fragment student" id="add-student" style="display:none;">
     <div class="modal-wrap addFunction">
         <form class="add-student-form">
-            <div class="add-confirm">
-                <button class="add-confirm-button">등록</button>
-            </div>
             <div class="add-name">
                 이름<br>
                 <input type="text" />
@@ -26,10 +23,15 @@
                 거주지<br>
                 <input type="text" />
             </div>
+            <div class="add-button-section">
+                <div class="add-confirm">
+                    <button type="submit" class="add-confirm-button">등록</button>
+                </div>
+                <div class="add-close">
+                    <button onclick="closeModal('add')" class="modal-close-button">취소</button>
+                </div>
+            </div>
         </form>
-        <div class="add-close">
-            <button onclick="closeModal('add')" class="modal-close-button">취소</button>
-        </div>
     </div>
 </div>
 
