@@ -35,18 +35,17 @@ public class BaseController {
     public String step(Principal principal) {
     	Member member = this.memberService.getMember(principal.getName());
     	System.out.println(principal.getName());
-    	if("admin".equalsIgnoreCase(member.getIdentity())) {
+    	if("admin".equalsIgnoreCase(member.getRole())) {
     		return "academy/academy_main";
     	} else {
     		return "member/member_main";
     	}
-    	
-//    	if("teacher".equalsIgnoreCase(member.getRole())) {
-//    		return "member/member_main";
-//    	} else {
-//    		return "academy/academy_main";
-//    	}
-    	
     }
+    
+//    @RequestMapping("/getCourse")
+//    public List<Course> getAllCourse(){
+//    	List<Course> listCourse = ;
+//    	return listCourse;
+//    }
     
 }
