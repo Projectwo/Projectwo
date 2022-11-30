@@ -20,6 +20,5 @@ public class BaseController {
     public String academyMain(){
         return "academy/academy_main";
     }
-
-
+    
 }
