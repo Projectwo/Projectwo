@@ -19,7 +19,7 @@ public class ClassNoticeCheck {
 	private Integer id;
 	
 	@ManyToOne
-	private ClassMember classMember;
+	private Student student;
 	
 	@ManyToOne
 	private ClassNotice classNotice;

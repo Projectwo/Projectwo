@@ -1,15 +1,16 @@
 <html layout:decorate="~{layout/layout}">
 
 <div layout:fragment="content">
+
     <div class="index-logo">
         <!-- 어플 로고나 학원 로고 같은 거 넣으면 될듯 -->
     </div>
-    <form class="login-form">
+    <form class="login-form" th:action="@{/}" method="post">
         <div class="field">
-            <input class="userid" type="text" placeholder="ID(학생번호, 강사번호 등)">
+            <input class="userid" type="text" placeholder="ID(학생번호, 강사번호 등)" name="username" id="username">
         </div>
         <div class="field">
-            <input class="userpw" type="password" placeholder="PASSWORD">
+            <input class="userpw" type="password" placeholder="PASSWORD" name="password" id="password">
         </div>
         <div class="forgot-pw">
             <a href="#">Forgot Password?</a>

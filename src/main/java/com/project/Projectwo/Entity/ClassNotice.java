@@ -37,10 +37,5 @@ public class ClassNotice {
 	
 	@NotNull
 	@ManyToOne
-	private Lecture lecture;
-	
-	@NotNull
-	@ManyToOne//작성자
-	private ClassTeacher classTeacher;
-	
+	private Course course;
 }

@@ -20,7 +20,7 @@ public class AcademyNoticeCheck {
 
 	@ManyToOne
 	private Member member;
-	
+
 	@ManyToOne
 	private AcademyNotice academyNotice;
 	

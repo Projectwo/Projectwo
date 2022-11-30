@@ -11,13 +11,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
 @Entity
-public class ClassTeacher {
+public class Student {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,16 +27,19 @@ public class ClassTeacher {
 	
 	@NotNull
 	@ManyToOne
-	private Teacher teacher;
+	private Member student;
 	
 	@NotNull
 	@ManyToOne
-	private Lecture lecture;
+	private Course course;
 	
-	// by 장유란, 선생님의 스케줄 리스트(시간표)와 작성공지목록
-	@OneToMany(mappedBy = "classTeacher", cascade = CascadeType.REMOVE)
-	private List<Schedule> scheduleList;
+	// by 안준언, 출결 기록
+	@JsonBackReference
+	@OneToMany(mappedBy = "student", cascade = CascadeType.REMOVE)
+	private List<Attendance> attendanceList;
 	
-	@OneToMany(mappedBy = "classTeacher", cascade = CascadeType.REMOVE)
-	private List<ClassNotice> classNotice;
+	// by 안준언, 강의 공지 리스트
+	@JsonBackReference
+	@OneToMany(mappedBy = "student", cascade = CascadeType.REMOVE)
+	private List<ClassNoticeCheck> classNoticeList;
 }

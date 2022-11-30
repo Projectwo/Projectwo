@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<title>Login</title>
+	<script th:src="@{/js/jquery-3.6.1.min.js}"></script>
+	
+</head>
+<body>
+	<form th:action="@{/login}" method="POST">
+		<span>ID</span>
+		<input type="text" th:value="${id}" id="inputId"/>
+		<br/>
+		
+		<span>PW</span>
+		<input type="text" th:value="${pw}" id="inputPw"/>
+		<br/><br/>		
+		<button type="button" id="loginBtn">로그인</button>	
+		
+		<script>
+			var loginBtn = document.getElementById('loginBtn');
+			
+			loginBtn.onclick = function(){
+				
+				$.ajax({
+					
+					url: '/loginCheck',
+					data: {
+						id: $('#inputId').val(),
+						pw: $('#inputPw').val()
+					},
+					success: function(member) {
+						if(member == null) {
+							alert('아이디 또는 비밀번호를 다시 확인해주세요.');
+							location.href='/login';
+							
+						}else {
+							alert('로그인 성공'); 
+							location.href='/main';
+						}
+						
+					}
+					,
+					error: function(xhr) {
+						console.log(xhr)		
+						alert(xhr.status +":" + xhr.statusText);
+					}
+						
+				})
+				
+			}
+		</script>
+	</form>
+</body>
+</html>
