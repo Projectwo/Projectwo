@@ -34,7 +34,7 @@ public class LoginController {
 	@ResponseBody
 	public Member loginCheck(@RequestParam String id, @RequestParam String pw, HttpSession session) {
 
-		Optional<Member> oMember = memberRepository.findByMemberIdAndMemberPw(id, pw);
+		Optional<Member> oMember = memberRepository.findByIdentityAndPassword(id, pw);
 		
 		log.info("id: " + id);
 		log.info("pw: " + pw);
