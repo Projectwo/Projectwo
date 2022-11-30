@@ -3,9 +3,39 @@
 <footer th:fragment="mainFooterFragment">
     <div class="footer-wrap">
         <button class="home-button">홈</button>
-        <button class="checkin-out">출석</button>
+        <div class="student-function">
+            <div class="student-check-beacon">
+                <button>Beacon</button>
+            </div>
+            <button onclick="memberFunctionButton('student-function')" class="student-function-button">기능</button>
+            <div class="student-check-qrcode">
+                <button>QR Code</button>
+            </div>
+        </div><!-- sec:role student 일 때 -->
+        <div class="teacher-function">
+            <div class="teacher-create-notice">
+                <button>공지 작성</button>
+            </div>
+            <button onclick="memberFunctionButton('teacher-function')" class="teacher-function-button">기능</button>
+            <div class="teacher-create-qrcode">
+                <button>QR 생성</button>
+            </div>
+        </div><!-- sec:role teacher 일 때 -->
         <div th:replace="fragments/nav_button :: navFragment"></div>
     </div>
+    <script>
+        function memberFunctionButton(e){
+            const currentRole = document.getElementsByClassName(e);
+            const functionButton = $(currentRole).children('div');
+
+            if(functionButton.css('display') === 'none'){
+                functionButton.css({'display':'block'});
+            }else{
+                functionButton.css({'display':'none'});
+            }
+            
+        }
+    </script>
 </footer>
 
 </html>
