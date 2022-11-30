@@ -1,6 +1,7 @@
 package com.project.Projectwo.Entity;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -9,6 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -40,6 +42,30 @@ public class Course {
 	@NotNull
 	private LocalDate endDate;
 	
+	@NotNull
+	private LocalTime startTime;
+	
+	@NotNull
+	private LocalTime endTime;
+	
+	private boolean mon;
+	
+	private boolean tue;
+	
+	private boolean wed;
+	
+	private boolean thu;
+	
+	private boolean fri;
+	
+	private boolean sat;
+	
+	private boolean sun;
+	
+	@NotNull
+	@ManyToOne
+	private Room room;
+	
 	// by 안준언, 수강생 리스트
 	@JsonBackReference
 	@OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
@@ -54,10 +80,5 @@ public class Course {
 	@JsonBackReference
 	@OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
 	private List<ClassNotice> classNoticeList;
-	
-	// by 안준언, 하위 세부 수업 리스트
-	@JsonBackReference
-	@OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
-	private List<Subject> subjectList;
 	
 }

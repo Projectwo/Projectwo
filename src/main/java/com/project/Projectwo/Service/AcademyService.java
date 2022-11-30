@@ -16,7 +16,6 @@ import com.project.Projectwo.Entity.ClassNoticeCheck;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Room;
-import com.project.Projectwo.Entity.Subject;
 import com.project.Projectwo.Entity.Teacher;
 import com.project.Projectwo.Repository.AcademyNoticeCheckRepository;
 import com.project.Projectwo.Repository.AcademyNoticeRepository;
@@ -27,7 +26,6 @@ import com.project.Projectwo.Repository.ClassNoticeRepository;
 import com.project.Projectwo.Repository.CourseRepository;
 import com.project.Projectwo.Repository.MemberRepository;
 import com.project.Projectwo.Repository.RoomRepository;
-import com.project.Projectwo.Repository.SubjectRepository;
 import com.project.Projectwo.Repository.TeacherRepository;
 
 import lombok.RequiredArgsConstructor;
@@ -45,7 +43,6 @@ public class AcademyService {
 	private final MemberRepository memberRepository;
 	private final RoomRepository roomRepository;
 	private final StudentRepository studentRepository;
-	private final SubjectRepository subjectRepository;
 	private final TeacherRepository teacherRepository;
 	
 	private final PasswordEncoder passwordEncoder;
@@ -104,21 +101,7 @@ public class AcademyService {
 		
 		this.studentRepository.save(classMember);
 	}
-	
-	// by 안준언, 스케쥴 생성
-	public void createSubject(String title, String dayOfWeek, LocalTime startTime,
-								LocalTime endTime, Course course, Room room) {
-		Subject schedule = new Subject();
-		schedule.setTitle(title);
-		schedule.setDayOfWeek(dayOfWeek);
-		schedule.setStartTime(startTime);
-		schedule.setEndTime(endTime);
-		schedule.setCourse(course);
-		schedule.setRoom(room);
 		
-		this.subjectRepository.save(schedule);
-	}
-	
 	// by 안준언, 강사 등록
 	public void createTeacher(Member teacher_, Course course) {
 		Teacher teacher = new Teacher();
