@@ -18,16 +18,19 @@
                         <button onclick="clickAddButton('lecture')">+</button>
                         <a href="#">강의 추가</a>
                         <div th:replace="fragments/add_lecture :: addLectureFragment"></div>
+                        <div th:replace="fragments/modify_lecture :: modifyLectureFragment"></div>
                     </div>
                     <div class="academy-function-button teacher-button">
                         <button onclick="clickAddButton('teacher')">+</button>
                         <a href="#">강사 추가</a>
                         <div th:replace="fragments/add_teacher :: addTeacherFragment"></div>
+                        <div th:replace="fragments/modify_teacher :: modifyTeacherFragment"></div>
                     </div>
                     <div class="academy-function-button student-button">
                         <button onclick="clickAddButton('student')">+</button>
                         <a href="#">수강생 추가</a>
                         <div th:replace="fragments/add_student :: addStudentFragment"></div>
+                        <div th:replace="fragments/modify_student :: modifyStudentFragment"></div>
                     </div>
                 </div>
                 <div class="footer-right academy">
@@ -37,26 +40,49 @@
             </div>
         </div>
     </div>
-        <script>
-            function clickAddButton(e) {
-                const clickedButton = e;
-                const currentButton = document.getElementsByClassName("add-fragment");
+    <script>
+        function clickAddButton(e) {
+            const clickedAddButton = e;
+            const currentAddButton = document.getElementsByClassName("add-fragment");
 
-                if ($(currentButton).hasClass(e)) {
-                    $(currentButton).css({
+            if ($(currentAddButton).parent().hasClass('active')) {
+                if ($(currentAddButton).hasClass(e)) {
+                    $(currentAddButton).css({
                         'display': 'block'
                     });
                 }
-            } // by 조성빈, 각 추가 버튼 클릭 시 영역 오픈 기능
+            }
+        } // by 조성빈, 각 추가 버튼 클릭 시 영역 오픈 기능
 
-            function closeModal() {
-                const currentButton = document.getElementsByClassName("add-fragment");
+        function clickModifyButton(e) {
+            const clickedModifyButton = e;
+            const currentModifyButton = document.getElementsByClassName("modify-fragment");
 
-                $(currentButton).css({
+            if ($(currentModifyButton).parent().hasClass('active')) {
+                if ($(currentModifyButton).hasClass(e)) {
+                    $(currentModifyButton).css({
+                        'display': 'block'
+                    });
+                }
+            }
+        } // by 조성빈, 각 수정 버튼 클릭 시 영역 오픈 기능
+
+        function closeModal(e) {
+            const currentAddButton = document.getElementsByClassName("add-fragment");
+            const currentModifyButton = document.getElementsByClassName("modify-fragment");
+            const clickedButton = e;
+
+            if (e == 'add') {
+                $(currentAddButton).css({
                     'display': 'none'
                 });
-            } // by 조성빈, 취소 버튼 클릭 시 영역 클로즈 기능
-        </script>
+            } else {
+                $(currentModifyButton).css({
+                    'display': 'none'
+                });
+            }
+        } // by 조성빈, 취소 버튼 클릭 시 영역 클로즈 기능
+    </script>
 </footer>
 
 </html>

@@ -1,6 +1,6 @@
 <html layout:decorate="~{layout/layout}">
 
-<div th:fragment="addLectureFragment" class="add-fragment lecture" id="add-lecture" style="display:none;">
+<div th:fragment="modifyLectureFragment" class="modify-fragment lecture" id="modify-lecture" style="display:none;">
     <div class="modal-wrap addFunction">
         <form class="add-lecture-form">
             <div class="add-confirm">
@@ -47,7 +47,7 @@
             </div>
         </form>
         <div class="add-close">
-            <button onclick="closeModal('add')" class="modal-close-button">취소</button>
+            <button onclick="closeModal('modify')" class="modal-close-button">취소</button>
         </div>
     </div>
 </div>

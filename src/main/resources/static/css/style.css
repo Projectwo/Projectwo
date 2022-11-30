@@ -1401,3 +1401,19 @@
 }
 
 /* ##### add_student.html end ##### */
+
+/* ##### modify_lecture.html ##### */
+
+.modify-fragment {
+    position: fixed;
+    margin:0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 390px;
+    height: 844px;
+}
+
+/* ##### modify_lecture.html end ##### */
+
