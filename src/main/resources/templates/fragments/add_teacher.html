@@ -1,0 +1,36 @@
+<html layout:decorate="~{layout/layout}">
+
+<div th:fragment="addTeacherFragment" class="add-fragment teacher" id="add-teacher" style="display:none;">
+    <div class="modal-wrap addFunction">
+        <form class="add-teacher-form">
+            <div class="add-confirm">
+                <button class="add-confirm-button">등록</button>
+            </div>
+            <div class="add-name">
+                이름<br>
+                <input type="text" />
+            </div>
+            <div class="add-birthday">
+                생년월일<br>
+                <input type="date" />
+            </div>
+            <div class="add-tel">
+                연락처<br>
+                <input type="text" />
+            </div>
+            <div class="add-mail">
+                메일<br>
+                <input type="email" />
+            </div>
+            <div class="add-address">
+                거주지<br>
+                <input type="text" />
+            </div>
+        </form>
+        <div class="add-close">
+            <button onclick="closeModal()" class="modal-close-button">취소</button>
+        </div>
+    </div>
+</div>
+
+</html>

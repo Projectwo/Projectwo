@@ -1,0 +1,55 @@
+<html layout:decorate="~{layout/layout}">
+
+<div th:fragment="addLectureFragment" class="add-fragment lecture" id="add-lecture" style="display:none;">
+    <div class="modal-wrap addFunction">
+        <form class="add-lecture-form">
+            <div class="add-confirm">
+                <button class="add-confirm-button">등록</button>
+            </div>
+            <div class="add-title">
+                과정명<br>
+                <input type="text" />
+            </div>
+            <div class="add-teacher-name">강사<br>
+                <input type="text" />
+            </div>
+            <div class="check-lecture-week">
+                강의요일<br>
+                <div class="check-day-button">
+                    <button class="day-button mon">월</button>
+                    <button class="day-button tue">화</button>
+                    <button class="day-button wed">수</button>
+                    <button class="day-button thu">목</button>
+                    <button class="day-button fri">금</button>
+                    <button class="day-button sat">토</button>
+                    <button class="day-button sun">일</button>
+                </div>
+            </div>
+            <div class="add-lecture-period">
+                강의기간<br>
+                <input class="lecture-period-start" type="date" data-placeholder="강의 시작일" required
+                    aria-required="ture" />
+                <input class="lecture-period-end" type="date" data-placeholder="강의 종료일" required aria-required="ture" />
+            </div>
+            <div class="add-lecture-time">
+                강의시간<br>
+                <input class="lecture-time-start" type="time" data-placeholder="강의 시작시간" required
+                    aria-required="ture" />
+                <input class="lecture-time-end" type="time" data-placeholder="강의 종료시간" required aria-required="ture" />
+            </div>
+            <div class="add-lecture-room">
+                강의실<br>
+                <input type="text" />
+            </div>
+            <div class="add-lecture-count">
+                수강인원<br>
+                <input type="text" />
+            </div>
+        </form>
+        <div class="add-close">
+            <button onclick="closeModal()" class="modal-close-button">취소</button>
+        </div>
+    </div>
+</div>
+
+</html>
