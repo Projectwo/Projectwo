@@ -1,0 +1,106 @@
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
+    <div class="main-profile">
+        <div class="main-profile-text">
+            그린 컴퓨터 아카데미<br><!-- b에 이름, span에 권한 -->
+            <b>홍길동</b> <span>수강생</span>님
+        </div>
+    </div>
+    <div class="notice-new-alarm">
+        <b>읽지 않은 공지 1건</b>
+    </div>
+    <div class="main-lecture">
+        <div class="lecture-name">
+            <!-- b에 강의명, span에 학원명 -->
+            <b>Java 기초 과정</b> @<span>426호실</span>
+        </div>
+        <div class="lecture-info">
+            <ul class="lecture-info-schedule">
+                <li>월</li>
+                <li>화</li>
+                <li>수</li>
+                <li>목</li>
+                <li>금</li>
+                <li>토</li>
+                <li>일</li>
+            </ul>
+            <ul class="lecture-info-schedule-checked">
+                <li><span>V</span></li>
+                <li><span>V</span></li>
+                <li><span>V</span></li>
+                <li><span>V</span></li>
+                <li><span>V</span></li>
+                <li><span>V</span></li>
+                <li><span>V</span></li>
+            </ul>
+            <div class="lecture-info-schedule-time">
+                AM 07:00 ~ PM 09:00
+            </div>
+        </div>
+    </div>
+    <div class="student-today">
+        Today
+        <div class="student-daily-check">
+            <div class="daily-date">
+                11/18 <span>Fri</span>
+            </div>
+            <span class="daily-status">
+                출석
+            </span>
+        </div>
+    </div>
+    <div class="student-weekly">
+        Weekly
+        <div class="student-weekly-check">
+            <div class="student-weekly-date">
+                <span>Mon</span><br>
+                지각
+            </div>
+            <div class="student-weekly-date">
+                <span>Tue</span><br>
+                출석
+            </div>
+            <div class="student-weekly-date">
+                <span>Wed</span><br>
+                조퇴
+            </div>
+            <div class="student-weekly-date">
+                <span>Thu</span><br>
+                결석
+            </div>
+            <div class="student-weekly-date">
+                <span>Fri</span><br>
+                출석
+            </div>
+            <div class="student-weekly-date">
+                <span>Sat</span><br>
+                -
+            </div>
+        </div>
+    </div>
+    <div class="main-notice">
+        Notice
+        <div class="notice-category">
+            <div class="category-academy">Academy</div> &nbsp;&nbsp;/&nbsp;&nbsp;
+            <div class="category-lecture">Lecture</div>
+        </div>
+        <div class="notice-area">
+            <div class="notice-recent">
+                (중요)안중요함
+            </div>
+            <div class="notice-recent">
+                asdfasb
+            </div>
+            <div class="notice-recent">
+                asdfasb
+            </div>
+            <div class="notice-recent">
+                asdfasb
+            </div>
+        </div>
+    </div>
+    <footer th:replace="fragments/main_footer :: mainFooterFragment"></footer>
+</div>
+
+</html>

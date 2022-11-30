@@ -60,7 +60,7 @@ public class LoginController {
 	public String checkMember(HttpSession session) {
 		Member member = (Member)session.getAttribute("member");
 		
-		log.info("id: " + member.getMemberId());
+		log.info("id: " + member.getIdentity());
 		
 		String name = member.getName();
 		return name;
