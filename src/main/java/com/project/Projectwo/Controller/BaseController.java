@@ -1,6 +1,7 @@
 package com.project.Projectwo.Controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -54,11 +55,11 @@ public class BaseController {
     @RequestMapping("/getCourse")
     @ResponseBody
     public List<Course> getAllCourse() {
-    	List<Course> listCourse = this.academyService.getAllCourse();
-    	return listCourse;
+    	List<Course> AllCourse = this.academyService.getAllCourse();
+    	return AllCourse;
     }
     
-    @RequestMapping("/getTeacher")
+    @RequestMapping("/getClassTeacher")
     @ResponseBody
     public List<Teacher> getClassTeacher(@RequestParam HashMap<Object, Object> params) {
     	Course course = this.academyService.getCourse(Integer.parseInt((String)params.get("courseId")));
@@ -66,12 +67,27 @@ public class BaseController {
     	return classTeacherList;
     }
     
-    @RequestMapping("/getStudent")
+    @RequestMapping("/getClassStudent")
     @ResponseBody
     public List<Student> getClassStudent(@RequestParam HashMap<Object, Object> params) {
     	Course course = this.academyService.getCourse(Integer.parseInt((String)params.get("courseId")));
     	List<Student> classStudentList = this.academyService.getStudentList(course);
     	return classStudentList;
+    }
+    
+    @RequestMapping("/getAllTeacher")
+    @ResponseBody
+    public List<Member> getAllTeacher() {
+    	List<Member> allTeacher = this.memberService.getAllTeacher();
+    	return allTeacher;
+    }
+    
+    @RequestMapping("/getClassListOfTeacher")
+    @ResponseBody
+    public List<Teacher> getTeacherClass(@RequestParam HashMap<Object, Object> params) {
+    	Member member = this.memberService.getMember(Integer.parseInt((String)params.get("memberId")));
+    	List<Teacher> teacherClassList = this.academyService.getAllClassOfTeacher(member);
+    	return teacherClassList;
     }
     
 }
