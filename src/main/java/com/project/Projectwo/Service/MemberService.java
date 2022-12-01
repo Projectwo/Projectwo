@@ -1,5 +1,6 @@
 package com.project.Projectwo.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -24,6 +25,22 @@ public class MemberService {
 			return member;
 		}
 	}
+	
+	public Member getMember(int memberId) {
+		Optional<Member> mb = this.memberRepository.findById(memberId);
+		if(mb.isEmpty()) {
+			return null;
+		} else {
+			Member member = mb.get();
+			return member;
+		}
+	}
+	
+	public List<Member> getAllMemberByRole(String role) {
+		List<Member> allMember = this.memberRepository.findByRole(role);
+		return allMember;
+	}
+	
 	/*
 	 공통
 	 회원가입

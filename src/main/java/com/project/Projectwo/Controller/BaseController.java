@@ -1,11 +1,20 @@
 package com.project.Projectwo.Controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
+import com.project.Projectwo.Entity.Student;
+import com.project.Projectwo.Entity.Teacher;
+import com.project.Projectwo.Service.AcademyService;
 import com.project.Projectwo.Service.MemberService;
 
 import lombok.RequiredArgsConstructor;
@@ -15,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 public class BaseController {
     
 	private final MemberService memberService;
+	private final AcademyService academyService;
 	
     @RequestMapping("/")
     public String root(){
@@ -42,10 +52,56 @@ public class BaseController {
     	}
     }
     
-//    @RequestMapping("/getCourse")
-//    public List<Course> getAllCourse(){
-//    	List<Course> listCourse = ;
-//    	return listCourse;
-//    }
+    @RequestMapping("/getAllCourse")
+    @ResponseBody
+    public List<Course> getAllCourse() {
+    	List<Course> AllCourse = this.academyService.getAllCourse();
+    	return AllCourse;
+    }
+    
+    @RequestMapping("/getClassTeacher")
+    @ResponseBody
+    public List<Teacher> getClassTeacher(@RequestParam HashMap<Object, Object> params) {
+    	Course course = this.academyService.getCourse(Integer.parseInt((String)params.get("courseId")));
+    	List<Teacher> classTeacherList = this.academyService.getTeacherList(course);
+    	return classTeacherList;
+    }
+    
+    @RequestMapping("/getClassStudent")
+    @ResponseBody
+    public List<Student> getClassStudent(@RequestParam HashMap<Object, Object> params) {
+    	Course course = this.academyService.getCourse(Integer.parseInt((String)params.get("courseId")));
+    	List<Student> classStudentList = this.academyService.getStudentList(course);
+    	return classStudentList;
+    }
+    
+    @RequestMapping("/getAllTeacher")
+    @ResponseBody
+    public List<Member> getAllTeacher() {
+    	List<Member> allTeacher = this.memberService.getAllMemberByRole("teacher");
+    	return allTeacher;
+    }
+    
+    @RequestMapping("/getAllStudent")
+    @ResponseBody
+    public List<Member> getAllStudent() {
+    	List<Member> allStudent = this.memberService.getAllMemberByRole("student");
+    	return allStudent;
+    }
+    
+    @RequestMapping("/getClassListOfTeacher")
+    @ResponseBody
+    public List<Teacher> getTeacherClass(@RequestParam HashMap<Object, Object> params) {
+    	Member member = this.memberService.getMember(Integer.parseInt((String)params.get("memberId")));
+    	List<Teacher> teacherClassList = this.academyService.getAllClassOfTeacher(member);
+    	return teacherClassList;
+    }
+    @RequestMapping("/getClassListOfStudent")
+    @ResponseBody
+    public List<Student> getStudentClass(@RequestParam HashMap<Object, Object> params) {
+    	Member member = this.memberService.getMember(Integer.parseInt((String)params.get("memberId")));
+    	List<Student> studentClassList = this.academyService.getAllClassOfStudent(member);
+    	return studentClassList;
+    }
     
 }
