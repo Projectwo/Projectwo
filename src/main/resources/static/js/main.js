@@ -1,9 +1,10 @@
 // commonAjax
-function commonAjax(url, parameter, type, calbak) {
+function commonAjax(url, parameter, type, calbak, asy) {
     $.ajax({
         url: url,
         data: parameter,
         type: type,
+        async: asy,
         contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
         success: function (res) {
             calbak(res);
@@ -42,15 +43,16 @@ function createCourseList(res){
 				console.log(result);
 				teacherName = result[0].teacher.name;
 				console.log(teacherName);
-			})
+			}, false)
 			
-			let currentStudentCount;
+			var currentStudentCount;
 			
 			commonAjax('/getStudent', cs, 'get', function(rs){
 				console.log(rs.length);
 				currentStudentCount = rs.length;
 				console.log(currentStudentCount);
-			})
+			}, false)
+			
 			
 						
 			tag += "<div class='main-lecture academy-list'>" +
