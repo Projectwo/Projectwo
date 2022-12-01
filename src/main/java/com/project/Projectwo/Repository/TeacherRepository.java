@@ -7,5 +7,5 @@ import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Teacher;
 
 public interface TeacherRepository extends JpaRepository<Teacher, Integer> {
-	List<Teacher> findByCourse(Course course);
+	//List<Teacher> findByCourse(Course course);
 }

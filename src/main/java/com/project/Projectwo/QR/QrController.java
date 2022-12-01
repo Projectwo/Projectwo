@@ -1,8 +1,6 @@
 package com.project.Projectwo.QR;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,7 +17,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.project.Projectwo.Entity.Attendance;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Student;
@@ -90,8 +87,6 @@ public class QrController {
 		QrCodeView qrCodeView = new QrCodeView();
 
 		Member member = (Member)session.getAttribute("member");
-		
-		List<Teacher> teacherList = teacherRepository.findByTeacher(member);
 		
 		//난리다.... 암튼 코스 하나 불러와야 돼
 		
@@ -175,7 +170,7 @@ public class QrController {
 		Member sessionMember = (Member)session.getAttribute("member");
 		
 		//도와줘 / member에서 student 가져오고 싶어
-
+		List<Student> studentList2 = studentRepository.findByMemberAndCourse(sessionMember, course);
 		
 		
 				
