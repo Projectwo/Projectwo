@@ -42,4 +42,5 @@ public class Student {
 	@JsonBackReference
 	@OneToMany(mappedBy = "student", cascade = CascadeType.REMOVE)
 	private List<ClassNoticeCheck> classNoticeList;
+
 }
