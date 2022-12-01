@@ -175,7 +175,8 @@ public class QrController {
 		Member sessionMember = (Member)session.getAttribute("member");
 		
 		//도와줘 / member에서 student 가져오고 싶어
-		Student student = this.studentRepository.findByMemberAndCourse(sessionMember, course);
+
+		
 		
 				
 		//Integer st = studentRepository.findById(member);
