@@ -31,9 +31,28 @@ function createCourseList(res){
 	if(res != null) {
 		res.forEach(function(course) {
 			console.log(course);
-			console.log(course.teacherList[0]);
-			let teacherName = course.teacherList[0].teacher.name;
 			
+			let cs = {
+				courseId: course.id
+			}
+			
+			let teacherName;
+			
+			commonAjax('/getTeacher', cs, 'get', function(result){
+				console.log(result);
+				teacherName = result[0].teacher.name;
+				console.log(teacherName);
+			})
+			
+			let currentStudentCount;
+			
+			commonAjax('/getStudent', cs, 'get', function(rs){
+				console.log(rs.length);
+				currentStudentCount = rs.length;
+				console.log(currentStudentCount);
+			})
+			
+						
 			tag += "<div class='main-lecture academy-list'>" +
 					"<div class='lecture-info'>" +
 					"<button onclick=\"clickModifyButton('lecture')\" class=\"lecture-modify-button\">" +
@@ -45,8 +64,32 @@ function createCourseList(res){
 					"</div>" +
 					"<div class='lecture-teacher'>" +
 					"<b>" + teacherName + "</b>" +
-					"</div>"
+					"</div>" + "</div>" + "<ul class='lecture-info-schedule'>" +
+					"<li>월</li>" + "<li>화</li>" + "<li>수</li>" + "<li>목</li>" +
+					"<li>금</li>" + 	"<li>토</li>" + "<li>일</li>" + "</ul>" +
+					"<ul class='lecture-info-schedule-checked'>" +
+					"<li><span>" + course.mon + "</span></li>" +
+					"<li><span>" + course.tue + "</span></li>" +
+					"<li><span>" + course.wed + "</span></li>" +
+					"<li><span>" + course.thu + "</span></li>" +
+					"<li><span>" + course.fri + "</span></li>" +
+					"<li><span>" + course.sat + "</span></li>" +
+					"<li><span>" + course.sun + "</span></li>" + "</ul>" +
+					"<div class='lecture-info-schedule-period'>" +
+					"<span class='period-start'>" +
+					course.startDate + "</span>" + "~" +
+					"<span class='period-end'>" + 
+					course.endDate + "</span>" + "</div>" +
+					"<div class='lecture-info-schedule-time'>" +
+					course.startTime + "~" + course.endTime +
+					"</div>" +
+					"<div class='lecture-info-count'>" +
+					"수강인원" + "<span>" + currentStudentCount +
+					"</span>" + "/" + course.room.maxSeat +
+					"</div>" + "<div class='lecture-info-room'>" +
+					course.room.name + "</div>" + "</div>" + "</div>";	
 		});
+		
 		$("#classListId").empty().append(tag);
 	}
 }

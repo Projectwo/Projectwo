@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -56,6 +57,17 @@ public class AcademyService {
 		return courseList;
 	}
 	
+	// by 안준언, 수업 담당 교수 리스트 반환
+	public List<Teacher> getTeacherList(Course course){
+		List<Teacher> teacherList = this.teacherRepository.findByCourse(course);
+		return teacherList;
+	}
+	
+	public List<Student> getStudentList(Course course) {
+		List<Student> studentList = this.studentRepository.findByCourse(course);
+		return studentList;
+	}
+	
 	// by 안준언, 유저 생성
 	public void createMember(String identity, String password, String email,
 								String name, LocalDate birth_date, String address, String tel) {
@@ -69,6 +81,16 @@ public class AcademyService {
 		member.setTel(tel);
 		
 		this.memberRepository.save(member);
+	}
+	
+	// 안준언, 수업 반환
+	public Course getCourse(int courseId) {
+		Optional<Course> _course = this.courseRepository.findById(courseId);
+		if(_course.isEmpty()) {
+			return null;
+		}
+		Course course = _course.get();
+		return course;
 	}
 	
 //	// by 안준언, 전체 공지 생성
@@ -102,24 +124,24 @@ public class AcademyService {
 //		this.courseRepository.save(lecture);
 //	}
 //	
-//	// by 안준언, 수강 등록 (수강정보 생성)
-//	public void createStudent(Member student, Course course) {
-//		Student classMember = new Student();
-//		classMember.setStudent(student);
-//		classMember.setCourse(course);
-//		
-//		this.studentRepository.save(classMember);
-//	}
-//		
-//	// by 안준언, 강사 등록
-//	public void createTeacher(Member teacher_, Course course) {
-//		Teacher teacher = new Teacher();
-//		teacher.setTeacher(teacher_);
-//		teacher.setCourse(course);
-//		
-//		this.teacherRepository.save(teacher);
-//	}
-//	
+	// by 안준언, 수강 등록 (수강정보 생성)
+	public void createStudent(Member student, Course course) {
+		Student classMember = new Student();
+		classMember.setStudent(student);
+		classMember.setCourse(course);
+		
+		this.studentRepository.save(classMember);
+	}
+		
+	// by 안준언, 강사 등록
+	public void createTeacher(Member teacher_, Course course) {
+		Teacher teacher = new Teacher();
+		teacher.setTeacher(teacher_);
+		teacher.setCourse(course);
+		
+		this.teacherRepository.save(teacher);
+	}
+	
 //	// by 안준언, 강의 공지사항 읽음 여부 생성
 //	public void createClassNoticeCheck(Student student, ClassNotice classNotice) {
 //		ClassNoticeCheck classNoticeCheck = new ClassNoticeCheck();
