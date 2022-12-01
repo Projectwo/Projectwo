@@ -4,6 +4,7 @@
     <div class="academy-function">
         <div class="academy-new">
             <div class="new-lecture">
+<<<<<<< HEAD
                 <input class="search-lecture" placeholder="Search">
                 <select class="category-lecture">
                     <option selected="">카테고리</option>
@@ -29,6 +30,87 @@
         <button class="logout" onclick="location.href='/'">로그아웃</button>
     </div>
     
+=======
+                <div class="footer-left academy">
+                    <input class="search-lecture" placeholder="Search">
+                    <select class="category-lecture" required>
+                        <option value="" disabled selected>카테고리</option>
+                        <option value="임시 강의 1">임시 강의 1</option>
+                        <option value="임시 강의 2">임시 강의 2</option>
+                        <option value="임시 강의 3">임시 강의 3</option>
+                    </select>
+                </div>
+                <div class="footer-middle academy">
+                    <div class="academy-function-button lecture-button active">
+                        <button onclick="clickAddButton('lecture')">+</button>
+                        <a href="#">강의 추가</a>
+                        <div th:replace="fragments/add_lecture :: addLectureFragment"></div>
+                        <div th:replace="fragments/modify_lecture :: modifyLectureFragment"></div>
+                    </div>
+                    <div class="academy-function-button teacher-button">
+                        <button onclick="clickAddButton('teacher')">+</button>
+                        <a href="#">강사 추가</a>
+                        <div th:replace="fragments/add_teacher :: addTeacherFragment"></div>
+                        <div th:replace="fragments/modify_teacher :: modifyTeacherFragment"></div>
+                    </div>
+                    <div class="academy-function-button student-button">
+                        <button onclick="clickAddButton('student')">+</button>
+                        <a href="#">수강생 추가</a>
+                        <div th:replace="fragments/add_student :: addStudentFragment"></div>
+                        <div th:replace="fragments/modify_student :: modifyStudentFragment"></div>
+                    </div>
+                </div>
+                <div class="footer-right academy">
+                    <button class="modify-password">비밀번호 변경</button>
+                    <button class="logout" onclick="location.href='/'">로그아웃</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        function clickAddButton(e) {
+            const clickedAddButton = e;
+            const currentAddButton = document.getElementsByClassName("add-fragment");
+
+            if ($(currentAddButton).parent().hasClass('active')) {
+                if ($(currentAddButton).hasClass(e)) {
+                    $(currentAddButton).css({
+                        'display': 'block'
+                    });
+                }
+            }
+        } // by 조성빈, 각 추가 버튼 클릭 시 영역 오픈 기능
+
+        function clickModifyButton(e) {
+            const clickedModifyButton = e;
+            const currentModifyButton = document.getElementsByClassName("modify-fragment");
+
+            if ($(currentModifyButton).parent().hasClass('active')) {
+                if ($(currentModifyButton).hasClass(e)) {
+                    $(currentModifyButton).css({
+                        'display': 'block'
+                    });
+                }
+            }
+        } // by 조성빈, 각 수정 버튼 클릭 시 영역 오픈 기능
+
+        function closeModal(e) {
+            const currentAddButton = document.getElementsByClassName("add-fragment");
+            const currentModifyButton = document.getElementsByClassName("modify-fragment");
+            const clickedButton = e;
+
+            if (e == 'add') {
+                $(currentAddButton).css({
+                    'display': 'none'
+                });
+            } else {
+                $(currentModifyButton).css({
+                    'display': 'none'
+                });
+            }
+        } // by 조성빈, 취소 버튼 클릭 시 영역 클로즈 기능
+    </script>
+>>>>>>> juneon
 </footer>
 
 </html>

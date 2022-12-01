@@ -16,7 +16,9 @@ import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
 @RequiredArgsConstructor
 @Service
 public class UserSecurityService implements UserDetailsService{
@@ -33,8 +35,8 @@ public class UserSecurityService implements UserDetailsService{
 		}
 		Member member = _member.get();
 		List<GrantedAuthority> authorities = new ArrayList<>();
-		
-		if("admin".equals(identity)) {
+
+		if("admin".equalsIgnoreCase(member.getRole())) {
 			authorities.add(new SimpleGrantedAuthority(UserRole.ADMIN.getValue()));
 		} else if("teacher".equalsIgnoreCase(member.getRole())) {
 			authorities.add(new SimpleGrantedAuthority(UserRole.TEACHER.getValue()));
