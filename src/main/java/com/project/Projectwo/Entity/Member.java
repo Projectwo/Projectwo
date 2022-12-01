@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -52,16 +54,19 @@ public class Member {
 	
 	@NotNull
 	private String role;
-
+	
 	// by 안준언, 내 수업 리스트 (학생 계정)
+	@JsonBackReference
 	@OneToMany(mappedBy = "student", cascade = CascadeType.REMOVE)
 	private List<Student> studentClassList;
 	
 	// by 안준언, 내 강의 리스트 (선생 계정)
+	@JsonBackReference
 	@OneToMany(mappedBy ="teacher", cascade = CascadeType.REMOVE)
 	private List<Teacher> teacherClassList;
 	
 	// by 안준언, 학원 전체 강의 리스트
+	@JsonBackReference
 	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
 	private List<AcademyNoticeCheck> academyNoticeList;
 }
