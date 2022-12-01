@@ -1,5 +1,6 @@
 package com.project.Projectwo.QR;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -17,10 +18,15 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.project.Projectwo.Entity.Attendance;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Student;
+import com.project.Projectwo.Repository.AttendanceRepository;
 import com.project.Projectwo.Repository.CourseRepository;
+import com.project.Projectwo.Repository.StudentRepository;
+import com.project.Projectwo.Service.AcademyService;
+import com.project.Projectwo.Service.AttendanceService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -31,17 +37,16 @@ import lombok.extern.slf4j.Slf4j;
 public class QrController {
 	
 	private final CourseRepository courseRepository;
-	
-	@GetMapping("/main")
-	public String main() {
-		return "main";
-	}
+	private final AttendanceRepository attendanceRepository;
+	private final StudentRepository studentRepository;
+	private final AcademyService academyService;
+	private final AttendanceService attendanceService;
 	
 	@GetMapping("/test")
-	public String test() {
-		return "test";
+	public String getTest() {
+		return "main";
 	}
-	
+
 	@GetMapping("/cam")
 	public String getCam() {
 		return "cam";
@@ -81,8 +86,10 @@ public class QrController {
 		
 		log.info(stringDate);
 		
-		String lecture = "java";
-		String content = "http://" + ip + "/lecture" + lecture + "/" + stringDate;
+		
+		//TODO: session로 teacher, course 특정지어서 강의 하나 가져오기
+		Integer lecture = 1;
+		String content = "http://" + ip + ":9090/lecture/" + lecture + "/" + stringDate;
 		
 		log.info(content);
 		
@@ -103,67 +110,79 @@ public class QrController {
 	public String getAttendance(@PathVariable("courseId") Integer courseId, @PathVariable("date") String date,
 			HttpSession session, Model model1, Model model2, Model model3) {
 
-		model1.addAttribute("courseId", courseId);
-		model2.addAttribute("date", date);
+		//Date
+		model1.addAttribute("date", date);
 		
 		//Course
-		Optional<Course> oCourse = courseRepository.findById(courseId);
-		Course course = null;		
-		if(oCourse.isPresent()) {
-			course = oCourse.get();
-		}
+		Course course = academyService.getCourse(courseId);		
+		model2.addAttribute("course", course);
 		
-		log.info(course.getTitle()); //완
+		log.info("강의명=" + course.getTitle()); 
+		
+		
+		
 
-
-		
-		
 		//선생님 - 학생들의 출석 상태 조회
-		List<Student> studentList = course.getStudentList(); 
-		//도와줘 /courseId랑 member랑 student 연결해서 넣은 거 같은데 왜 수강생 0명이냐
-		int studentListSize = studentList.size();
-		log.info(Integer.toString(studentListSize));
-
+		List<Student> classStudentList = this.academyService.getStudentList(course);
+		
+		//학생 이름 출력
 		ArrayList<Member> studentMemberList = new ArrayList<Member>();
 		
-		for(int i=0; i<studentList.size(); i++) {
-			
-			Student student = studentList.get(i);
-			
-			Member member = student.getStudent();
+		for(int i=0; i<classStudentList.size(); i++) {
 
+			Student student = classStudentList.get(i);
+			
+			//학생 이름 가져오기
+			Member member = student.getStudent();
 			studentMemberList.add(i, member);
+			
+			//학생 출결 정보 가져오기
+			List<Attendance> attendanceList = student.getAttendanceList();
+			
+			Optional<Attendance> oAttendance = attendanceRepository.findByToday(LocalDate.now());
+			Attendance todayattendance = null;
+			if(oAttendance.isPresent()) {
+				todayattendance = oAttendance.get();
+			}
+			
+			
+
+			
 			log.info("studentNameList[" + i + "]'s name= " + member.getName());
 			
 		}
 		
-		model3.addAttribute("studentNameList", studentMemberList);
+		model3.addAttribute("studentMemberList", studentMemberList);
+
+		//TODO: 학생 출결 정보 출력
+
+		
+		
+		
 		
 		
 		
 		//학생 - 입실/퇴실 처리
 		Member sessionMember = (Member)session.getAttribute("member");
 		
-		//도와줘 / member에서 student 가져오고 싶어
-		//List<Student> studentList2 = studentRepository.findByMemberAndCourse(sessionMember, course);
+		log.info(("member=" + sessionMember.getName()));
 		
+		Optional<Student> oStudent = studentRepository.findByStudent(sessionMember);
 		
-				
-		//Integer st = studentRepository.findById(member);
+		Student student = null;
+		if(oStudent.isPresent()) {
+			student = oStudent.get();
+		}
 		
+		log.info("student=" + student.getStudent().getName());
 
-//		if(oStudent.isPresent()) {
-//			student = oStudent.get();
-//		}
+		//입실
+		attendanceService.setAttendance(course, student);
 		
-	
-//		//입실
-//		Attendance attendance = new Attendance();
-//		attendance.setStudent(student);
-//		attendance.setToday(LocalDate.now());
-//		attendance.setInTime(LocalTime.now());
-//		//attendance.setStatus();
-//		
+		
+		
+		
+		
 //		//퇴실
 //		//course의 startTime과 비교해서 출석 상태 입력 
 //		//Attendance attendance = AttendanceRepository

@@ -1,5 +1,6 @@
 package com.project.Projectwo.Entity;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.persistence.Column;
@@ -25,6 +26,8 @@ public class Attendance {
 	private LocalTime inTime;
 	
 	private LocalTime outTime;
+	
+	private LocalDate today;
 	
 	@NotNull
 	@Column(length = 20)

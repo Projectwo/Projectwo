@@ -5,7 +5,10 @@ import java.util.Optional;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -25,9 +28,36 @@ public class LoginController {
 	JwtUtil jwtUtil = new JwtUtil();
 	
 	@GetMapping("/login")
-	public String login(LoginForm loginForm) {
+	public String login(Model model) {
+		
+		LoginForm loginForm = new LoginForm();
+		model.addAttribute("loginForm", loginForm);
+		
 		
 		return "loginForm";
+	}
+	
+	@PostMapping("/login")
+	public String postLogin(@ModelAttribute("loginForm") LoginForm loginForm, HttpSession session) {
+		
+		Optional<Member> oMember = memberRepository.findByIdentityAndPassword(loginForm.getId(), loginForm.getPw());
+		
+		log.info("id: " + loginForm.getId());
+		log.info("pw: " + loginForm.getPw());
+		
+		
+		Member member = null;
+		if(oMember.isPresent()) {
+			member = oMember.get();
+			
+		}
+		
+		session.setAttribute("member", member);
+		
+		log.info("####LoginController의 member=" + member.getName());
+		
+		
+		return "redirect:/test";
 	}
 	
 	@GetMapping("/loginCheck")
@@ -43,13 +73,12 @@ public class LoginController {
 		Member member = null;
 		if(oMember.isPresent()) {
 			member = oMember.get();
-			String token = jwtUtil.createJwt(id);
-			
-			log.info("token: " + token);
-			
-			session.setAttribute("member", member);
 			
 		}
+		
+		session.setAttribute("member", member);
+		
+		log.info("####LoginController의 member=" + member.getName());
 		
 		return member;
 
@@ -65,4 +94,6 @@ public class LoginController {
 		String name = member.getName();
 		return name;
 	}
+	
+
 }
