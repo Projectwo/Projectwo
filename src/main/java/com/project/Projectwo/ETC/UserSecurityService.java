@@ -43,6 +43,7 @@ public class UserSecurityService implements UserDetailsService{
 		} else if("student".equalsIgnoreCase(member.getRole())){
 			authorities.add(new SimpleGrantedAuthority(UserRole.STUDENT.getValue()));
 		}
+
 		return new User(member.getIdentity(), member.getPassword(), authorities);
 	}
 

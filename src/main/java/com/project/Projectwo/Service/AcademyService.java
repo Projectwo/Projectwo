@@ -58,9 +58,14 @@ public class AcademyService {
 	}
 	
 	// by 안준언, 수업 담당 교수 리스트 반환
-	public List<Teacher> getTeacherList(Course course){
+	public List<Teacher> getTeacherList(Course course) {
 		List<Teacher> teacherList = this.teacherRepository.findByCourse(course);
 		return teacherList;
+	}
+
+	public List<Teacher> getAllClassOfTeacher(Member member) {
+		List<Teacher> classList = this.teacherRepository.findByTeacher(member);
+		return classList;
 	}
 	
 	public List<Student> getStudentList(Course course) {

@@ -40,13 +40,28 @@ import com.project.Projectwo.Repository.CourseRepository;
 import com.project.Projectwo.Repository.MemberRepository;
 import com.project.Projectwo.Service.AcademyService;
 
+<<<<<<< HEAD
+=======
+import java.time.LocalDate;
+import java.util.List;
+import java.util.Optional;
+
+import javax.transaction.Transactional;
+
+>>>>>>> dev
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.project.Projectwo.Entity.Course;
+<<<<<<< HEAD
 import com.project.Projectwo.Entity.Student;
+=======
+import com.project.Projectwo.Entity.Member;
+import com.project.Projectwo.Entity.Student;
+import com.project.Projectwo.Entity.Teacher;
+>>>>>>> dev
 import com.project.Projectwo.Repository.CourseRepository;
 import com.project.Projectwo.Repository.MemberRepository;
 import com.project.Projectwo.Service.AcademyService;

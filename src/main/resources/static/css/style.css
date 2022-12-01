@@ -470,21 +470,11 @@
     font-size: 14px;
 }
 
-<<<<<<< HEAD
-.notice-category .category-academy{
-    color:#777;
-}
-
-.notice-category .category-lecture{
-    
-}
-=======
 .notice-category .category-academy {
     color: #777;
 }
 
 .notice-category .category-lecture {}
->>>>>>> juneon
 
 .main-notice .notice-area {
     width: 100%;
@@ -835,26 +825,6 @@
 .academy-new {
     position: absolute;
     width: 100%;
-<<<<<<< HEAD
-    margin-top: 14px;
-}
-
-.academy-new .new-lecture {
-    text-align: center;
-    height: 100px;
-}
-
-.academy-new .new-lecture .academy-function-button {
-    display: none;
-}
-
-.academy-new .new-lecture .academy-function-button.active {
-    display: block;
-}
-
-.academy-new .new-lecture button {
-    position: absolute;
-=======
     left: 0;
 }
 
@@ -884,7 +854,6 @@
 
 .footer-middle.academy .academy-function-button>button {
     position: relative;
->>>>>>> juneon
     width: 48px;
     height: 48px;
     color: #777;
@@ -892,25 +861,6 @@
     border: 1px solid;
     border-radius: 50%;
     left: 50%;
-<<<<<<< HEAD
-    top: 50%;
-    transform: translate(-50%, -50%);
-}
-
-.academy-new .new-lecture a {
-    position: absolute;
-    height: 20px;
-    text-align: center;
-    font-size: 20px;
-    line-height: 22px;
-    top: 90px;
-    transform: translate(-50%, -50%);
-
-}
-
-.academy-new .search-lecture {
-    position: absolute;
-=======
     top: 10px;    
     transform: translate(-50%, -50%);    
 }
@@ -938,39 +888,21 @@
 
 .footer-left.academy .search-lecture {
     position: relative;
->>>>>>> juneon
     width: 100px;
     height: 24px;
     padding: 2px 4px;
     border: 1px solid #aaa;
     border-radius: 6px;
-<<<<<<< HEAD
-    left: 30px;
-    top: 66px;
-}
-
-.academy-new .category-lecture {
-    position: absolute;
-=======
 }
 
 .footer-left.academy .category-lecture {
     position: relative;
->>>>>>> juneon
     width: 100px;
     height: 24px;
     padding: 2px 4px;
     border: 1px solid #aaa;
     border-radius: 6px;
     color: #444;
-<<<<<<< HEAD
-    left: 30px;
-    top: 36px;
-}
-
-.modify-password {
-    position: absolute;
-=======
 }
 
 .new-lecture .footer-right.academy{
@@ -985,36 +917,20 @@
 
 .footer-right.academy .modify-password {
     position: relative;
->>>>>>> juneon
     border: 1px solid #777;
     border-radius: 6px;
     color: #777;
     width: 100px;
     height: 24px;
-<<<<<<< HEAD
-    top: 48px;
-    right: 30px;
-
-}
-
-.logout {
-    position: absolute;
-=======
 }
 
 .footer-right.academy .logout {
     position: relative;
->>>>>>> juneon
     border: 1px solid #777;
     border-radius: 6px;
     color: #777;
     width: 100px;
     height: 24px;
-<<<<<<< HEAD
-    top: 78px;
-    right: 30px;
-=======
->>>>>>> juneon
 }
 
 /* ##### academy_footer.html end ##### */
@@ -1023,16 +939,10 @@
 
 .footer-wrap {
     position: fixed;
-<<<<<<< HEAD
-    width: 100%;
-    height: 100px;
-    bottom: 0;
-=======
     width: 390px;
     height: 100px;
     bottom: 0;
     background: #fff;
->>>>>>> juneon
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -1041,8 +951,6 @@
 .footer-wrap .home-button {}
 
 /* ##### main_footer.html end ##### */
-<<<<<<< HEAD
-=======
 
 /* ##### add_lecture.html ##### */
 
@@ -1524,4 +1432,3 @@
 }
 
 /* ##### modify_lecture.html end ##### */
->>>>>>> juneon

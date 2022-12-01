@@ -9,14 +9,6 @@
 	<span th:text="${date}"></span>
 	<span th:text="${lecture}"></span>
 	<span>출석 확인</span>
-	<table>
-		<th>
-			<td>이름</td>
-		</th>
-		<tr th:each="member, Loop : ${studentMemberList}">
-			<td th:text="${member.name}"></td>
-		</tr>
-	</table>
 
 </body>
 </html>

@@ -4,15 +4,6 @@
     outline: none;
 }
 
-<<<<<<< HEAD
-footer{
-    position: fixed;
-    width: 100%;
-    height: 140px;
-    left:0;
-    right:0;
-    bottom: 0;
-=======
 footer {
     position: fixed;
     width: 390px;
@@ -22,7 +13,6 @@ footer {
     right: 0;
     bottom: 0;
     background: #fff;
->>>>>>> juneon
 }
 
 *,
@@ -81,9 +71,6 @@ ul,
 li {
     list-style: none;
 }
-<<<<<<< HEAD
-=======
-
 input[type="date"] {
     position: relative;
     width: 150px;
@@ -141,4 +128,3 @@ input[type="time"]:valid:before {
 select option[value=""][disabled] {
 	display: none;
 }
->>>>>>> juneon

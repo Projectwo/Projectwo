@@ -3,13 +3,10 @@
 <head>
 	<meta charset="UTF-8" />
 	<title>Main</title>
-
-	<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-
+	<script th:src="@{/js/jquery-3.6.1.min.js}"></script>
 </head>
 <body>
 	<h2>메인</h2>
-	<a th:href="@{/lecture/1/20221201}">출석</a>
-
+	<a th:href="@{/attendance}">출석</a>
 </body>
 </html>

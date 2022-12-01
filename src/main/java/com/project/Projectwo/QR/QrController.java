@@ -20,27 +20,17 @@ import org.springframework.web.bind.annotation.PathVariable;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Student;
-import com.project.Projectwo.Entity.Teacher;
-import com.project.Projectwo.Repository.AttendanceRepository;
 import com.project.Projectwo.Repository.CourseRepository;
-import com.project.Projectwo.Repository.StudentRepository;
-import com.project.Projectwo.Repository.TeacherRepository;
-import com.project.Projectwo.Service.AttendanceService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-@Slf4j
 @RequiredArgsConstructor
+@Slf4j
 @Controller
 public class QrController {
 	
-	private final TeacherRepository teacherRepository;
-	private final StudentRepository studentRepository;
 	private final CourseRepository courseRepository;
-	private final AttendanceRepository attendanceRepository;
-	
-	private final AttendanceService attendanceService;
 	
 	@GetMapping("/main")
 	public String main() {
@@ -61,7 +51,6 @@ public class QrController {
 	public String getCam2() {
 		return "cam2";
 	}
-	
 
 //	@GetMapping("checkToken")
 //	@ResponseBody
@@ -78,24 +67,12 @@ public class QrController {
 //		
 //		return result;
 //	}
-	
+
 	
 	@GetMapping("/createQr")
-	public void createQr(HttpServletRequest request, HttpServletResponse response,
-			HttpSession session) {
+	public void createQr(HttpServletRequest request, HttpServletResponse response) {
 
 		QrCodeView qrCodeView = new QrCodeView();
-
-		Member member = (Member)session.getAttribute("member");
-		
-		//난리다.... 암튼 코스 하나 불러와야 돼
-		
-		
-		
-		Teacher teacher = null;
-//		if(oTeacher.isPresent()) {
-//			teacher = oTeacher.get();
-//		}
 		
 		String ip = GetIp.getIp();
 
@@ -103,11 +80,9 @@ public class QrController {
 		String stringDate = localDate.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
 		
 		log.info(stringDate);
-
-		Course course = teacher.getCourse();
-		Integer courseId = course.getId();
 		
-		String content = "http://" + ip + "/lecture/" + courseId + "/" + stringDate;
+		String lecture = "java";
+		String content = "http://" + ip + "/lecture" + lecture + "/" + stringDate;
 		
 		log.info(content);
 		
@@ -138,7 +113,7 @@ public class QrController {
 			course = oCourse.get();
 		}
 		
-		log.info(course.getTitle());
+		log.info(course.getTitle()); //완
 
 
 		
@@ -170,7 +145,7 @@ public class QrController {
 		Member sessionMember = (Member)session.getAttribute("member");
 		
 		//도와줘 / member에서 student 가져오고 싶어
-		List<Student> studentList2 = studentRepository.findByMemberAndCourse(sessionMember, course);
+		//List<Student> studentList2 = studentRepository.findByMemberAndCourse(sessionMember, course);
 		
 		
 				
@@ -194,12 +169,8 @@ public class QrController {
 //		//Attendance attendance = AttendanceRepository
 //		
 //		
-//		
-		
-		
-		
+//			
 
 		return "attendance";
 	}
-	
 }
