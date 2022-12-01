@@ -73,6 +73,11 @@ public class AcademyService {
 		return studentList;
 	}
 	
+	public List<Student> getAllClassOfStudent(Member member) {
+		List<Student> classList = this.studentRepository.findByStudent(member);
+		return classList;
+	}
+	
 	// by 안준언, 유저 생성
 	public void createMember(String identity, String password, String email,
 								String name, LocalDate birth_date, String address, String tel) {

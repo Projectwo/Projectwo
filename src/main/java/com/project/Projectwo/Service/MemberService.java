@@ -36,10 +36,11 @@ public class MemberService {
 		}
 	}
 	
-	public List<Member> getAllTeacher() {
-		List<Member> allTeacher = this.memberRepository.findByRole("teacher");
-		return allTeacher;
+	public List<Member> getAllMemberByRole(String role) {
+		List<Member> allMember = this.memberRepository.findByRole(role);
+		return allMember;
 	}
+	
 	/*
 	 공통
 	 회원가입

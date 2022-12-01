@@ -52,7 +52,7 @@ public class BaseController {
     	}
     }
     
-    @RequestMapping("/getCourse")
+    @RequestMapping("/getAllCourse")
     @ResponseBody
     public List<Course> getAllCourse() {
     	List<Course> AllCourse = this.academyService.getAllCourse();
@@ -78,8 +78,15 @@ public class BaseController {
     @RequestMapping("/getAllTeacher")
     @ResponseBody
     public List<Member> getAllTeacher() {
-    	List<Member> allTeacher = this.memberService.getAllTeacher();
+    	List<Member> allTeacher = this.memberService.getAllMemberByRole("teacher");
     	return allTeacher;
+    }
+    
+    @RequestMapping("/getAllStudent")
+    @ResponseBody
+    public List<Member> getAllStudent() {
+    	List<Member> allStudent = this.memberService.getAllMemberByRole("student");
+    	return allStudent;
     }
     
     @RequestMapping("/getClassListOfTeacher")
@@ -88,6 +95,13 @@ public class BaseController {
     	Member member = this.memberService.getMember(Integer.parseInt((String)params.get("memberId")));
     	List<Teacher> teacherClassList = this.academyService.getAllClassOfTeacher(member);
     	return teacherClassList;
+    }
+    @RequestMapping("/getClassListOfStudent")
+    @ResponseBody
+    public List<Student> getStudentClass(@RequestParam HashMap<Object, Object> params) {
+    	Member member = this.memberService.getMember(Integer.parseInt((String)params.get("memberId")));
+    	List<Student> studentClassList = this.academyService.getAllClassOfStudent(member);
+    	return studentClassList;
     }
     
 }
