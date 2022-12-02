@@ -225,12 +225,23 @@ function getAllRoom(res) {
 }
 
 function showMaxSeat() {
-	let roomName = document.getElementById('selectedRoomName');
+	let roomName = document.getElementById("roomSelect");
+	let selectedRoomName = roomName.options[roomName.selectedIndex].text;
+	//console.log(selectedRoomName);
 	//console.log(roomName);
 	let msg = {
-		roomName: roomName
+		roomName: selectedRoomName
 	}
-	
-	
-	
+	commonAjax('/getRoomByName', msg, 'get', function(result){
+		getRoomByName(result);
+	})
+}
+
+function getRoomByName(room) {
+	//console.log(room);
+	let tag = "";
+	if(room != null) {
+		tag += room.maxSeat;
+	}
+	$('#roomMaxSeat').empty().append(tag);
 }

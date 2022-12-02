@@ -92,11 +92,19 @@ public class AcademyController {
     	return studentClassList;
     }
 	
-    // by 안준언, academy 페이지에서 강의 추가시 강의실 정보 출력 ajax
+    // by 안준언, academy 페이지에서 강의 추가시 전체 강의실 정보 출력 ajax
     @RequestMapping("/getAllRoom")
     @ResponseBody
     public List<Room> getAllRoom() {
     	List<Room> RoomList = academyService.getAllRoom();
     	return RoomList;
+    }
+    
+    // by 안준언, academy 페이지에서 강의 추가시, 특정 강의실에 따른 제한 정원 출력
+    @RequestMapping("/getRoomByName")
+    @ResponseBody
+    public Room getRoom(@RequestParam HashMap<Object, Object> params) {
+    	Room room = this.academyService.getRoom((String)params.get("roomName"));
+    	return room;
     }
 }

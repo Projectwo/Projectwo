@@ -111,7 +111,18 @@ public class AcademyService {
 		List<Room> RoomList = this.roomRepository.findAll();
 		return RoomList;
 	}
-//	// by 안준언, 전체 공지 생성
+	
+	// by 안준언, name 필드로 특정 강의실 반환
+	public Room getRoom(String name) {
+		Optional<Room> _room = this.roomRepository.findByName(name);
+		if(_room.isEmpty()) {
+			return null;
+		}
+		Room room = _room.get();
+		return room;
+	}
+
+	//	// by 안준언, 전체 공지 생성
 //	public void createAcademyNotice(String title, String Content) {
 //		AcademyNotice academyNotice = new AcademyNotice();
 //		academyNotice.setTitle(title);
