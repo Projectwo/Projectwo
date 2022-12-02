@@ -73,7 +73,9 @@ public class QrController {
 //		return result;
 //	}
 
-	
+	//by 박은영
+	//"http://ip:9090/course/{courseId}/{LocalDate}로 qr생성
+	//TODO: courseId 특정 지어서 가져와야 됨
 	@GetMapping("/createQr")
 	public void createQr(HttpServletRequest request, HttpServletResponse response) {
 
@@ -89,7 +91,7 @@ public class QrController {
 		
 		//TODO: session로 teacher, course 특정지어서 강의 하나 가져오기
 		Integer lecture = 1;
-		String content = "http://" + ip + ":9090/lecture/" + lecture + "/" + stringDate;
+		String content = "http://" + ip + ":9090/course/" + lecture + "/" + stringDate;
 		
 		log.info(content);
 		
@@ -106,10 +108,98 @@ public class QrController {
 	
 	}
 	
-	@GetMapping("/lecture/{courseId}/{date}")
+	
+	//by 박은영
+	//학생 - 입실,퇴실 등록
+//	@GetMapping("/course/{courseId}/{date}")
+//	public String setAttendance(@PathVariable("courseId") Integer courseId, @PathVariable("date") String date,
+//			HttpSession session, Model model1, Model model2, Model model3) {
+//		
+//		//Date
+//		model1.addAttribute("date", date);
+//		
+//		//Course
+//		Course course = academyService.getCourse(courseId);		
+//		model2.addAttribute("course", course);
+//		
+//		log.info("강의명=" + course.getTitle()); 
+//		
+//		
+//		
+//
+//		//선생님 - 학생들의 출석 상태 조회
+//		List<Student> classStudentList = this.academyService.getStudentList(course);
+//		
+//		//학생 이름 출력
+//		ArrayList<Member> studentMemberList = new ArrayList<Member>();
+//		
+//		for(int i=0; i<classStudentList.size(); i++) {
+//
+//			Student student = classStudentList.get(i);
+//			
+//			//학생 이름 가져오기
+//			Member member = student.getStudent();
+//			studentMemberList.add(i, member);
+//			
+//			//학생 출결 정보 가져오기
+//			Attendance attendance = attendanceService.getTodayAttendance(student);
+//			
+//			
+//			
+//			
+//
+//			
+//			log.info("studentNameList[" + i + "]'s name= " + member.getName());
+//			
+//		}
+//		
+//		model3.addAttribute("studentMemberList", studentMemberList);
+//
+//		//TODO: 학생 출결 정보 출력
+//
+//		
+//		
+//		
+//		
+//		
+//		
+//		//학생 - 입실/퇴실 처리
+//		Member sessionMember = (Member)session.getAttribute("member");
+//		
+//		log.info(("member=" + sessionMember.getName()));
+//		
+//		Optional<Student> oStudent = studentRepository.findByStudent(sessionMember);
+//		
+//		Student student = null;
+//		if(oStudent.isPresent()) {
+//			student = oStudent.get();
+//		}
+//		
+//		log.info("student=" + student.getStudent().getName());
+//
+//		//입실
+//		attendanceService.regAttendance(course, student);
+//		
+//		
+//		
+//		
+//		
+////		//퇴실
+////		//course의 startTime과 비교해서 출석 상태 입력 
+////		//Attendance attendance = AttendanceRepository
+////		
+////		
+////			
+//
+//		return "attendance";
+//	}
+//	
+//	
+	//선생님 권한으로 학생 출결 정보 조회
+	@GetMapping("/course/{courseId}/{date}")
 	public String getAttendance(@PathVariable("courseId") Integer courseId, @PathVariable("date") String date,
-			HttpSession session, Model model1, Model model2, Model model3) {
-
+			Model model1, Model model2, Model model3, Model model4) {
+		
 		//Date
 		model1.addAttribute("date", date);
 		
@@ -119,77 +209,33 @@ public class QrController {
 		
 		log.info("강의명=" + course.getTitle()); 
 		
-		
-		
-
-		//선생님 - 학생들의 출석 상태 조회
+		//course로부터 학생 목록 가져오기
 		List<Student> classStudentList = this.academyService.getStudentList(course);
 		
-		//학생 이름 출력
+		
 		ArrayList<Member> studentMemberList = new ArrayList<Member>();
+		ArrayList<Attendance> todayAttendanceList = new ArrayList<Attendance>();
 		
 		for(int i=0; i<classStudentList.size(); i++) {
 
 			Student student = classStudentList.get(i);
 			
-			//학생 이름 가져오기
+			//student에서 member로 전환 (이름 가져오려고)
 			Member member = student.getStudent();
 			studentMemberList.add(i, member);
 			
-			//학생 출결 정보 가져오기
-			List<Attendance> attendanceList = student.getAttendanceList();
-			
-			Optional<Attendance> oAttendance = attendanceRepository.findByToday(LocalDate.now());
-			Attendance todayattendance = null;
-			if(oAttendance.isPresent()) {
-				todayattendance = oAttendance.get();
-			}
-			
-			
-
+			//"당일" 학생 출결 정보 가져오기
+			Attendance attendance = attendanceService.getTodayAttendance(student);
+			todayAttendanceList.add(i, attendance);
 			
 			log.info("studentNameList[" + i + "]'s name= " + member.getName());
+			log.info("todayAttendanceList[" + i + "]'s status= " + attendance.getStatus());
 			
 		}
 		
 		model3.addAttribute("studentMemberList", studentMemberList);
-
-		//TODO: 학생 출결 정보 출력
-
+		model4.addAttribute("todayAttendanceList", todayAttendanceList);
 		
-		
-		
-		
-		
-		
-		//학생 - 입실/퇴실 처리
-		Member sessionMember = (Member)session.getAttribute("member");
-		
-		log.info(("member=" + sessionMember.getName()));
-		
-		Optional<Student> oStudent = studentRepository.findByStudent(sessionMember);
-		
-		Student student = null;
-		if(oStudent.isPresent()) {
-			student = oStudent.get();
-		}
-		
-		log.info("student=" + student.getStudent().getName());
-
-		//입실
-		attendanceService.setAttendance(course, student);
-		
-		
-		
-		
-		
-//		//퇴실
-//		//course의 startTime과 비교해서 출석 상태 입력 
-//		//Attendance attendance = AttendanceRepository
-//		
-//		
-//			
-
 		return "attendance";
 	}
 }

@@ -11,5 +11,5 @@ import com.project.Projectwo.Entity.Student;
 
 public interface AttendanceRepository extends JpaRepository<Attendance, Integer> {
 	Optional<Attendance> findByToday(LocalDate date);
-	List<Attendance> findByStudent(Student student);
+	Optional<Attendance> findByStudentAndToday(Student student, LocalDate date);
 }

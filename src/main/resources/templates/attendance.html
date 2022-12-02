@@ -11,11 +11,11 @@
 	<span>출석 확인</span>
 
 	<table>
-		<th>
-			<td>이름</td>
-		</th>
 		<tr th:each="member, Loop : ${studentMemberList}">
 			<td th:text="${member.name}"></td>
+		</tr>
+		<tr th:each="attendance,  Loop : ${todayAttendanceList}">
+			<td th:text="${attendance.status}"></td>
 		</tr>
 	</table>
 </body>
