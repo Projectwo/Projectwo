@@ -203,6 +203,7 @@ function getAllStudent(res) {
 	$("#allStudentList").empty().append(tag);
 }
 
+// by 안준언, Academy 계정에서 강의 생성시 강의실 관련 정보 출력
 document.getElementById("addCourseBtn").addEventListener("click", getRoom);
 document.getElementById("roomSelect").addEventListener("change",  showMaxSeat);
 
