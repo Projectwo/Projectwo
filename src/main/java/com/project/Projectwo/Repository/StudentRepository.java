@@ -11,5 +11,5 @@ import com.project.Projectwo.Entity.Student;
 
 public interface StudentRepository extends JpaRepository<Student, Integer> {
 	List<Student> findByCourse(Course course);
-	Optional<Student> findByStudent(Member member);
+	Optional<Student> findByStudentAndCourse(Member member, Course course);
 }

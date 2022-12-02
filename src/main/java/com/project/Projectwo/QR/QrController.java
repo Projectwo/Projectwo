@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,9 +23,11 @@ import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Student;
 import com.project.Projectwo.Repository.AttendanceRepository;
 import com.project.Projectwo.Repository.CourseRepository;
+import com.project.Projectwo.Repository.MemberRepository;
 import com.project.Projectwo.Repository.StudentRepository;
 import com.project.Projectwo.Service.AcademyService;
 import com.project.Projectwo.Service.AttendanceService;
+import com.project.Projectwo.Service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -39,8 +40,11 @@ public class QrController {
 	private final CourseRepository courseRepository;
 	private final AttendanceRepository attendanceRepository;
 	private final StudentRepository studentRepository;
+	private final MemberRepository memberRepository;
+	
 	private final AcademyService academyService;
 	private final AttendanceService attendanceService;
+	private final MemberService memberService;
 	
 	@GetMapping("/test")
 	public String getTest() {
@@ -56,22 +60,6 @@ public class QrController {
 	public String getCam2() {
 		return "cam2";
 	}
-
-//	@GetMapping("checkToken")
-//	@ResponseBody
-//	public String checkToken(@RequestParam String token) {
-//		
-//		log.info("token: " + token);
-//		
-//		String result = null;
-//		try {
-//			result = JwtUtil.getSubject(token);
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
-//		
-//		return result;
-//	}
 
 	//by 박은영
 	//"http://ip:9090/course/{courseId}/{LocalDate}로 qr생성
@@ -111,97 +99,55 @@ public class QrController {
 	
 	//by 박은영
 	//학생 - 입실,퇴실 등록
-//	@GetMapping("/course/{courseId}/{date}")
-//	public String setAttendance(@PathVariable("courseId") Integer courseId, @PathVariable("date") String date,
-//			HttpSession session, Model model1, Model model2, Model model3) {
-//		
-//		//Date
-//		model1.addAttribute("date", date);
-//		
-//		//Course
-//		Course course = academyService.getCourse(courseId);		
-//		model2.addAttribute("course", course);
-//		
-//		log.info("강의명=" + course.getTitle()); 
-//		
-//		
-//		
-//
-//		//선생님 - 학생들의 출석 상태 조회
-//		List<Student> classStudentList = this.academyService.getStudentList(course);
-//		
-//		//학생 이름 출력
-//		ArrayList<Member> studentMemberList = new ArrayList<Member>();
-//		
-//		for(int i=0; i<classStudentList.size(); i++) {
-//
-//			Student student = classStudentList.get(i);
-//			
-//			//학생 이름 가져오기
-//			Member member = student.getStudent();
-//			studentMemberList.add(i, member);
-//			
-//			//학생 출결 정보 가져오기
-//			Attendance attendance = attendanceService.getTodayAttendance(student);
-//			
-//			
-//			
-//			
-//
-//			
-//			log.info("studentNameList[" + i + "]'s name= " + member.getName());
-//			
-//		}
-//		
-//		model3.addAttribute("studentMemberList", studentMemberList);
-//
-//		//TODO: 학생 출결 정보 출력
-//
-//		
-//		
-//		
-//		
-//		
-//		
-//		//학생 - 입실/퇴실 처리
-//		Member sessionMember = (Member)session.getAttribute("member");
-//		
-//		log.info(("member=" + sessionMember.getName()));
-//		
-//		Optional<Student> oStudent = studentRepository.findByStudent(sessionMember);
-//		
-//		Student student = null;
-//		if(oStudent.isPresent()) {
-//			student = oStudent.get();
-//		}
-//		
-//		log.info("student=" + student.getStudent().getName());
-//
-//		//입실
-//		attendanceService.regAttendance(course, student);
-//		
-//		
-//		
-//		
-//		
-////		//퇴실
-////		//course의 startTime과 비교해서 출석 상태 입력 
-////		//Attendance attendance = AttendanceRepository
-////		
-////		
-////			
-//
-//		return "attendance";
-//	}
-//	
-//	
-	//선생님 권한으로 학생 출결 정보 조회
 	@GetMapping("/course/{courseId}/{date}")
+	public String setAttendance(@PathVariable("courseId") Integer courseId, @PathVariable("date") String date) {
+		
+		//Date
+		String stringDate = date;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+		LocalDate localDate = LocalDate.parse(stringDate, formatter);
+		
+		//Date
+		//model1.addAttribute("localDate", localDate);
+		
+		//Course
+		Course course = academyService.getCourse(courseId);		
+		//model2.addAttribute("course", course);
+		
+		log.info("####localDate=" + localDate.toString()); 
+		log.info("####강의명=" + course.getTitle()); 
+		log.info("####강의설명=" + course.getDescription()); 
+
+		//임시 member
+		Member member = memberService.getMember("aaa");
+		
+		Student student = memberService.getStudent(member, course);
+		
+		log.info("student=" + student.getStudent().getName());
+
+		//attendanceRepotiory에 당일 출결 정보가 있는지 확인
+		Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
+		
+		if(attendance.getStatus().equals("")) { //입실
+			attendanceService.regAttendance(course, student);
+		}else if(attendance.getStatus().equals("입실")||attendance.getStatus().equals("지각")){ //퇴실
+			attendanceService.regLeave(course, student);
+		}	
+
+		return "redirect:/main";
+	}
+
+	//선생님 권한으로 학생 출결 정보 조회
+	@GetMapping("/teacher/{courseId}/{date}")
 	public String getAttendance(@PathVariable("courseId") Integer courseId, @PathVariable("date") String date,
 			Model model1, Model model2, Model model3, Model model4) {
 		
 		//Date
-		model1.addAttribute("date", date);
+		String stringDate = date;
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+		LocalDate localDate = LocalDate.parse(stringDate, formatter);
+		
+		model1.addAttribute("localDate", localDate);
 		
 		//Course
 		Course course = academyService.getCourse(courseId);		
@@ -224,12 +170,14 @@ public class QrController {
 			Member member = student.getStudent();
 			studentMemberList.add(i, member);
 			
-			//"당일" 학생 출결 정보 가져오기
-			Attendance attendance = attendanceService.getTodayAttendance(student);
-			todayAttendanceList.add(i, attendance);
+			//"일별" 학생 출결 정보 가져오기
+			Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
 			
-			log.info("studentNameList[" + i + "]'s name= " + member.getName());
-			log.info("todayAttendanceList[" + i + "]'s status= " + attendance.getStatus());
+			if(attendance == null) {
+				attendanceService.regTemporaryAttendance(student, localDate);
+			}
+			todayAttendanceList.add(i, attendance);
+
 			
 		}
 		

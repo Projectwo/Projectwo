@@ -5,8 +5,11 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
+import com.project.Projectwo.Entity.Student;
 import com.project.Projectwo.Repository.MemberRepository;
+import com.project.Projectwo.Repository.StudentRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -15,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class MemberService {
 
 	private final MemberRepository memberRepository;
+	private final StudentRepository studentRepository;
 	
 	public Member getMember(String identity) {
 		Optional<Member> mb = this.memberRepository.findByIdentity(identity);
@@ -40,6 +44,21 @@ public class MemberService {
 		List<Member> allTeacher = this.memberRepository.findByRole("teacher");
 		return allTeacher;
 	}
+	
+	
+	public Student getStudent(Member member, Course course) {
+		
+		Optional<Student> oStudent = studentRepository.findByStudentAndCourse(member, course);
+		
+		if(oStudent.isEmpty()) {
+			return null;
+		}
+		
+		Student student = oStudent.get();
+		
+		return student;
+	}
+	
 	/*
 	 공통
 	 회원가입

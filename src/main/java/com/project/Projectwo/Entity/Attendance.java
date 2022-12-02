@@ -29,7 +29,6 @@ public class Attendance {
 	
 	private LocalDate today;
 	
-	@NotNull
 	@Column(length = 20)
 	private String status;
 	

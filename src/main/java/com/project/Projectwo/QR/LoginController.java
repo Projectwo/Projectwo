@@ -57,7 +57,7 @@ public class LoginController {
 		log.info("####LoginController의 member=" + member.getName());
 		
 		
-		return "redirect:/test";
+		return "redirect:/main";
 	}
 	
 	@GetMapping("/loginCheck")
