@@ -16,6 +16,7 @@ public class MemberService {
 
 	private final MemberRepository memberRepository;
 	
+	// by 안준언, identity로 특정 멤버 반환
 	public Member getMember(String identity) {
 		Optional<Member> mb = this.memberRepository.findByIdentity(identity);
 		if(mb.isEmpty()) {
@@ -26,6 +27,7 @@ public class MemberService {
 		}
 	}
 	
+	// by 안준언, pk(id)로 특정 멤버 반환 (오버로딩)
 	public Member getMember(int memberId) {
 		Optional<Member> mb = this.memberRepository.findById(memberId);
 		if(mb.isEmpty()) {
@@ -36,6 +38,7 @@ public class MemberService {
 		}
 	}
 	
+	// by 안준언, 같은 role 필드 값을 가진 멤버 반환 ("teacher" or "student" or "admin")
 	public List<Member> getAllMemberByRole(String role) {
 		List<Member> allMember = this.memberRepository.findByRole(role);
 		return allMember;

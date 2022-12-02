@@ -202,3 +202,35 @@ function getAllStudent(res) {
 	}
 	$("#allStudentList").empty().append(tag);
 }
+
+document.getElementById("addCourseBtn").addEventListener("click", getRoom);
+document.getElementById("roomSelect").addEventListener("change",  showMaxSeat);
+
+
+function getRoom() {
+	commonAjax('/getAllRoom', null, 'get', function(result){
+		//console.log(result);
+		getAllRoom(result);
+	})
+}
+
+function getAllRoom(res) {
+	let tag = "";
+	if(res != null) {
+		res.forEach(function(room){
+			tag += "<option id='selectedRoomName'>" + room.name + "</option>";
+		})
+	}
+	$("#roomSelect").empty().append(tag);
+}
+
+function showMaxSeat() {
+	let roomName = document.getElementById('selectedRoomName');
+	//console.log(roomName);
+	let msg = {
+		roomName: roomName
+	}
+	
+	
+	
+}

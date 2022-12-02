@@ -1,5 +1,6 @@
 package com.project.Projectwo.Entity;
 
+import java.time.LocalDate;
 import java.time.LocalTime;
 
 import javax.persistence.Column;
@@ -21,6 +22,8 @@ public class Attendance {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	
+	private LocalDate today;
 	
 	private LocalTime inTime;
 	
