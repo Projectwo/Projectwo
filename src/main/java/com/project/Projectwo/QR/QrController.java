@@ -132,9 +132,15 @@ public class QrController {
 			log.info("####attendance is not null");			
 			if(attendance.getStatus().equals("")) { //입실
 				attendanceService.regAttendance(course, student);
-			}else if(attendance.getStatus().equals("입실")||attendance.getStatus().equals("지각")){ //퇴실
-				attendanceService.regLeave(course, student);
-			}	
+				
+			}else if(attendance.getStatus().equals("입실")) {
+				attendanceService.regLeave(course, student, localDate);
+				
+				
+			}else if(attendance.getStatus().equals("지각")) {
+				
+			}
+			
 		}else {
 			log.info("####attendance is null");	
 		}

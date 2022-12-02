@@ -38,17 +38,6 @@ public class AttendanceService {
 		return todayAttendance;
 	}
 	
-	//출결 정보 null 방지
-	public void regTemporaryAttendance(Student student, LocalDate localDate) {
-		Attendance attendance = new Attendance();
-		attendance.setStudent(student);
-		attendance.setToday(localDate);
-		attendance.setStatus("");
-		
-		attendanceRepository.save(attendance);
-		
-	}
-	
 	//입실
 	public void regAttendance(Course course, Student student) {
 		Attendance attendance = new Attendance();
@@ -69,10 +58,15 @@ public class AttendanceService {
 	}
 	
 	//퇴실
-	public void regLeave(Course course, Student student) {
-		Attendance attendance = this.getTodayAttendance(student, LocalDate.now());
+	public void regLeave(Course course, Student student, LocalDate localDate) {
+		Attendance attendance = this.getTodayAttendance(student, localDate);
 		attendance.setOutTime(LocalTime.now());
 		
+		if(attendance.getStatus().equals("지각")) {
+			if(course.getEndTime().isAfter(attendance.getOutTime())) {
+				attendance.setStatus("조퇴");
+			}
+		}
 		if(course.getEndTime().isAfter(attendance.getOutTime())) {
 			attendance.setStatus("조퇴");
 			
