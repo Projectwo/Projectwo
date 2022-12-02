@@ -125,14 +125,19 @@ public class QrController {
 		
 		log.info("student=" + student.getStudent().getName());
 
-		//attendanceRepotiory에 당일 출결 정보가 있는지 확인
-		Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
 		
-		if(attendance.getStatus().equals("")) { //입실
-			attendanceService.regAttendance(course, student);
-		}else if(attendance.getStatus().equals("입실")||attendance.getStatus().equals("지각")){ //퇴실
-			attendanceService.regLeave(course, student);
-		}	
+		Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
+		if(attendance != null) {
+			
+			log.info("####attendance is not null");			
+			if(attendance.getStatus().equals("")) { //입실
+				attendanceService.regAttendance(course, student);
+			}else if(attendance.getStatus().equals("입실")||attendance.getStatus().equals("지각")){ //퇴실
+				attendanceService.regLeave(course, student);
+			}	
+		}else {
+			log.info("####attendance is null");	
+		}
 
 		return "redirect:/main";
 	}
@@ -173,9 +178,6 @@ public class QrController {
 			//"일별" 학생 출결 정보 가져오기
 			Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
 			
-			if(attendance == null) {
-				attendanceService.regTemporaryAttendance(student, localDate);
-			}
 			todayAttendanceList.add(i, attendance);
 
 			

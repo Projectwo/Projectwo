@@ -20,23 +20,11 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 @Service
-public class LoginSuccessHandler implements AuthenticationSuccessHandler {
+public class LoginSuccessHandler implements AuthenticationSuccessHandler {@Override
+	public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response,
+			Authentication authentication) throws IOException, ServletException {
+		// TODO Auto-generated method stub
+		
+	}
 
-   private final MemberRepository memberRepository;
-
-   // by 안준언, 로그인한 세션으로 멤버의 접속 상태를 true로 변경
-   @Override
-   public void onAuthenticationSuccess(HttpServletRequest httpServletRequest, HttpServletResponse response,
-         Authentication authentication) throws IOException, ServletException {
-
-      System.out.println("authentication:: " + authentication.getName());
-      httpServletRequest.getSession().setAttribute("identity", authentication.getName());
-      System.out.println(httpServletRequest.getSession().getAttribute("identity"));
-      Optional<Member> oMember = memberRepository.findByIdentity(httpServletRequest.getSession().getAttribute("identity").toString());
-      Member member = oMember.get();
-      memberRepository.save(member);
-
-      response.sendRedirect("/main");
-
-   }
 }
