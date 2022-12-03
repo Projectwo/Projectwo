@@ -64,6 +64,43 @@ public class AcademyService {
 		this.memberRepository.save(member);
 	}
 	
+	// by 안준언, 새 강의 생성
+	public void createCourseAndTeacher(String title, boolean mon, boolean tue, boolean wed,
+								boolean thu, boolean fri, boolean sat, boolean sun,
+								String startDate, String endDate, String startTime,
+								String endTime, String roomName, String teacherName) {
+		Optional<Room> _room = this.roomRepository.findByName(roomName);
+		Room room = _room.get();
+		
+		Course course = new Course();
+		course.setTitle(title);
+		course.setDescription("please write description");
+		course.setMon(mon);
+		course.setTue(tue);
+		course.setWed(wed);
+		course.setThu(thu);
+		course.setFri(fri);
+		course.setSat(sat);
+		course.setSun(sun);
+		course.setStartDate(LocalDate.parse(startDate));
+		course.setEndDate(LocalDate.parse(endDate));
+		course.setStartTime(LocalTime.parse(startTime));
+		course.setEndTime(LocalTime.parse(endTime));
+		course.setRoom(room);
+		
+		this.courseRepository.save(course);
+		
+		Optional<Member> _member = this.memberRepository.findByName(teacherName);
+		Member member = _member.get();
+		
+		Teacher teacher = new Teacher();
+		teacher.setCourse(course);
+		teacher.setTeacher(member);
+		
+		this.teacherRepository.save(teacher);
+		
+	}
+	
 	// by 안준언, 전체 강의 리스트 반환
 	public List<Course> getAllCourse(){
 		

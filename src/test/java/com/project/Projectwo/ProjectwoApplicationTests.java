@@ -126,8 +126,8 @@ class ProjectwoApplicationTests {
 //	@Test
 //	void createRoom() {
 //		Room room = new Room();
-//		room.setName("428호");
-//		room.setMaxSeat(70);
+//		room.setName("427호");
+//		room.setMaxSeat(50);
 //		
 //		this.roomRepository.save(room);
 //	}

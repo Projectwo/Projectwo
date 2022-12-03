@@ -236,7 +236,7 @@ function selectTeacher(res) {
 	let tag = "";
 	if(res != null) {
 		res.forEach(function(member){
-			tag += "<option id='selectedTeacherName'>" + member.name + "</option>";
+			tag += "<option id='selectedTeacherName' name=\"memberName\" id=\"memberName\">" + member.name + "</option>";
 		})
 	}
 	$("#teacherSelect").empty().append(tag);

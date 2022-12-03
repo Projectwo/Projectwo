@@ -2,43 +2,45 @@
 
 <div th:fragment="addLectureFragment" class="add-fragment lecture" id="add-lecture" style="display:none;">
     <div class="modal-wrap addFunction">
-        <form class="add-lecture-form">
+        <form class="add-lecture-form" th:action="@{/createCourse}" method="post">
             <div class="add-title">
                 과정명<br>
-                <input type="text" />
+                <input type="text" name="title" id="title" />
             </div>
             <div class="add-teacher-name">강사<br>
-                <select id="teacherSelect">
+                <select id="teacherSelect" name="teacherSelect">
                 	<option> 1 </option>
                 </select>
             </div>
             <div class="check-lecture-week">
                 강의요일<br>
                 <div class="check-day-button">
-                    <input type="checkbox" class="day-button mon">월
-                    <input type="checkbox" class="day-button tue">화
-                    <input type="checkbox" class="day-button wed">수
-                    <input type="checkbox" class="day-button thu">목
-                    <input type="checkbox" class="day-button fri">금
-                    <input type="checkbox" class="day-button sat">토
-                    <input type="checkbox" class="day-button sun">일
+                    <input type="checkbox" class="day-button mon" name="mon" id="mon" />월
+                    <input type="checkbox" class="day-button tue" name="tue" id="tue" />화
+                    <input type="checkbox" class="day-button wed" name="wed" id="wed" />수
+                    <input type="checkbox" class="day-button thu" name="thu" id="thu" />목
+                    <input type="checkbox" class="day-button fri" name="fri" id="fri" />금
+                    <input type="checkbox" class="day-button sat" name="sat" id="sat" />토
+                    <input type="checkbox" class="day-button sun" name="sun" id="sun" />일
                 </div>
             </div>
             <div class="add-lecture-period">
                 강의기간<br>
                 <input class="lecture-period-start" type="date" data-placeholder="강의 시작일" required
-                    aria-required="ture" />
-                <input class="lecture-period-end" type="date" data-placeholder="강의 종료일" required aria-required="ture" />
+                    aria-required="ture" name="startDate" id="startDate" />
+                <input class="lecture-period-end" type="date" data-placeholder="강의 종료일" required
+                	aria-required="ture" name="endDate" id="endDate" />
             </div>
             <div class="add-lecture-time">
                 강의시간<br>
                 <input class="lecture-time-start" type="time" data-placeholder="강의 시작시간" required
-                    aria-required="ture" />
-                <input class="lecture-time-end" type="time" data-placeholder="강의 종료시간" required aria-required="ture" />
+                    aria-required="ture" name="startTime" id="startTime" />
+                <input class="lecture-time-end" type="time" data-placeholder="강의 종료시간" required
+                	aria-required="ture" name="endTime" id="endTime" />
             </div>
             <div class="add-lecture-room">
                 강의실<br>
-                <select id="roomSelect">
+                <select id="roomSelect" name="roomSelect">
                 	<option> 1 </option>
                 </select>
             </div>

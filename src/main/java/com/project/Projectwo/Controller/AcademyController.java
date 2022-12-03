@@ -1,6 +1,8 @@
 package com.project.Projectwo.Controller;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,6 +12,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -106,5 +109,27 @@ public class AcademyController {
     public Room getRoom(@RequestParam HashMap<Object, Object> params) {
     	Room room = this.academyService.getRoom((String)params.get("roomName"));
     	return room;
+    }
+    
+    // by 안준언, academy 페이지 강의 생성
+    @PostMapping("/createCourse")
+    public String createCourse(@RequestParam String title,
+    							@RequestParam(value="mon", required=false) boolean mon,
+    							@RequestParam(value="tue", required=false) boolean tue,
+    							@RequestParam(value="wed", required=false) boolean wed,
+    							@RequestParam(value="thu", required=false) boolean thu,
+    							@RequestParam(value="fri", required=false) boolean fri,
+    							@RequestParam(value="sat", required=false) boolean sat,
+    							@RequestParam(value="sun", required=false) boolean sun,
+    							@RequestParam String startDate,
+    							@RequestParam String endDate,
+    							@RequestParam String startTime,
+    							@RequestParam String endTime,
+    							@RequestParam(value="roomSelect", required=false) String roomSelect,
+    							@RequestParam(value="teacherSelect", required=false) String teacherSelect) {
+    	this.academyService.createCourseAndTeacher(title, mon, tue, wed, thu, fri, sat, sun, startDate, endDate, startTime, endTime, roomSelect, teacherSelect);
+    	
+    	
+    	return "redirect:/main";
     }
 }
