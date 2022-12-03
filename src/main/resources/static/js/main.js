@@ -205,6 +205,7 @@ function getAllStudent(res) {
 
 // by 안준언, Academy 계정에서 강의 생성시 강의실 관련 정보 출력
 document.getElementById("addCourseBtn").addEventListener("click", getRoom);
+document.getElementById("addCourseBtn").addEventListener("click", getTeacher);
 document.getElementById("roomSelect").addEventListener("change",  showMaxSeat);
 
 
@@ -223,6 +224,22 @@ function getAllRoom(res) {
 		})
 	}
 	$("#roomSelect").empty().append(tag);
+}
+
+function getTeacher() {
+	commonAjax('/getAllTeacher', null, 'get', function(result){
+		selectTeacher(result);
+	})
+}
+
+function selectTeacher(res) {
+	let tag = "";
+	if(res != null) {
+		res.forEach(function(member){
+			tag += "<option id='selectedTeacherName'>" + member.name + "</option>";
+		})
+	}
+	$("#teacherSelect").empty().append(tag);
 }
 
 function showMaxSeat() {
