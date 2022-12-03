@@ -48,34 +48,10 @@ public class AcademyService {
 	private final TeacherRepository teacherRepository;
 	
 	private final PasswordEncoder passwordEncoder;
-
-	// by 안준언, 전체 강의 리스트 반환
-	public List<Course> getAllCourse(){
-		
-		List<Course> courseList = this.courseRepository.findAll();
-		
-		return courseList;
-	}
 	
-	// by 안준언, 수업 담당 교수 리스트 반환
-	public List<Teacher> getTeacherList(Course course) {
-		List<Teacher> teacherList = this.teacherRepository.findByCourse(course);
-		return teacherList;
-	}
-
-	public List<Teacher> getAllClassOfTeacher(Member member) {
-		List<Teacher> classList = this.teacherRepository.findByTeacher(member);
-		return classList;
-	}
-	
-	public List<Student> getStudentList(Course course) {
-		List<Student> studentList = this.studentRepository.findByCourse(course);
-		return studentList;
-	}
-
 	// by 안준언, 유저 생성
 	public void createMember(String identity, String password, String email,
-								String name, LocalDate birth_date, String address, String tel) {
+			String name, LocalDate birth_date, String address, String tel) {
 		Member member = new Member();
 		member.setIdentity(identity);
 		member.setPassword(passwordEncoder.encode(password));
@@ -87,8 +63,40 @@ public class AcademyService {
 		
 		this.memberRepository.save(member);
 	}
-
-	// 안준언, 수업 반환
+	
+	// by 안준언, 전체 강의 리스트 반환
+	public List<Course> getAllCourse(){
+		
+		List<Course> courseList = this.courseRepository.findAll();
+		
+		return courseList;
+	}
+	
+	// by 안준언, 한 수업의 담당 강사 리스트 반환
+	public List<Teacher> getTeacherList(Course course) {
+		List<Teacher> teacherList = this.teacherRepository.findByCourse(course);
+		return teacherList;
+	}
+	
+	// by 안준언, 한 강사의 담당 수업 리스트 반환
+	public List<Teacher> getAllClassOfTeacher(Member member) {
+		List<Teacher> classList = this.teacherRepository.findByTeacher(member);
+		return classList;
+	}
+	
+	// by 안준언, 한 수업의 수강 학생 리스트 반환
+	public List<Student> getStudentList(Course course) {
+		List<Student> studentList = this.studentRepository.findByCourse(course);
+		return studentList;
+	}
+	
+	// by 안준언, 한 학생의 수강 수업 리스트 반환
+	public List<Student> getAllClassOfStudent(Member member) {
+		List<Student> classList = this.studentRepository.findByStudent(member);
+		return classList;
+	}
+	
+	// by 안준언, pk(id)로 해당 수업 반환
 	public Course getCourse(int courseId) {
 		Optional<Course> _course = this.courseRepository.findById(courseId);
 		if(_course.isEmpty()) {
@@ -98,7 +106,23 @@ public class AcademyService {
 		return course;
 	}
 	
-//	// by 안준언, 전체 공지 생성
+	// by 안준언, 전체 강의실 리스트 반환
+	public List<Room> getAllRoom(){
+		List<Room> RoomList = this.roomRepository.findAll();
+		return RoomList;
+	}
+	
+	// by 안준언, name 필드로 특정 강의실 반환
+	public Room getRoom(String name) {
+		Optional<Room> _room = this.roomRepository.findByName(name);
+		if(_room.isEmpty()) {
+			return null;
+		}
+		Room room = _room.get();
+		return room;
+	}
+
+	//	// by 안준언, 전체 공지 생성
 //	public void createAcademyNotice(String title, String Content) {
 //		AcademyNotice academyNotice = new AcademyNotice();
 //		academyNotice.setTitle(title);
@@ -137,7 +161,7 @@ public class AcademyService {
 		
 		this.studentRepository.save(classMember);
 	}
-
+	
 	// by 안준언, 강사 등록
 	public void createTeacher(Member teacher_, Course course) {
 		Teacher teacher = new Teacher();
@@ -146,7 +170,7 @@ public class AcademyService {
 		
 		this.teacherRepository.save(teacher);
 	}
-
+	
 //	// by 안준언, 강의 공지사항 읽음 여부 생성
 //	public void createClassNoticeCheck(Student student, ClassNotice classNotice) {
 //		ClassNoticeCheck classNoticeCheck = new ClassNoticeCheck();

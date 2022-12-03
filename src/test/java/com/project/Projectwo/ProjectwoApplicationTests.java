@@ -1,8 +1,44 @@
 package com.project.Projectwo;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Optional;
+
+import javax.transaction.Transactional;
+
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
+import com.project.Projectwo.Entity.Course;
+import com.project.Projectwo.Entity.Member;
+import com.project.Projectwo.Entity.Room;
+import com.project.Projectwo.Entity.Student;
+import com.project.Projectwo.Entity.Teacher;
+import com.project.Projectwo.Repository.CourseRepository;
+import com.project.Projectwo.Repository.MemberRepository;
+import com.project.Projectwo.Repository.RoomRepository;
+import com.project.Projectwo.Service.AcademyService;
+
+import com.project.Projectwo.Entity.Course;
+import com.project.Projectwo.Entity.Member;
+import com.project.Projectwo.Entity.Student;
+import com.project.Projectwo.Entity.Teacher;
+import com.project.Projectwo.Repository.CourseRepository;
+import com.project.Projectwo.Repository.MemberRepository;
+import com.project.Projectwo.Service.AcademyService;
+
+import com.project.Projectwo.Entity.Course;
+import com.project.Projectwo.Entity.Member;
+import com.project.Projectwo.Entity.Student;
+import com.project.Projectwo.Entity.Teacher;
+import com.project.Projectwo.Repository.CourseRepository;
+import com.project.Projectwo.Repository.MemberRepository;
+import com.project.Projectwo.Service.AcademyService;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,16 +71,9 @@ class ProjectwoApplicationTests {
 	
 	@Autowired
 	private RoomRepository roomRepository;
-
-	@Autowired
-	private StudentRepository studentRepository;
-
-	@Autowired
-	private AttendanceRepository attendanceRepository;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-	
 
 //	// 계정 등록
 //	@Test
@@ -109,17 +138,15 @@ class ProjectwoApplicationTests {
 //		
 //		this.memberRepository.save(member5);
 //	}
-	
 //	// 강의실 생성
 //	@Test
 //	void createRoom() {
 //		Room room = new Room();
-//		room.setName("426호");
-//		room.setMaxSeat(30);
+//		room.setName("428호");
+//		room.setMaxSeat(70);
 //		
 //		this.roomRepository.save(room);
 //	}
-	
 //	// 강의 개설
 //	@Test
 //	void createCourse() {
@@ -152,7 +179,6 @@ class ProjectwoApplicationTests {
 //		
 //		this.courseRepository.save(course1);
 //	}
-
 //	// 강사, 학생 등록
 //	@Test
 //	void createStudentAndTeacher() {
@@ -184,21 +210,6 @@ class ProjectwoApplicationTests {
 //		this.academyService.createTeacher(member4, course1);
 //		this.academyService.createTeacher(member4, course2);
 //		
-//	}
-//	//by 박은영	
-//	// 입실 등록
-//	@Test
-//	void regAttendance() {
-//		Attendance attendance = new Attendance();
-//		Optional<Student> oStudent = studentRepository.findById(2);
-//		Student student = oStudent.get();
-//
-//		attendance.setStudent(student);
-//		attendance.setToday(LocalDate.now());
-//		attendance.setInTime(LocalTime.now());
-//		attendance.setStatus("입실");
-//		
-//		this.attendanceRepository.save(attendance);
 //	}
 //	// 수업,강의 리스트 확인
 //	@Transactional

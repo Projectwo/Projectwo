@@ -20,6 +20,7 @@ public class MemberService {
 	private final MemberRepository memberRepository;
 	private final StudentRepository studentRepository;
 	
+	// by 안준언, identity로 특정 멤버 반환
 	public Member getMember(String identity) {
 		Optional<Member> mb = this.memberRepository.findByIdentity(identity);
 		if(mb.isEmpty()) {
@@ -29,7 +30,8 @@ public class MemberService {
 			return member;
 		}
 	}
-	
+
+	// by 안준언, pk(id)로 특정 멤버 반환 (오버로딩)
 	public Member getMember(int memberId) {
 		Optional<Member> mb = this.memberRepository.findById(memberId);
 		if(mb.isEmpty()) {
@@ -39,26 +41,25 @@ public class MemberService {
 			return member;
 		}
 	}
-	
-	public List<Member> getAllTeacher() {
-		List<Member> allTeacher = this.memberRepository.findByRole("teacher");
-		return allTeacher;
+
+	// by 안준언, 같은 role 필드 값을 가진 멤버 반환 ("teacher" or "student" or "admin")
+	public List<Member> getAllMemberByRole(String role) {
+		List<Member> allMember = this.memberRepository.findByRole(role);
+		return allMember;
 	}
 	
-	
+	// by 박은영
 	public Student getStudent(Member member, Course course) {
 		
 		Optional<Student> oStudent = studentRepository.findByStudentAndCourse(member, course);
 		
-		if(oStudent.isEmpty()) {
+		if(oStudent == null) {
 			return null;
 		}
-		
 		Student student = oStudent.get();
 		
 		return student;
 	}
-	
 	/*
 	 공통
 	 회원가입

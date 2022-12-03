@@ -5,7 +5,11 @@ function commonAjax(url, parameter, type, calbak, asy) {
 		data: parameter,
 		type: type,
 		async: asy,
+<<<<<<< HEAD
 		contentType: 'application/x-www-form-urlencoded; charset=UTF- 8',
+=======
+		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+>>>>>>> juneon
 		success: function(res) {
 			calbak(res);
 		},
@@ -19,7 +23,11 @@ function commonAjax(url, parameter, type, calbak, asy) {
 // by 안준언, Academy 계정에서 수업 정보 출력
 function getClassInfo() {
 
+<<<<<<< HEAD
 	commonAjax('/getCourse', null, 'get', function(result) {
+=======
+	commonAjax('/getAllCourse', null, 'get', function(result) {
+>>>>>>> juneon
 		//console.log(result);
 		getAllCourse(result);
 	})
@@ -97,7 +105,11 @@ function getAllCourse(res) {
 //by 안준언, Academy 계정에서 강사 정보 출력
 function getTeacherInfo() {
 	commonAjax('/getAllTeacher', null, 'get', function(result) {
+<<<<<<< HEAD
 		console.log(result);
+=======
+		//console.log(result);
+>>>>>>> juneon
 		getAllTeacher(result);
 	})
 }
@@ -116,7 +128,11 @@ function getAllTeacher(res) {
 			commonAjax('/getClassListOfTeacher', mb, 'get', function(rs) {
 				//console.log(rs.length);
 				classListOfTeacher = rs.length;
+<<<<<<< HEAD
 				//console.log(currentStudentCount);
+=======
+				//console.log(classListOfTeacher);
+>>>>>>> juneon
 			}, false)
 
 			tag += "<div class='academy-teacher'>" +
@@ -147,4 +163,105 @@ function getAllTeacher(res) {
 	}
 
 	$("#allTeacherList").empty().append(tag);
+<<<<<<< HEAD
+=======
+}
+
+// by 안준언, Academy 계정에서 학생 정보 출력
+function getStudentInfo() {
+	commonAjax('/getAllStudent', null, 'get', function(result){
+		//console.log(result);
+		getAllStudent(result);
+	})
+}
+
+function getAllStudent(res) {
+	let tag = "";
+	if(res != null) {
+		res.forEach(function(member) {
+			
+			let mb = {
+				memberId: member.id
+			}
+			
+			let classListOfStudent;
+			
+			commonAjax('/getClassListOfStudent', mb, 'get', function(rs){
+				//console.log(rs.length);
+				classListOfStudent = rs.length;
+				//console.log(classListOfStudent);
+			}, false)
+			
+			tag += "<div class='academy-student'>" +
+            		"<div class='student-info'>" +
+                "<button onclick=\"clickModifyButton('student')\" class=\"student-modify-button\">" +
+                    "수정" +
+                "</button>" +
+                "<div class='student-title'>" +
+                    "<div class='student-name'>" +
+                        "<b>" + member.name + "</b>" +
+                    "</div>" +
+                    "<div class='student-class'>" +
+                        "<b>" + classListOfStudent + " Class" + "</b>" +
+                    "</div>" +
+                "</div>" +
+                "<div class='student-birthday'>" +
+                    member.birth_date + "<span>" + "/" + "</span>" +
+                "</div>" +
+                "<div class='student-tel'>" +
+                    member.tel +
+                "</div>" +
+                "<div class='student-address'>" +
+                    member.address +
+                "</div>" +
+            "</div>" +
+        "</div>";
+		})
+	}
+	$("#allStudentList").empty().append(tag);
+}
+
+// by 안준언, Academy 계정에서 강의 생성시 강의실 관련 정보 출력
+document.getElementById("addCourseBtn").addEventListener("click", getRoom);
+document.getElementById("roomSelect").addEventListener("change",  showMaxSeat);
+
+
+function getRoom() {
+	commonAjax('/getAllRoom', null, 'get', function(result){
+		//console.log(result);
+		getAllRoom(result);
+	})
+}
+
+function getAllRoom(res) {
+	let tag = "";
+	if(res != null) {
+		res.forEach(function(room){
+			tag += "<option id='selectedRoomName'>" + room.name + "</option>";
+		})
+	}
+	$("#roomSelect").empty().append(tag);
+}
+
+function showMaxSeat() {
+	let roomName = document.getElementById("roomSelect");
+	let selectedRoomName = roomName.options[roomName.selectedIndex].text;
+	//console.log(selectedRoomName);
+	//console.log(roomName);
+	let msg = {
+		roomName: selectedRoomName
+	}
+	commonAjax('/getRoomByName', msg, 'get', function(result){
+		getRoomByName(result);
+	})
+}
+
+function getRoomByName(room) {
+	//console.log(room);
+	let tag = "";
+	if(room != null) {
+		tag += room.maxSeat;
+	}
+	$('#roomMaxSeat').empty().append(tag);
+>>>>>>> juneon
 }

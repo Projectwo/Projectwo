@@ -22,12 +22,12 @@ public class Attendance {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+
+	private LocalDate today;
 	
 	private LocalTime inTime;
 	
 	private LocalTime outTime;
-	
-	private LocalDate today;
 	
 	@Column(length = 20)
 	private String status;

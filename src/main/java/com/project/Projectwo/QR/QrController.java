@@ -72,7 +72,7 @@ public class QrController {
 		String ip = GetIp.getIp();
 
 		LocalDateTime localDate = LocalDateTime.now();
-		String stringDate = localDate.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
+		String stringDate = localDate.toString();
 		
 		log.info(stringDate);
 		
@@ -104,16 +104,12 @@ public class QrController {
 		
 		//Date
 		String stringDate = date;
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate localDate = LocalDate.parse(stringDate, formatter);
-		
-		//Date
-		//model1.addAttribute("localDate", localDate);
-		
+
 		//Course
 		Course course = academyService.getCourse(courseId);		
-		//model2.addAttribute("course", course);
-		
+
 		log.info("####localDate=" + localDate.toString()); 
 		log.info("####강의명=" + course.getTitle()); 
 		log.info("####강의설명=" + course.getDescription()); 
@@ -130,6 +126,7 @@ public class QrController {
 		if(attendance != null) {
 			
 			log.info("####attendance is not null");			
+			
 			if(attendance.getStatus().equals("")) { //입실
 				attendanceService.regAttendance(course, student);
 				
