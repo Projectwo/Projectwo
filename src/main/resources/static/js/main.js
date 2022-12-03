@@ -5,11 +5,7 @@ function commonAjax(url, parameter, type, calbak, asy) {
 		data: parameter,
 		type: type,
 		async: asy,
-<<<<<<< HEAD
-		contentType: 'application/x-www-form-urlencoded; charset=UTF- 8',
-=======
 		contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
->>>>>>> juneon
 		success: function(res) {
 			calbak(res);
 		},
@@ -23,11 +19,7 @@ function commonAjax(url, parameter, type, calbak, asy) {
 // by 안준언, Academy 계정에서 수업 정보 출력
 function getClassInfo() {
 
-<<<<<<< HEAD
-	commonAjax('/getCourse', null, 'get', function(result) {
-=======
 	commonAjax('/getAllCourse', null, 'get', function(result) {
->>>>>>> juneon
 		//console.log(result);
 		getAllCourse(result);
 	})
@@ -105,11 +97,7 @@ function getAllCourse(res) {
 //by 안준언, Academy 계정에서 강사 정보 출력
 function getTeacherInfo() {
 	commonAjax('/getAllTeacher', null, 'get', function(result) {
-<<<<<<< HEAD
-		console.log(result);
-=======
 		//console.log(result);
->>>>>>> juneon
 		getAllTeacher(result);
 	})
 }
@@ -128,11 +116,7 @@ function getAllTeacher(res) {
 			commonAjax('/getClassListOfTeacher', mb, 'get', function(rs) {
 				//console.log(rs.length);
 				classListOfTeacher = rs.length;
-<<<<<<< HEAD
-				//console.log(currentStudentCount);
-=======
 				//console.log(classListOfTeacher);
->>>>>>> juneon
 			}, false)
 
 			tag += "<div class='academy-teacher'>" +
@@ -163,8 +147,6 @@ function getAllTeacher(res) {
 	}
 
 	$("#allTeacherList").empty().append(tag);
-<<<<<<< HEAD
-=======
 }
 
 // by 안준언, Academy 계정에서 학생 정보 출력
@@ -263,5 +245,4 @@ function getRoomByName(room) {
 		tag += room.maxSeat;
 	}
 	$('#roomMaxSeat').empty().append(tag);
->>>>>>> juneon
 }

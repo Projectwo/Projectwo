@@ -119,28 +119,24 @@ public class QrController {
 		
 		Student student = memberService.getStudent(member, course);
 		
-		log.info("student=" + student.getStudent().getName());
+		log.info("student's name=" + student.getStudent().getName());
 
 		
 		Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
-		if(attendance != null) {
-			
-			log.info("####attendance is not null");			
-			
-			if(attendance.getStatus().equals("")) { //입실
-				attendanceService.regAttendance(course, student);
-				
-			}else if(attendance.getStatus().equals("입실")) {
-				attendanceService.regLeave(course, student, localDate);
-				
-				
-			}else if(attendance.getStatus().equals("지각")) {
-				
-			}
-			
+		
+
+		if(attendance == null) {
+			attendanceService.regAttendance(course, student, localDate);
 		}else {
-			log.info("####attendance is null");	
+			attendanceService.regLeave(course, student, localDate);
 		}
+
+
+		log.info("####localDate=" + localDate);
+		log.info("####LocalDate.now()=" + LocalDate.now());
+
+		
+
 
 		return "redirect:/main";
 	}
@@ -152,7 +148,7 @@ public class QrController {
 		
 		//Date
 		String stringDate = date;
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate localDate = LocalDate.parse(stringDate, formatter);
 		
 		model1.addAttribute("localDate", localDate);

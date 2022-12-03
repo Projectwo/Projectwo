@@ -33,25 +33,26 @@ public class AttendanceService {
 		
 		Attendance todayAttendance = oAttendance.get();
 		
-		log.info("####todayAttendance=" + todayAttendance.getStatus());
-
 		return todayAttendance;
 	}
 	
 	//입실
-	public void regAttendance(Course course, Student student) {
+	public void regAttendance(Course course, Student student, LocalDate localDate) {
 		Attendance attendance = new Attendance();
 		attendance.setStudent(student);
-		attendance.setToday(LocalDate.now());
+		attendance.setToday(localDate);
 		attendance.setInTime(LocalTime.now());
 		
 		
 		//course 시작시간과 비교
-		if(course.getStartTime().isBefore(attendance.getInTime())) {//정상 출결
+		attendance.setStatus("입실");
+		
+		if(course.getStartTime().isBefore(attendance.getInTime())) {
 			attendance.setStatus("지각");
 			
-		}else {
-			attendance.setStatus("입실");
+			if(course.getEndTime().isBefore(attendance.getInTime())) {
+				attendance.setStatus("결석");
+			}
 		}
 		
 		attendanceRepository.save(attendance);
@@ -62,17 +63,21 @@ public class AttendanceService {
 		Attendance attendance = this.getTodayAttendance(student, localDate);
 		attendance.setOutTime(LocalTime.now());
 		
-		if(attendance.getStatus().equals("지각")) {
-			if(course.getEndTime().isAfter(attendance.getOutTime())) {
-				attendance.setStatus("조퇴");
-			}
+		attendance.setStatus("출석");
+		
+		if(course.getStartTime().isBefore(attendance.getInTime())) {
+			attendance.setStatus("지각");	
 		}
+		
 		if(course.getEndTime().isAfter(attendance.getOutTime())) {
-			attendance.setStatus("조퇴");
-			
-		}else {
-			attendance.setStatus("출석");
+			attendance.setStatus("조퇴");	
 		}
+		
+		if(course.getEndTime().isBefore(attendance.getInTime())) {
+			attendance.setStatus("결석");
+		}
+		
+		log.info("####attendance's status" + attendance.getStatus());
 		
 		attendanceRepository.save(attendance);
 		
