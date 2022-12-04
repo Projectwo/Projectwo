@@ -147,14 +147,15 @@ public class AcademyController {
     
  // by 안준언, academy 페이지 학생 생성
     @PostMapping("/createStudent")
-    public String createStudent(@RequestParam String name,
-    							@RequestParam String birth_date,
-    							@RequestParam String tel,
-    							@RequestParam String email,
-    							@RequestParam String address) {
-    	this.academyService.createStudent(name, birth_date, tel, email, address);
+    @ResponseBody
+    public void createStudent(@RequestParam HashMap<Object, Object> params) {
+    	String name = (String)params.get("name");
+    	String birth_date = (String)params.get("birth_date");
+    	String tel = (String)params.get("tel");
+    	String email = (String)params.get("email");
+    	String address = (String)params.get("address");
     	
-    	return "redirect:/main";
+    	this.academyService.createStudent(name, birth_date, tel, email, address);
     }
     
 }

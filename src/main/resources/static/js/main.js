@@ -269,3 +269,45 @@ function getRoomByName(room) {
 	}
 	$('#roomMaxSeat').empty().append(tag);
 }
+
+document.getElementById('studentAddBtn').addEventListener("click", addStudent)
+
+function addStudent(){
+	if(document.getElementById('studentName').value == '') {
+		alert("이름을 입력하세요.");
+		return;
+	} else if(document.getElementById('studentBirth_date').value == '') {
+		alert("생년월일을 입력하세요.");
+		return;
+	} else if(document.getElementById('studentTel').value == '') {
+		alert("연락처를 입력하세요.");
+		return;
+	} else if(document.getElementById('studentEmail').value == '') {
+		alert("이메일을 입력하세요.");
+		return;
+	} else if(document.getElementById('studentAddress').value == '') {
+		alert("주소를 입력하세요.");
+		return;
+	}
+	
+	let msg = {
+		name: document.getElementById('studentName').value,
+		birth_date: document.getElementById('studentBirth_date').value,
+		tel: document.getElementById('studentTel').value,
+		email: document.getElementById('studentEmail').value,
+		address: document.getElementById('studentAddress').value
+	}
+	
+	commonAjax('/createStudent', msg, 'post', function(){
+		getStudentInfo();
+	})
+	
+	document.getElementById('studentName').value = null;
+	document.getElementById('studentBirth_date').value = null;
+	document.getElementById('studentTel').value = null;
+	document.getElementById('studentEmail').value = null;
+	document.getElementById('studentAddress').value = null;
+	
+	document.getElementById('studentAddBtn').addEventListener("click", closeModal('add'));
+
+}
