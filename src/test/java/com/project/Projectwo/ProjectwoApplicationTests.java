@@ -1,15 +1,17 @@
 package com.project.Projectwo;
 
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.project.Projectwo.Entity.Member;
+import com.project.Projectwo.Entity.Attendance;
+import com.project.Projectwo.Entity.Course;
+import com.project.Projectwo.Entity.Student;
 import com.project.Projectwo.Repository.AttendanceRepository;
 import com.project.Projectwo.Repository.CourseRepository;
 import com.project.Projectwo.Repository.MemberRepository;
@@ -43,6 +45,41 @@ class ProjectwoApplicationTests {
 	
 	@Autowired
 	private StudentRepository studentRepository;
+//	
+//	@Test
+//	void test() {
+//
+//		Optional<Course> oCourse = courseRepository.findById(1);
+//		Course course = oCourse.get();
+//
+//		int attendInt = 0;
+//		int notAttendInt = 0;
+//		List<Student> studentList = studentRepository.findByCourse(course);
+//		
+//		
+//		for(int i=0; i<studentList.size(); i++) {
+//			Student student = studentList.get(i);
+//			
+//			try {
+//				Optional<Attendance> oAttendance = attendanceRepository.findByStudentAndToday(student, LocalDate.of(2022, 12, 05));
+//			}catch(Exception e) {
+//				log.info("####Exception e=" + e.toString());
+//			}
+//			
+////			Attendance attendance = oAttendance.get();
+////			
+////			if(attendance.getStatus().equals("입실") || attendance.getStatus().equals("지각")) {
+////				attendInt++;
+////			}else {
+////				notAttendInt++;
+////			}
+////			
+//		}
+//
+//		log.info("####attendInt=" + attendInt);
+//		log.info("####notAttendInt=" + notAttendInt);
+//		
+//	}
 
 //	// 계정 등록
 //	@Test

@@ -78,6 +78,7 @@ public class QrController {
 
 
 		//Member
+		//session으로 안 할거면 이 부분 건드려야 돼
 		String sessionMemberName = (String)session.getAttribute("Identity");
 
 		Member member = memberService.getMember("aaa");
@@ -95,12 +96,12 @@ public class QrController {
 
 		return "redirect:/main";
 	}
-
+	
 	//by 박은영
 	//선생님 권한으로 학생 출결 정보 조회
 	@GetMapping("/teacher/{courseId}/{date}")
 	public String getAttendance(@PathVariable("courseId") Integer courseId, @PathVariable("date") String date,
-			Model model1, Model model2, Model model3) {
+			Model model1, Model model2, Model model3, Model model4) {
 		
 		//Date
 		String stringDate = date;
@@ -137,6 +138,11 @@ public class QrController {
 
 		}
 		model3.addAttribute("map", map);
+		
+		//---------------------------------------------------------------------//
+		
+		
+		
 		
 
 		return "attendance";

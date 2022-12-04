@@ -2,6 +2,7 @@ package com.project.Projectwo.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
@@ -11,6 +12,7 @@ import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Student;
 import com.project.Projectwo.Repository.AttendanceRepository;
 import com.project.Projectwo.Repository.CourseRepository;
+import com.project.Projectwo.Repository.StudentRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -22,6 +24,41 @@ public class AttendanceService {
 	
 	private final AttendanceRepository attendanceRepository;
 	private final CourseRepository courseRepository;
+	private final StudentRepository studentRepository;
+	
+	//by 박은영
+	//선생님 권한으로 입실자 수 조회
+	public int[] getAttendanceNum(Course course, LocalDate localDate) {
+
+		int[] attendTF = new int[2];
+		
+		int attendInt = 0;
+		int notAttendInt = 0;	
+		
+		List<Student> studentList = studentRepository.findByCourse(course);
+		
+		for(int i=0; i<studentList.size(); i++) {
+			Student student = studentList.get(i);
+
+			Optional<Attendance> oAttendance = attendanceRepository.findByStudentAndToday(student, localDate);	
+
+			if(oAttendance.isPresent()) {
+				Attendance attendance = oAttendance.get();	
+				
+				if(attendance.getStatus().equals("입실") || attendance.getStatus().equals("지각")) {
+					attendInt++;
+				}else {
+					notAttendInt++;
+				}
+			}
+			
+		}
+		
+		attendTF[0] = attendInt;
+		attendTF[1] = notAttendInt;
+
+		return attendTF;
+	}
 	
 	//by 박은영
 	//'당일' 학생 출결 정보 가져오기
@@ -87,5 +124,7 @@ public class AttendanceService {
 		attendanceRepository.save(attendance);
 		
 	}	
+	
+	
 
 }
