@@ -49,7 +49,7 @@ public class AcademyService {
 	
 	private final PasswordEncoder passwordEncoder;
 	
-	// by 안준언, 유저 생성
+	// by 안준언, 유저 생성 (test 코드)
 	public void createMember(String identity, String password, String email,
 			String name, LocalDate birth_date, String address, String tel) {
 		Member member = new Member();
@@ -60,6 +60,22 @@ public class AcademyService {
 		member.setBirth_date(birth_date);
 		member.setAddress(address);
 		member.setTel(tel);
+		
+		this.memberRepository.save(member);
+	}
+	
+	// by 안준언, 유저(teacher) 생성
+	public void createTeacher(String name, String birth_date, String tel,
+								String email, String address) {
+		Member member = new Member();
+		member.setRole("teacher");
+		member.setIdentity(name+tel);
+		member.setPassword(passwordEncoder.encode(name+tel));
+		member.setName(name);
+		member.setBirth_date(LocalDate.parse(birth_date));
+		member.setTel(tel);
+		member.setEmail(email);
+		member.setAddress(address);
 		
 		this.memberRepository.save(member);
 	}
@@ -191,7 +207,7 @@ public class AcademyService {
 //	}
 //	
 	// by 안준언, 수강 등록 (수강정보 생성)
-	public void createStudent(Member student, Course course) {
+	public void addStudent(Member student, Course course) {
 		Student classMember = new Student();
 		classMember.setStudent(student);
 		classMember.setCourse(course);
@@ -200,7 +216,7 @@ public class AcademyService {
 	}
 		
 	// by 안준언, 강사 등록
-	public void createTeacher(Member teacher_, Course course) {
+	public void addTeacher(Member teacher_, Course course) {
 		Teacher teacher = new Teacher();
 		teacher.setTeacher(teacher_);
 		teacher.setCourse(course);
