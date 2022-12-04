@@ -116,6 +116,9 @@ function getAllTeacher(res) {
 			commonAjax('/getClassListOfTeacher', mb, 'get', function(rs) {
 				//console.log(rs.length);
 				classListOfTeacher = rs.length;
+				if(rs === null) {
+					classListOfTeacher = "0";
+				}
 				//console.log(classListOfTeacher);
 			}, false)
 
@@ -171,6 +174,9 @@ function getAllStudent(res) {
 			commonAjax('/getClassListOfStudent', mb, 'get', function(rs){
 				//console.log(rs.length);
 				classListOfStudent = rs.length;
+				if(rs === null) {
+					classListOfStudent = "0";
+				}
 				//console.log(classListOfStudent);
 			}, false)
 			

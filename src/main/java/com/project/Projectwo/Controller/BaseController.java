@@ -50,6 +50,10 @@ public class BaseController {
     @RequestMapping("/main")
     public String step(Principal principal) {
     	Member member = this.memberService.getMember(principal.getName());
+    	if(principal.getName() == null) {
+    		return "redirect:/";
+    	}
+    	
     	System.out.println(principal.getName());
     	if("admin".equalsIgnoreCase(member.getRole())) {
     		return "academy/academy_main";
