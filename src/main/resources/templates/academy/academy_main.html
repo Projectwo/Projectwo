@@ -9,6 +9,7 @@
     <div th:replace="fragments/academy_class :: classFragment"></div>
     <div th:replace="fragments/academy_teacher :: teacherFragment"></div>
     <div th:replace="fragments/academy_student :: studentFragment"></div>
+    <footer th:replace="fragments/academy_footer :: academyFooterFragment"></footer>
     <script>
         $(".academy-list-tab").children('button').click(function () {
             if ($('button').hasClass("active")) {
@@ -33,8 +34,9 @@
             }
 
         }) // by 조성빈, 클릭한 tab에 active 클래스 추가하는 기능
+        
     </script>
-    <footer th:replace="fragments/academy_footer :: academyFooterFragment"></footer>
+    <script th:src ="@{/js/academy.js}"></script>
 </div>
 
 </html>

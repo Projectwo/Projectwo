@@ -15,7 +15,7 @@
                 </div>
                 <div class="footer-middle academy">
                     <div class="academy-function-button lecture-button active">
-                        <button onclick="clickAddButton('lecture')">+</button>
+                        <button id="addCourseBtn" onclick="clickAddButton('lecture')">+</button>
                         <a href="#">강의 추가</a>
                         <div th:replace="fragments/add_lecture :: addLectureFragment"></div>
                         <div th:replace="fragments/modify_lecture :: modifyLectureFragment"></div>
