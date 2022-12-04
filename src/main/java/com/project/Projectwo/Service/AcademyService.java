@@ -80,6 +80,22 @@ public class AcademyService {
 		this.memberRepository.save(member);
 	}
 	
+	// by 안준언, 유저(student) 생성
+		public void createStudent(String name, String birth_date, String tel,
+									String email, String address) {
+			Member member = new Member();
+			member.setRole("student");
+			member.setIdentity(name+tel);
+			member.setPassword(passwordEncoder.encode(name+tel));
+			member.setName(name);
+			member.setBirth_date(LocalDate.parse(birth_date));
+			member.setTel(tel);
+			member.setEmail(email);
+			member.setAddress(address);
+			
+			this.memberRepository.save(member);
+		}
+	
 	// by 안준언, 새 강의 생성
 	public void createCourseAndTeacher(String title, boolean mon, boolean tue, boolean wed,
 								boolean thu, boolean fri, boolean sat, boolean sun,

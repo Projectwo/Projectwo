@@ -133,6 +133,7 @@ public class AcademyController {
     	return "redirect:/main";
     }
     
+    // by 안준언, academy 페이지 강사 생성
     @PostMapping("/createTeacher")
     public String createTeacher(@RequestParam String name,
     							@RequestParam String birth_date,
@@ -140,6 +141,18 @@ public class AcademyController {
     							@RequestParam String email,
     							@RequestParam String address) {
     	this.academyService.createTeacher(name, birth_date, tel, email, address);
+    	
+    	return "redirect:/main";
+    }
+    
+ // by 안준언, academy 페이지 학생 생성
+    @PostMapping("/createStudent")
+    public String createStudent(@RequestParam String name,
+    							@RequestParam String birth_date,
+    							@RequestParam String tel,
+    							@RequestParam String email,
+    							@RequestParam String address) {
+    	this.academyService.createStudent(name, birth_date, tel, email, address);
     	
     	return "redirect:/main";
     }
