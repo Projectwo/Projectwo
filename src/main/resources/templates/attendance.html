@@ -10,21 +10,17 @@
 	<p4 th:text="${localDate}" id="localDate"></p4>
 	<p4 th:text="${course.title}" id="courseTitle"></p4>
 	
-	<!-- 학생 리스트는 원래 있어야 돼 -->
-	<table style="border: 1px solid">
+
+	<table style="border: 1px solid;">
 		<tr>
-			<th style="border: 1px solid">이름</th>
-			<th style="border: 1px solid">출석상태</th>
+			<th style="border: 1px solid;">이름</th>
+			<th style="border: 1px solid;">출석 상태</th>
 		</tr>
-		<tr>
-			<div th:each="member, Loop : ${studentMemberList}">
-				<td th:text="${member.name}" style="border: 1px solid"></td>
-			</div>
-			<div th:each="attendance, Loop : ${todayAttendanceList}">
-				<td th:text="${attendance.status}" style="border: 1px solid"></td>
-			</div>
+		<tr th:each="map : ${map}">
+			<td th:text="${map.key.name}" style="border: 1px solid;"></td>
+			<td th:text="${map.value.status}" style="border: 1px solid;"></td>
 		</tr>
 	</table>
-	
+
 </body>
 </html>

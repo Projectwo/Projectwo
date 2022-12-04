@@ -100,7 +100,7 @@ public class QrController {
 	//선생님 권한으로 학생 출결 정보 조회
 	@GetMapping("/teacher/{courseId}/{date}")
 	public String getAttendance(@PathVariable("courseId") Integer courseId, @PathVariable("date") String date,
-			Model model1, Model model2, Model model3, Model model4, Model model5) {
+			Model model1, Model model2, Model model3) {
 		
 		//Date
 		String stringDate = date;
@@ -128,21 +128,15 @@ public class QrController {
 			//student에서 member로 전환 (이름 가져오려고)
 			Student student = classStudentList.get(i);
 			Member member = student.getStudent();
-			
-			studentMemberList.add(i, member);
+
 						
 			//"일별" 학생 출결 정보 가져오기
 			Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
 			
-			todayAttendanceList.add(i, attendance);
-			
-			
 			map.put(member, attendance);
 
 		}
-		model3.addAttribute("studentMemberList", studentMemberList);
-		model4.addAttribute("todayAttendanceList", todayAttendanceList);
-		model5.addAttribute("map", map);
+		model3.addAttribute("map", map);
 		
 
 		return "attendance";

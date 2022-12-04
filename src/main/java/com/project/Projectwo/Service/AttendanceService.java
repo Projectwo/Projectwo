@@ -78,23 +78,14 @@ public class AttendanceService {
 		if(course.getEndTime().isBefore(attendance.getInTime())) {
 			attendance.setStatus("결석");
 		}
+		if(attendance.getOutTime().isAfter(course.getEndTime().plusHours(1))) {
+			attendance.setStatus("결석");
+		}
 		
 		log.info("####attendance's status" + attendance.getStatus());
 		
 		attendanceRepository.save(attendance);
 		
 	}	
-	
-	//courseTitle로 course 정보 가져오기
-	public Course getCourse(String courseTitle) {
-		
-		Optional<Course> oCourse = courseRepository.findbyTitle(courseTitle);
-		
-		if(oCourse.isEmpty()) {
-			return null;
-		}
-		Course course = oCourse.get();
-		return course;
-	}
-	
+
 }
