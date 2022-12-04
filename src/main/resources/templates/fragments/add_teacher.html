@@ -2,36 +2,36 @@
 
 <div th:fragment="addTeacherFragment" class="add-fragment teacher" id="add-teacher" style="display:none;">
     <div class="modal-wrap addFunction">
-        <form class="add-teacher-form" th:action="@{/createTeacher}" method="post">
+        <div class="add-teacher-form">
             <div class="add-name">
                 이름<br>
-                <input type="text" name="name" id="name" />
+                <input type="text" id="teacherName" />
             </div>
             <div class="add-birthday">
                 생년월일<br>
-                <input type="date" name="birth_date" id="birth_date" />
+                <input type="date" id="teacherBirth_date" />
             </div>
             <div class="add-tel">
                 연락처<br>
-                <input type="text" name="tel" id="tel" />
+                <input type="text" id="teacherTel" />
             </div>
             <div class="add-mail">
                 메일<br>
-                <input type="email" name="email" id="email" />
+                <input type="email" id="teacherEmail" />
             </div>
             <div class="add-address">
                 거주지<br>
-                <input type="text" name="address" id="address" />
+                <input type="text" id="teacherAddress" />
             </div>
             <div class="add-button-section">
                 <div class="add-confirm">
-                    <button type="submit" class="add-confirm-button">등록</button>
+                    <button type="button" class="add-confirm-button" id="teacherAddBtn">등록</button>
                 </div>
                 <div class="add-close">
                     <button type ="button" onclick="closeModal('add')" class="modal-close-button">취소</button>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 

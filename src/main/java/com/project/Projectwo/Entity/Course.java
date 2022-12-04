@@ -35,7 +35,6 @@ public class Course {
 	@Column(unique = true, length = 300)
 	private String title;
 	
-	@NotNull
 	@Column(columnDefinition = "TEXT")
 	private String description;
 	

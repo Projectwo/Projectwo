@@ -127,7 +127,9 @@ public class AcademyController {
     							@RequestParam String endTime,
     							@RequestParam(value="roomSelect", required=false) String roomSelect,
     							@RequestParam(value="teacherSelect", required=false) String teacherSelect) {
-    	this.academyService.createCourseAndTeacher(title, mon, tue, wed, thu, fri, sat, sun, startDate, endDate, startTime, endTime, roomSelect, teacherSelect);
+    	
+    	this.academyService.createCourseAndTeacher(title, mon, tue, wed, thu, fri, sat, sun,
+    												startDate, endDate, startTime, endTime, roomSelect, teacherSelect);
     	
     	
     	return "redirect:/main";
@@ -135,14 +137,15 @@ public class AcademyController {
     
     // by 안준언, academy 페이지 강사 생성
     @PostMapping("/createTeacher")
-    public String createTeacher(@RequestParam String name,
-    							@RequestParam String birth_date,
-    							@RequestParam String tel,
-    							@RequestParam String email,
-    							@RequestParam String address) {
-    	this.academyService.createTeacher(name, birth_date, tel, email, address);
+    @ResponseBody
+    public void createTeacher(@RequestParam HashMap<Object, Object> params) {
+    	String name = (String)params.get("name");
+    	String birth_date = (String)params.get("birth_date");
+    	String tel = (String)params.get("tel");
+    	String email = (String)params.get("email");
+    	String address = (String)params.get("address");
     	
-    	return "redirect:/main";
+    	this.academyService.createTeacher(name, birth_date, tel, email, address);
     }
     
  // by 안준언, academy 페이지 학생 생성
