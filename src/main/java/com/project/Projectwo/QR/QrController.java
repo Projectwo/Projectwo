@@ -1,7 +1,6 @@
 package com.project.Projectwo.QR;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,10 +20,6 @@ import com.project.Projectwo.Entity.Attendance;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Student;
-import com.project.Projectwo.Repository.AttendanceRepository;
-import com.project.Projectwo.Repository.CourseRepository;
-import com.project.Projectwo.Repository.MemberRepository;
-import com.project.Projectwo.Repository.StudentRepository;
 import com.project.Projectwo.Service.AcademyService;
 import com.project.Projectwo.Service.AttendanceService;
 import com.project.Projectwo.Service.MemberService;
@@ -37,19 +32,11 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class QrController {
 	
-	private final CourseRepository courseRepository;
-	private final AttendanceRepository attendanceRepository;
-	private final StudentRepository studentRepository;
-	private final MemberRepository memberRepository;
-	
+	private final QRService qrService;
 	private final AcademyService academyService;
 	private final AttendanceService attendanceService;
 	private final MemberService memberService;
 	
-	@GetMapping("/test")
-	public String getTest() {
-		return "main";
-	}
 
 	@GetMapping("/cam")
 	public String getCam() {
@@ -66,33 +53,8 @@ public class QrController {
 	//TODO: courseId 특정 지어서 가져와야 됨
 	@GetMapping("/createQr")
 	public void createQr(HttpServletRequest request, HttpServletResponse response) {
-
-		QrCodeView qrCodeView = new QrCodeView();
 		
-		String ip = GetIp.getIp();
-
-		LocalDateTime localDate = LocalDateTime.now();
-		String stringDate = localDate.toString();
-		
-		log.info(stringDate);
-		
-		
-		//TODO: session로 teacher, course 특정지어서 강의 하나 가져오기
-		Integer lecture = 1;
-		String content = "http://" + ip + ":9090/course/" + lecture + "/" + stringDate;
-		
-		log.info(content);
-		
-		Map<String, Object> model = new HashMap<>();
-		
-		
-		model.put("content", content);
-		try {
-			qrCodeView.renderMergedOutputModel(model, request, response);
-		
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		qrService.createQr(request, response);
 	
 	}
 	
@@ -100,7 +62,7 @@ public class QrController {
 	//by 박은영
 	//학생 - 입실,퇴실 등록
 	@GetMapping("/course/{courseId}/{date}")
-	public String setAttendance(@PathVariable("courseId") Integer courseId, @PathVariable("date") String date) {
+	public String setAttendance(@PathVariable("courseId") Integer courseId, @PathVariable("date") String date, HttpSession session) {
 		
 		//Date
 		String stringDate = date;
@@ -114,37 +76,31 @@ public class QrController {
 		log.info("####강의명=" + course.getTitle()); 
 		log.info("####강의설명=" + course.getDescription()); 
 
-		//임시 member
+
+		//Member
+		String sessionMemberName = (String)session.getAttribute("Identity");
+
 		Member member = memberService.getMember("aaa");
-		
 		Student student = memberService.getStudent(member, course);
 		
 		log.info("student's name=" + student.getStudent().getName());
 
-		
 		Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
 		
-
 		if(attendance == null) {
 			attendanceService.regAttendance(course, student, localDate);
 		}else {
 			attendanceService.regLeave(course, student, localDate);
 		}
 
-
-		log.info("####localDate=" + localDate);
-		log.info("####LocalDate.now()=" + LocalDate.now());
-
-		
-
-
 		return "redirect:/main";
 	}
 
+	//by 박은영
 	//선생님 권한으로 학생 출결 정보 조회
 	@GetMapping("/teacher/{courseId}/{date}")
 	public String getAttendance(@PathVariable("courseId") Integer courseId, @PathVariable("date") String date,
-			Model model1, Model model2, Model model3, Model model4) {
+			Model model1, Model model2, Model model3, Model model4, Model model5) {
 		
 		//Date
 		String stringDate = date;
@@ -159,32 +115,37 @@ public class QrController {
 		
 		log.info("강의명=" + course.getTitle()); 
 		
-		//course로부터 학생 목록 가져오기
 		List<Student> classStudentList = this.academyService.getStudentList(course);
 		
 		
 		ArrayList<Member> studentMemberList = new ArrayList<Member>();
 		ArrayList<Attendance> todayAttendanceList = new ArrayList<Attendance>();
 		
+		Map<Member, Attendance> map = new HashMap<Member, Attendance>();
+		
 		for(int i=0; i<classStudentList.size(); i++) {
 
-			Student student = classStudentList.get(i);
-			
 			//student에서 member로 전환 (이름 가져오려고)
+			Student student = classStudentList.get(i);
 			Member member = student.getStudent();
-			studentMemberList.add(i, member);
 			
+			studentMemberList.add(i, member);
+						
 			//"일별" 학생 출결 정보 가져오기
 			Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
 			
 			todayAttendanceList.add(i, attendance);
-
 			
+			
+			map.put(member, attendance);
+
 		}
-		
 		model3.addAttribute("studentMemberList", studentMemberList);
 		model4.addAttribute("todayAttendanceList", todayAttendanceList);
+		model5.addAttribute("map", map);
 		
+
 		return "attendance";
 	}
+
 }

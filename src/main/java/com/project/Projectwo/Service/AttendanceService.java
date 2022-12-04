@@ -10,6 +10,7 @@ import com.project.Projectwo.Entity.Attendance;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Student;
 import com.project.Projectwo.Repository.AttendanceRepository;
+import com.project.Projectwo.Repository.CourseRepository;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +21,7 @@ import lombok.extern.slf4j.Slf4j;
 public class AttendanceService {
 	
 	private final AttendanceRepository attendanceRepository;
+	private final CourseRepository courseRepository;
 	
 	//by 박은영
 	//'당일' 학생 출결 정보 가져오기
@@ -81,6 +83,18 @@ public class AttendanceService {
 		
 		attendanceRepository.save(attendance);
 		
+	}	
+	
+	//courseTitle로 course 정보 가져오기
+	public Course getCourse(String courseTitle) {
+		
+		Optional<Course> oCourse = courseRepository.findbyTitle(courseTitle);
+		
+		if(oCourse.isEmpty()) {
+			return null;
+		}
+		Course course = oCourse.get();
+		return course;
 	}
 	
 }

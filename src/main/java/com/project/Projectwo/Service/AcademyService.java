@@ -3,8 +3,13 @@ package com.project.Projectwo.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -19,6 +24,7 @@ import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Room;
 import com.project.Projectwo.Entity.Teacher;
+import com.project.Projectwo.QR.QrCodeView;
 import com.project.Projectwo.Repository.AcademyNoticeCheckRepository;
 import com.project.Projectwo.Repository.AcademyNoticeRepository;
 import com.project.Projectwo.Repository.AttendanceRepository;
@@ -215,7 +221,7 @@ public class AcademyService {
 //		
 //		this.academyNoticeCheckRepository.save(academyNoticeCheck);
 //	}
-	
+
 	/*
 	관리자
 	학원정보 수정

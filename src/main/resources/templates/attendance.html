@@ -6,17 +6,25 @@
 	<script th:src="@{/js/jquery-3.6.1.min.js}"></script>
 </head>
 <body>
-	<span th:text="${localDate}"></span>
-	<span th:text="${course.title}"></span>
-	<span>출석 확인</span>
-
-	<table>
-		<tr th:each="member, Loop : ${studentMemberList}">
-			<td th:text="${member.name}"></td>
+	<p2>출석</p2>
+	<p4 th:text="${localDate}" id="localDate"></p4>
+	<p4 th:text="${course.title}" id="courseTitle"></p4>
+	
+	<!-- 학생 리스트는 원래 있어야 돼 -->
+	<table style="border: 1px solid">
+		<tr>
+			<th style="border: 1px solid">이름</th>
+			<th style="border: 1px solid">출석상태</th>
 		</tr>
-		<tr th:each="attendance,  Loop : ${todayAttendanceList}">
-			<td th:text="${attendance.status}"></td>
+		<tr>
+			<div th:each="member, Loop : ${studentMemberList}">
+				<td th:text="${member.name}" style="border: 1px solid"></td>
+			</div>
+			<div th:each="attendance, Loop : ${todayAttendanceList}">
+				<td th:text="${attendance.status}" style="border: 1px solid"></td>
+			</div>
 		</tr>
 	</table>
+	
 </body>
 </html>
