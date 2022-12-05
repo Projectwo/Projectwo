@@ -114,19 +114,19 @@ public class AcademyController {
     // by 안준언, academy 페이지 강의 생성
     @PostMapping("/createCourse")
     public String createCourse(@RequestParam String title,
-    							@RequestParam(value="mon", required=false) boolean mon,
-    							@RequestParam(value="tue", required=false) boolean tue,
-    							@RequestParam(value="wed", required=false) boolean wed,
-    							@RequestParam(value="thu", required=false) boolean thu,
-    							@RequestParam(value="fri", required=false) boolean fri,
-    							@RequestParam(value="sat", required=false) boolean sat,
-    							@RequestParam(value="sun", required=false) boolean sun,
-    							@RequestParam String startDate,
-    							@RequestParam String endDate,
-    							@RequestParam String startTime,
-    							@RequestParam String endTime,
-    							@RequestParam(value="roomSelect", required=false) String roomSelect,
-    							@RequestParam(value="teacherSelect", required=false) String teacherSelect) {
+    						   @RequestParam(value="mon", required=false) boolean mon,
+    						   @RequestParam(value="tue", required=false) boolean tue,
+    						   @RequestParam(value="wed", required=false) boolean wed,
+    					       @RequestParam(value="thu", required=false) boolean thu,
+    					       @RequestParam(value="fri", required=false) boolean fri,
+    					       @RequestParam(value="sat", required=false) boolean sat,
+    					       @RequestParam(value="sun", required=false) boolean sun,
+    					       @RequestParam String startDate,
+    					       @RequestParam String endDate,
+    					       @RequestParam String startTime,
+    					       @RequestParam String endTime,
+    					       @RequestParam(value="roomSelect", required=false) String roomSelect,
+    					       @RequestParam(value="teacherSelect", required=false) String teacherSelect) {
     	
     	this.academyService.createCourseAndTeacher(title, mon, tue, wed, thu, fri, sat, sun,
     												startDate, endDate, startTime, endTime, roomSelect, teacherSelect);
@@ -148,7 +148,22 @@ public class AcademyController {
     	this.academyService.createTeacher(name, birth_date, tel, email, address);
     }
     
- // by 안준언, academy 페이지 학생 생성
+    // by 안준언, academy 페이지 강사 정보 수정
+    @PostMapping("/modifyTeacher")
+    @ResponseBody
+    public void modifyTeacher(@RequestParam HashMap<Object, Object> params) {
+
+    	String memberId = (String)params.get("memberId");
+    	String name = (String)params.get("name");
+    	String birth_date = (String)params.get("birth_date");
+    	String tel = (String)params.get("tel");
+    	String email = (String)params.get("email");
+    	String address = (String)params.get("address");
+    	
+    	this.academyService.modifyTeacher(memberId, name, birth_date, tel, email, address);
+    }
+    
+    // by 안준언, academy 페이지 학생 생성
     @PostMapping("/createStudent")
     @ResponseBody
     public void createStudent(@RequestParam HashMap<Object, Object> params) {
@@ -159,6 +174,16 @@ public class AcademyController {
     	String address = (String)params.get("address");
     	
     	this.academyService.createStudent(name, birth_date, tel, email, address);
+    }
+    
+    // by 안준언, academy 페이지, 학생,강사 정보 수정
+    @PostMapping("/getMemberById")
+    @ResponseBody
+    public Member getStudent(@RequestParam HashMap<Object, Object> params) {
+    	Integer memberId = Integer.parseInt((String)params.get("memberId"));
+    	Member member = this.memberService.getMember(memberId);
+    	
+    	return member;
     }
     
 }

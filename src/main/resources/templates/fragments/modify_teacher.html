@@ -2,7 +2,7 @@
 
 <div th:fragment="modifyTeacherFragment" class="modify-fragment teacher" id="modify-teacher" style="display:none;">
     <div class="modal-wrap addFunction">
-        <form class="add-teacher-form">
+        <div class="add-teacher-form" id="modifyTeacher">
             <div class="add-name">
                 이름<br>
                 <input type="text" />
@@ -25,13 +25,13 @@
             </div>
             <div class="add-button-section">
                 <div class="add-confirm">
-                    <button type="submit" class="add-confirm-button">등록</button>
+                    <button type="button" class="add-confirm-button">등록</button>
                 </div>
                 <div class="add-close">
-                    <button onclick="closeModal('modify')" class="modal-close-button">취소</button>
+                    <button type="button" onclick="closeModal('modify')" class="modal-close-button">취소</button>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 

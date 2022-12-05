@@ -44,7 +44,6 @@
         function clickAddButton(e) {
             const clickedAddButton = e;
             const currentAddButton = document.getElementsByClassName("add-fragment");
-
             if ($(currentAddButton).parent().hasClass('active')) {
                 if ($(currentAddButton).hasClass(e)) {
                     $(currentAddButton).css({
@@ -57,7 +56,7 @@
         function clickModifyButton(e) {
             const clickedModifyButton = e;
             const currentModifyButton = document.getElementsByClassName("modify-fragment");
-
+			
             if ($(currentModifyButton).parent().hasClass('active')) {
                 if ($(currentModifyButton).hasClass(e)) {
                     $(currentModifyButton).css({

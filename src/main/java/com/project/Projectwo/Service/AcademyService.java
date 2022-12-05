@@ -81,7 +81,7 @@ public class AcademyService {
 	}
 	
 	// by 안준언, 유저(student) 생성
-		public void createStudent(String name, String birth_date, String tel,
+	public void createStudent(String name, String birth_date, String tel,
 									String email, String address) {
 			Member member = new Member();
 			member.setRole("student");
@@ -94,7 +94,27 @@ public class AcademyService {
 			member.setAddress(address);
 			
 			this.memberRepository.save(member);
-		}
+	}
+	
+	// by 안준언, 유저(teacher) 수정
+	public void modifyTeacher(String memberId, String name, String birth_date, String tel,
+								String email, String address) {
+		Integer _memberId = Integer.parseInt(memberId);
+		
+		Optional<Member> _member = this.memberRepository.findById(_memberId);
+
+		Member member = _member.get();
+		member.setName(name);
+		member.setBirth_date(LocalDate.parse(birth_date));
+		member.setTel(tel);
+		member.setEmail(email);
+		member.setAddress(address);
+		
+		this.memberRepository.save(member);
+		
+	}
+		
+		
 	
 	// by 안준언, 새 강의 생성
 	public void createCourseAndTeacher(String title, boolean mon, boolean tue, boolean wed,
