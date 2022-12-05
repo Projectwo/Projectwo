@@ -18,6 +18,7 @@ import com.project.Projectwo.Entity.ClassNoticeCheck;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Room;
+import com.project.Projectwo.Entity.Subject;
 import com.project.Projectwo.Entity.Teacher;
 import com.project.Projectwo.Repository.AcademyNoticeCheckRepository;
 import com.project.Projectwo.Repository.AcademyNoticeRepository;
@@ -48,34 +49,10 @@ public class AcademyService {
 	private final TeacherRepository teacherRepository;
 	
 	private final PasswordEncoder passwordEncoder;
-	
-	// by 안준언, 전체 강의 리스트 반환
-	public List<Course> getAllCourse(){
-		
-		List<Course> courseList = this.courseRepository.findAll();
-		
-		return courseList;
-	}
-	
-	// by 안준언, 수업 담당 교수 리스트 반환
-	public List<Teacher> getTeacherList(Course course) {
-		List<Teacher> teacherList = this.teacherRepository.findByCourse(course);
-		return teacherList;
-	}
-	
-	public List<Teacher> getAllClassOfTeacher(Member member) {
-		List<Teacher> classList = this.teacherRepository.findByTeacher(member);
-		return classList;
-	}
-	
-	public List<Student> getStudentList(Course course) {
-		List<Student> studentList = this.studentRepository.findByCourse(course);
-		return studentList;
-	}
-	
-	// by 안준언, 유저 생성
+
+	// by 안준언, 유저 생성 (test 코드)
 	public void createMember(String identity, String password, String email,
-								String name, LocalDate birth_date, String address, String tel) {
+			String name, LocalDate birth_date, String address, String tel) {
 		Member member = new Member();
 		member.setIdentity(identity);
 		member.setPassword(passwordEncoder.encode(password));
@@ -88,7 +65,108 @@ public class AcademyService {
 		this.memberRepository.save(member);
 	}
 	
-	// 안준언, 수업 반환
+	// by 안준언, 유저(teacher) 생성
+	public void createTeacher(String name, String birth_date, String tel,
+								String email, String address) {
+		Member member = new Member();
+		member.setRole("teacher");
+		member.setIdentity(name+tel);
+		member.setPassword(passwordEncoder.encode(name+tel));
+		member.setName(name);
+		member.setBirth_date(LocalDate.parse(birth_date));
+		member.setTel(tel);
+		member.setEmail(email);
+		member.setAddress(address);
+		
+		this.memberRepository.save(member);
+	}
+
+	// by 안준언, 유저(student) 생성
+		public void createStudent(String name, String birth_date, String tel,
+									String email, String address) {
+			Member member = new Member();
+			member.setRole("student");
+			member.setIdentity(name+tel);
+			member.setPassword(passwordEncoder.encode(name+tel));
+			member.setName(name);
+			member.setBirth_date(LocalDate.parse(birth_date));
+			member.setTel(tel);
+			member.setEmail(email);
+			member.setAddress(address);
+			
+			this.memberRepository.save(member);
+		}
+	
+	// by 안준언, 새 강의 생성
+	public void createCourseAndTeacher(String title, boolean mon, boolean tue, boolean wed,
+								boolean thu, boolean fri, boolean sat, boolean sun,
+								String startDate, String endDate, String startTime,
+								String endTime, String roomName, String teacherName) {
+		Optional<Room> _room = this.roomRepository.findByName(roomName);
+		Room room = _room.get();
+		
+		Course course = new Course();
+		course.setTitle(title);
+		course.setDescription("please write description");
+		course.setMon(mon);
+		course.setTue(tue);
+		course.setWed(wed);
+		course.setThu(thu);
+		course.setFri(fri);
+		course.setSat(sat);
+		course.setSun(sun);
+		course.setStartDate(LocalDate.parse(startDate));
+		course.setEndDate(LocalDate.parse(endDate));
+		course.setStartTime(LocalTime.parse(startTime));
+		course.setEndTime(LocalTime.parse(endTime));
+		course.setRoom(room);
+		
+		this.courseRepository.save(course);
+		
+		Optional<Member> _member = this.memberRepository.findByName(teacherName);
+		Member member = _member.get();
+		
+		Teacher teacher = new Teacher();
+		teacher.setCourse(course);
+		teacher.setTeacher(member);
+		
+		this.teacherRepository.save(teacher);
+		
+	}
+	
+	// by 안준언, 전체 강의 리스트 반환
+	public List<Course> getAllCourse(){
+		
+		List<Course> courseList = this.courseRepository.findAll();
+		
+		return courseList;
+	}
+	
+	// by 안준언, 한 수업의 담당 강사 리스트 반환
+	public List<Teacher> getTeacherList(Course course) {
+		List<Teacher> teacherList = this.teacherRepository.findByCourse(course);
+		return teacherList;
+	}
+	
+	// by 안준언, 한 강사의 담당 수업 리스트 반환
+	public List<Teacher> getAllClassOfTeacher(Member member) {
+		List<Teacher> classList = this.teacherRepository.findByTeacher(member);
+		return classList;
+	}
+	
+	// by 안준언, 한 수업의 수강 학생 리스트 반환
+	public List<Student> getStudentList(Course course) {
+		List<Student> studentList = this.studentRepository.findByCourse(course);
+		return studentList;
+	}
+	
+	// by 안준언, 한 학생의 수강 수업 리스트 반환
+	public List<Student> getAllClassOfStudent(Member member) {
+		List<Student> classList = this.studentRepository.findByStudent(member);
+		return classList;
+	}
+	
+	// by 안준언, pk(id)로 해당 수업 반환
 	public Course getCourse(int courseId) {
 		Optional<Course> _course = this.courseRepository.findById(courseId);
 		if(_course.isEmpty()) {
@@ -97,8 +175,24 @@ public class AcademyService {
 		Course course = _course.get();
 		return course;
 	}
+
+	// by 안준언, 전체 강의실 리스트 반환
+	public List<Room> getAllRoom(){
+		List<Room> RoomList = this.roomRepository.findAll();
+		return RoomList;
+	}
 	
-//	// by 안준언, 전체 공지 생성
+	// by 안준언, name 필드로 특정 강의실 반환
+	public Room getRoom(String name) {
+		Optional<Room> _room = this.roomRepository.findByName(name);
+		if(_room.isEmpty()) {
+			return null;
+		}
+		Room room = _room.get();
+		return room;
+	}
+
+	//	// by 안준언, 전체 공지 생성
 //	public void createAcademyNotice(String title, String Content) {
 //		AcademyNotice academyNotice = new AcademyNotice();
 //		academyNotice.setTitle(title);
@@ -130,23 +224,23 @@ public class AcademyService {
 //	}
 //	
 	// by 안준언, 수강 등록 (수강정보 생성)
-	public void createStudent(Member student, Course course) {
+	public void addStudent(Member student, Course course) {
 		Student classMember = new Student();
 		classMember.setStudent(student);
 		classMember.setCourse(course);
 		
 		this.studentRepository.save(classMember);
 	}
-		
+
 	// by 안준언, 강사 등록
-	public void createTeacher(Member teacher_, Course course) {
+	public void addTeacher(Member teacher_, Course course) {
 		Teacher teacher = new Teacher();
 		teacher.setTeacher(teacher_);
 		teacher.setCourse(course);
 		
 		this.teacherRepository.save(teacher);
 	}
-	
+
 //	// by 안준언, 강의 공지사항 읽음 여부 생성
 //	public void createClassNoticeCheck(Student student, ClassNotice classNotice) {
 //		ClassNoticeCheck classNoticeCheck = new ClassNoticeCheck();

@@ -1,13 +1,12 @@
- package com.project.Projectwo.Entity;
+package com.project.Projectwo.Entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
@@ -16,26 +15,24 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class ClassNotice {
+public class Lecture {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@NotNull
-	@Column(length = 50)
-	private String title;
+	@Column(unique = true, length = 300)
+	private String lectureName;
 	
 	@NotNull
 	@Column(columnDefinition = "TEXT")
-	private String content;
+	private String lectureDesc;
 	
 	@NotNull
-	private LocalDateTime createDate;
+	private LocalDate startDate;
+	
+	@NotNull
+	private LocalDate endDate;
 
-	private LocalDateTime modifyDate;
-	
-	@NotNull
-	@ManyToOne
-	private Course course;
 }

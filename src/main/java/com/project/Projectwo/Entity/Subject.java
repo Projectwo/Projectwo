@@ -1,6 +1,6 @@
- package com.project.Projectwo.Entity;
+package com.project.Projectwo.Entity;
 
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,8 +16,8 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class ClassNotice {
-	
+public class Subject {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
@@ -27,15 +27,20 @@ public class ClassNotice {
 	private String title;
 	
 	@NotNull
-	@Column(columnDefinition = "TEXT")
-	private String content;
+	@Column(length = 20)
+	private String dayOfWeek;
 	
 	@NotNull
-	private LocalDateTime createDate;
-
-	private LocalDateTime modifyDate;
+	private LocalTime startTime;
+	
+	@NotNull
+	private LocalTime endTime;
 	
 	@NotNull
 	@ManyToOne
 	private Course course;
+	
+	@NotNull
+	@ManyToOne
+	private Room room;
 }

@@ -5,7 +5,8 @@ plugins {
 }
 
 group = 'com.project'
-version = '0.0.3-SNAPSHOT'
+version = '0.0.5'
+
 sourceCompatibility = '11'
 
 configurations {
@@ -33,7 +34,7 @@ dependencies {
 	developmentOnly 	'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 	'org.springframework.boot:spring-boot-starter-test'
-	
+
 	//qr코드 생성
 	// https://mvnrepository.com/artifact/com.google.zxing/javase
 	implementation 		'com.google.zxing:javase:3.5.0'
@@ -45,6 +46,7 @@ dependencies {
 	//jwt 오류 해결을 위한 의존성 주입
 	implementation 		'io.jsonwebtoken:jjwt-impl:0.11.5'
 	implementation 		'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
 }
 
 tasks.named('test') {

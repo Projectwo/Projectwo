@@ -20,6 +20,7 @@ import lombok.RequiredArgsConstructor;
 public class SecurityConfig {
 	
 	private final UserSecurityService userSecurityService;
+	private final LoginSuccessHandler loginSuccessHandler;
 	
 	@Bean
 	public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
@@ -34,6 +35,7 @@ public class SecurityConfig {
 				.formLogin()
 				.loginPage("/")
 				.defaultSuccessUrl("/main")
+				.successHandler(loginSuccessHandler)
 			.and()
 				.logout()
 				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))

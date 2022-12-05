@@ -41,6 +41,7 @@ import com.project.Projectwo.Repository.MemberRepository;
 import com.project.Projectwo.Service.AcademyService;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -219,7 +220,6 @@ class ProjectwoApplicationTests {
 //		this.academyService.createTeacher(member4, course2);
 //		
 //	}
-	
 //	// 수업,강의 리스트 확인
 //	@Transactional
 //	@Test
