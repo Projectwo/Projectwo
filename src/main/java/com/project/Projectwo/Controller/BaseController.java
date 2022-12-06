@@ -124,4 +124,9 @@ public class BaseController {
 	public String studentCheck(){
 		return "member/student_check";
 	}
+
+	@RequestMapping("/main/lecture/check/teacher")
+	public String teacherCheck(){
+		return "member/teacher_check";
+	}
 }
