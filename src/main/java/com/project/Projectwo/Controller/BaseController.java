@@ -98,8 +98,13 @@ public class BaseController {
 		return "redirect:/";
 	}
     
-	@RequestMapping("/lecture/detail")
+	@RequestMapping("/main/lecture/detail")
 	public String lectureDetail(){
 		return "lecture/lecture_detail";
+	}
+
+	@RequestMapping("/main/lecture/check/student")
+	public String studentCheck(){
+		return "member/student_check";
 	}
 }
