@@ -13,6 +13,58 @@ function getClassInfo() {
 	})
 }
 
+function modifyCourseBtnEvent() {
+	let ex = document.querySelectorAll(".lecture-modify-button");
+	ex.forEach(function(course) {
+		course.addEventListener('click', function() {
+			let parent = course.parentNode;
+			let children = parent.childNodes;
+			console.log(children)
+			let memderId = children[5].textContent;
+
+			let msg = {
+				memberId: memderId
+			}
+			
+			commonAjax('/getMemberById', msg, 'post', function(member){
+				let tag = "";
+				tag += 	"<div class='add-name'>" +
+                		"이름<br>" +
+                		"<input type='text' value='" + member.name + "' id=\"teacherModifyName\"/>" +
+            			"</div>" +
+            			"<div class='add-birthday'>" +
+                		"생년월일<br>" +
+                		"<input type='date' value='" + member.birth_date + "' id=\"teacherModifyBirth_date\"/>" +
+            			"</div>" +
+            			"<div class='add-tel'>" +
+                		"연락처<br>" +
+                		"<input type='text' value='" + member.tel +"' id=\"teacherModifyTel\"/>" +
+            			"</div>" +
+            			"<div class='add-mail'>" +
+                		"메일<br>" +
+                		"<input type='email' value='" + member.email +"' id=\"teacherModifyEmail\"/>" +
+            			"</div>" +
+            			"<div class='add-address'>" +
+                		"거주지<br>" +
+                		"<input type='text' value='" + member.address +"' id=\"teacherModifyAddress\"/>" +
+            			"</div>" +
+            			"<div id='modifyTeacherId'>" + member.id + "</div>" +
+            			"<div class='add-button-section'>" +
+                		"<div class='add-confirm'>" +
+                    	"<button type=\"button\" class=\"add-confirm-button\" id=\"teacherModifyBtn\">등록</button>" +
+                		"</div>" +
+                		"<div class='add-close'>" +
+                    	"<button type=\"button\" onclick=\"closeModal('modify')\" class=\"modal-close-button\">취소</button>" +
+                		"</div>" +
+            			"</div>";
+            			
+            			$("#modifyTeacher").empty().append(tag);
+			}, false)
+			modifyTeacherEvent();
+		});
+	})
+}
+
 function getAllCourse(res) {
 	let tag = "";
 	if (res != null) {
@@ -38,9 +90,7 @@ function getAllCourse(res) {
 				currentStudentCount = rs.length;
 				//console.log(currentStudentCount);
 			}, false)
-
-
-
+			
 			tag += "<div class='main-lecture academy-list'>" +
 				"<div class='lecture-info'>" +
 				"<button onclick=\"clickModifyButton('lecture')\" class=\"lecture-modify-button\">" +
@@ -75,7 +125,9 @@ function getAllCourse(res) {
 				"수강인원" + "<span>" + currentStudentCount +
 				"</span>" + "/" + course.room.maxSeat +
 				"</div>" + "<div class='lecture-info-room'>" +
-				course.room.name + "</div>" + "</div>" + "</div>";
+				course.room.name + "</div>" +
+				"<div>" + course.id + "</div>" +
+				"</div>" + "</div>";
 		});
 
 		$("#classListId").empty().append(tag);
@@ -553,3 +605,4 @@ function modifyStudentEvent(){
 		document.getElementById('studentModifyBtn').addEventListener("click", closeModal('modify'));
 	}
 }
+
