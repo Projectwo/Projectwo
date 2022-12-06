@@ -113,26 +113,52 @@ public class AcademyController {
     
     // by 안준언, academy 페이지 강의 생성
     @PostMapping("/createCourse")
-    public String createCourse(@RequestParam String title,
-    						   @RequestParam(value="mon", required=false) boolean mon,
-    						   @RequestParam(value="tue", required=false) boolean tue,
-    						   @RequestParam(value="wed", required=false) boolean wed,
-    					       @RequestParam(value="thu", required=false) boolean thu,
-    					       @RequestParam(value="fri", required=false) boolean fri,
-    					       @RequestParam(value="sat", required=false) boolean sat,
-    					       @RequestParam(value="sun", required=false) boolean sun,
-    					       @RequestParam String startDate,
-    					       @RequestParam String endDate,
-    					       @RequestParam String startTime,
-    					       @RequestParam String endTime,
-    					       @RequestParam(value="roomSelect", required=false) String roomSelect,
-    					       @RequestParam(value="teacherSelect", required=false) String teacherSelect) {
+    @ResponseBody
+    public void createCourse(@RequestParam HashMap<Object, Object> params) {
+    	String title = (String)params.get("title");
+    	String startDate = (String)params.get("startDate");
+    	String endDate = (String)params.get("endDate");
+    	String startTime = (String)params.get("startTime");
+    	String endTime = (String)params.get("endTime");
+    	String mon = (String)params.get("mon");
+    	String tue = (String)params.get("tue");
+    	String wed = (String)params.get("wed");
+    	String thu = (String)params.get("thu");
+    	String fri = (String)params.get("fri");
+    	String sat = (String)params.get("sat");
+    	String sun = (String)params.get("sun");
+    	
+    	String roomName = (String)params.get("roomName");
+    	String teacherName = (String)params.get("teacherName");
     	
     	this.academyService.createCourseAndTeacher(title, mon, tue, wed, thu, fri, sat, sun,
-    												startDate, endDate, startTime, endTime, roomSelect, teacherSelect);
+    												startDate, endDate, startTime, endTime,
+    												roomName, teacherName);
+    }
+    
+    @PostMapping("/modifyCourse")
+    @ResponseBody
+    public void modifyCourse(@RequestParam HashMap<Object, Object> params) {
+    	String courseId = (String)params.get("id");
+    	String title = (String)params.get("title");
+    	String startDate = (String)params.get("startDate");
+    	String endDate = (String)params.get("endDate");
+    	String startTime = (String)params.get("startTime");
+    	String endTime = (String)params.get("endTime");
+    	String mon = (String)params.get("mon");
+    	String tue = (String)params.get("tue");
+    	String wed = (String)params.get("wed");
+    	String thu = (String)params.get("thu");
+    	String fri = (String)params.get("fri");
+    	String sat = (String)params.get("sat");
+    	String sun = (String)params.get("sun");
     	
+    	String roomName = (String)params.get("roomName");
+    	String teacherName = (String)params.get("teacherName");
     	
-    	return "redirect:/main";
+    	this.academyService.modifyCourseAndTeacher(courseId, title, mon, tue, wed, thu, fri, sat, sun,
+    												startDate, endDate, startTime, endTime,
+    												roomName, teacherName);
     }
     
     // by 안준언, academy 페이지 강사 생성

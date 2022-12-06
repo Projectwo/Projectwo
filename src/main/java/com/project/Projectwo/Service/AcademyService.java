@@ -117,8 +117,8 @@ public class AcademyService {
 		
 	
 	// by 안준언, 새 강의 생성
-	public void createCourseAndTeacher(String title, boolean mon, boolean tue, boolean wed,
-								boolean thu, boolean fri, boolean sat, boolean sun,
+	public void createCourseAndTeacher(String title, String mon, String tue, String wed,
+								String thu, String fri, String sat, String sun,
 								String startDate, String endDate, String startTime,
 								String endTime, String roomName, String teacherName) {
 		Optional<Room> _room = this.roomRepository.findByName(roomName);
@@ -127,13 +127,13 @@ public class AcademyService {
 		Course course = new Course();
 		course.setTitle(title);
 		course.setDescription("please write description");
-		course.setMon(mon);
-		course.setTue(tue);
-		course.setWed(wed);
-		course.setThu(thu);
-		course.setFri(fri);
-		course.setSat(sat);
-		course.setSun(sun);
+		course.setMon(Boolean.parseBoolean(mon));
+		course.setTue(Boolean.parseBoolean(tue));
+		course.setWed(Boolean.parseBoolean(wed));
+		course.setThu(Boolean.parseBoolean(thu));
+		course.setFri(Boolean.parseBoolean(fri));
+		course.setSat(Boolean.parseBoolean(sat));
+		course.setSun(Boolean.parseBoolean(sun));
 		course.setStartDate(LocalDate.parse(startDate));
 		course.setEndDate(LocalDate.parse(endDate));
 		course.setStartTime(LocalTime.parse(startTime));
@@ -149,6 +149,42 @@ public class AcademyService {
 		teacher.setCourse(course);
 		teacher.setTeacher(member);
 		
+		this.teacherRepository.save(teacher);
+		
+	}
+	
+	public void modifyCourseAndTeacher(String id, String title, String mon, String tue, String wed,
+			String thu, String fri, String sat, String sun,
+			String startDate, String endDate, String startTime,
+			String endTime, String roomName, String teacherName) {
+		Optional<Room> _room = this.roomRepository.findByName(roomName);
+		Room room = _room.get();
+		
+		Integer courseId = (Integer.parseInt(id));
+		Optional<Course> _course = this.courseRepository.findById(courseId);
+		Course course = _course.get();
+		course.setTitle(title);
+		course.setMon(Boolean.parseBoolean(mon));
+		course.setTue(Boolean.parseBoolean(tue));
+		course.setWed(Boolean.parseBoolean(wed));
+		course.setThu(Boolean.parseBoolean(thu));
+		course.setFri(Boolean.parseBoolean(fri));
+		course.setSat(Boolean.parseBoolean(sat));
+		course.setSun(Boolean.parseBoolean(sun));
+		course.setStartDate(LocalDate.parse(startDate));
+		course.setEndDate(LocalDate.parse(endDate));
+		course.setStartTime(LocalTime.parse(startTime));
+		course.setEndTime(LocalTime.parse(endTime));
+		course.setRoom(room);
+		
+		this.courseRepository.save(course);
+		
+		Optional<Member> _member = this.memberRepository.findByName(teacherName);
+		Member member = _member.get();
+		
+		List<Teacher> _teacher = this.teacherRepository.findByCourse(course);
+		Teacher teacher = _teacher.get(0);
+		teacher.setTeacher(member);
 		this.teacherRepository.save(teacher);
 		
 	}

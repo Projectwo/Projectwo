@@ -2,63 +2,63 @@
 
 <div th:fragment="modifyLectureFragment" class="modify-fragment lecture" id="modify-lecture" style="display:none;">
     <div class="modal-wrap addFunction">
-        <form class="add-lecture-form" th:action="@{/modifyCourse}" method="post">
+        <div class="add-lecture-form" id="modifyCourse">
             <div class="add-title">
                 과정명<br>
-                <input type="text" name="modifyTitle" id="modifyTitle" />
+                <input type="text" id="modifyTitle" />
             </div>
             <div class="add-teacher-name">강사<br>
-                <select id="teacherModify" name="teacherModify">
+                <select id="teacherSelect">
                 	<option> 1 </option>
                 </select>
             </div>
             <div class="check-lecture-week">
                 강의요일<br>
                 <div class="check-day-button">
-                    <input type="checkbox" class="day-button mon" name="modifyMon" id="modifyMon" />월
-                    <input type="checkbox" class="day-button tue" name="modifyTue" id="modifyTue" />화
-                    <input type="checkbox" class="day-button wed" name="modifyWed" id="modifyWed" />수
-                    <input type="checkbox" class="day-button thu" name="modifyThu" id="modifyThu" />목
-                    <input type="checkbox" class="day-button fri" name="modifyFri" id="modifyFri" />금
-                    <input type="checkbox" class="day-button sat" name="modifySat" id="modifySat" />토
-                    <input type="checkbox" class="day-button sun" name="modifySun" id="modifySun" />일
+                    <input type="checkbox" class="day-button mon" id="modifyMon" />월
+                    <input type="checkbox" class="day-button tue" id="modifyTue" />화
+                    <input type="checkbox" class="day-button wed" id="modifyWed" />수
+                    <input type="checkbox" class="day-button thu" id="modifyThu" />목
+                    <input type="checkbox" class="day-button fri" id="modifyFri" />금
+                    <input type="checkbox" class="day-button sat" id="modifySat" />토
+                    <input type="checkbox" class="day-button sun" id="modifySun" />일
                 </div>
             </div>
             <div class="add-lecture-period">
                 강의기간<br>
                 <input class="lecture-period-start" type="date" data-placeholder="강의 시작일" required
-                    aria-required="ture" name="modifyStartDate" id="modifyStartDate" />
+                    aria-required="ture" id="modifyStartDate" />
                 <input class="lecture-period-end" type="date" data-placeholder="강의 종료일" required 
-                	aria-required="ture" name="modifyEndDate" id="modifyEndDate" />
+                	aria-required="ture" id="modifyEndDate" />
             </div>
             <div class="add-lecture-time">
                 강의시간<br>
                 <input class="lecture-time-start" type="time" data-placeholder="강의 시작시간" required
-                    aria-required="ture" name="modifyStartTime" id="modifyStartTime" />
+                    aria-required="ture" id="modifyStartTime" />
                 <input class="lecture-time-end" type="time" data-placeholder="강의 종료시간" required 
-                	aria-required="ture" name="modifyEndTime" id="modifyEndTime" />
+                	aria-required="ture" id="modifyEndTime" />
             </div>
             <div class="add-lecture-room">
                 강의실<br>
-                <select id="modifyRoomSelect" name="modifyRoomSelect">
+                <select id="roomSelect">
                 	<option> 1 </option>
                 </select>
             </div>
             <div class="add-lecture-count">
                 수강인원<br>
-                <div id="modifyRoomMaxSeat">
+                <div id="roomMaxSeat">
                 	<input type="text" />
                 </div>
             </div>
             <div class="add-button-section">
                 <div class="add-confirm">
-                    <button type="submit" class="add-confirm-button">등록</button>
+                    <button type="button" class="add-confirm-button" id="courseModifyBtn">등록</button>
                 </div>
                 <div class="add-close">
                     <button type="button" onclick="closeModal('modify')" class="modal-close-button">취소</button>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 

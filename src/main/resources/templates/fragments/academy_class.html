@@ -2,7 +2,56 @@
 
 <div th:fragment="classFragment" class="tab-content lecture active">
     <div class="academy-lecture-list" id="classListId">
-
+		<div class="lecture-info">
+            <button onclick="clickModifyButton('lecture')" class="lecture-modify-button">
+                수정
+            </button>
+            <div class="lecture-title">
+                <div class="lecture-name">
+                    <!-- b에 강의명, span에 학원명 -->
+                    <b>임시 강의 1123124</b>
+                </div>
+                <div class="lecture-teacher">
+                    <b>Steve</b>
+                </div>
+            </div>
+            <ul class="lecture-info-schedule">
+                <li>월</li>
+                <li>화</li>
+                <li>수</li>
+                <li>목</li>
+                <li>금</li>
+                <li>토</li>
+                <li>일</li>
+            </ul>
+            <ul class="lecture-info-schedule-checked">
+                <li><span>V</span></li>
+                <li><span>V</span></li>
+                <li><span>V</span></li>
+                <li><span>V</span></li>
+                <li><span>V</span></li>
+                <li><span>V</span></li>
+                <li><span>V</span></li>
+            </ul>
+            <div class="lecture-info-schedule-period">
+                <span class="period-start">
+                    2022.07.01
+                </span>
+                ~
+                <span class="period-end">
+                    2022.12.31
+                </span>
+            </div>
+            <div class="lecture-info-schedule-time">
+                AM 07:00 ~ PM 09:00
+            </div>
+            <div class="lecture-info-count">
+                수강인원 <span>26</span> / 30
+            </div>
+            <div class="lecture-info-room">
+                혜도빌딩 426호
+            </div>
+        </div>
     </div>
 </div>
 
