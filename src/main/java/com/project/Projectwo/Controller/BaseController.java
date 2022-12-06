@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.mysql.cj.Session;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Student;
@@ -24,7 +23,6 @@ import com.project.Projectwo.Form.MemberCreateForm;
 import com.project.Projectwo.Service.AcademyService;
 import com.project.Projectwo.Service.MemberService;
 
-import groovyjarjarpicocli.CommandLine.Model;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -50,7 +48,7 @@ public class BaseController {
     }
     
     @RequestMapping("/main")
-    public String step(Principal principal, Model model) {
+    public String step(Principal principal) {
     	if(principal == null) {
     		return "redirect:/";
     	}
@@ -58,8 +56,6 @@ public class BaseController {
     	Member member = this.memberService.getMember(principal.getName());
     	
     	System.out.println(principal.getName());
-    	System.out.println(member.getId());
-    	
     	if("admin".equalsIgnoreCase(member.getRole())) {
     		return "academy/academy_main";
     	} else {
@@ -101,32 +97,5 @@ public class BaseController {
 		
 		return "redirect:/";
 	}
-	
-	
-	// by 장유란, 출석처리(임시)
-	//@GetMapping("/course/{courseId}/{date}")으로 매핑 변경필요
-	@RequestMapping("/attend")
-	public String attend(Model model, @RequestParam(value="UserIdx", required=false) Integer UserIdx){
-		System.out.println("app에서 받아온 UserIdx : "+UserIdx);
-		///attend?UserIdx=1
-		//멤버id로 멤버 특정해서 출석처리
-		return "member/member_main";
-	}
     
-	// by 조성빈, 강의 상세 템플릿 임시 매핑
-	@RequestMapping("/main/lecture/detail")
-	public String lectureDetail(){
-		return "lecture/lecture_detail";
-	}
-
-	// by 조성빈, 학생 출석 임시 매핑
-	@RequestMapping("/main/lecture/check/student")
-	public String studentCheck(){
-		return "member/student_check";
-	}
-
-	@RequestMapping("/main/lecture/check/teacher")
-	public String teacherCheck(){
-		return "member/teacher_check";
-	}
 }

@@ -2,48 +2,48 @@
 
 <div th:fragment="addLectureFragment" class="add-fragment lecture" id="add-lecture" style="display:none;">
     <div class="modal-wrap addFunction">
-        <form class="add-lecture-form" th:action="@{/createCourse}" method="post">
+        <div class="add-lecture-form">
             <div class="add-title">
                 과정명<br>
-                <input type="text" name="title" id="title"/>
+                <input type="text" id="courseTitle" />
             </div>
             <div class="add-teacher-name">강사<br>
-                <select id="teacherSelect" name="teacherSelect">
+                <select id="teacherSelect">
                 	<option> 1 </option>
                 </select>
             </div>
             <div class="check-lecture-week">
                 강의요일<br>
                 <div class="check-day-button">
-                    <input type="checkbox" class="day-button mon" name="mon" id="mon"/>
+                    <input type="checkbox" class="day-button mon" id="courseMon" />
                     <label for="mon">월</label>
-                    <input type="checkbox" class="day-button tue" name="tue" id="tue" />
+                    <input type="checkbox" class="day-button tue" id="courseTue" />
                     <label for="tue">화</label>
-                    <input type="checkbox" class="day-button wed" name="wed" id="wed" />
+                    <input type="checkbox" class="day-button wed" id="courseWed" />
                     <label for="wed">수</label>
-                    <input type="checkbox" class="day-button thu" name="thu" id="thu" />
+                    <input type="checkbox" class="day-button thu" id="courseThu" />
                     <label for="thu">목</label>
-                    <input type="checkbox" class="day-button fri" name="fri" id="fri" />
+                    <input type="checkbox" class="day-button fri" id="courseFri" />
                     <label for="fri">금</label>
-                    <input type="checkbox" class="day-button sat" name="sat" id="sat" />
+                    <input type="checkbox" class="day-button sat" id="courseSat" />
                     <label for="sat">토</label>
-                    <input type="checkbox" class="day-button sun" name="sun" id="sun" />
+                    <input type="checkbox" class="day-button sun" id="courseSun" />
                     <label for="sun">일</label>
                 </div>
             </div>
             <div class="add-lecture-period">
                 강의기간<br>
                 <input class="lecture-period-start" type="date" data-placeholder="강의 시작일" required
-                    aria-required="ture" name="startDate" id="startDate" />
+                    aria-required="ture" id="courseStartDate" />
                 <input class="lecture-period-end" type="date" data-placeholder="강의 종료일" required
-                	aria-required="ture" name="endDate" id="endDate" />
+                	aria-required="ture" id="courseEndDate" />
             </div>
             <div class="add-lecture-time">
                 강의시간<br>
                 <input class="lecture-time-start" type="time" data-placeholder="강의 시작시간" required
-                    aria-required="ture" name="startTime" id="startTime" />
+                    aria-required="ture" id="courseStartTime" />
                 <input class="lecture-time-end" type="time" data-placeholder="강의 종료시간" required
-                	aria-required="ture" name="endTime" id="endTime" />
+                	aria-required="ture" id="courseEndTime" />
             </div>
             <div class="add-lecture-room">
                 강의실<br>
@@ -59,13 +59,13 @@
             </div>
             <div class="add-button-section">
                 <div class="add-confirm">
-                    <button type="submit" class="add-confirm-button">등록</button>
+                    <button type="button" class="add-confirm-button" id="courseAddBtn">등록</button>
                 </div>
                 <div class="add-close">
                     <button type="button" onclick="closeModal('add')" class="modal-close-button">취소</button>
                 </div>
             </div>
-        </form>
+        </div>
     </div>
 </div>
 

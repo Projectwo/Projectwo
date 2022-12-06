@@ -18,7 +18,6 @@ import com.project.Projectwo.Entity.ClassNoticeCheck;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Room;
-import com.project.Projectwo.Entity.Subject;
 import com.project.Projectwo.Entity.Teacher;
 import com.project.Projectwo.Repository.AcademyNoticeCheckRepository;
 import com.project.Projectwo.Repository.AcademyNoticeRepository;
@@ -49,7 +48,7 @@ public class AcademyService {
 	private final TeacherRepository teacherRepository;
 	
 	private final PasswordEncoder passwordEncoder;
-
+	
 	// by 안준언, 유저 생성 (test 코드)
 	public void createMember(String identity, String password, String email,
 			String name, LocalDate birth_date, String address, String tel) {
@@ -80,9 +79,9 @@ public class AcademyService {
 		
 		this.memberRepository.save(member);
 	}
-
+	
 	// by 안준언, 유저(student) 생성
-		public void createStudent(String name, String birth_date, String tel,
+	public void createStudent(String name, String birth_date, String tel,
 									String email, String address) {
 			Member member = new Member();
 			member.setRole("student");
@@ -95,11 +94,31 @@ public class AcademyService {
 			member.setAddress(address);
 			
 			this.memberRepository.save(member);
-		}
+	}
+	
+	// by 안준언, 유저(teacher) 수정
+	public void modifyMember(String memberId, String name, String birth_date, String tel,
+								String email, String address) {
+		Integer _memberId = Integer.parseInt(memberId);
+		
+		Optional<Member> _member = this.memberRepository.findById(_memberId);
+
+		Member member = _member.get();
+		member.setName(name);
+		member.setBirth_date(LocalDate.parse(birth_date));
+		member.setTel(tel);
+		member.setEmail(email);
+		member.setAddress(address);
+		
+		this.memberRepository.save(member);
+		
+	}
+		
+		
 	
 	// by 안준언, 새 강의 생성
-	public void createCourseAndTeacher(String title, boolean mon, boolean tue, boolean wed,
-								boolean thu, boolean fri, boolean sat, boolean sun,
+	public void createCourseAndTeacher(String title, String mon, String tue, String wed,
+								String thu, String fri, String sat, String sun,
 								String startDate, String endDate, String startTime,
 								String endTime, String roomName, String teacherName) {
 		Optional<Room> _room = this.roomRepository.findByName(roomName);
@@ -108,13 +127,13 @@ public class AcademyService {
 		Course course = new Course();
 		course.setTitle(title);
 		course.setDescription("please write description");
-		course.setMon(mon);
-		course.setTue(tue);
-		course.setWed(wed);
-		course.setThu(thu);
-		course.setFri(fri);
-		course.setSat(sat);
-		course.setSun(sun);
+		course.setMon(Boolean.parseBoolean(mon));
+		course.setTue(Boolean.parseBoolean(tue));
+		course.setWed(Boolean.parseBoolean(wed));
+		course.setThu(Boolean.parseBoolean(thu));
+		course.setFri(Boolean.parseBoolean(fri));
+		course.setSat(Boolean.parseBoolean(sat));
+		course.setSun(Boolean.parseBoolean(sun));
 		course.setStartDate(LocalDate.parse(startDate));
 		course.setEndDate(LocalDate.parse(endDate));
 		course.setStartTime(LocalTime.parse(startTime));
@@ -130,6 +149,42 @@ public class AcademyService {
 		teacher.setCourse(course);
 		teacher.setTeacher(member);
 		
+		this.teacherRepository.save(teacher);
+		
+	}
+	
+	public void modifyCourseAndTeacher(String id, String title, String mon, String tue, String wed,
+			String thu, String fri, String sat, String sun,
+			String startDate, String endDate, String startTime,
+			String endTime, String roomName, String teacherName) {
+		Optional<Room> _room = this.roomRepository.findByName(roomName);
+		Room room = _room.get();
+		
+		Integer courseId = (Integer.parseInt(id));
+		Optional<Course> _course = this.courseRepository.findById(courseId);
+		Course course = _course.get();
+		course.setTitle(title);
+		course.setMon(Boolean.parseBoolean(mon));
+		course.setTue(Boolean.parseBoolean(tue));
+		course.setWed(Boolean.parseBoolean(wed));
+		course.setThu(Boolean.parseBoolean(thu));
+		course.setFri(Boolean.parseBoolean(fri));
+		course.setSat(Boolean.parseBoolean(sat));
+		course.setSun(Boolean.parseBoolean(sun));
+		course.setStartDate(LocalDate.parse(startDate));
+		course.setEndDate(LocalDate.parse(endDate));
+		course.setStartTime(LocalTime.parse(startTime));
+		course.setEndTime(LocalTime.parse(endTime));
+		course.setRoom(room);
+		
+		this.courseRepository.save(course);
+		
+		Optional<Member> _member = this.memberRepository.findByName(teacherName);
+		Member member = _member.get();
+		
+		List<Teacher> _teacher = this.teacherRepository.findByCourse(course);
+		Teacher teacher = _teacher.get(0);
+		teacher.setTeacher(member);
 		this.teacherRepository.save(teacher);
 		
 	}
@@ -167,7 +222,7 @@ public class AcademyService {
 	}
 	
 	// by 안준언, pk(id)로 해당 수업 반환
-	public Course getCourse(int courseId) {
+	public Course getCourse(Integer courseId) {
 		Optional<Course> _course = this.courseRepository.findById(courseId);
 		if(_course.isEmpty()) {
 			return null;
@@ -175,7 +230,7 @@ public class AcademyService {
 		Course course = _course.get();
 		return course;
 	}
-
+	
 	// by 안준언, 전체 강의실 리스트 반환
 	public List<Room> getAllRoom(){
 		List<Room> RoomList = this.roomRepository.findAll();
@@ -231,7 +286,7 @@ public class AcademyService {
 		
 		this.studentRepository.save(classMember);
 	}
-
+		
 	// by 안준언, 강사 등록
 	public void addTeacher(Member teacher_, Course course) {
 		Teacher teacher = new Teacher();
@@ -240,7 +295,7 @@ public class AcademyService {
 		
 		this.teacherRepository.save(teacher);
 	}
-
+	
 //	// by 안준언, 강의 공지사항 읽음 여부 생성
 //	public void createClassNoticeCheck(Student student, ClassNotice classNotice) {
 //		ClassNoticeCheck classNoticeCheck = new ClassNoticeCheck();

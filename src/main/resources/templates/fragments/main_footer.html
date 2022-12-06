@@ -1,6 +1,7 @@
 <html layout:decorate="~{layout/layout}">
 
 <footer th:fragment="mainFooterFragment">
+<<<<<<< HEAD
 	<div class="footer-wrap">
 		<button onclick="location.href='/member/main'" class="home-button">홈</button>
 		<div class="student-function" sec:authorize="hasRole('STUDENT')">
@@ -139,6 +140,13 @@
 		});
 	</script>
 
+=======
+    <div class="footer-wrap">
+        <button class="home-button">홈</button>
+        <button class="checkin-out">출석</button>
+        <div th:replace="fragments/nav_button :: navFragment"></div>
+    </div>
+>>>>>>> juneon
 </footer>
 
 </html>

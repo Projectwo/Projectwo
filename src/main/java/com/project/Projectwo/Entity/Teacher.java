@@ -22,7 +22,7 @@ public class Teacher {
 	@NotNull
 	@ManyToOne
 	private Member teacher;
-
+	
 	@NotNull
 	@ManyToOne
 	private Course course;

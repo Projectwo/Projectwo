@@ -17,7 +17,7 @@ public class AcademyNoticeCheck {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
-
+	
 	@ManyToOne
 	private Member member;
 	

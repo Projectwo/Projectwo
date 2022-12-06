@@ -9,7 +9,7 @@ import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Student;
 import com.project.Projectwo.Repository.MemberRepository;
-
+import com.project.Projectwo.Repository.StudentRepository;
 
 import lombok.RequiredArgsConstructor;
 
@@ -18,6 +18,7 @@ import lombok.RequiredArgsConstructor;
 public class MemberService {
 
 	private final MemberRepository memberRepository;
+	private final StudentRepository studentRepository;
 	
 	// by 안준언, identity로 특정 멤버 반환
 	public Member getMember(String identity) {
@@ -29,10 +30,20 @@ public class MemberService {
 			return member;
 		}
 	}
-
+	
 	// by 안준언, pk(id)로 특정 멤버 반환 (오버로딩)
-	public Member getMember(int memberId) {
+	public Member getMember(Integer memberId) {
 		Optional<Member> mb = this.memberRepository.findById(memberId);
+		if(mb.isEmpty()) {
+			return null;
+		} else {
+			Member member = mb.get();
+			return member;
+		}
+	}
+	
+	public Member getMemberByTel(String tel) {
+		Optional<Member> mb = this.memberRepository.findByTel(tel);
 		if(mb.isEmpty()) {
 			return null;
 		} else {
@@ -46,12 +57,19 @@ public class MemberService {
 		List<Member> allMember = this.memberRepository.findByRole(role);
 		return allMember;
 	}
-
-	public Student getStudent(Member member, Course course) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
+	
+	// by 박은영
+		public Student getStudent(Member member, Course course) {
+			
+			Optional<Student> oStudent = studentRepository.findByStudentAndCourse(member, course);
+			
+			if(oStudent == null) {
+				return null;
+			}
+			Student student = oStudent.get();
+			
+			return student;
+		}
 	
 	/*
 	 공통

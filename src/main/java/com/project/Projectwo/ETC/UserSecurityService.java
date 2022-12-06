@@ -35,7 +35,7 @@ public class UserSecurityService implements UserDetailsService{
 		}
 		Member member = _member.get();
 		List<GrantedAuthority> authorities = new ArrayList<>();
-
+		
 		if("admin".equalsIgnoreCase(member.getRole())) {
 			authorities.add(new SimpleGrantedAuthority(UserRole.ADMIN.getValue()));
 		} else if("teacher".equalsIgnoreCase(member.getRole())) {
@@ -43,7 +43,7 @@ public class UserSecurityService implements UserDetailsService{
 		} else if("student".equalsIgnoreCase(member.getRole())){
 			authorities.add(new SimpleGrantedAuthority(UserRole.STUDENT.getValue()));
 		}
-
+		
 		return new User(member.getIdentity(), member.getPassword(), authorities);
 	}
 

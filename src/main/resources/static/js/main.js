@@ -14,5 +14,4 @@ function commonAjax(url, parameter, type, calbak, asy) {
 			calbak(err);
 		}
 	});
-
 }

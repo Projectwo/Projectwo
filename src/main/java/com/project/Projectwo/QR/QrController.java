@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 
 import com.project.Projectwo.Entity.Attendance;
 import com.project.Projectwo.Entity.Course;
-import com.project.Projectwo.Entity.Lecture;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Student;
 import com.project.Projectwo.Repository.AttendanceRepository;
@@ -78,8 +77,8 @@ public class QrController {
 		log.info(stringDate);
 
 		//TODO: session로 teacher, course 특정지어서 강의 하나 가져오기
-		Integer lecture = 1;
-		String content = "http://" + ip + ":9090/course/" + lecture + "/" + stringDate;
+		Integer course = 1;
+		String content = "http://" + ip + ":9090/course/" + course + "/" + stringDate;
 	
 		log.info(content);
 		
