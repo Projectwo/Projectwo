@@ -404,7 +404,6 @@
 }
 
 .student-checkinout {
-    display: none;
     height: 194px;
 }
 
@@ -462,7 +461,6 @@
 }
 
 .teacher-checkinout {
-    display: block;
     height: 194px;
     color:#000;
 }
@@ -1033,7 +1031,7 @@
     background: #fff;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
 }
 
 .footer-wrap .home-button {
@@ -1046,7 +1044,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    display: none;
 }
 
 .student-function>div {
