@@ -61,7 +61,7 @@ public class BaseController {
     	System.out.println(member.getId());
     	
     	if("admin".equalsIgnoreCase(member.getRole())) {
-    		return "academy/academy_main/";
+    		return "academy/academy_main";
     	} else {
     		return "member/member_main";
     	}
@@ -113,4 +113,9 @@ public class BaseController {
 		return "member/member_main";
 	}
     
+	// by 조성빈, 강의 상세 템플릿 임시 매핑
+	@RequestMapping("/lecture/detail")
+	public String lectureDetail(){
+		return "lecture/lecture_detail";
+	}
 }

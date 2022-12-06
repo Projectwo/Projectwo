@@ -8,18 +8,27 @@
                 <input type="text" />
             </div>
             <div class="add-teacher-name">강사<br>
-                <input type="text" />
+                <select id="teacherSelect" name="teacherSelect">
+                	<option selected> </option>
+                </select>
             </div>
             <div class="check-lecture-week">
                 강의요일<br>
                 <div class="check-day-button">
-                    <button class="day-button mon">월</button>
-                    <button class="day-button tue">화</button>
-                    <button class="day-button wed">수</button>
-                    <button class="day-button thu">목</button>
-                    <button class="day-button fri">금</button>
-                    <button class="day-button sat">토</button>
-                    <button class="day-button sun">일</button>
+                    <input type="checkbox" class="day-button mon" name="mon" id="mon"/>
+                    <label for="mon">월</label>
+                    <input type="checkbox" class="day-button tue" name="tue" id="tue" />
+                    <label for="tue">화</label>
+                    <input type="checkbox" class="day-button wed" name="wed" id="wed" />
+                    <label for="wed">수</label>
+                    <input type="checkbox" class="day-button thu" name="thu" id="thu" />
+                    <label for="thu">목</label>
+                    <input type="checkbox" class="day-button fri" name="fri" id="fri" />
+                    <label for="fri">금</label>
+                    <input type="checkbox" class="day-button sat" name="sat" id="sat" />
+                    <label for="sat">토</label>
+                    <input type="checkbox" class="day-button sun" name="sun" id="sun" />
+                    <label for="sun">일</label>
                 </div>
             </div>
             <div class="add-lecture-period">
@@ -36,18 +45,22 @@
             </div>
             <div class="add-lecture-room">
                 강의실<br>
-                <input type="text" />
+                <select id="roomSelect" name="roomSelect">
+                	<option> </option>
+                </select>
             </div>
             <div class="add-lecture-count">
                 수강인원<br>
-                <input type="text" />
+                <div id="roomMaxSeat">
+                	<input type="text" />
+                </div>
             </div>
             <div class="add-button-section">
                 <div class="add-confirm">
                     <button type="submit" class="add-confirm-button">등록</button>
                 </div>
                 <div class="add-close">
-                    <button type="button" onclick="closeModal('modify')" class="modal-close-button">취소</button>
+                    <button onclick="closeModal('modify')" class="modal-close-button">취소</button>
                 </div>
             </div>
         </form>

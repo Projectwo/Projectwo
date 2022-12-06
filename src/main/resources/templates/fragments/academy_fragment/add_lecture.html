@@ -5,7 +5,7 @@
         <form class="add-lecture-form" th:action="@{/createCourse}" method="post">
             <div class="add-title">
                 과정명<br>
-                <input type="text" name="title" id="title" />
+                <input type="text" name="title" id="title"/>
             </div>
             <div class="add-teacher-name">강사<br>
                 <select id="teacherSelect" name="teacherSelect">
@@ -15,13 +15,20 @@
             <div class="check-lecture-week">
                 강의요일<br>
                 <div class="check-day-button">
-                    <input type="checkbox" class="day-button mon" name="mon" id="mon" />월
-                    <input type="checkbox" class="day-button tue" name="tue" id="tue" />화
-                    <input type="checkbox" class="day-button wed" name="wed" id="wed" />수
-                    <input type="checkbox" class="day-button thu" name="thu" id="thu" />목
-                    <input type="checkbox" class="day-button fri" name="fri" id="fri" />금
-                    <input type="checkbox" class="day-button sat" name="sat" id="sat" />토
-                    <input type="checkbox" class="day-button sun" name="sun" id="sun" />일
+                    <input type="checkbox" class="day-button mon" name="mon" id="mon"/>
+                    <label for="mon">월</label>
+                    <input type="checkbox" class="day-button tue" name="tue" id="tue" />
+                    <label for="tue">화</label>
+                    <input type="checkbox" class="day-button wed" name="wed" id="wed" />
+                    <label for="wed">수</label>
+                    <input type="checkbox" class="day-button thu" name="thu" id="thu" />
+                    <label for="thu">목</label>
+                    <input type="checkbox" class="day-button fri" name="fri" id="fri" />
+                    <label for="fri">금</label>
+                    <input type="checkbox" class="day-button sat" name="sat" id="sat" />
+                    <label for="sat">토</label>
+                    <input type="checkbox" class="day-button sun" name="sun" id="sun" />
+                    <label for="sun">일</label>
                 </div>
             </div>
             <div class="add-lecture-period">
