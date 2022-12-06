@@ -28,8 +28,18 @@ public class MemberService {
 	}
 	
 	// by 안준언, pk(id)로 특정 멤버 반환 (오버로딩)
-	public Member getMember(int memberId) {
+	public Member getMember(Integer memberId) {
 		Optional<Member> mb = this.memberRepository.findById(memberId);
+		if(mb.isEmpty()) {
+			return null;
+		} else {
+			Member member = mb.get();
+			return member;
+		}
+	}
+	
+	public Member getMemberByTel(String tel) {
+		Optional<Member> mb = this.memberRepository.findByTel(tel);
 		if(mb.isEmpty()) {
 			return null;
 		} else {

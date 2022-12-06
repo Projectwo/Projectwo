@@ -10,6 +10,7 @@ import com.project.Projectwo.Entity.Member;
 public interface MemberRepository extends JpaRepository<Member, Integer> {
 	Optional<Member> findByIdentity(String identity);
 	Optional<Member> findByName(String name);
+	Optional<Member> findByTel(String tel);
 	
 	List<Member> findByRole(String role);
 }

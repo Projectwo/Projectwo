@@ -113,26 +113,52 @@ public class AcademyController {
     
     // by 안준언, academy 페이지 강의 생성
     @PostMapping("/createCourse")
-    public String createCourse(@RequestParam String title,
-    							@RequestParam(value="mon", required=false) boolean mon,
-    							@RequestParam(value="tue", required=false) boolean tue,
-    							@RequestParam(value="wed", required=false) boolean wed,
-    							@RequestParam(value="thu", required=false) boolean thu,
-    							@RequestParam(value="fri", required=false) boolean fri,
-    							@RequestParam(value="sat", required=false) boolean sat,
-    							@RequestParam(value="sun", required=false) boolean sun,
-    							@RequestParam String startDate,
-    							@RequestParam String endDate,
-    							@RequestParam String startTime,
-    							@RequestParam String endTime,
-    							@RequestParam(value="roomSelect", required=false) String roomSelect,
-    							@RequestParam(value="teacherSelect", required=false) String teacherSelect) {
+    @ResponseBody
+    public void createCourse(@RequestParam HashMap<Object, Object> params) {
+    	String title = (String)params.get("title");
+    	String startDate = (String)params.get("startDate");
+    	String endDate = (String)params.get("endDate");
+    	String startTime = (String)params.get("startTime");
+    	String endTime = (String)params.get("endTime");
+    	String mon = (String)params.get("mon");
+    	String tue = (String)params.get("tue");
+    	String wed = (String)params.get("wed");
+    	String thu = (String)params.get("thu");
+    	String fri = (String)params.get("fri");
+    	String sat = (String)params.get("sat");
+    	String sun = (String)params.get("sun");
+    	
+    	String roomName = (String)params.get("roomName");
+    	String teacherName = (String)params.get("teacherName");
     	
     	this.academyService.createCourseAndTeacher(title, mon, tue, wed, thu, fri, sat, sun,
-    												startDate, endDate, startTime, endTime, roomSelect, teacherSelect);
+    												startDate, endDate, startTime, endTime,
+    												roomName, teacherName);
+    }
+    
+    @PostMapping("/modifyCourse")
+    @ResponseBody
+    public void modifyCourse(@RequestParam HashMap<Object, Object> params) {
+    	String courseId = (String)params.get("id");
+    	String title = (String)params.get("title");
+    	String startDate = (String)params.get("startDate");
+    	String endDate = (String)params.get("endDate");
+    	String startTime = (String)params.get("startTime");
+    	String endTime = (String)params.get("endTime");
+    	String mon = (String)params.get("mon");
+    	String tue = (String)params.get("tue");
+    	String wed = (String)params.get("wed");
+    	String thu = (String)params.get("thu");
+    	String fri = (String)params.get("fri");
+    	String sat = (String)params.get("sat");
+    	String sun = (String)params.get("sun");
     	
+    	String roomName = (String)params.get("roomName");
+    	String teacherName = (String)params.get("teacherName");
     	
-    	return "redirect:/main";
+    	this.academyService.modifyCourseAndTeacher(courseId, title, mon, tue, wed, thu, fri, sat, sun,
+    												startDate, endDate, startTime, endTime,
+    												roomName, teacherName);
     }
     
     // by 안준언, academy 페이지 강사 생성
@@ -148,7 +174,22 @@ public class AcademyController {
     	this.academyService.createTeacher(name, birth_date, tel, email, address);
     }
     
- // by 안준언, academy 페이지 학생 생성
+    // by 안준언, academy 페이지 강사 정보 수정
+    @PostMapping("/modifyMember")
+    @ResponseBody
+    public void modifyMember(@RequestParam HashMap<Object, Object> params) {
+
+    	String memberId = (String)params.get("memberId");
+    	String name = (String)params.get("name");
+    	String birth_date = (String)params.get("birth_date");
+    	String tel = (String)params.get("tel");
+    	String email = (String)params.get("email");
+    	String address = (String)params.get("address");
+    	
+    	this.academyService.modifyMember(memberId, name, birth_date, tel, email, address);
+    }
+    
+    // by 안준언, academy 페이지 학생 생성
     @PostMapping("/createStudent")
     @ResponseBody
     public void createStudent(@RequestParam HashMap<Object, Object> params) {
@@ -159,6 +200,26 @@ public class AcademyController {
     	String address = (String)params.get("address");
     	
     	this.academyService.createStudent(name, birth_date, tel, email, address);
+    }
+    
+    // by 안준언, academy 페이지, 학생,강사 정보 수정
+    @PostMapping("/getMemberById")
+    @ResponseBody
+    public Member getStudent(@RequestParam HashMap<Object, Object> params) {
+    	Integer memberId = Integer.parseInt((String)params.get("memberId"));
+    	Member member = this.memberService.getMember(memberId);
+    	
+    	return member;
+    }
+    
+    // by 안준언, academy 페이지 Course 수정 폼 정보 반환
+    @PostMapping("/getCourseById")
+    @ResponseBody
+    public Course getCourseById(@RequestParam HashMap<Object, Object> params) {
+    	Integer courseId = Integer.parseInt((String)params.get("courseId"));
+    	Course course = this.academyService.getCourse(courseId);
+    	
+    	return course;
     }
     
 }
