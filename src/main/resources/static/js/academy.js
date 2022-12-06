@@ -25,13 +25,14 @@ function modifyCourseBtnEvent() {
 			let msg = {
 				courseId: courseId
 			}
+			console.log(msg)
 
 			//document.getElementById("courseModifyBtn").addEventListener("click", getRoom);
 			//document.getElementById("courseModifyBtn").addEventListener("click", getTeacher);
 			//document.getElementById("roomSelect").addEventListener("change", showMaxSeat);
 
 			commonAjax('/getCourseById', msg, 'post', function(course) {
-				//console.log(course);
+				console.log(course);
 				
 				let mon = (course.mon) ? "checked" : "";
 				let tue = (course.tue) ? "checked" : "";
@@ -99,8 +100,8 @@ function modifyCourseBtnEvent() {
 				modifyGetRoom();
 				modifyGetTeacher();
 				document.getElementById("modifyRoomSelect").addEventListener("change", modifyShowMaxSeat);
-				document.getElementById('modifyCourseBtn').addEventListener("click", modifyCourse);
 			}, false)
+			document.getElementById('modifyCourseBtn').addEventListener("click", modifyCourse);
 		});
 	})
 }
@@ -135,7 +136,7 @@ function getAllCourse(res) {
 
 			tag += "<div class='main-lecture academy-list'>" +
 				"<div class='lecture-info'>" +
-				"<button onclick=\"clickModifyButton('lecture')\" class=\"lecture-modify-button\" id=\"courseModifyBtn\">" +
+				"<button onclick=\"clickModifyButton('lecture')\" class=\"lecture-modify-button\">" +
 				"수정" +
 				"</button>" +
 				"<div class='lecture-title'>" +
@@ -168,7 +169,7 @@ function getAllCourse(res) {
 				"</span>" + "/" + course.room.maxSeat +
 				"</div>" + "<div class='lecture-info-room'>" +
 				course.room.name + "</div>" +
-				"<div id='modifyCourseId'>" + course.id + "</div>" +
+				"<div id='courseId'>" + course.id + "</div>" +
 				"</div>" + "</div>";
 		});
 
@@ -316,23 +317,23 @@ function modifyStudentBtnEvent() {
 				let tag = "";
 				tag += "<div class='add-name'>" +
 					"이름<br>" +
-					"<input type='text' value='" + member.name + "'/>" +
+					"<input type='text' value='" + member.name + "' id='studentModifyName'/>" +
 					"</div>" +
 					"<div class='add-birthday'>" +
 					"생년월일<br>" +
-					"<input type='date' value='" + member.birth_date + "'/>" +
+					"<input type='date' value='" + member.birth_date + "' id='studentModifyBirth_date'/>" +
 					"</div>" +
 					"<div class='add-tel'>" +
 					"연락처<br>" +
-					"<input type='text' value='" + member.tel + "' />" +
+					"<input type='text' value='" + member.tel + "' id='studentModifyTel'/>" +
 					"</div>" +
 					"<div class='add-mail'>" +
 					"메일<br>" +
-					"<input type='email' value='" + member.email + "' />" +
+					"<input type='email' value='" + member.email + "' id='studentModifyEmail'/>" +
 					"</div>" +
 					"<div class='add-address'>" +
 					"거주지<br>" +
-					"<input type='text' value='" + member.address + "' />" +
+					"<input type='text' value='" + member.address + "' id='studentModifyAddress'/>" +
 					"</div>" +
 					"<div id='modifyStudentId'>" + member.id + "</div>" +
 					"<div class='add-button-section'>" +
@@ -688,6 +689,7 @@ function addTeacher() {
 }
 
 // 강의 수정
+
 //document.getElementById('modifyCourseBtn').addEventListener("click", modifyCourse)
 
 function modifyCourse() {
@@ -722,8 +724,8 @@ function modifyCourse() {
 	let teacher = document.getElementById("modifyTeacherSelect");
 	let teacherName = teacher.options[teacher.selectedIndex].text;
 
-	console.log(roomName);
-	console.log(teacherName);
+	//console.log(roomName);
+	//console.log(teacherName);
 
 	let msg = {
 		id: document.getElementById('modifyCourseId').innerText,
@@ -742,7 +744,7 @@ function modifyCourse() {
 		roomName: roomName,
 		teacherName: teacherName
 	}
-console.log(msg)
+	console.log(msg)
 
 	commonAjax('/modifyCourse', msg, 'post', function() {
 		getClassInfo();
@@ -765,6 +767,7 @@ console.log(msg)
 	document.getElementById('modifyCourseBtn').addEventListener("click", closeModal('modify'));
 
 }
+
 
 
 // by 안준언, 강사정보 수정
@@ -849,10 +852,10 @@ function modifyStudentEvent() {
 			address: document.getElementById('studentModifyAddress').value
 		}
 
-		//console.log(msg);
+		console.log(msg);
 
 		commonAjax('/modifyMember', msg, 'post', function() {
-			getTeacherInfo();
+			getStudentInfo();
 		})
 
 		document.getElementById('studentModifyName').value = null;
