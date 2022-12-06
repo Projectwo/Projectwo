@@ -4,7 +4,10 @@
     <div class="main-profile">
         <div class="main-profile-text">
             그린 컴퓨터 아카데미<br><!-- b에 이름, span에 권한 -->
-            <b>홍길동</b> <span>수강생</span>님
+            <b th:text="${loginMember}">홍길동</b> 
+            <span sec:authorize="hasRole('STUDENT')">수강생</span>
+            <span sec:authorize="hasRole('TEACHER')">강사</span>
+            님
         </div>
     </div>
     <div class="notice-new-alarm">
