@@ -186,7 +186,7 @@ public class AcademyService {
 	}
 	
 	// by 안준언, pk(id)로 해당 수업 반환
-	public Course getCourse(int courseId) {
+	public Course getCourse(Integer courseId) {
 		Optional<Course> _course = this.courseRepository.findById(courseId);
 		if(_course.isEmpty()) {
 			return null;

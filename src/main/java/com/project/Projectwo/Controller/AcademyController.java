@@ -186,4 +186,14 @@ public class AcademyController {
     	return member;
     }
     
+    // by 안준언, academy 페이지 Course 수정 폼 정보 반환
+    @PostMapping("/getCourseById")
+    @ResponseBody
+    public Course getCourseById(@RequestParam HashMap<Object, Object> params) {
+    	Integer courseId = Integer.parseInt((String)params.get("courseId"));
+    	Course course = this.academyService.getCourse(courseId);
+    	
+    	return course;
+    }
+    
 }
