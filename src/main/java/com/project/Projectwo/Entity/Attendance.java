@@ -27,7 +27,7 @@ public class Attendance {
 
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private LocalDate today;
-	
+
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="HH:mm", timezone="Asia/Seoul")
 	private LocalTime inTime;
 	

@@ -40,7 +40,7 @@ public class MemberService {
 			return member;
 		}
 	}
-
+	
 	// by 안준언, 같은 role 필드 값을 가진 멤버 반환 ("teacher" or "student" or "admin")
 	public List<Member> getAllMemberByRole(String role) {
 		List<Member> allMember = this.memberRepository.findByRole(role);
@@ -51,6 +51,8 @@ public class MemberService {
 		// TODO Auto-generated method stub
 		return null;
 	}
+
+	
 	/*
 	 공통
 	 회원가입

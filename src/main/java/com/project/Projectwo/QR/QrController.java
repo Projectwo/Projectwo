@@ -114,25 +114,11 @@ public class QrController {
 		Course course = academyService.getCourse(courseId);		
 		//model2.addAttribute("course", course);
 		
-		//////////////////////////////////////////////////
-//		if(localDate.toString().equals(date) && ) {
-//			List<Lecture> lectureList = member.
-//			member.getId()
-//			
-//		}else {
-//			
-//		}
-		
-		
-		
-		//////////////////////////////////////////////////
+
 		log.info("####localDate=" + localDate.toString()); 
 		log.info("####강의명=" + course.getTitle()); 
 		log.info("####강의설명=" + course.getDescription()); 
 
-		//임시 member
-		
-		
 		Student student = memberService.getStudent(member, course);
 		
 		log.info("student=" + student.getStudent().getName());

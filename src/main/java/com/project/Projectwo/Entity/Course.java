@@ -71,7 +71,7 @@ public class Course {
 	@NotNull
 	@ManyToOne
 	private Room room;
-	
+
 	// by 안준언, 수강생 리스트
 	@JsonBackReference
 	@OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
