@@ -65,17 +65,17 @@ function getAllCourse(res) {
 				"<li><span>" + course.sun + "</span></li>" + "</ul>" +
 				"<div class='lecture-info-schedule-period'>" +
 				"<span class='period-start'>" +
-				course.startDate + "</span>" + "~" +
+				course.startDate + "</span>" + " ~ " +
 				"<span class='period-end'>" +
 				course.endDate + "</span>" + "</div>" +
 				"<div class='lecture-info-schedule-time'>" +
-				course.startTime + "~" + course.endTime +
+				course.startTime + " ~ " + course.endTime +
 				"</div>" +
 				"<div class='lecture-info-count'>" +
 				"수강인원" + "<span>" + currentStudentCount +
-				"</span>" + "/" + course.room.maxSeat +
+				"</span>" + " / " + course.room.maxSeat +
 				"</div>" + "<div class='lecture-info-room'>" +
-				course.room.name + "</div>" + "</div>" + "</div>";
+				course.room.name + "호실</div>" + "</div>" + "</div>";
 		});
 
 		$("#classListId").empty().append(tag);
@@ -123,11 +123,13 @@ function getAllTeacher(res) {
 				"<b>" + classListOfTeacher + " Class" + "</b>" +
 				"</div>" +
 				"</div>" +
+				"<div class='teacher-info-detail'>" +
 				"<div class='teacher-birthday'>" +
-				member.birth_date + "<span>" + "/" + "</span>" +
+				member.birth_date + "<span>" + "&nbsp;/&nbsp;" + "</span>" +
 				"</div>" +
 				"<div class='teacher-tel'>" +
 				member.tel +
+				"</div>" +
 				"</div>" +
 				"<div class='teacher-address'>" +
 				member.address +
@@ -181,12 +183,14 @@ function getAllStudent(res) {
                         "<b>" + classListOfStudent + " Class" + "</b>" +
                     "</div>" +
                 "</div>" +
+				"<div class='student-info-detail'>" +
                 "<div class='student-birthday'>" +
-                    member.birth_date + "<span>" + "/" + "</span>" +
+                    member.birth_date + "<span>" + "&nbsp;/&nbsp;" + "</span>" +
                 "</div>" +
                 "<div class='student-tel'>" +
                     member.tel +
                 "</div>" +
+				"</div>" +
                 "<div class='student-address'>" +
                     member.address +
                 "</div>" +
