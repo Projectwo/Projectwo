@@ -6,10 +6,10 @@
         <button class="tab" value="teacher">Teacher</button>
         <button class="tab" value="student">Student</button>
     </div>
-    <div th:replace="fragments/academy_class :: classFragment"></div>
-    <div th:replace="fragments/academy_teacher :: teacherFragment"></div>
-    <div th:replace="fragments/academy_student :: studentFragment"></div>
-    <footer th:replace="fragments/academy_footer :: academyFooterFragment"></footer>
+    <div th:replace="fragments/academy_fragment/academy_class :: classFragment"></div>
+    <div th:replace="fragments/academy_fragment/academy_teacher :: teacherFragment"></div>
+    <div th:replace="fragments/academy_fragment/academy_student :: studentFragment"></div>
+    <footer th:replace="fragments/academy_fragment/academy_footer :: academyFooterFragment"></footer>
     <script>
         $(".academy-list-tab").children('button').click(function () {
             if ($('button').hasClass("active")) {

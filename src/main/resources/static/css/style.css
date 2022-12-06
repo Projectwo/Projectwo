@@ -199,7 +199,9 @@
 
 /* ##### nav_button.html ##### */
 
-.member-dropdown {}
+.member-dropdown {
+    width: 50px;
+}
 
 .member-dropdown.active .member-dropdown-list {
     display: block;
@@ -401,7 +403,12 @@
     text-align: right;
 }
 
-.student-today {
+.student-checkinout {
+    display: none;
+    height: 194px;
+}
+
+.student-checkinout .student-today {
     width: 100%;
     margin-top: 10px;
     font-size: 20px;
@@ -454,6 +461,70 @@
     line-height: 27px;
 }
 
+.teacher-checkinout {
+    display: block;
+    height: 194px;
+    color:#000;
+}
+
+.teacher-checkinout .teacher-today {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 20px;
+    text-align: left;
+}
+
+.teacher-today .teacher-daily-check {
+    width: 100%;
+    height: 156px;
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.teacher-daily-check .daily-check {
+    width: 154px;
+    height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: lightgreen;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.teacher-daily-check .daily-check span {
+    line-height: 0;
+    font-size: 28px;
+}
+
+.teacher-daily-check .daily-check b {
+    font-size: 48px;
+}
+
+.teacher-daily-check .daily-non-check {
+    width: 154px;
+    height: 150px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    background: #aaa;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.teacher-daily-check .daily-non-check span {
+    line-height: 0;
+    font-size: 28px;
+}
+
+.teacher-daily-check .daily-non-check b {
+    font-size: 48px;
+}
+
 .main-notice {
     position: relative;
     width: 100%;
@@ -464,28 +535,42 @@
 
 .main-notice .notice-category {
     position: absolute;
-    top: 6px;
+    top: 8px;
     left: 70px;
     display: flex;
-    font-size: 14px;
-}
-
-.notice-category .category-academy {
+    align-items: flex-end;
+    font-size: 10px;
     color: #777;
 }
 
-.notice-category .category-lecture {}
+.main-notice .notice-category button{
+    color:#888;
+}
+
+.main-notice .notice-category button.active {
+    color:#444;
+    font-weight: 600;
+}
 
 .main-notice .notice-area {
     width: 100%;
-    height: 210px;
+    height: 226px;
     margin-top: 6px;
     border: 1px solid #ccc;
     border-radius: 6px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: flex-start;
+    overflow: auto;
+}
+
+.main-notice .notice-fragment{
+    display: none;
+}
+
+.main-notice .notice-fragment.active{
+    display: block;
 }
 
 .notice-area .notice-recent {
@@ -494,17 +579,13 @@
     line-height: 44px;
     border: 1px solid #aaa;
     border-radius: 6px;
-    margin-bottom: 4px;
+    margin-bottom: 10px;
     font-size: 22px;
     padding-left: 10px;
 }
 
 .notice-area .notice-recent:first-child {
-    margin-top: 4px;
-}
-
-.notice-area .notice-recent:last-child {
-    margin-bottom: 4px;
+    margin-top: 10px;
 }
 
 /* ##### member_main.html end ##### */
@@ -835,7 +916,7 @@
     justify-content: center;
 }
 
-.new-lecture .footer-middle.academy{
+.new-lecture .footer-middle.academy {
     position: relative;
     width: 100px;
     height: 60px;
@@ -843,6 +924,7 @@
     align-items: center;
     justify-content: center;
 }
+
 .footer-middle.academy .academy-function-button {
     position: relative;
     display: none;
@@ -861,8 +943,8 @@
     border: 1px solid;
     border-radius: 50%;
     left: 50%;
-    top: 10px;    
-    transform: translate(-50%, -50%);    
+    top: 10px;
+    transform: translate(-50%, -50%);
 }
 
 .footer-middle.academy a {
@@ -876,7 +958,7 @@
     left: -25px;
 }
 
-.new-lecture .footer-left.academy{
+.new-lecture .footer-left.academy {
     position: relative;
     width: 120px;
     height: 60px;
@@ -905,7 +987,7 @@
     color: #444;
 }
 
-.new-lecture .footer-right.academy{
+.new-lecture .footer-right.academy {
     position: relative;
     width: 120px;
     height: 60px;
@@ -944,11 +1026,82 @@
     bottom: 0;
     background: #fff;
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-wrap .home-button {
+    width: 50px;
+    font-size: 24px;
+}
+
+.student-function {
+    width: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.student-function>div {
+    margin: 0 10px;
+    width: 60px;
+    display: none;
+}
+
+.student-function .student-function-button {
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 24px;
+}
+
+.teacher-function {
+    width: 220px;
+    display: flex;
+    justify-content: center;
     align-items: center;
 }
 
-.footer-wrap .home-button {}
+.teacher-function>div {
+    margin: 0 10px;
+    width: 60px;
+    display: none;
+}
+
+.teacher-function .teacher-function-button {
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 6px 10px;
+    font-size: 24px;
+}
+
+.teacher-create-qrcode .modal-wrap.qrcode {
+    display: none;
+}
+
+.modal-wrap.qrcode .create-qr-layer{
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #444;
+    border-radius: 6px;
+    background-color: #444;
+    color: #fff;
+    z-index: 5;
+}
+
+.modal-wrap.qrcode .created-qrcode{
+    position: relative;
+    width: 280px;
+    height: 280px;
+    margin: 20px;
+    border:1px solid #eee;
+    background: #eee;
+}
 
 /* ##### main_footer.html end ##### */
 
@@ -956,7 +1109,7 @@
 
 .add-fragment {
     position: fixed;
-    margin:0 auto;
+    margin: 0 auto;
     top: 0;
     left: 0;
     right: 0;
@@ -985,63 +1138,63 @@
     left: 0;
     right: 0;
     bottom: 0;
-    margin:0 auto;
+    margin: 0 auto;
     border: 1px solid #eee;
     border-radius: 6px;
     background: #eee;
     text-align: left;
 }
 
-.add-lecture-form .add-title{
+.add-lecture-form .add-title {
     position: relative;
-    padding:6px 10px;
+    padding: 6px 10px;
     font-size: 24px;
 }
 
-.add-lecture-form .add-title input{
+.add-lecture-form .add-title input {
     position: relative;
     width: 240px;
     height: 36px;
-    margin:4px 8px 0 8px;
-    padding:4px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
     background: none;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 6px;
-    color:#333;
+    color: #333;
     font-size: 24px;
     text-align: center;
 }
 
-.add-lecture-form .add-teacher-name{
+.add-lecture-form .add-teacher-name {
     position: relative;
-    padding:6px 10px;
+    padding: 6px 10px;
     font-size: 24px;
 }
 
-.add-lecture-form .add-teacher-name input{
+.add-lecture-form .add-teacher-name input {
     position: relative;
     width: 150px;
     height: 36px;
-    margin:4px 8px 0 8px;
-    padding:4px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
     background: none;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 6px;
-    color:#333;
+    color: #333;
     font-size: 24px;
     text-align: center;
 }
 
-.add-lecture-form .check-lecture-week{
+.add-lecture-form .check-lecture-week {
     position: relative;
     width: 300px;
     height: 70px;
     left: 0;
-    margin:10px;
+    margin: 10px;
     font-size: 24px;
 }
 
-.check-lecture-week .check-day-button{
+.check-lecture-week .check-day-button {
     width: 100%;
     height: 36px;
     display: flex;
@@ -1049,92 +1202,92 @@
     align-items: center;
 }
 
-.check-lecture-week .check-day-button>button{
+.check-lecture-week .check-day-button>button {
     width: 32px;
     height: 32px;
-    border:1px solid #444;
+    border: 1px solid #444;
     border-radius: 6px;
 }
 
-.add-lecture-form .add-lecture-period{
+.add-lecture-form .add-lecture-period {
     position: relative;
-    padding:6px 10px;
+    padding: 6px 10px;
     font-size: 24px;
     width: 320px;
 }
 
-.add-lecture-period .lecture-period-start{
+.add-lecture-period .lecture-period-start {
     position: absolute;
     left: 6px;
 }
 
-.add-lecture-period .lecture-period-end{
+.add-lecture-period .lecture-period-end {
     position: absolute;
     right: 6px;
 }
 
-.add-lecture-form .add-lecture-time{
+.add-lecture-form .add-lecture-time {
     position: relative;
     margin-top: 36px;
-    padding:6px 10px;
+    padding: 6px 10px;
     font-size: 24px;
     width: 320px;
 }
 
-.add-lecture-time .lecture-time-start{
+.add-lecture-time .lecture-time-start {
     position: absolute;
     left: 6px;
 }
 
-.add-lecture-time .lecture-time-end{
+.add-lecture-time .lecture-time-end {
     position: absolute;
     right: 6px;
 }
 
-.add-lecture-form .add-lecture-room{
+.add-lecture-form .add-lecture-room {
     position: relative;
-    padding:6px 10px;
+    padding: 6px 10px;
     margin-top: 36px;
     font-size: 24px;
 }
 
-.add-lecture-form .add-lecture-room input{
+.add-lecture-form .add-lecture-room input {
     position: relative;
     width: 120px;
     height: 36px;
-    margin:4px 8px 0 8px;
-    padding:4px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
     background: none;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 6px;
-    color:#333;
+    color: #333;
     font-size: 24px;
     text-align: center;
 }
 
-.add-lecture-form .add-lecture-count{
+.add-lecture-form .add-lecture-count {
     position: absolute;
-    padding:6px 10px;
+    padding: 6px 10px;
     top: 437px;
     right: 10px;
     font-size: 24px;
 }
 
-.add-lecture-form .add-lecture-count input{
+.add-lecture-form .add-lecture-count input {
     position: relative;
     width: 120px;
     height: 36px;
-    margin:4px 2px 0 20px;
-    padding:4px;
+    margin: 4px 2px 0 20px;
+    padding: 4px;
     background: none;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 6px;
-    color:#333;
+    color: #333;
     font-size: 24px;
     text-align: center;
 }
 
-.add-button-section{
+.add-button-section {
     margin-top: 100px;
     width: 100%;
     height: 50px;
@@ -1143,7 +1296,7 @@
     justify-content: space-evenly;
 }
 
-.add-lecture-form .add-button-section{
+.add-lecture-form .add-button-section {
     margin-top: 30px;
 }
 
@@ -1155,9 +1308,9 @@
 
 .modal-close-button {
     position: relative;
-    border:1px solid #444;
+    border: 1px solid #444;
     border-radius: 6px;
-    padding:10px;
+    padding: 10px;
     width: 100px;
     font-size: 20px;
     color: #fff;
@@ -1172,9 +1325,9 @@
 
 .add-confirm-button {
     position: relative;
-    border:1px solid #444;
+    border: 1px solid #444;
     border-radius: 6px;
-    padding:10px;
+    padding: 10px;
     width: 100px;
     font-size: 20px;
     color: #333;
@@ -1192,109 +1345,109 @@
     left: 0;
     right: 0;
     bottom: 0;
-    margin:0 auto;
+    margin: 0 auto;
     border: 1px solid #eee;
     border-radius: 6px;
     background: #eee;
     text-align: left;
 }
 
-.add-teacher-form .add-name{
+.add-teacher-form .add-name {
     position: relative;
-    padding:6px 10px;
+    padding: 6px 10px;
     font-size: 24px;
 }
 
-.add-teacher-form .add-name input{
+.add-teacher-form .add-name input {
     position: relative;
     width: 240px;
     height: 36px;
-    margin:4px 8px 0 8px;
-    padding:4px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
     background: none;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 6px;
-    color:#333;
+    color: #333;
     font-size: 24px;
     text-align: center;
 }
 
-.add-teacher-form .add-birthday{
+.add-teacher-form .add-birthday {
     position: relative;
-    padding:6px 10px;
+    padding: 6px 10px;
     font-size: 24px;
 }
 
-.add-teacher-form .add-birthday input{
+.add-teacher-form .add-birthday input {
     position: relative;
     width: 240px;
     height: 36px;
-    margin:4px 8px 0 8px;
-    padding:4px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
     background: none;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 6px;
-    color:#333;
+    color: #333;
     font-size: 24px;
     text-align: center;
 }
 
-.add-teacher-form .add-tel{
+.add-teacher-form .add-tel {
     position: relative;
-    padding:6px 10px;
+    padding: 6px 10px;
     font-size: 24px;
 }
 
-.add-teacher-form .add-tel input{
+.add-teacher-form .add-tel input {
     position: relative;
     width: 240px;
     height: 36px;
-    margin:4px 8px 0 8px;
-    padding:4px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
     background: none;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 6px;
-    color:#333;
+    color: #333;
     font-size: 24px;
     text-align: center;
 }
 
-.add-teacher-form .add-mail{
+.add-teacher-form .add-mail {
     position: relative;
-    padding:6px 10px;
+    padding: 6px 10px;
     font-size: 24px;
 }
 
-.add-teacher-form .add-mail input{
+.add-teacher-form .add-mail input {
     position: relative;
     width: 240px;
     height: 36px;
-    margin:4px 8px 0 8px;
-    padding:4px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
     background: none;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 6px;
-    color:#333;
+    color: #333;
     font-size: 24px;
     text-align: center;
 }
 
-.add-teacher-form .add-address{
+.add-teacher-form .add-address {
     position: relative;
-    padding:6px 10px;
+    padding: 6px 10px;
     font-size: 24px;
 }
 
-.add-teacher-form .add-address input{
+.add-teacher-form .add-address input {
     position: relative;
     width: 240px;
     height: 36px;
-    margin:4px 8px 0 8px;
-    padding:4px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
     background: none;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 6px;
-    color:#333;
+    color: #333;
     font-size: 24px;
     text-align: center;
 }
@@ -1316,113 +1469,113 @@
     text-align: left;
 }
 
-.add-student-form .add-name{
+.add-student-form .add-name {
     position: relative;
-    padding:6px 10px;
+    padding: 6px 10px;
     font-size: 24px;
 }
 
-.add-student-form .add-name input{
+.add-student-form .add-name input {
     position: relative;
     width: 240px;
     height: 36px;
-    margin:4px 8px 0 8px;
-    padding:4px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
     background: none;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 6px;
-    color:#333;
+    color: #333;
     font-size: 24px;
     text-align: center;
 }
 
-.add-student-form .add-birthday{
+.add-student-form .add-birthday {
     position: relative;
-    padding:6px 10px;
+    padding: 6px 10px;
     font-size: 24px;
 }
 
-.add-student-form .add-birthday input{
+.add-student-form .add-birthday input {
     position: relative;
     width: 240px;
     height: 36px;
-    margin:4px 8px 0 8px;
-    padding:4px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
     background: none;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 6px;
-    color:#333;
+    color: #333;
     font-size: 24px;
     text-align: center;
 }
 
-.add-student-form .add-tel{
+.add-student-form .add-tel {
     position: relative;
-    padding:6px 10px;
+    padding: 6px 10px;
     font-size: 24px;
 }
 
-.add-student-form .add-tel input{
+.add-student-form .add-tel input {
     position: relative;
     width: 240px;
     height: 36px;
-    margin:4px 8px 0 8px;
-    padding:4px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
     background: none;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 6px;
-    color:#333;
+    color: #333;
     font-size: 24px;
     text-align: center;
 }
 
-.add-student-form .add-mail{
+.add-student-form .add-mail {
     position: relative;
-    padding:6px 10px;
+    padding: 6px 10px;
     font-size: 24px;
 }
 
-.add-student-form .add-mail input{
+.add-student-form .add-mail input {
     position: relative;
     width: 240px;
     height: 36px;
-    margin:4px 8px 0 8px;
-    padding:4px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
     background: none;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 6px;
-    color:#333;
+    color: #333;
     font-size: 24px;
     text-align: center;
 }
 
-.add-student-form .add-address{
+.add-student-form .add-address {
     position: relative;
-    padding:6px 10px;
+    padding: 6px 10px;
     font-size: 24px;
 }
 
-.add-student-form .add-address input{
+.add-student-form .add-address input {
     position: relative;
     width: 240px;
     height: 36px;
-    margin:4px 8px 0 8px;
-    padding:4px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
     background: none;
-    border:1px solid #333;
+    border: 1px solid #333;
     border-radius: 6px;
-    color:#333;
+    color: #333;
     font-size: 24px;
     text-align: center;
 }
 
 /* ##### add_student.html end ##### */
 
-/* ##### modify_lecture.html ##### */
+/* ##### modify_fragment ##### */
 
 .modify-fragment {
     position: fixed;
-    margin:0 auto;
+    margin: 0 auto;
     top: 0;
     left: 0;
     right: 0;
@@ -1431,4 +1584,135 @@
     height: 844px;
 }
 
-/* ##### modify_lecture.html end ##### */
+/* ##### modify_fragment end ##### */
+
+/* ##### lecture_detail.html ##### */
+
+.detail-academy-profile {
+    position: relative;
+    width: 100%;
+    height: 46px;
+    margin-top: 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #555;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    padding: 2px 10px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.detail-academy-profile .detail-academy-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.detail-academy-profile .detail-academy-info>b {
+    line-height: 18px;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.main-lecture.detail {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    height: 280px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background: #444;
+    margin-top: 18px;
+}
+
+.main-lecture.detail .lecture-name b {
+    font-size: 24px;
+}
+
+.lecture-about-section {
+    width: 320px;
+    display: flex;
+}
+
+.main-lecture.detail .lecture-info.detail {
+    margin-top: 0;
+    margin-left: 4px;
+    width: 150px;
+}
+
+.lecture-info.detail .lecture-info-schedule {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.lecture-info.detail .lecture-info-schedule-checked {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.lecture-info.detail .lecture-info-count {
+    margin-top: 0;
+    margin-left: 4px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #eee;
+    text-align: left;
+}
+
+.lecture-info-about.detail {
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 3px;
+    padding-right: 6px;
+    line-height: 20px;
+    color: #eee;
+    font-size: 14px;
+}
+
+.main-lecture.detail .lecture-about-desc {
+    max-width: 300px;
+    height: 60px;
+    margin: 0 auto;
+    margin-top: 14px;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    background: #eee;
+}
+
+.main-lecture.detail .lecture-about-desc span {
+    font-size: 16px;
+    line-height: 60px;
+}
+
+.main-lecture.detail .teacher-info.detail {
+    margin-top: 6px;
+    padding: 6px 8px;
+    text-align: left;
+    font-size: 24px;
+    font-weight: 400;
+    color: #eee;
+
+}
+
+.main-lecture.detail .teacher-about.detail {
+    width: 280px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.main-lecture.detail .teacher-about.detail b {
+    font-weight: 400;
+    margin-left: 10px;
+}
+
+.main-notice.detail .notice-area {
+    height: 280px;
+}
+
+/* ##### lecture_detail.html end ##### */
