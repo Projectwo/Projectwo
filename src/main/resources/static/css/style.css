@@ -687,12 +687,12 @@
 
 .main-lecture.academy-list .lecture-info-schedule {
     justify-content: flex-start;
-    margin-left: 10px;
+    margin-left: 4px;
 }
 
 .main-lecture.academy-list .lecture-info-schedule-checked {
     justify-content: flex-start;
-    margin-left: 10px;
+    margin-left: 4px;
 }
 
 .main-lecture.academy-list .lecture-info-schedule-period {
@@ -732,7 +732,7 @@
     color: #eee;
     font-size: 14px;
     font-weight: 300;
-    margin-left: 14px;
+    margin-left: 8px;
 }
 
 /* ##### academy_class.html end ##### */
@@ -784,26 +784,29 @@
 
 .academy-teacher .teacher-name b {
     font-size: 24px;
+    height: 20px;
     margin: 4px 12px;
 }
 
 .academy-teacher .teacher-class b {
     font-size: 18px;
-    line-height: 10px;
+    height: 20px;
     color: #666;
 }
 
+.academy-teacher .teacher-info-detail{
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 16px;
+}
+
 .academy-teacher .teacher-birthday {
-    position: absolute;
-    top: 36px;
-    left: 16px;
+    position: relative;
     text-align: left;
 }
 
 .academy-teacher .teacher-tel {
-    position: absolute;
-    top: 36px;
-    left: 84px;
+    position: relative;
     text-align: left;
 }
 
@@ -863,26 +866,29 @@
 
 .academy-student .student-name b {
     font-size: 24px;
+    height: 20px;
     margin: 4px 12px;
 }
 
 .academy-student .student-class b {
     font-size: 18px;
-    line-height: 10px;
+    height: 20px;
     color: #666;
 }
 
+.academy-student .student-info-detail{
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 16px;
+}
+
 .academy-student .student-birthday {
-    position: absolute;
-    top: 36px;
-    left: 16px;
+    position: relative;
     text-align: left;
 }
 
 .academy-student .student-tel {
-    position: absolute;
-    top: 36px;
-    left: 84px;
+    position: relative;
     text-align: left;
 }
 
@@ -1171,7 +1177,7 @@
     font-size: 24px;
 }
 
-.add-lecture-form .add-teacher-name input {
+.add-lecture-form .add-teacher-name select {
     position: relative;
     width: 150px;
     height: 36px;
@@ -1181,7 +1187,7 @@
     border: 1px solid #333;
     border-radius: 6px;
     color: #333;
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
 }
 
@@ -1202,11 +1208,31 @@
     align-items: center;
 }
 
-.check-lecture-week .check-day-button>button {
+.check-lecture-week .check-day-button>input {
     width: 32px;
     height: 32px;
     border: 1px solid #444;
     border-radius: 6px;
+}
+
+.check-day-button input[type="checkbox"] + label {
+	display: inline-block;
+	width: 36px;
+	height: 36px;
+    text-align: center;
+    color:#aaa;
+	border: 2px solid #aaa;
+	cursor: pointer;
+}
+
+.check-day-button input[type="checkbox"]:checked + label {
+	color:#444;
+    border-color: #444;
+    background: lightgreen;
+}
+
+.check-day-button input[type="checkbox"] {
+	display: none;
 }
 
 .add-lecture-form .add-lecture-period {
@@ -1251,7 +1277,7 @@
     font-size: 24px;
 }
 
-.add-lecture-form .add-lecture-room input {
+.add-lecture-form .add-lecture-room select {
     position: relative;
     width: 120px;
     height: 36px;
@@ -1261,16 +1287,18 @@
     border: 1px solid #333;
     border-radius: 6px;
     color: #333;
-    font-size: 24px;
+    font-size: 20px;
     text-align: center;
 }
 
 .add-lecture-form .add-lecture-count {
     position: absolute;
     padding: 6px 10px;
-    top: 437px;
+    width: 140px;
+    top: 434px;
     right: 10px;
     font-size: 24px;
+    text-align: left;
 }
 
 .add-lecture-form .add-lecture-count input {
