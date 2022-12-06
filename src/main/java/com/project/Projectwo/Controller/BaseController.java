@@ -114,8 +114,14 @@ public class BaseController {
 	}
     
 	// by 조성빈, 강의 상세 템플릿 임시 매핑
-	@RequestMapping("/lecture/detail")
+	@RequestMapping("/main/lecture/detail")
 	public String lectureDetail(){
 		return "lecture/lecture_detail";
+	}
+
+	// by 조성빈, 학생 출석 임시 매핑
+	@RequestMapping("/main/lecture/check/student")
+	public String studentCheck(){
+		return "member/student_check";
 	}
 }
