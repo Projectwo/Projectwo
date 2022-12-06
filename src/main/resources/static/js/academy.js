@@ -412,6 +412,77 @@ function addStudent() {
 
 }
 
+// by 안준언, 수업 등록
+document.getElementById('courseAddBtn').addEventListener("click", addCourse)
+
+function addCourse() {
+	if (document.getElementById('courseTitle').value == '') {
+		alert("강의명을 입력하세요.");
+		return;
+	} else if (document.getElementById('courseStartDate').value == '') {
+		alert("강의 시작일을 입력하세요.");
+		return;
+	} else if (document.getElementById('courseEndDate').value == '') {
+		alert("강의 종료일을 입력하세요.");
+		return;
+	} else if (document.getElementById('courseStartTime').value == '') {
+		alert("강의 시작 시간을 입력하세요.");
+		return;
+	} else if (document.getElementById('courseEndTime').value == '') {
+		alert("강의 종료 시간을 입력하세요.");
+		return;
+	} else if((document.getElementById('courseMon').checked == false) &&
+			  (document.getElementById('courseTue').checked == false) &&
+			  (document.getElementById('courseWed').checked == false) &&	
+			  (document.getElementById('courseThu').checked == false) &&	
+			  (document.getElementById('courseFri').checked == false) &&	
+			  (document.getElementById('courseSat').checked == false) &&	
+			  (document.getElementById('courseSun').checked == false)) {
+		alert("강의 요일이 모두 비었습니다. 다시 확인해주세요.")
+		return;
+	}
+
+	let room = document.getElementById("roomSelect");
+	let roomName = room.options[room.selectedIndex].text;
+	let teacher = document.getElementById("teacherSelect");
+	let teacherName = teacher.options[teacher.selectedIndex].text;
+	
+	console.log(roomName);
+	console.log(teacherName);
+	
+	let msg = {
+		title: document.getElementById('courseTitle').value,
+		startDate: document.getElementById('courseStartDate').value,
+		endDate: document.getElementById('courseEndDate').value,
+		startTime: document.getElementById('courseStartTime').value,
+		endTime: document.getElementById('courseEndTime').value,
+		mon: document.getElementById('courseMon').checked,
+		tue: document.getElementById('courseTue').checked,
+		wed: document.getElementById('courseWed').checked,
+		thu: document.getElementById('courseThu').checked,
+		fri: document.getElementById('courseFri').checked,
+		sat: document.getElementById('courseSat').checked,
+		sun: document.getElementById('courseSun').checked,
+		roomName: roomName,
+		teacherName: teacherName
+	}
+	
+	console.log(msg);
+/*
+	commonAjax('/createTeacher', msg, 'post', function() {
+		getTeacherInfo();
+	})
+
+	document.getElementById('teacherName').value = null;
+	document.getElementById('teacherBirth_date').value = null;
+	document.getElementById('teacherTel').value = null;
+	document.getElementById('teacherEmail').value = null;
+	document.getElementById('teacherAddress').value = null;
+
+	document.getElementById('teacherAddBtn').addEventListener("click", closeModal('add'));
+	*/
+}
+
 
 // by 안준언, 강사 등록
 document.getElementById('teacherAddBtn').addEventListener("click", addTeacher)
