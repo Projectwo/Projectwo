@@ -93,16 +93,18 @@
     <div class="teacher-checkinout" sec:authorize="hasRole('TEACHER')">
         <div class="teacher-today">
             Today
-            <div class="teacher-daily-check">
-                <div class="daily-check">
-                    <span>출결</span><br>
-                    <b>10</b>
+            <a th:href="@{/main/lecture/check/teacher}">
+                <div class="teacher-daily-check">
+                    <div class="daily-check">
+                        <span>출결</span><br>
+                        <b>10</b>
+                    </div>
+                    <div class="daily-non-check">
+                        <span>미출결</span><br>
+                        <b>10</b>
+                    </div>
                 </div>
-                <div class="daily-non-check">
-                    <span>미출결</span><br>
-                    <b>10</b>
-                </div>
-            </div>
+            </a>
         </div>
     </div><!-- sec:role teacher 일 때 -->
 
