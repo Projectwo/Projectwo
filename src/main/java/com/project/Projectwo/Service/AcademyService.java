@@ -97,7 +97,7 @@ public class AcademyService {
 	}
 	
 	// by 안준언, 유저(teacher) 수정
-	public void modifyTeacher(String memberId, String name, String birth_date, String tel,
+	public void modifyMember(String memberId, String name, String birth_date, String tel,
 								String email, String address) {
 		Integer _memberId = Integer.parseInt(memberId);
 		

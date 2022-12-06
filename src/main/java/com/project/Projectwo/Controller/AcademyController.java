@@ -149,9 +149,9 @@ public class AcademyController {
     }
     
     // by 안준언, academy 페이지 강사 정보 수정
-    @PostMapping("/modifyTeacher")
+    @PostMapping("/modifyMember")
     @ResponseBody
-    public void modifyTeacher(@RequestParam HashMap<Object, Object> params) {
+    public void modifyMember(@RequestParam HashMap<Object, Object> params) {
 
     	String memberId = (String)params.get("memberId");
     	String name = (String)params.get("name");
@@ -160,7 +160,7 @@ public class AcademyController {
     	String email = (String)params.get("email");
     	String address = (String)params.get("address");
     	
-    	this.academyService.modifyTeacher(memberId, name, birth_date, tel, email, address);
+    	this.academyService.modifyMember(memberId, name, birth_date, tel, email, address);
     }
     
     // by 안준언, academy 페이지 학생 생성

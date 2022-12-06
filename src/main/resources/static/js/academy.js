@@ -93,9 +93,9 @@ function getTeacherInfo() {
 
 function modifyTeacherBtnEvent() {
 	let ex = document.querySelectorAll(".teacher-modify-button");
-	ex.forEach(function(student) {
-		student.addEventListener('click', function() {
-			let parent = student.parentNode;
+	ex.forEach(function(teacher) {
+		teacher.addEventListener('click', function() {
+			let parent = teacher.parentNode;
 			let children = parent.childNodes;
 			console.log(children)
 			let memderId = children[5].textContent;
@@ -211,13 +211,14 @@ function modifyStudentBtnEvent() {
 		student.addEventListener('click', function() {
 			let parent = student.parentNode;
 			let children = parent.childNodes;
-			let tel = children[3].textContent;
+			console.log(children)
+			let memderId = children[5].textContent;
 
 			let msg = {
-				tel: tel
+				memberId: memderId
 			}
 			
-			commonAjax('/getMemberByTel', msg, 'post', function(member){
+			commonAjax('/getMemberById', msg, 'post', function(member){
 				let tag = "";
 				tag += "<div class='add-name'>" +
                 		"이름<br>" +
@@ -238,10 +239,11 @@ function modifyStudentBtnEvent() {
             			"<div class='add-address'>" +
                 		"거주지<br>" +
                 		"<input type='text' value='" + member.address +"' />" +
-            			"</div>" +
+                		"</div>" +
+            			"<div id='modifyStudentId'>" + member.id + "</div>" +
             			"<div class='add-button-section'>" +
                 		"<div class='add-confirm'>" +
-                    	"<button type=\"submit\" class=\"add-confirm-button\">등록</button>" +
+                    	"<button type=\"submit\" class=\"add-confirm-button\" id=\"studentModifyBtn\">등록</button>" +
                 		"</div>" +
                 		"<div class='add-close'>" +
                     	"<button type=\"button\" onclick=\"closeModal('modify')\" class=\"modal-close-button\">취소</button>" +
@@ -249,9 +251,8 @@ function modifyStudentBtnEvent() {
             			"</div>";
             			
             			$("#modifyStudent").empty().append(tag);
-            			
-			})
-
+			}, false)
+			modifyStudentEvent();
 		});
 	})
 }
@@ -297,6 +298,8 @@ function getAllStudent(res) {
 				"</div>" +
 				"<div class='student-address'>" +
 				member.address +
+				"</div>" +
+				"<div class='student-id'>" + member.id +
 				"</div>" +
 				"</div>" +
 				"</div>";
@@ -489,7 +492,7 @@ function modifyTeacherEvent(){
 		
 		console.log(msg);
 	
-		commonAjax('/modifyTeacher', msg, 'post', function() {
+		commonAjax('/modifyMember', msg, 'post', function() {
 			getTeacherInfo();
 		})
 	
@@ -500,5 +503,53 @@ function modifyTeacherEvent(){
 		document.getElementById('teacherModifyAddress').value = null;
 	
 		document.getElementById('teacherModifyBtn').addEventListener("click", closeModal('modify'));
+	}
+}
+
+///////
+function modifyStudentEvent(){
+	
+	document.getElementById('studentModifyBtn').addEventListener("click", modifyStudent)
+	
+	function modifyStudent() {
+		if (document.getElementById('studentModifyName').value == '') {
+			alert("이름을 입력하세요.");
+			return;
+		} else if (document.getElementById('studentModifyBirth_date').value == '') {
+			alert("생년월일을 입력하세요.");
+			return;
+		} else if (document.getElementById('studentModifyTel').value == '') {
+			alert("연락처를 입력하세요.");
+			return;
+		} else if (document.getElementById('studentModifyEmail').value == '') {
+			alert("이메일을 입력하세요.");
+			return;
+		} else if (document.getElementById('studentModifyAddress').value == '') {
+			alert("주소를 입력하세요.");
+			return;
+		}
+	
+		let msg = {
+			memberId: document.getElementById('modifyStudentId').innerText ,
+			name: document.getElementById('studentModifyName').value,
+			birth_date: document.getElementById('studentModifyBirth_date').value,
+			tel: document.getElementById('studentModifyTel').value,
+			email: document.getElementById('studentModifyEmail').value,
+			address: document.getElementById('studentModifyAddress').value
+		}
+		
+		console.log(msg);
+	
+		commonAjax('/modifyMember', msg, 'post', function() {
+			getTeacherInfo();
+		})
+	
+		document.getElementById('studentModifyName').value = null;
+		document.getElementById('studentModifyBirth_date').value = null;
+		document.getElementById('studentModifyTel').value = null;
+		document.getElementById('studentModifyEmail').value = null;
+		document.getElementById('studentModifyAddress').value = null;
+	
+		document.getElementById('studentModifyBtn').addEventListener("click", closeModal('modify'));
 	}
 }
