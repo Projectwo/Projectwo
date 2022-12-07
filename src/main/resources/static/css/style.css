@@ -5,8 +5,9 @@
     text-align: center;
     margin: 0 auto;
     max-width: 320px;
-    max-height: 800px;
+    height: 800px;
     padding-top: 40px;
+    overflow: auto;
 }
 
 /* ##### login.html ##### */
@@ -264,8 +265,7 @@
 
 .main-lecture .lecture-info-schedule li {
     width: 18px;
-    height: 18px;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 18px;
     margin-left: 2px;
     border: 1px solid;
@@ -293,8 +293,6 @@
     width: 14px;
     height: 14px;
     font-size: 10px;
-    border: 1px solid;
-    border-radius: 50%;
 }
 
 .main-lecture .lecture-info-schedule-time {
@@ -337,6 +335,7 @@
 
 .student-daily-check .daily-status {
     margin-right: 10px;
+    font-size: 24px;
     text-align: right;
     line-height: 0;
 }
@@ -442,6 +441,7 @@
     position: relative;
     width: 100%;
     margin-top: 10px;
+
     font-size: 20px;
     text-align: left;
 }
@@ -600,31 +600,32 @@
 .main-lecture.academy-list .lecture-modify-button i {
     content: "\f044";
     font-family: "Font Awesome 5 Free";
-    padding: 0 6px;
-    font-size: 15px;
+    padding: 0 6px 10px 6px;
+    font-size: 16px;
 }
 
 .main-lecture.academy-list .lecture-title {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     width: 100%;
     height: 36px;
 }
 
 .main-lecture.academy-list .lecture-name {
     position: relative;
+    top: 0;
+    padding: 0 8px;
     text-align: left;
     font-size: 20px;
     color: #eee;
 }
 
 .main-lecture.academy-list .lecture-name b {
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .main-lecture.academy-list .lecture-teacher {
     position: relative;
-    height: 34px;
     top: 0;
     font-size: 18px;
     color: #ccc;
@@ -647,28 +648,30 @@
     top: 40px;
     right: 10px;
     color: #eee;
+}
+
+.main-lecture.academy-list .lecture-info-schedule-period span{
     font-size: 14px;
-    font-weight: 300;
+    font-family: 'NOTO SANS THIN';
 }
 
 .main-lecture.academy-list .lecture-info-schedule-time {
     position: absolute;
-    margin-top: 0;
+    margin-top: 4px;
     top: 60px;
     right: 10px;
-    font-size: 14px;
-    font-weight: 300;
+    font-size: 16px;
+    font-family: 'NOTO SANS THIN';
 }
 
 .main-lecture.academy-list .lecture-info-room {
     position: absolute;
     right: 10px;
-    top: 80px;
+    top: 84px;
     text-align: right;
     color: #eee;
-    font-size: 14px;
-    font-weight: 300;
-
+    font-size: 16px;
+    font-family: 'NOTO SANS THIN';
 }
 
 .main-lecture.academy-list .lecture-info-count {
@@ -728,8 +731,8 @@
 .teacher-modify-button i {
     content: "\f044";
     font-family: "Font Awesome 5 Free";
-    padding: 0 6px;
-    font-size: 15px;
+    padding: 0 6px 10px 6px;
+    font-size: 16px;
 }
 
 .academy-teacher .teacher-title {
@@ -824,8 +827,8 @@
 .student-modify-button i {
     content: "\f044";
     font-family: "Font Awesome 5 Free";
-    padding: 0 6px;
-    font-size: 15px;
+    padding: 0 6px 10px 6px;
+    font-size: 16px;
 }
 
 .academy-student .student-title {
@@ -918,13 +921,13 @@
     position: relative;
     width: 48px;
     height: 48px;
-    color: #777;
-    font-size: 46px;
-    border: 1px solid;
-    border-radius: 50%;
     left: 50%;
     top: 10px;
     transform: translate(-50%, -50%);
+}
+
+.footer-middle.academy .academy-function-button>button i{
+    font-size: 48px;
 }
 
 .footer-middle.academy a {
@@ -934,7 +937,7 @@
     text-align: left;
     font-size: 20px;
     line-height: 22px;
-    top: 10px;
+    top: 14px;
     left: -25px;
 }
 
@@ -951,19 +954,22 @@
 .footer-left.academy .search-lecture {
     position: relative;
     width: 100px;
-    height: 24px;
-    padding: 2px 4px;
+    height: 26px;
+    padding: 2px 8px;
+    margin-top: 4px;
     border: 1px solid #aaa;
     border-radius: 6px;
+    font-size: 14px;
 }
 
 .footer-left.academy .category-lecture {
     position: relative;
     width: 100px;
-    height: 24px;
+    height: 26px;
     padding: 2px 4px;
     border: 1px solid #aaa;
     border-radius: 6px;
+    font-size: 14px;
     color: #444;
 }
 
@@ -980,21 +986,24 @@
 .footer-right.academy .modify-password {
     position: relative;
     width: 100px;
-    height: 24px;
+    height: 26px;
     border: 1px solid #777;
     border-radius: 6px;
     color: #777;
     z-index: 0;
+    font-size: 14px;
 }
 
 .footer-right.academy .logout {
     position: relative;
     width: 100px;
-    height: 24px;
+    height: 26px;
+    margin-top: 4px;
     border: 1px solid #777;
     border-radius: 6px;
     color: #777;
     z-index: 0;
+    font-size: 14px;
 }
 
 /* ##### academy_footer.html end ##### */
@@ -1032,13 +1041,13 @@
 
 .student-function>div {
     width: 60px;
-    border:1px solid #666;
+    border: 1px solid #666;
     border-radius: 6px;
-    padding:4px 10px;
+    padding: 4px 10px;
     display: none;
 }
 
-.student-function>div a{
+.student-function>div a {
     font-size: 18px;
     line-height: 0;
     text-align: center;
@@ -1055,9 +1064,7 @@
     font-size: 56px;
 }
 
-.student-function .student-function-button i.checked{
-    
-}
+.student-function .student-function-button i.checked {}
 
 .teacher-function {
     width: 220px;
@@ -1067,19 +1074,25 @@
 }
 
 .teacher-function>div {
-    margin: 0 10px;
     width: 60px;
+    border: 1px solid #666;
+    border-radius: 6px;
+    padding: 4px 10px;
     display: none;
 }
 
+.teacher-function>div a {
+    font-size: 18px;
+    line-height: 0;
+    text-align: center;
+}
+
 .teacher-function .teacher-function-button {
-    border: 1px solid #555;
-    border-radius: 6px;
     padding: 6px 10px;
 }
 
 .teacher-function .teacher-function-button i {
-    content: "\f058";
+    content: "\f055";
     font-family: "Font Awesome 5 Free";
     font-size: 56px;
 }
@@ -1223,6 +1236,7 @@
     width: 36px;
     height: 36px;
     text-align: center;
+    line-height: 30px;
     color: #aaa;
     border: 2px solid #aaa;
     cursor: pointer;
@@ -1371,7 +1385,7 @@
     position: absolute;
     width: 320px;
     height: 620px;
-    top: 110px;
+    top: 95px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -1495,7 +1509,7 @@
     position: absolute;
     width: 320px;
     height: 620px;
-    top: 110px;
+    top: 95px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -1609,6 +1623,14 @@
 .add-student-form #modifyStudentId {
     position: absolute;
     transform: scale(0);
+}
+
+.modify-delete-button{
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    font-size: 14px;
+    text-decoration: underline;
 }
 
 /* ##### add_student.html end ##### */
@@ -1737,9 +1759,11 @@
     padding: 6px 8px;
     text-align: left;
     font-size: 24px;
-    font-weight: 400;
     color: #eee;
+}
 
+.main-lecture.detail .teacher-info.detail b {
+    font-size: 22px;
 }
 
 .main-lecture.detail .teacher-about.detail {
@@ -1750,7 +1774,7 @@
 }
 
 .main-lecture.detail .teacher-about.detail b {
-    font-weight: 400;
+    font-size: 20px;
     margin-left: 10px;
 }
 
@@ -1784,6 +1808,10 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
+}
+
+.check-count-section>div b {
+    font-size: 20px;
 }
 
 .check-count-section>div span {
@@ -1875,14 +1903,14 @@
 .student-period-check .student-period-check-daily {
     width: 60px;
     height: 56px;
-    border: 1px solid #444;
+    border: 1px solid #aaa;
     border-radius: 8px;
     margin: 2px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    line-height: 28px;
+    line-height: 26px;
 }
 
 /* ##### student_check.html end ##### */

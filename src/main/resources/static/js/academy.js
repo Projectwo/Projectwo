@@ -47,6 +47,7 @@ function modifyCourseBtnEvent() {
                 		"과정명<br>" +
                 		"<input type=\"text\" id=\"modifyTitle\" value='" + course.title +"' />" +
             			"</div>" +
+						"<button class='modify-delete-button'>강의 삭제하기</button>" +
             			"<div class=\"add-teacher-name\">강사<br>" +
                 		"<select id=\"modifyTeacherSelect\">" +
                 		"<option> 1 </option>" +
@@ -212,6 +213,7 @@ function modifyTeacherBtnEvent() {
 					"이름<br>" +
 					"<input type='text' value='" + member.name + "' id=\"teacherModifyName\"/>" +
 					"</div>" +
+					"<button class='modify-delete-button'>강사 삭제하기</button>" +
 					"<div class='add-birthday'>" +
 					"생년월일<br>" +
 					"<input type='date' value='" + member.birth_date + "' id=\"teacherModifyBirth_date\"/>" +
@@ -328,6 +330,7 @@ function modifyStudentBtnEvent() {
 					"이름<br>" +
 					"<input type='text' value='" + member.name + "' id='studentModifyName'/>" +
 					"</div>" +
+					"<button class='modify-delete-button'>수강생 삭제하기</button>" +
 					"<div class='add-birthday'>" +
 					"생년월일<br>" +
 					"<input type='date' value='" + member.birth_date + "' id='studentModifyBirth_date'/>" +
