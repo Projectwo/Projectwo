@@ -316,7 +316,7 @@ function modifyStudentBtnEvent() {
 			let parent = student.parentNode;
 			let children = parent.childNodes;
 			console.log(children)
-			let memderId = children[5].textContent;
+			let memderId = children[4].textContent;
 
 			let msg = {
 				memberId: memderId
