@@ -55,13 +55,20 @@ function modifyCourseBtnEvent() {
             			"<div class=\"check-lecture-week\">" +
                 		"강의요일<br>" +
                 		"<div class=\"check-day-button\">" +
-                    	"<input type=\"checkbox\" class=\"day-button mon\" id=\"modifyMon\" " + mon + "/>월" +
-                    	"<input type=\"checkbox\" class=\"day-button tue\" id=\"modifyTue\" " + tue + "/>화" +
-                    	"<input type=\"checkbox\" class=\"day-button wed\" id=\"modifyWed\" " + wed + "/>수" +
-                    	"<input type=\"checkbox\" class=\"day-button thu\" id=\"modifyThu\" " + thu + "/>목" +
-                    	"<input type=\"checkbox\" class=\"day-button fri\" id=\"modifyFri\" " + fri + "/>금" +
-                    	"<input type=\"checkbox\" class=\"day-button sat\" id=\"modifySat\" " + sat + "/>토" +
-                    	"<input type=\"checkbox\" class=\"day-button sun\" id=\"modifySun\" " + sun + "/>일" +
+                    	"<input type=\"checkbox\" class=\"day-button mon\" id=\"modifyMon\" " + mon + "/>" +
+						"<label for='modifyMon'>월</label>" +
+                    	"<input type=\"checkbox\" class=\"day-button tue\" id=\"modifyTue\" " + tue + "/>" +
+						"<label for='modifyTue'>화</label>" +
+                    	"<input type=\"checkbox\" class=\"day-button wed\" id=\"modifyWed\" " + wed + "/>" +
+						"<label for='modifyWed'>수</label>" +
+                    	"<input type=\"checkbox\" class=\"day-button thu\" id=\"modifyThu\" " + thu + "/>" +
+						"<label for='modifyThu'>목</label>" +
+                    	"<input type=\"checkbox\" class=\"day-button fri\" id=\"modifyFri\" " + fri + "/>" +
+						"<label for='modifyFri'>금</label>" +
+                    	"<input type=\"checkbox\" class=\"day-button sat\" id=\"modifySat\" " + sat + "/>" +
+						"<label for='modifySat'>토</label>" +
+                    	"<input type=\"checkbox\" class=\"day-button sun\" id=\"modifySun\" " + sun + "/>" +
+						"<label for='modifySun'>일</label>" +
                 		"</div>" +
             			"</div>" +
             			"<div class=\"add-lecture-period\">" +
@@ -81,7 +88,7 @@ function modifyCourseBtnEvent() {
                 		"</select>" +
             			"</div>" +
             			"<div class=\"add-lecture-count\">" +
-                		"수강인원<br>" +
+                		"수용인원<br>" +
                 		"<div id=\"modifyRoomMaxSeat\">" +
                 		"<input type=\"text\" />" +
                 		"</div>" +
@@ -158,17 +165,17 @@ function getAllCourse(res) {
 				"<li><span>" + course.sun + "</span></li>" + "</ul>" +
 				"<div class='lecture-info-schedule-period'>" +
 				"<span class='period-start'>" +
-				course.startDate + "</span>" + "~" +
+				course.startDate + "</span>" + "&nbsp;~&nbsp;" +
 				"<span class='period-end'>" +
 				course.endDate + "</span>" + "</div>" +
 				"<div class='lecture-info-schedule-time'>" +
-				course.startTime + "~" + course.endTime +
+				course.startTime + "&nbsp;~&nbsp;" + course.endTime +
 				"</div>" +
 				"<div class='lecture-info-count'>" +
 				"수강인원" + "<span>" + currentStudentCount +
-				"</span>" + "/" + course.room.maxSeat +
+				"</span>" + "&nbsp;/&nbsp;" + course.room.maxSeat +
 				"</div>" + "<div class='lecture-info-room'>" +
-				course.room.name + "</div>" +
+				course.room.name + "호실" + "</div>" +
 				"<div id='courseId'>" + course.id + "</div>" +
 				"</div>" + "</div>";
 		});
@@ -221,7 +228,7 @@ function modifyTeacherBtnEvent() {
 					"거주지<br>" +
 					"<input type='text' value='" + member.address + "' id=\"teacherModifyAddress\"/>" +
 					"</div>" +
-					"<div id='modifyTeacherId'>" + member.id + "</div>" +
+					"<div id=\"modifyTeacherId\">" + member.id + "</div>" +
 					"<div class='add-button-section'>" +
 					"<div class='add-confirm'>" +
 					"<button type=\"button\" class=\"add-confirm-button\" id=\"teacherModifyBtn\">등록</button>" +
@@ -271,11 +278,13 @@ function getAllTeacher(res) {
 				"<b>" + classListOfTeacher + " Class" + "</b>" +
 				"</div>" +
 				"</div>" +
+				"<div class='teacher-info-detail'>" +
 				"<div class='teacher-birthday'>" +
-				member.birth_date + "<span>" + "/" + "</span>" +
+				member.birth_date + "<span>" + "&nbsp;/&nbsp;" + "</span>" +
 				"</div>" +
 				"<div class='teacher-tel'>" +
 				member.tel +
+				"</div>" +
 				"</div>" +
 				"<div class='teacher-address'>" +
 				member.address +
@@ -385,11 +394,13 @@ function getAllStudent(res) {
 				"<b>" + classListOfStudent + " Class" + "</b>" +
 				"</div>" +
 				"</div>" +
+				"<div class='student-info-detail'>" +
 				"<div class='student-birthday'>" +
-				member.birth_date + "<span>" + "/" + "</span>" +
+				member.birth_date + "<span>" + "&nbsp;/&nbsp;" + "</span>" +
 				"</div>" +
 				"<div class='student-tel'>" +
 				member.tel +
+				"</div>" +
 				"</div>" +
 				"<div class='student-address'>" +
 				member.address +

@@ -1,25 +1,24 @@
 <html layout:decorate="~{layout/layout}">
 
 <footer th:fragment="mainFooterFragment">
-<<<<<<< HEAD
 	<div class="footer-wrap">
 		<button onclick="location.href='/member/main'" class="home-button">홈</button>
 		<div class="student-function" sec:authorize="hasRole('STUDENT')">
 			<div class="student-check-beacon">
-				<a href="javascript:;" id="Beacon_btn" th:text="|Beacon|">공지 작성</a>
+				<a href="javascript:;" id="Beacon_btn" th:text="|Beacon|"></a>
 			</div>
 			<button onclick="memberFunctionButton('student-function')" class="student-function-button">기능</button>
 			<div class="student-check-qrcode">
-				<a href="javascript:;" id="QR_btn" th:text="|QR|">QR 생성</a>
+				<a href="javascript:;" id="QR_btn" th:text="|QR|"></a>
 			</div>
 		</div><!-- sec:role student 일 때 //// 임시매핑-->
 		<div class="teacher-function" sec:authorize="hasRole('TEACHER')">
 			<div class="teacher-create-notice">
-				<a href="javascript:;" id="Beacon_btn" th:text="|공지 작성|">공지 작성</a>
+				<a href="javascript:;" id="Beacon_btn" th:text="|공지 작성|"></a>
 			</div>
 			<button onclick="memberFunctionButton('teacher-function')" class="teacher-function-button">기능</button>
 			<div class="teacher-create-qrcode">
-				<a href="javascript:;" id="QR_btn" th:text="|QR 생성|">QR 생성</a>
+				<a href="javascript:;" id="QR_btn" th:text="|QR 생성|"></a>
 			</div>
 		</div><!-- sec:role teacher 일 때 -->
 		<div th:replace="fragments/nav_button :: navFragment"></div>
@@ -43,8 +42,6 @@
 	</script>
 	<!-- 자바 스크립트 및 j쿼리 파일 -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-
-
 
 	<!-- 내부 자바스크립트 J쿼리 이벤트 지정 -->
 	<script>
@@ -94,6 +91,7 @@
 				alert('Mobile > JS [Close] [I] [DATA] : ' + data);
 			}
 		}
+
 		//<!-- JS > 모바일 디바이스 -->
 		function send_Open() {
 			//<!-- 안드로이드로 보낸다 -->
@@ -135,18 +133,8 @@
 				//<!-- 자바스크립트 함수를 호출해서 모바일 디바이스 별 구분 처리 실시 -->
 				send_Close();
 			});
-
-
 		});
 	</script>
-
-=======
-    <div class="footer-wrap">
-        <button class="home-button">홈</button>
-        <button class="checkin-out">출석</button>
-        <div th:replace="fragments/nav_button :: navFragment"></div>
-    </div>
->>>>>>> juneon
 </footer>
 
 </html>

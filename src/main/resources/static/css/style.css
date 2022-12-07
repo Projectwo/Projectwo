@@ -741,6 +741,10 @@
     margin-left: 8px;
 }
 
+.main-lecture.academy-list #courseId{
+    display: none;
+}
+
 /* ##### academy_class.html end ##### */
 
 /* ##### academy_teacher.html ##### */
@@ -823,6 +827,13 @@
     left: 16px;
 }
 
+.academy-teacher .teacher-id{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform:scale(0);
+}
+
 /* ##### academy_teacher.html end ##### */
 
 /* ##### academy_student.html ##### */
@@ -903,6 +914,10 @@
     text-align: left;
     top: 58px;
     left: 16px;
+}
+
+.academy-student .student-id{
+    display: none;
 }
 
 /* ##### academy_student.html end ##### */
@@ -1301,23 +1316,22 @@
     padding: 6px 10px;
     width: 140px;
     top: 434px;
-    right: 10px;
+    right: 30px;
     font-size: 24px;
     text-align: left;
 }
 
+.add-lecture-count #roomMaxSeat{
+    margin-top: 6px;
+    margin-left: 30px;
+}
+
 .add-lecture-form .add-lecture-count input {
-    position: relative;
-    width: 120px;
-    height: 36px;
-    margin: 4px 2px 0 20px;
-    padding: 4px;
-    background: none;
-    border: 1px solid #333;
-    border-radius: 6px;
-    color: #333;
-    font-size: 24px;
-    text-align: center;
+    display: none;
+}
+
+.add-lecture-form #modifyCourseId{
+    display: none;
 }
 
 .add-button-section {
@@ -1485,6 +1499,10 @@
     text-align: center;
 }
 
+.add-teacher-form #modifyTeacherId{
+    transform: scale(0);
+}
+
 /* ##### add_teacher.html end ##### */
 
 /* ##### add_student.html ##### */
@@ -1600,6 +1618,10 @@
     color: #333;
     font-size: 24px;
     text-align: center;
+}
+
+.add-student-form #modifyStudentId{
+    display: none;
 }
 
 /* ##### add_student.html end ##### */
