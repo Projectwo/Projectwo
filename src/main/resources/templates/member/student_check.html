@@ -1,0 +1,165 @@
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content" sec:authorize="hasAnyRole('STUDENT', 'TEACHER')">
+    <div class="main-profile">
+        <div class="main-profile-text">
+            그린 컴퓨터 아카데미<br><!-- b에 이름, span에 권한 -->
+            <b>홍길동</b>
+            <span sec:authorize="hasRole('STUDENT')">수강생</span>
+            <span sec:authorize="hasRole('TEACHER')">강사</span>
+            님
+        </div>
+    </div>
+    <div class="notice-new-alarm">
+        <b>읽지 않은 공지 1건</b>
+    </div>
+    <a th:href="@{/main/lecture/detail}">
+        <div class="main-lecture check">
+            <div class="lecture-name">
+                <!-- b에 강의명, span에 학원명 -->
+                <b>Java 기초 과정</b> @<span>426호실</span>
+            </div>
+        </div>
+    </a>
+    <div class="check-count-section">
+        <div class="check-count-all-day">
+            <b>총 일수</b>
+            <span>120</span>
+        </div>
+        <div class="check-count-in-day">
+            <b>출석일수</b>
+            <span>100</span>
+        </div>
+        <div class="check-count-in-rate">
+            <b>참여율</b>
+            <span>87.4%</span>
+        </div>
+    </div>
+    <div class="check-inout-today student">
+        Day <span>12/01</span>
+        <div class="student-daily-check detail">
+            <div class="daily-checkin-time">
+                <span>입실</span><br>
+                <b>10:02</b>
+            </div>
+            <div class="daily-checkout-time">
+                <span>퇴실</span><br>
+                <b>17:52</b>
+            </div>
+        </div>
+    </div>
+    <div class="check-inout-period student">
+        Period
+        <div class="student-period-check">
+            <a th:href="@{/main/lecture/check/student}">
+                <div class="student-period-check-daily">
+                    <span>12/01</span>
+                    <b>출석</b>
+                </div>
+            </a>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+            <div class="student-period-check-daily">
+                <span>12/01</span>
+                <b>출석</b>
+            </div>
+        </div>
+    </div>
+    <footer th:replace="fragments/main_footer :: mainFooterFragment"></footer>
+</div>
+
+</html>

@@ -24,22 +24,10 @@ import com.project.Projectwo.Repository.MemberRepository;
 import com.project.Projectwo.Repository.RoomRepository;
 import com.project.Projectwo.Service.AcademyService;
 
-import com.project.Projectwo.Entity.Course;
-import com.project.Projectwo.Entity.Member;
-import com.project.Projectwo.Entity.Student;
-import com.project.Projectwo.Entity.Teacher;
-import com.project.Projectwo.Repository.CourseRepository;
-import com.project.Projectwo.Repository.MemberRepository;
-import com.project.Projectwo.Service.AcademyService;
+import lombok.extern.slf4j.Slf4j;
 
-import com.project.Projectwo.Entity.Course;
-import com.project.Projectwo.Entity.Member;
-import com.project.Projectwo.Entity.Student;
-import com.project.Projectwo.Entity.Teacher;
-import com.project.Projectwo.Repository.CourseRepository;
-import com.project.Projectwo.Repository.MemberRepository;
-import com.project.Projectwo.Service.AcademyService;
 
+@Slf4j
 @SpringBootTest
 class ProjectwoApplicationTests {
 	
@@ -61,53 +49,6 @@ class ProjectwoApplicationTests {
 //	// 계정 등록
 //	@Test
 //	void createMember() {
-//		Member member1 = new Member();
-//		member1.setIdentity("aaa");
-//		member1.setPassword(passwordEncoder.encode("aaa"));
-//		member1.setName("aaa");
-//		member1.setEmail("aaa@aaa");
-//		member1.setBirth_date(LocalDate.of(1991, 01, 01));
-//		member1.setAddress("aaa");
-//		member1.setTel("aaa");
-//		member1.setRole("student");
-//		
-//		this.memberRepository.save(member1);
-//		
-//		Member member2 = new Member();
-//		member2.setIdentity("bbb");
-//		member2.setPassword(passwordEncoder.encode("bbb"));
-//		member2.setName("bbb");
-//		member2.setEmail("bbb@bbb");
-//		member2.setBirth_date(LocalDate.of(1991, 01, 01));
-//		member2.setAddress("bbb");
-//		member2.setTel("bbb");
-//		member2.setRole("student");
-//		
-//		this.memberRepository.save(member2);
-//		
-//		Member member3 = new Member();
-//		member3.setIdentity("ccc");
-//		member3.setPassword(passwordEncoder.encode("ccc"));
-//		member3.setName("ccc");
-//		member3.setEmail("ccc@ccc");
-//		member3.setBirth_date(LocalDate.of(1991, 01, 01));
-//		member3.setAddress("ccc");
-//		member3.setTel("ccc");
-//		member3.setRole("teacher");
-//		
-//		this.memberRepository.save(member3);
-//		
-//		Member member4 = new Member();
-//		member4.setIdentity("ddd");
-//		member4.setPassword(passwordEncoder.encode("ddd"));
-//		member4.setName("ddd");
-//		member4.setEmail("ddd@ddd");
-//		member4.setBirth_date(LocalDate.of(1991, 01, 01));
-//		member4.setAddress("ddd");
-//		member4.setTel("ddd");
-//		member4.setRole("teacher");
-//		
-//		this.memberRepository.save(member4);
 //		
 //		Member member5 = new Member();
 //		member5.setIdentity("admin");
@@ -125,11 +66,35 @@ class ProjectwoApplicationTests {
 //	// 강의실 생성
 //	@Test
 //	void createRoom() {
-//		Room room = new Room();
-//		room.setName("427호");
-//		room.setMaxSeat(50);
+//		Room room1 = new Room();
+//		room1.setName("101호");
+//		room1.setMaxSeat(10);		
+//		this.roomRepository.save(room1);
 //		
-//		this.roomRepository.save(room);
+//		Room room2 = new Room();
+//		room2.setName("102호");
+//		room2.setMaxSeat(20);
+//		this.roomRepository.save(room2);
+//		
+//		Room room3 = new Room();
+//		room3.setName("103호");
+//		room3.setMaxSeat(30);
+//		this.roomRepository.save(room3);
+//		
+//		Room room4 = new Room();
+//		room4.setName("104호");
+//		room4.setMaxSeat(40);
+//		this.roomRepository.save(room4);
+//		
+//		Room room5 = new Room();
+//		room5.setName("105호");
+//		room5.setMaxSeat(50);
+//		this.roomRepository.save(room5);
+//		
+//		Room room6 = new Room();
+//		room6.setName("106호");
+//		room6.setMaxSeat(60);
+//		this.roomRepository.save(room6);
 //	}
 	
 //	// 강의 개설

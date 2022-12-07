@@ -31,5 +31,5 @@ public class AcademyNotice {
 	private LocalDateTime createDate;
 	
 	private LocalDateTime modifyDate;
-	
+
 }

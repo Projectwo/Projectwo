@@ -1,0 +1,90 @@
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
+    <div class="detail-academy-profile">
+        <span>그린컴퓨터아카데미</span>
+        <div class="detail-academy-info">
+            <b>남구 뭐시기길 123-572</b>
+            <b>051-123-4567</b>
+        </div>
+    </div>
+    <div class="main-lecture detail">
+        <div class="lecture-name">
+            <!-- b에 강의명, span에 학원명 -->
+            <b>Java 기초 과정</b>
+        </div>
+        <div class="lecture-about-section">
+            <div class="lecture-info detail">
+                <ul class="lecture-info-schedule">
+                    <li>월</li>
+                    <li>화</li>
+                    <li>수</li>
+                    <li>목</li>
+                    <li>금</li>
+                    <li>토</li>
+                    <li>일</li>
+                </ul>
+                <ul class="lecture-info-schedule-checked">
+                    <li><span><i class="far fa-check-circle"></i></span></li>
+                    <li><span><i class="far fa-check-circle"></i></span></li>
+                    <li><span><i class="far fa-check-circle"></i></span></li>
+                    <li><span><i class="far fa-check-circle"></i></span></li>
+                    <li><span><i class="far fa-check-circle"></i></span></li>
+                    <li><span><i class="far fa-check-circle"></i></span></li>
+                    <li><span><i class="far fa-check-circle"></i></span></li>
+                </ul>
+                <div class="lecture-info-count">
+                    수강인원 <span>27</span> / <span>30</span>
+                </div>
+            </div>
+            <div class="lecture-info-about detail">
+                <div class="lecture-about-period">
+                    22.07.11 ~ 22.12.22
+                </div>
+                <div class="lecture-about-time">
+                    AM 07:00 ~ PM 09:00
+                </div>
+                <div class="lecture-about-room">
+                    혜도빌딩 426호실
+                </div>
+            </div>
+        </div>
+        <div class="lecture-about-desc">
+            <span>매주 화요일, 목요일은 프로젝트 시간입니다.</span>
+        </div>
+        <div class="teacher-info detail">
+            <b>담당강사</b><br>
+            <div class="teacher-about detail">
+                <b>Steve</b>
+                <b>010-1234-5678</b>
+            </div>
+        </div>
+    </div>
+    <div class="main-notice detail">
+        Notice
+        <div class="notice-category">
+            <button onclick="selectCategory('academy')" class="academy category-academy active">Academy</button> &nbsp;&nbsp;/&nbsp;&nbsp;
+            <button onclick="selectCategory('lecture')" class="lecture category-lecture">Lecture</button>
+        </div>
+        <div th:replace="fragments/notice_fragment/academy_notice :: academyNoticeFragment"></div>
+        <div th:replace="fragments/notice_fragment/lecture_notice :: lectureNoticeFragment"></div>
+    </div>
+    <footer th:replace="fragments/main_footer :: mainFooterFragment"></footer>
+    <script>
+        function selectCategory(e) {
+            $(".main-notice").ready(function () {
+                const clickedCategory = e;
+                const selectedCategory = document.getElementsByClassName(e);
+                const selectedNotice = document.getElementById(e);
+
+                $('button').removeClass('active');
+                $(selectedCategory).addClass('active');
+
+                $('.notice-fragment').removeClass('active');
+                $(selectedNotice).addClass('active');
+            })
+        } // by 조성빈, main과 중복, 차후에 main.js로 합칠 예정
+    </script>
+</div>
+
+</html>

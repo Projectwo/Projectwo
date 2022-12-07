@@ -15,22 +15,28 @@
                 </div>
                 <div class="footer-middle academy">
                     <div class="academy-function-button lecture-button active">
-                        <button id="addCourseBtn" onclick="clickAddButton('lecture')">+</button>
+                        <button id="addCourseBtn" onclick="clickAddButton('lecture')">
+                            <i class="fas fa-plus-circle"></i>
+                        </button>
                         <a href="#">강의 추가</a>
-                        <div th:replace="fragments/add_lecture :: addLectureFragment"></div>
-                        <div th:replace="fragments/modify_lecture :: modifyLectureFragment"></div>
+                        <div th:replace="fragments/academy_fragment/add_lecture :: addLectureFragment"></div>
+                        <div th:replace="fragments/academy_fragment/modify_lecture :: modifyLectureFragment"></div>
                     </div>
                     <div class="academy-function-button teacher-button">
-                        <button onclick="clickAddButton('teacher')">+</button>
+                        <button onclick="clickAddButton('teacher')">
+                            <i class="fas fa-plus-circle"></i>
+                        </button>
                         <a href="#">강사 추가</a>
-                        <div th:replace="fragments/add_teacher :: addTeacherFragment"></div>
-                        <div th:replace="fragments/modify_teacher :: modifyTeacherFragment"></div>
+                        <div th:replace="fragments/academy_fragment/add_teacher :: addTeacherFragment"></div>
+                        <div th:replace="fragments/academy_fragment/modify_teacher :: modifyTeacherFragment"></div>
                     </div>
                     <div class="academy-function-button student-button">
-                        <button onclick="clickAddButton('student')">+</button>
+                        <button onclick="clickAddButton('student')">
+                            <i class="fas fa-plus-circle"></i>
+                        </button>
                         <a href="#">수강생 추가</a>
-                        <div th:replace="fragments/add_student :: addStudentFragment"></div>
-                        <div th:replace="fragments/modify_student :: modifyStudentFragment"></div>
+                        <div th:replace="fragments/academy_fragment/add_student :: addStudentFragment"></div>
+                        <div th:replace="fragments/academy_fragment/modify_student :: modifyStudentFragment"></div>
                     </div>
                 </div>
                 <div class="footer-right academy">
@@ -44,6 +50,7 @@
         function clickAddButton(e) {
             const clickedAddButton = e;
             const currentAddButton = document.getElementsByClassName("add-fragment");
+
             if ($(currentAddButton).parent().hasClass('active')) {
                 if ($(currentAddButton).hasClass(e)) {
                     $(currentAddButton).css({
@@ -56,7 +63,7 @@
         function clickModifyButton(e) {
             const clickedModifyButton = e;
             const currentModifyButton = document.getElementsByClassName("modify-fragment");
-			
+
             if ($(currentModifyButton).parent().hasClass('active')) {
                 if ($(currentModifyButton).hasClass(e)) {
                     $(currentModifyButton).css({
