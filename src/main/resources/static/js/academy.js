@@ -228,7 +228,7 @@ function modifyTeacherBtnEvent() {
 					"거주지<br>" +
 					"<input type='text' value='" + member.address + "' id=\"teacherModifyAddress\"/>" +
 					"</div>" +
-					"<div id=\"modifyTeacherId\">" + member.id + "</div>" +
+					"<div id='modifyTeacherId'>" + member.id + "</div>" +
 					"<div class='add-button-section'>" +
 					"<div class='add-confirm'>" +
 					"<button type=\"button\" class=\"add-confirm-button\" id=\"teacherModifyBtn\">등록</button>" +

@@ -407,8 +407,8 @@
     height: 194px;
 }
 
-.student-checkinout a{
-    color:#444;
+.student-checkinout a {
+    color: #444;
 }
 
 .student-checkinout .student-today {
@@ -466,11 +466,11 @@
 
 .teacher-checkinout {
     height: 194px;
-    color:#000;
+    color: #000;
 }
 
-.teacher-checkinout a{
-    color:#444;
+.teacher-checkinout a {
+    color: #444;
 }
 
 .teacher-checkinout .teacher-today {
@@ -549,12 +549,12 @@
     color: #777;
 }
 
-.main-notice .notice-category button{
-    color:#888;
+.main-notice .notice-category button {
+    color: #888;
 }
 
 .main-notice .notice-category button.active {
-    color:#444;
+    color: #444;
     font-weight: 600;
 }
 
@@ -571,11 +571,11 @@
     overflow: auto;
 }
 
-.main-notice .notice-fragment{
+.main-notice .notice-fragment {
     display: none;
 }
 
-.main-notice .notice-fragment.active{
+.main-notice .notice-fragment.active {
     display: block;
 }
 
@@ -741,7 +741,7 @@
     margin-left: 8px;
 }
 
-.main-lecture.academy-list #courseId{
+.main-lecture.academy-list #courseId {
     display: none;
 }
 
@@ -804,7 +804,7 @@
     color: #666;
 }
 
-.academy-teacher .teacher-info-detail{
+.academy-teacher .teacher-info-detail {
     display: flex;
     justify-content: flex-start;
     margin-left: 16px;
@@ -827,11 +827,11 @@
     left: 16px;
 }
 
-.academy-teacher .teacher-id{
+.academy-teacher .teacher-id {
     position: absolute;
     bottom: 0;
     right: 0;
-    transform:scale(0);
+    transform: scale(0);
 }
 
 /* ##### academy_teacher.html end ##### */
@@ -893,7 +893,7 @@
     color: #666;
 }
 
-.academy-student .student-info-detail{
+.academy-student .student-info-detail {
     display: flex;
     justify-content: flex-start;
     margin-left: 16px;
@@ -916,7 +916,7 @@
     left: 16px;
 }
 
-.academy-student .student-id{
+.academy-student .student-id {
     display: none;
 }
 
@@ -1026,20 +1026,22 @@
 
 .footer-right.academy .modify-password {
     position: relative;
+    width: 100px;
+    height: 24px;
     border: 1px solid #777;
     border-radius: 6px;
     color: #777;
-    width: 100px;
-    height: 24px;
+    z-index: -1;
 }
 
 .footer-right.academy .logout {
     position: relative;
+    width: 100px;
+    height: 24px;
     border: 1px solid #777;
     border-radius: 6px;
     color: #777;
-    width: 100px;
-    height: 24px;
+    z-index: -1;
 }
 
 /* ##### academy_footer.html end ##### */
@@ -1106,7 +1108,7 @@
     display: none;
 }
 
-.modal-wrap.qrcode .create-qr-layer{
+.modal-wrap.qrcode .create-qr-layer {
     position: absolute;
     width: 320px;
     height: 320px;
@@ -1120,12 +1122,12 @@
     z-index: 5;
 }
 
-.modal-wrap.qrcode .created-qrcode{
+.modal-wrap.qrcode .created-qrcode {
     position: relative;
     width: 280px;
     height: 280px;
     margin: 20px;
-    border:1px solid #eee;
+    border: 1px solid #eee;
     background: #eee;
 }
 
@@ -1153,7 +1155,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(200, 200, 200, 0.7);
-    z-index: 15;
+    z-index: 100;
 }
 
 .add-lecture-form {
@@ -1235,24 +1237,24 @@
     border-radius: 6px;
 }
 
-.check-day-button input[type="checkbox"] + label {
-	display: inline-block;
-	width: 36px;
-	height: 36px;
+.check-day-button input[type="checkbox"]+label {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
     text-align: center;
-    color:#aaa;
-	border: 2px solid #aaa;
-	cursor: pointer;
+    color: #aaa;
+    border: 2px solid #aaa;
+    cursor: pointer;
 }
 
-.check-day-button input[type="checkbox"]:checked + label {
-	color:#444;
+.check-day-button input[type="checkbox"]:checked+label {
+    color: #444;
     border-color: #444;
     background: lightgreen;
 }
 
 .check-day-button input[type="checkbox"] {
-	display: none;
+    display: none;
 }
 
 .add-lecture-form .add-lecture-period {
@@ -1321,7 +1323,7 @@
     text-align: left;
 }
 
-.add-lecture-count #roomMaxSeat{
+.add-lecture-count #roomMaxSeat {
     margin-top: 6px;
     margin-left: 30px;
 }
@@ -1330,7 +1332,7 @@
     display: none;
 }
 
-.add-lecture-form #modifyCourseId{
+.add-lecture-form #modifyCourseId {
     display: none;
 }
 
@@ -1499,7 +1501,8 @@
     text-align: center;
 }
 
-.add-teacher-form #modifyTeacherId{
+.add-teacher-form #modifyTeacherId {
+    position: absolute;
     transform: scale(0);
 }
 
@@ -1511,9 +1514,11 @@
     position: absolute;
     width: 320px;
     height: 620px;
-    left: 50%;
-    top: 48%;
-    transform: translate(-50%, -50%);
+    top: 110px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
     border: 1px solid #eee;
     border-radius: 6px;
     background: #eee;
@@ -1620,8 +1625,9 @@
     text-align: center;
 }
 
-.add-student-form #modifyStudentId{
-    display: none;
+.add-student-form #modifyStudentId {
+    position: absolute;
+    transform: scale(0);
 }
 
 /* ##### add_student.html end ##### */
@@ -1774,11 +1780,11 @@
 
 /* ##### student_check.html ##### */
 
-.main-lecture.check{
+.main-lecture.check {
     height: 40px;
 }
 
-.check-count-section{
+.check-count-section {
     width: 320px;
     height: 130px;
     margin-top: 6px;
@@ -1786,19 +1792,19 @@
     justify-content: space-between;
 }
 
-.check-count-section>div{
+.check-count-section>div {
     width: 100px;
     height: 120px;
-    border:1px solid #666;
+    border: 1px solid #666;
     border-radius: 8px;
-    padding:8px 8px;
+    padding: 8px 8px;
     font-size: 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
-.check-count-section>div span{
+.check-count-section>div span {
     font-size: 28px;
     line-height: 64px;
 }
@@ -1869,7 +1875,7 @@
     text-align: left;
 }
 
-.check-inout-period.student .student-period-check{
+.check-inout-period.student .student-period-check {
     width: 320px;
     height: 300px;
     display: flex;
@@ -1880,14 +1886,14 @@
     overflow: auto;
 }
 
-.student-period-check a{
-    color:#444;
+.student-period-check a {
+    color: #444;
 }
 
-.student-period-check .student-period-check-daily{
+.student-period-check .student-period-check-daily {
     width: 60px;
     height: 56px;
-    border:1px solid #444;
+    border: 1px solid #444;
     border-radius: 8px;
     margin: 2px;
     display: flex;
@@ -1922,8 +1928,8 @@
     position: relative;
     width: 320px;
     height: 190px;
-    margin:0 auto;
-    margin-bottom:10px;
+    margin: 0 auto;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
     background: lightgreen;
@@ -1934,11 +1940,11 @@
     background: #eee;
 }
 
-.teacher-daily-check.detail .daily-checkin-student span{
+.teacher-daily-check.detail .daily-checkin-student span {
     font-size: 20px;
 }
 
-.daily-checkin-student .checkin-box{
+.daily-checkin-student .checkin-box {
     position: relative;
     width: 300px;
     height: 150px;
@@ -1952,14 +1958,14 @@
     overflow: auto;
 }
 
-.daily-checkin-student .checkin-box .checkin-student span{
+.daily-checkin-student .checkin-box .checkin-student span {
     display: inline-block;
     width: 70px;
-    border:1px solid;
+    border: 1px solid;
     border-radius: 8px;
     background: #fff;
-    margin:4px 2px 4px 3px;
-    padding:2px;
+    margin: 4px 2px 4px 3px;
+    padding: 2px;
     font-size: 16px;
 }
 
