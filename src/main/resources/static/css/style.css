@@ -9,7 +9,7 @@
     padding-top: 40px;
 }
 
-/* ##### index.html ##### */
+/* ##### login.html ##### */
 
 .index-logo {
     width: 260px;
@@ -18,110 +18,6 @@
     margin-top: 100px;
     background: #000;
 }
-
-.index-button {
-    margin: 0 auto;
-    margin-top: 70px;
-    width: 300px;
-}
-
-.index-button>button {
-    width: 100%;
-    height: 54px;
-    border: 1px solid;
-    border-radius: 6px;
-
-}
-
-.index-button .login-button {
-    background: #000;
-    color: #fff;
-}
-
-.index-button .signup-button {
-    background: #fff;
-    margin-top: 20px;
-}
-
-.guest-login {
-    margin-top: 40px;
-}
-
-/* ##### index.html end ##### */
-
-/* ##### prev_button.html ##### */
-
-#prev-button {
-    position: relative;
-    width: 32px;
-    height: 32px;
-    border: 1px solid #aaa;
-    border-radius: 6px;
-    float: left;
-    margin: 30px 0;
-}
-
-/* ##### prev_button.html end ##### */
-
-/* ##### signup.html ##### */
-
-.signup-text {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    left: 0;
-    text-align: left;
-}
-
-.signup-form {
-    width: 100%;
-    margin-top: 20px;
-}
-
-.signup-form .field {
-    margin: 12px 0;
-}
-
-.signup-form .field>input {
-    width: 100%;
-    height: 50px;
-    border: 1px solid #aaa;
-    border-radius: 6px;
-    background: #efefef;
-    padding: 4px 8px;
-}
-
-.signup-form .signup-submit {
-    width: 100%;
-    height: 54px;
-    margin: 10px 0;
-    border: 1px solid #000;
-    border-radius: 6px;
-    color: #fff;
-    background: #000;
-}
-
-.other-login {
-    margin-top: 10px;
-    width: 100%;
-    color: #777;
-}
-
-.other-login-button {
-    display: flex;
-    justify-content: center;
-}
-
-.other-login-button>li {
-    margin: 20px 10px;
-    width: 80px;
-    height: 60px;
-    border: 1px solid;
-}
-
-/* ##### signup.html end ##### */
-
-/* ##### login.html ##### */
 
 .login-text {
     position: relative;
@@ -209,10 +105,14 @@
 
 .member-dropdown-button {
     position: relative;
-    width: 32px;
-    height: 32px;
-    font-size: 30px;
+    width: 40px;
     z-index: 10;
+}
+
+.member-dropdown-button i {
+    content: "\f0c9";
+    font-family: "Font Awesome 5 Free";
+    font-size: 36px;
 }
 
 .member-dropdown .member-dropdown-list {
@@ -333,7 +233,7 @@
 }
 
 .main-lecture .lecture-name {
-    padding: 6px 8px;
+    padding: 4px 8px;
     text-align: left;
     font-size: 14px;
     color: #eee;
@@ -432,11 +332,13 @@
 .student-daily-check .daily-date {
     margin-left: 10px;
     font-size: 24px;
+    line-height: 0;
 }
 
 .student-daily-check .daily-status {
     margin-right: 10px;
     text-align: right;
+    line-height: 0;
 }
 
 .student-weekly {
@@ -461,7 +363,12 @@
     border: 1px solid #ccc;
     border-radius: 6px;
     text-align: center;
-    line-height: 27px;
+    line-height: 24px;
+    font-size: 18px;
+}
+
+.student-weekly-check .student-weekly-date span {
+    font-size: 16px;
 }
 
 .teacher-checkinout {
@@ -541,21 +448,23 @@
 
 .main-notice .notice-category {
     position: absolute;
-    top: 8px;
+    top: 7px;
     left: 70px;
     display: flex;
     align-items: flex-end;
-    font-size: 10px;
+    font-size: 12px;
     color: #777;
 }
 
 .main-notice .notice-category button {
     color: #888;
+    font-size: 14px;
+
 }
 
 .main-notice .notice-category button.active {
-    color: #444;
-    font-weight: 600;
+    color: #222;
+    font-family: 'NOTO SANS BOLD';
 }
 
 .main-notice .notice-area {
@@ -584,7 +493,7 @@
     position: relative;
     width: 300px;
     height: 44px;
-    padding:0 6px;
+    padding: 0 6px;
     border: 1px solid #aaa;
     border-radius: 6px;
     margin-bottom: 10px;
@@ -608,6 +517,7 @@
     position: relative;
     width: 100%;
     height: 44px;
+    padding-bottom: 4px;
     font-size: 22px;
     text-align: left;
 }
@@ -685,6 +595,13 @@
     border: 1px solid #aaa;
     border-radius: 50%;
     background: #aaa;
+}
+
+.main-lecture.academy-list .lecture-modify-button i {
+    content: "\f044";
+    font-family: "Font Awesome 5 Free";
+    padding: 0 6px;
+    font-size: 15px;
 }
 
 .main-lecture.academy-list .lecture-title {
@@ -808,6 +725,13 @@
     background: #aaa;
 }
 
+.teacher-modify-button i {
+    content: "\f044";
+    font-family: "Font Awesome 5 Free";
+    padding: 0 6px;
+    font-size: 15px;
+}
+
 .academy-teacher .teacher-title {
     display: flex;
     justify-content: flex-start;
@@ -895,6 +819,13 @@
     border: 1px solid #aaa;
     border-radius: 50%;
     background: #aaa;
+}
+
+.student-modify-button i {
+    content: "\f044";
+    font-family: "Font Awesome 5 Free";
+    padding: 0 6px;
+    font-size: 15px;
 }
 
 .academy-student .student-title {
@@ -1083,7 +1014,13 @@
 
 .footer-wrap .home-button {
     width: 50px;
-    font-size: 24px;
+}
+
+.footer-wrap .home-button i {
+    content: "\f015";
+    font-family: "Font Awesome 5 Free";
+    padding: 0 6px;
+    font-size: 36px;
 }
 
 .student-function {
@@ -1094,16 +1031,32 @@
 }
 
 .student-function>div {
-    margin: 0 10px;
     width: 60px;
+    border:1px solid #666;
+    border-radius: 6px;
+    padding:4px 10px;
     display: none;
 }
 
+.student-function>div a{
+    font-size: 18px;
+    line-height: 0;
+    text-align: center;
+}
+
 .student-function .student-function-button {
-    border: 1px solid #555;
     border-radius: 6px;
     padding: 6px 10px;
-    font-size: 24px;
+}
+
+.student-function .student-function-button i {
+    content: "\f058";
+    font-family: "Font Awesome 5 Free";
+    font-size: 56px;
+}
+
+.student-function .student-function-button i.checked{
+    
 }
 
 .teacher-function {
@@ -1123,7 +1076,12 @@
     border: 1px solid #555;
     border-radius: 6px;
     padding: 6px 10px;
-    font-size: 24px;
+}
+
+.teacher-function .teacher-function-button i {
+    content: "\f058";
+    font-family: "Font Awesome 5 Free";
+    font-size: 56px;
 }
 
 .teacher-create-qrcode .modal-wrap.qrcode {

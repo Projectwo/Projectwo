@@ -2,12 +2,17 @@
 
 <footer th:fragment="mainFooterFragment">
 	<div class="footer-wrap">
-		<button onclick="location.href='/member/main'" class="home-button">홈</button>
+		<button onclick="location.href='/member/main'" class="home-button">
+			<i class="fas fa-home"></i>
+		</button>
 		<div class="student-function" sec:authorize="hasRole('STUDENT')">
 			<div class="student-check-beacon">
-				<a href="javascript:;" id="Beacon_btn" th:text="|Beacon|"></a>
+				<a href="javascript:;" id="Beacon_btn" th:text="|비콘|"></a>
 			</div>
-			<button onclick="memberFunctionButton('student-function')" class="student-function-button">기능</button>
+			<button onclick="memberFunctionButton('student-function')" class="student-function-button">
+				<i class="far fa-check-circle checked"></i>
+				<!-- 출석 여부 확인 후 checked로 색상 변경 -->
+			</button>
 			<div class="student-check-qrcode">
 				<a href="javascript:;" id="QR_btn" th:text="|QR|"></a>
 			</div>
@@ -16,7 +21,9 @@
 			<div class="teacher-create-notice">
 				<a href="javascript:;" id="Beacon_btn" th:text="|공지 작성|"></a>
 			</div>
-			<button onclick="memberFunctionButton('teacher-function')" class="teacher-function-button">기능</button>
+			<button onclick="memberFunctionButton('teacher-function')" class="teacher-function-button">
+				<i class="far fa-check-circle"></i>
+			</button>
 			<div class="teacher-create-qrcode">
 				<a href="javascript:;" id="QR_btn" th:text="|QR 생성|"></a>
 			</div>

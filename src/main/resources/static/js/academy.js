@@ -144,7 +144,7 @@ function getAllCourse(res) {
 			tag += "<div class='main-lecture academy-list'>" +
 				"<div class='lecture-info'>" +
 				"<button onclick=\"clickModifyButton('lecture')\" class=\"lecture-modify-button\">" +
-				"수정" +
+				"<i class='far fa-edit'></i>" +
 				"</button>" +
 				"<div class='lecture-title'>" +
 				"<div class='lecture-name'>" +
@@ -268,7 +268,7 @@ function getAllTeacher(res) {
 			tag += "<div class='academy-teacher'>" +
 				"<div class='teacher-info'>" +
 				"<button onclick=\"clickModifyButton('teacher')\" class=\"teacher-modify-button\">" +
-				"수정" +
+				"<i class='far fa-edit'></i>" +
 				"</button>" +
 				"<div class='teacher-title'>" +
 				"<div class='teacher-name'>" +
@@ -384,7 +384,7 @@ function getAllStudent(res) {
 			tag += "<div class='academy-student'>" +
 				"<div class='student-info'>" +
 				"<button onclick=\"clickModifyButton('student')\" class=\"student-modify-button\">" +
-				"수정" +
+				"<i class='far fa-edit'></i>" +
 				"</button>" +
 				"<div class='student-title'>" +
 				"<div class='student-name'>" +
