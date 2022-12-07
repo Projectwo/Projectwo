@@ -3,24 +3,54 @@
 <div th:fragment="academyNoticeFragment" id="academy" class="notice-fragment active">
     <div class="notice-area">
         <div class="notice-recent">
-            학원 공지 1
+            <!-- <= 여기에 th:each -->
+            <!-- <button th:noticeId="${academy_notice.id}" th:onclick="noticeDetail(this.getAttribute('noticeId'))" th:text="${academy_notice.title}"></button> -->
+            <!-- 위의 느낌으로 제목 버튼 만들면 될듯 -->
+            <button class="notice-function-button">학원 공지</button>
+            <div class="notice-content academy">
+                내용
+                <!-- th:text="${academy_notice.content}" -->
+            </div>
         </div>
         <div class="notice-recent">
-            학원 공지 1
+            <!-- <= 여기에 th:each -->
+            <!-- <button th:noticeId="${academy_notice.id}" th:onclick="noticeDetail(this.getAttribute('noticeId'))" th:text="${academy_notice.title}"></button> -->
+            <!-- 위의 느낌으로 제목 버튼 만들면 될듯 -->
+            <button class="notice-function-button">학원 공지 2</button>
+            <div class="notice-content academy">
+                내용 2
+                <!-- th:text="${academy_notice.content}" -->
+            </div>
         </div>
         <div class="notice-recent">
-            학원 공지 1
-        </div>
-        <div class="notice-recent">
-            학원 공지 1
-        </div>
-        <div class="notice-recent">
-            학원 공지 1
-        </div>
-        <div class="notice-recent">
-            학원 공지 
+            <!-- <= 여기에 th:each -->
+            <!-- <button th:noticeId="${academy_notice.id}" th:onclick="noticeDetail(this.getAttribute('noticeId'))" th:text="${academy_notice.title}"></button> -->
+            <!-- 위의 느낌으로 제목 버튼 만들면 될듯 -->
+            <button class="notice-function-button">학원 공지 2</button>
+            <div class="notice-content academy">
+                내용 2
+                <!-- th:text="${academy_notice.content}" -->
+            </div>
         </div>
     </div>
+    <script>
+        window.onload = function () {
+            noticeDetail()
+        }
+
+        function noticeDetail() {
+            // 데이터 매핑 완료한 후에 noticeDetail(noticeId)
+            $(".notice-function-button").off('click', ".notice-function-button").on('click', function () {
+                const target = this;
+
+                if (!$(this).parent().hasClass('active')) {
+                    $(this).parent().addClass('active')
+                } else {
+                    $(this).parent().removeClass('active')
+                }
+            })
+        }
+    </script>
 </div>
 
 </html>

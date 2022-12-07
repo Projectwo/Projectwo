@@ -559,6 +559,7 @@
 }
 
 .main-notice .notice-area {
+    position: relative;
     width: 100%;
     height: 226px;
     margin-top: 6px;
@@ -580,14 +581,35 @@
 }
 
 .notice-area .notice-recent {
+    position: relative;
     width: 300px;
     height: 44px;
-    line-height: 44px;
+    padding:0 6px;
     border: 1px solid #aaa;
     border-radius: 6px;
     margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.notice-area .notice-recent.active {
+    height: 200px;
+}
+
+.notice-recent .notice-content {
+    position: relative;
+    width: 100%;
+    height: 150px;
+    padding: 4px 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+}
+
+.notice-area .notice-recent button {
+    position: relative;
+    width: 100%;
+    height: 44px;
     font-size: 22px;
-    padding-left: 10px;
+    text-align: left;
 }
 
 .notice-area .notice-recent:first-child {
@@ -1031,7 +1053,7 @@
     border: 1px solid #777;
     border-radius: 6px;
     color: #777;
-    z-index: -1;
+    z-index: 0;
 }
 
 .footer-right.academy .logout {
@@ -1041,7 +1063,7 @@
     border: 1px solid #777;
     border-radius: 6px;
     color: #777;
-    z-index: -1;
+    z-index: 0;
 }
 
 /* ##### academy_footer.html end ##### */
@@ -1144,6 +1166,7 @@
     bottom: 0;
     width: 390px;
     height: 844px;
+    z-index: 50;
 }
 
 .modal-wrap {
@@ -1643,6 +1666,7 @@
     bottom: 0;
     width: 390px;
     height: 844px;
+    z-index: 50;
 }
 
 /* ##### modify_fragment end ##### */
@@ -1971,3 +1995,8 @@
 
 
 /* ##### teacher_check.html end ##### */
+
+/* ##### academy_notice_form.html ##### */
+
+
+/* ##### academy_notice_form.html end ##### */
