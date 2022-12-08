@@ -133,27 +133,7 @@
             })
         } // by 조성빈, 선택한 notice 출력하는 기능
 
-        function clickFormButton(e) {
-            const clickedFormButton = e.className;
-            let arr = clickedFormButton.split(' ');
-            const selectedForm = $(".form-fragment." + arr[1]);
-            const formStatus = $(selectedForm).css('display');
-
-            if(formStatus == 'none'){
-                $(selectedForm).css('display', 'block');
-            }
-        } // by 조성빈, 각 버튼 클릭 시 영역 오픈 기능
-
-        function closeNoticeModal(e) {
-            const clickedFormButton = e.className;
-            let arr = clickedFormButton.split(' ');
-            const selectedForm = $(".form-fragment." + arr[1]);
-            const formStatus = $(selectedForm).css('display');
-
-            if(formStatus == 'block'){
-                $(selectedForm).css('display', 'none');
-            }
-        } // by 조성빈, 각 버튼 클릭 시 영역 닫기 기능
+        
     </script>
 </div>
 
