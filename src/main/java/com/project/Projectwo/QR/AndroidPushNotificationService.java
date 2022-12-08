@@ -33,18 +33,5 @@ public class AndroidPushNotificationService {
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
 	}
 }
