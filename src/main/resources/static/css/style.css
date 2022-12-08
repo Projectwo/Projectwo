@@ -501,16 +501,39 @@
 }
 
 .notice-area .notice-recent.active {
-    height: 200px;
+    height: 210px;
+}
+
+.notice-area .notice-recent .notice-function-modify{
+    position:absolute;
+    width: 40px;
+    height: 36px;
+    top: 0;
+    right: 0;
+    text-align: center;
+    display: none;
+}
+
+.notice-area .notice-recent.active .notice-function-modify{
+    display: block;
+}
+
+.notice-recent .notice-function-modify i{
+    content: "\f044";
+    font-family: "Font Awesome 5 Free";
+    padding-top: 10px;
+    font-size: 20px;
+    
 }
 
 .notice-recent .notice-content {
     position: relative;
     width: 100%;
-    height: 150px;
+    height: 158px;
     padding: 4px 6px;
     border: 1px solid #ccc;
     border-radius: 6px;
+    overflow: auto;
 }
 
 .notice-area .notice-recent button {
@@ -1984,5 +2007,92 @@
 
 /* ##### academy_notice_form.html ##### */
 
+.form-fragment {
+    position: fixed;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 390px;
+    height: 844px;
+    z-index: 50;
+}
+
+.notice-form{
+    position: absolute;
+    width: 320px;
+    height: 470px;
+    top: 270px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    background: #eee;
+    text-align: left;
+}
+
+.notice-title-area{
+    position: relative;
+    height: 80px;
+    padding:10px 0 10px 10px;
+    font-size: 24px;
+}
+
+.notice-title-area input{
+    position: relative;
+    width: 280px;
+    height: 40px;
+    border:1px solid #444;
+    border-radius: 6px;
+    margin:4px 0 0 10px;
+    padding: 2px 4px;
+    font-size: 20px;
+}
+
+.notice-content-area{
+    position: relative;
+    height: 320px;
+    padding: 10px 0 10px 10px;
+    font-size: 24px;
+}
+
+.notice-content-area textarea{
+    position: relative;
+    width: 280px;
+    height: 240px;
+    border:1px solid #444;
+    border-radius: 6px;
+    margin:4px 0 0 10px;
+    padding: 2px 4px;
+    font-size: 18px;
+    resize:none;
+}
+
+.notice-button-section{
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.notice-button-section .add-confirm.notice .notice-confirm-button{
+    border: 1px solid #444;
+    border-radius: 6px;
+    width: 100px;
+    font-size: 20px;
+    color: #333;
+    text-align: center;
+    padding-bottom:0;
+}
+
+.notice-button-section .add-close.notice button{
+    font-size: 20px;
+    text-align: center;
+    padding:0;
+
+}
 
 /* ##### academy_notice_form.html end ##### */
