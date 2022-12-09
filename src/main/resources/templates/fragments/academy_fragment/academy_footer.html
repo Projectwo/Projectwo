@@ -15,26 +15,32 @@
                 </div>
                 <div class="footer-middle academy">
                     <div class="academy-function-button lecture-button active">
-                        <button id="addCourseBtn" onclick="clickAddButton('lecture')">+</button>
+                        <button id="addCourseBtn" onclick="clickAddButton('lecture')">
+                            <i class="fas fa-plus-circle"></i>
+                        </button>
                         <a href="#">강의 추가</a>
                         <div th:replace="fragments/academy_fragment/add_lecture :: addLectureFragment"></div>
                         <div th:replace="fragments/academy_fragment/modify_lecture :: modifyLectureFragment"></div>
                     </div>
                     <div class="academy-function-button teacher-button">
-                        <button onclick="clickAddButton('teacher')">+</button>
+                        <button onclick="clickAddButton('teacher')">
+                            <i class="fas fa-plus-circle"></i>
+                        </button>
                         <a href="#">강사 추가</a>
                         <div th:replace="fragments/academy_fragment/add_teacher :: addTeacherFragment"></div>
                         <div th:replace="fragments/academy_fragment/modify_teacher :: modifyTeacherFragment"></div>
                     </div>
                     <div class="academy-function-button student-button">
-                        <button onclick="clickAddButton('student')">+</button>
+                        <button onclick="clickAddButton('student')">
+                            <i class="fas fa-plus-circle"></i>
+                        </button>
                         <a href="#">수강생 추가</a>
                         <div th:replace="fragments/academy_fragment/add_student :: addStudentFragment"></div>
                         <div th:replace="fragments/academy_fragment/modify_student :: modifyStudentFragment"></div>
                     </div>
                 </div>
                 <div class="footer-right academy">
-                    <button class="modify-password">비밀번호 변경</button>
+                    <button class="modify-password" onclick="location.href='/main/password/modify'">비밀번호 변경</button>
                     <button class="logout" onclick="location.href='/'">로그아웃</button>
                 </div>
             </div>
@@ -76,7 +82,9 @@
                 $(currentAddButton).css({
                     'display': 'none'
                 });
-            } else {
+            }
+            
+            if (e == 'modify') {
                 $(currentModifyButton).css({
                     'display': 'none'
                 });

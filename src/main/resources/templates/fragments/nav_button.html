@@ -1,11 +1,11 @@
 <div th:fragment="navFragment">
     <div class="member-dropdown">
         <button type="button" class="member-dropdown-button" onclick="menuDrop()">
-            =
+            <i class="fas fa-bars"></i>
         </button>
         <div class="member-dropdown-list">
             <div class="dropdown-member-function">
-                <a href="#">비밀번호 변경</a>
+                <a th:href="@{/main/password/modify}">비밀번호 변경</a>
                 <a th:href="@{/}">로그아웃</a>
             </div>
             <div class="dropdown-member-lecture">

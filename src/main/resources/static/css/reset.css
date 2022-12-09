@@ -2,6 +2,23 @@
     margin: 0;
     padding: 0;
     outline: none;
+    font-family: 'NOTO SANS KR', 'NOTO SANS THIN', 'NOTO SANS BOLD', sans-serif, serif;
+    font-size: 16px;
+}
+
+@font-face {
+    font-family: 'NOTO SANS KR';
+    src: url('../fonts/Noto_Sans_KR/NotoSansKR-Regular.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'NOTO SANS THIN';
+    src: url('../fonts/Noto_Sans_KR/NotoSansKR-Thin.otf') format('truetype');
+}
+
+@font-face {
+    font-family: 'NOTO SANS BOLD';
+    src: url('../fonts/Noto_Sans_KR/NotoSansKR-Bold.otf') format('truetype');
 }
 
 footer {

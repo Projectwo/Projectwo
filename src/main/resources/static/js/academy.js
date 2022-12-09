@@ -47,6 +47,7 @@ function modifyCourseBtnEvent() {
                 		"과정명<br>" +
                 		"<input type=\"text\" id=\"modifyTitle\" value='" + course.title +"' />" +
             			"</div>" +
+						"<button class='modify-delete-button'>강의 삭제하기</button>" +
             			"<div class=\"add-teacher-name\">강사<br>" +
                 		"<select id=\"modifyTeacherSelect\">" +
                 		"<option> 1 </option>" +
@@ -55,13 +56,20 @@ function modifyCourseBtnEvent() {
             			"<div class=\"check-lecture-week\">" +
                 		"강의요일<br>" +
                 		"<div class=\"check-day-button\">" +
-                    	"<input type=\"checkbox\" class=\"day-button mon\" id=\"modifyMon\" " + mon + "/>월" +
-                    	"<input type=\"checkbox\" class=\"day-button tue\" id=\"modifyTue\" " + tue + "/>화" +
-                    	"<input type=\"checkbox\" class=\"day-button wed\" id=\"modifyWed\" " + wed + "/>수" +
-                    	"<input type=\"checkbox\" class=\"day-button thu\" id=\"modifyThu\" " + thu + "/>목" +
-                    	"<input type=\"checkbox\" class=\"day-button fri\" id=\"modifyFri\" " + fri + "/>금" +
-                    	"<input type=\"checkbox\" class=\"day-button sat\" id=\"modifySat\" " + sat + "/>토" +
-                    	"<input type=\"checkbox\" class=\"day-button sun\" id=\"modifySun\" " + sun + "/>일" +
+                    	"<input type=\"checkbox\" class=\"day-button mon\" id=\"modifyMon\" " + mon + "/>" +
+						"<label for='modifyMon'>월</label>" +
+                    	"<input type=\"checkbox\" class=\"day-button tue\" id=\"modifyTue\" " + tue + "/>" +
+						"<label for='modifyTue'>화</label>" +
+                    	"<input type=\"checkbox\" class=\"day-button wed\" id=\"modifyWed\" " + wed + "/>" +
+						"<label for='modifyWed'>수</label>" +
+                    	"<input type=\"checkbox\" class=\"day-button thu\" id=\"modifyThu\" " + thu + "/>" +
+						"<label for='modifyThu'>목</label>" +
+                    	"<input type=\"checkbox\" class=\"day-button fri\" id=\"modifyFri\" " + fri + "/>" +
+						"<label for='modifyFri'>금</label>" +
+                    	"<input type=\"checkbox\" class=\"day-button sat\" id=\"modifySat\" " + sat + "/>" +
+						"<label for='modifySat'>토</label>" +
+                    	"<input type=\"checkbox\" class=\"day-button sun\" id=\"modifySun\" " + sun + "/>" +
+						"<label for='modifySun'>일</label>" +
                 		"</div>" +
             			"</div>" +
             			"<div class=\"add-lecture-period\">" +
@@ -81,7 +89,7 @@ function modifyCourseBtnEvent() {
                 		"</select>" +
             			"</div>" +
             			"<div class=\"add-lecture-count\">" +
-                		"수강인원<br>" +
+                		"수용인원<br>" +
                 		"<div id=\"modifyRoomMaxSeat\">" +
                 		"<input type=\"text\" />" +
                 		"</div>" +
@@ -128,6 +136,14 @@ function getAllCourse(res) {
 
 			var currentStudentCount;
 
+			let mon = (course.mon) ? "<i class='far fa-check-circle'></i>" : "";
+			let tue = (course.tue) ? "<i class='far fa-check-circle'></i>" : "";
+			let wed = (course.wed) ? "<i class='far fa-check-circle'></i>" : "";
+			let thu = (course.thu) ? "<i class='far fa-check-circle'></i>" : "";
+			let fri = (course.fri) ? "<i class='far fa-check-circle'></i>" : "";
+			let sat = (course.sat) ? "<i class='far fa-check-circle'></i>" : "";
+			let sun = (course.sun) ? "<i class='far fa-check-circle'></i>" : "";
+
 			commonAjax('/getClassStudent', cs, 'get', function(rs) {
 				//console.log(rs.length);
 				currentStudentCount = rs.length;
@@ -137,7 +153,7 @@ function getAllCourse(res) {
 			tag += "<div class='main-lecture academy-list'>" +
 				"<div class='lecture-info'>" +
 				"<button onclick=\"clickModifyButton('lecture')\" class=\"lecture-modify-button\">" +
-				"수정" +
+				"<i class='far fa-edit'></i>" +
 				"</button>" +
 				"<div class='lecture-title'>" +
 				"<div class='lecture-name'>" +
@@ -149,26 +165,26 @@ function getAllCourse(res) {
 				"<li>월</li>" + "<li>화</li>" + "<li>수</li>" + "<li>목</li>" +
 				"<li>금</li>" + "<li>토</li>" + "<li>일</li>" + "</ul>" +
 				"<ul class='lecture-info-schedule-checked'>" +
-				"<li><span>" + course.mon + "</span></li>" +
-				"<li><span>" + course.tue + "</span></li>" +
-				"<li><span>" + course.wed + "</span></li>" +
-				"<li><span>" + course.thu + "</span></li>" +
-				"<li><span>" + course.fri + "</span></li>" +
-				"<li><span>" + course.sat + "</span></li>" +
-				"<li><span>" + course.sun + "</span></li>" + "</ul>" +
+				"<li><span>" + mon + "</span></li>" +
+				"<li><span>" + tue + "</span></li>" +
+				"<li><span>" + wed + "</span></li>" +
+				"<li><span>" + thu + "</span></li>" +
+				"<li><span>" + fri + "</span></li>" +
+				"<li><span>" + sat + "</span></li>" +
+				"<li><span>" + sun + "</span></li>" + "</ul>" +
 				"<div class='lecture-info-schedule-period'>" +
 				"<span class='period-start'>" +
-				course.startDate + "</span>" + "~" +
+				course.startDate + "</span>" + "&nbsp;~&nbsp;" +
 				"<span class='period-end'>" +
 				course.endDate + "</span>" + "</div>" +
 				"<div class='lecture-info-schedule-time'>" +
-				course.startTime + "~" + course.endTime +
+				course.startTime + "&nbsp;~&nbsp;" + course.endTime +
 				"</div>" +
 				"<div class='lecture-info-count'>" +
-				"수강인원" + "<span>" + currentStudentCount +
-				"</span>" + "/" + course.room.maxSeat +
+				"수강인원 " + "<span>" + currentStudentCount +
+				"</span>" + "&nbsp;/&nbsp;" + course.room.maxSeat +
 				"</div>" + "<div class='lecture-info-room'>" +
-				course.room.name + "</div>" +
+				course.room.name + "호실" + "</div>" +
 				"<div id='courseId'>" + course.id + "</div>" +
 				"</div>" + "</div>";
 		});
@@ -193,7 +209,7 @@ function modifyTeacherBtnEvent() {
 			let parent = teacher.parentNode;
 			let children = parent.childNodes;
 			console.log(children)
-			let memderId = children[5].textContent;
+			let memderId = children[4].textContent;
 
 			let msg = {
 				memberId: memderId
@@ -205,6 +221,7 @@ function modifyTeacherBtnEvent() {
 					"이름<br>" +
 					"<input type='text' value='" + member.name + "' id=\"teacherModifyName\"/>" +
 					"</div>" +
+					"<button class='modify-delete-button'>강사 삭제하기</button>" +
 					"<div class='add-birthday'>" +
 					"생년월일<br>" +
 					"<input type='date' value='" + member.birth_date + "' id=\"teacherModifyBirth_date\"/>" +
@@ -261,7 +278,7 @@ function getAllTeacher(res) {
 			tag += "<div class='academy-teacher'>" +
 				"<div class='teacher-info'>" +
 				"<button onclick=\"clickModifyButton('teacher')\" class=\"teacher-modify-button\">" +
-				"수정" +
+				"<i class='far fa-edit'></i>" +
 				"</button>" +
 				"<div class='teacher-title'>" +
 				"<div class='teacher-name'>" +
@@ -271,11 +288,13 @@ function getAllTeacher(res) {
 				"<b>" + classListOfTeacher + " Class" + "</b>" +
 				"</div>" +
 				"</div>" +
+				"<div class='teacher-info-detail'>" +
 				"<div class='teacher-birthday'>" +
-				member.birth_date + "<span>" + "/" + "</span>" +
+				member.birth_date + "<span>" + "&nbsp;/&nbsp;" + "</span>" +
 				"</div>" +
 				"<div class='teacher-tel'>" +
 				member.tel +
+				"</div>" +
 				"</div>" +
 				"<div class='teacher-address'>" +
 				member.address +
@@ -307,7 +326,7 @@ function modifyStudentBtnEvent() {
 			let parent = student.parentNode;
 			let children = parent.childNodes;
 			console.log(children)
-			let memderId = children[5].textContent;
+			let memderId = children[4].textContent;
 
 			let msg = {
 				memberId: memderId
@@ -319,6 +338,7 @@ function modifyStudentBtnEvent() {
 					"이름<br>" +
 					"<input type='text' value='" + member.name + "' id='studentModifyName'/>" +
 					"</div>" +
+					"<button class='modify-delete-button'>수강생 삭제하기</button>" +
 					"<div class='add-birthday'>" +
 					"생년월일<br>" +
 					"<input type='date' value='" + member.birth_date + "' id='studentModifyBirth_date'/>" +
@@ -375,7 +395,7 @@ function getAllStudent(res) {
 			tag += "<div class='academy-student'>" +
 				"<div class='student-info'>" +
 				"<button onclick=\"clickModifyButton('student')\" class=\"student-modify-button\">" +
-				"수정" +
+				"<i class='far fa-edit'></i>" +
 				"</button>" +
 				"<div class='student-title'>" +
 				"<div class='student-name'>" +
@@ -385,11 +405,13 @@ function getAllStudent(res) {
 				"<b>" + classListOfStudent + " Class" + "</b>" +
 				"</div>" +
 				"</div>" +
+				"<div class='student-info-detail'>" +
 				"<div class='student-birthday'>" +
-				member.birth_date + "<span>" + "/" + "</span>" +
+				member.birth_date + "<span>" + "&nbsp;/&nbsp;" + "</span>" +
 				"</div>" +
 				"<div class='student-tel'>" +
 				member.tel +
+				"</div>" +
 				"</div>" +
 				"<div class='student-address'>" +
 				member.address +

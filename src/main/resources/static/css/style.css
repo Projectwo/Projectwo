@@ -5,123 +5,46 @@
     text-align: center;
     margin: 0 auto;
     max-width: 320px;
-    max-height: 800px;
+    height: 810px;
     padding-top: 40px;
+    overflow: auto;
 }
 
-/* ##### index.html ##### */
+#prev-button {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    font-size: 30px;
+    line-height: 0;
+    border: 1px solid #666;
+    border-radius: 6px;
+    left: 0;
+    top: 110px;
+}
+
+/* ##### login.html ##### */
 
 .index-logo {
+    position: relative;
     width: 260px;
     height: 300px;
     margin: 0 auto;
     margin-top: 100px;
-    background: #000;
 }
 
-.index-button {
-    margin: 0 auto;
-    margin-top: 70px;
-    width: 300px;
+.index-logo .fas.fa-desktop{
+    padding-top: 40px;
+    font-size: 220px;
 }
 
-.index-button>button {
-    width: 100%;
-    height: 54px;
-    border: 1px solid;
-    border-radius: 6px;
-
+.index-logo .far.fa-copyright{
+    position: absolute;
+    left: 130px;
+    top: 130px;
+    transform:translate(-50%, -50%);
+    font-size: 110px;
+    color:green;
 }
-
-.index-button .login-button {
-    background: #000;
-    color: #fff;
-}
-
-.index-button .signup-button {
-    background: #fff;
-    margin-top: 20px;
-}
-
-.guest-login {
-    margin-top: 40px;
-}
-
-/* ##### index.html end ##### */
-
-/* ##### prev_button.html ##### */
-
-#prev-button {
-    position: relative;
-    width: 32px;
-    height: 32px;
-    border: 1px solid #aaa;
-    border-radius: 6px;
-    float: left;
-    margin: 30px 0;
-}
-
-/* ##### prev_button.html end ##### */
-
-/* ##### signup.html ##### */
-
-.signup-text {
-    position: relative;
-    display: inline-block;
-    width: 100%;
-    left: 0;
-    text-align: left;
-}
-
-.signup-form {
-    width: 100%;
-    margin-top: 20px;
-}
-
-.signup-form .field {
-    margin: 12px 0;
-}
-
-.signup-form .field>input {
-    width: 100%;
-    height: 50px;
-    border: 1px solid #aaa;
-    border-radius: 6px;
-    background: #efefef;
-    padding: 4px 8px;
-}
-
-.signup-form .signup-submit {
-    width: 100%;
-    height: 54px;
-    margin: 10px 0;
-    border: 1px solid #000;
-    border-radius: 6px;
-    color: #fff;
-    background: #000;
-}
-
-.other-login {
-    margin-top: 10px;
-    width: 100%;
-    color: #777;
-}
-
-.other-login-button {
-    display: flex;
-    justify-content: center;
-}
-
-.other-login-button>li {
-    margin: 20px 10px;
-    width: 80px;
-    height: 60px;
-    border: 1px solid;
-}
-
-/* ##### signup.html end ##### */
-
-/* ##### login.html ##### */
 
 .login-text {
     position: relative;
@@ -137,6 +60,7 @@
 }
 
 .login-form .field {
+    position: relative;
     margin: 10px 0;
 }
 
@@ -149,9 +73,15 @@
     padding: 4px 8px;
 }
 
+.login-form .field>i{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
 .forgot-pw {
     position: relative;
-    font-size: 14px;
+    font-size: 12px;
     text-align: right;
     color: #aaa;
     top: -6px;
@@ -209,10 +139,14 @@
 
 .member-dropdown-button {
     position: relative;
-    width: 32px;
-    height: 32px;
-    font-size: 30px;
+    width: 40px;
     z-index: 10;
+}
+
+.member-dropdown-button i {
+    content: "\f0c9";
+    font-family: "Font Awesome 5 Free";
+    font-size: 36px;
 }
 
 .member-dropdown .member-dropdown-list {
@@ -333,7 +267,7 @@
 }
 
 .main-lecture .lecture-name {
-    padding: 6px 8px;
+    padding: 4px 8px;
     text-align: left;
     font-size: 14px;
     color: #eee;
@@ -364,8 +298,7 @@
 
 .main-lecture .lecture-info-schedule li {
     width: 18px;
-    height: 18px;
-    font-size: 12px;
+    font-size: 14px;
     line-height: 18px;
     margin-left: 2px;
     border: 1px solid;
@@ -381,7 +314,7 @@
 .main-lecture .lecture-info-schedule-checked li {
     width: 18px;
     height: 18px;
-    padding: 1px 2px;
+    padding: 1px 1px;
     color: #eee;
     margin-top: 2px;
     margin-left: 2px;
@@ -393,8 +326,6 @@
     width: 14px;
     height: 14px;
     font-size: 10px;
-    border: 1px solid;
-    border-radius: 50%;
 }
 
 .main-lecture .lecture-info-schedule-time {
@@ -407,8 +338,8 @@
     height: 194px;
 }
 
-.student-checkinout a{
-    color:#444;
+.student-checkinout a {
+    color: #444;
 }
 
 .student-checkinout .student-today {
@@ -432,11 +363,14 @@
 .student-daily-check .daily-date {
     margin-left: 10px;
     font-size: 24px;
+    line-height: 0;
 }
 
 .student-daily-check .daily-status {
     margin-right: 10px;
+    font-size: 24px;
     text-align: right;
+    line-height: 0;
 }
 
 .student-weekly {
@@ -461,16 +395,21 @@
     border: 1px solid #ccc;
     border-radius: 6px;
     text-align: center;
-    line-height: 27px;
+    line-height: 24px;
+    font-size: 18px;
+}
+
+.student-weekly-check .student-weekly-date span {
+    font-size: 16px;
 }
 
 .teacher-checkinout {
     height: 194px;
-    color:#000;
+    color: #000;
 }
 
-.teacher-checkinout a{
-    color:#444;
+.teacher-checkinout a {
+    color: #444;
 }
 
 .teacher-checkinout .teacher-today {
@@ -535,30 +474,34 @@
     position: relative;
     width: 100%;
     margin-top: 10px;
+
     font-size: 20px;
     text-align: left;
 }
 
 .main-notice .notice-category {
     position: absolute;
-    top: 8px;
+    top: 7px;
     left: 70px;
     display: flex;
     align-items: flex-end;
-    font-size: 10px;
+    font-size: 12px;
     color: #777;
 }
 
-.main-notice .notice-category button{
-    color:#888;
+.main-notice .notice-category button {
+    color: #888;
+    font-size: 14px;
+
 }
 
 .main-notice .notice-category button.active {
-    color:#444;
-    font-weight: 600;
+    color: #222;
+    font-family: 'NOTO SANS BOLD';
 }
 
 .main-notice .notice-area {
+    position: relative;
     width: 100%;
     height: 226px;
     margin-top: 6px;
@@ -571,23 +514,68 @@
     overflow: auto;
 }
 
-.main-notice .notice-fragment{
+.main-notice .notice-fragment {
     display: none;
 }
 
-.main-notice .notice-fragment.active{
+.main-notice .notice-fragment.active {
     display: block;
 }
 
 .notice-area .notice-recent {
+    position: relative;
     width: 300px;
     height: 44px;
-    line-height: 44px;
+    padding: 0 6px;
     border: 1px solid #aaa;
     border-radius: 6px;
     margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.notice-area .notice-recent.active {
+    height: 210px;
+}
+
+.notice-area .notice-recent .notice-function-modify {
+    position: absolute;
+    width: 40px;
+    height: 36px;
+    top: 0;
+    right: 0;
+    text-align: center;
+    display: none;
+}
+
+.notice-area .notice-recent.active .notice-function-modify {
+    display: block;
+}
+
+.notice-recent .notice-function-modify i {
+    content: "\f044";
+    font-family: "Font Awesome 5 Free";
+    padding-top: 10px;
+    font-size: 20px;
+
+}
+
+.notice-recent .notice-content {
+    position: relative;
+    width: 100%;
+    height: 158px;
+    padding: 4px 6px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    overflow: auto;
+}
+
+.notice-area .notice-recent>button {
+    position: relative;
+    width: 100%;
+    height: 44px;
+    padding-bottom: 4px;
     font-size: 22px;
-    padding-left: 10px;
+    text-align: left;
 }
 
 .notice-area .notice-recent:first-child {
@@ -665,27 +653,36 @@
     background: #aaa;
 }
 
+.main-lecture.academy-list .lecture-modify-button i {
+    content: "\f044";
+    font-family: "Font Awesome 5 Free";
+    padding: 0 6px 10px 6px;
+    font-size: 16px;
+}
+
 .main-lecture.academy-list .lecture-title {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     width: 100%;
     height: 36px;
+    padding-bottom: 10px;
 }
 
 .main-lecture.academy-list .lecture-name {
     position: relative;
+    top: 0;
+    padding: 0 8px;
     text-align: left;
     font-size: 20px;
     color: #eee;
 }
 
 .main-lecture.academy-list .lecture-name b {
-    font-size: 20px;
+    font-size: 22px;
 }
 
 .main-lecture.academy-list .lecture-teacher {
     position: relative;
-    height: 34px;
     top: 0;
     font-size: 18px;
     color: #ccc;
@@ -708,28 +705,30 @@
     top: 40px;
     right: 10px;
     color: #eee;
+}
+
+.main-lecture.academy-list .lecture-info-schedule-period span {
     font-size: 14px;
-    font-weight: 300;
+    font-family: 'NOTO SANS THIN';
 }
 
 .main-lecture.academy-list .lecture-info-schedule-time {
     position: absolute;
-    margin-top: 0;
+    margin-top: 4px;
     top: 60px;
     right: 10px;
-    font-size: 14px;
-    font-weight: 300;
+    font-size: 16px;
+    font-family: 'NOTO SANS THIN';
 }
 
 .main-lecture.academy-list .lecture-info-room {
     position: absolute;
     right: 10px;
-    top: 80px;
+    top: 84px;
     text-align: right;
     color: #eee;
-    font-size: 14px;
-    font-weight: 300;
-
+    font-size: 16px;
+    font-family: 'NOTO SANS THIN';
 }
 
 .main-lecture.academy-list .lecture-info-count {
@@ -739,6 +738,14 @@
     font-size: 14px;
     font-weight: 300;
     margin-left: 8px;
+}
+
+.main-lecture.academy-list .lecture-info-count span{ 
+    font-size: 14px;
+}
+
+.main-lecture.academy-list #courseId {
+    display: none;
 }
 
 /* ##### academy_class.html end ##### */
@@ -782,6 +789,13 @@
     background: #aaa;
 }
 
+.teacher-modify-button i {
+    content: "\f044";
+    font-family: "Font Awesome 5 Free";
+    padding: 0 6px 10px 6px;
+    font-size: 16px;
+}
+
 .academy-teacher .teacher-title {
     display: flex;
     justify-content: flex-start;
@@ -800,7 +814,7 @@
     color: #666;
 }
 
-.academy-teacher .teacher-info-detail{
+.academy-teacher .teacher-info-detail {
     display: flex;
     justify-content: flex-start;
     margin-left: 16px;
@@ -821,6 +835,13 @@
     text-align: left;
     top: 58px;
     left: 16px;
+}
+
+.academy-teacher .teacher-id {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: scale(0);
 }
 
 /* ##### academy_teacher.html end ##### */
@@ -864,6 +885,13 @@
     background: #aaa;
 }
 
+.student-modify-button i {
+    content: "\f044";
+    font-family: "Font Awesome 5 Free";
+    padding: 0 6px 10px 6px;
+    font-size: 16px;
+}
+
 .academy-student .student-title {
     display: flex;
     justify-content: flex-start;
@@ -882,7 +910,7 @@
     color: #666;
 }
 
-.academy-student .student-info-detail{
+.academy-student .student-info-detail {
     display: flex;
     justify-content: flex-start;
     margin-left: 16px;
@@ -903,6 +931,10 @@
     text-align: left;
     top: 58px;
     left: 16px;
+}
+
+.academy-student .student-id {
+    display: none;
 }
 
 /* ##### academy_student.html end ##### */
@@ -950,13 +982,13 @@
     position: relative;
     width: 48px;
     height: 48px;
-    color: #777;
-    font-size: 46px;
-    border: 1px solid;
-    border-radius: 50%;
     left: 50%;
     top: 10px;
     transform: translate(-50%, -50%);
+}
+
+.footer-middle.academy .academy-function-button>button i {
+    font-size: 48px;
 }
 
 .footer-middle.academy a {
@@ -966,7 +998,7 @@
     text-align: left;
     font-size: 20px;
     line-height: 22px;
-    top: 10px;
+    top: 14px;
     left: -25px;
 }
 
@@ -983,19 +1015,22 @@
 .footer-left.academy .search-lecture {
     position: relative;
     width: 100px;
-    height: 24px;
-    padding: 2px 4px;
+    height: 26px;
+    padding: 2px 8px;
+    margin-top: 4px;
     border: 1px solid #aaa;
     border-radius: 6px;
+    font-size: 14px;
 }
 
 .footer-left.academy .category-lecture {
     position: relative;
     width: 100px;
-    height: 24px;
+    height: 26px;
     padding: 2px 4px;
     border: 1px solid #aaa;
     border-radius: 6px;
+    font-size: 14px;
     color: #444;
 }
 
@@ -1011,20 +1046,25 @@
 
 .footer-right.academy .modify-password {
     position: relative;
+    width: 100px;
+    height: 26px;
     border: 1px solid #777;
     border-radius: 6px;
     color: #777;
-    width: 100px;
-    height: 24px;
+    z-index: 0;
+    font-size: 14px;
 }
 
 .footer-right.academy .logout {
     position: relative;
+    width: 100px;
+    height: 26px;
+    margin-top: 4px;
     border: 1px solid #777;
     border-radius: 6px;
     color: #777;
-    width: 100px;
-    height: 24px;
+    z-index: 0;
+    font-size: 14px;
 }
 
 /* ##### academy_footer.html end ##### */
@@ -1044,7 +1084,13 @@
 
 .footer-wrap .home-button {
     width: 50px;
-    font-size: 24px;
+}
+
+.footer-wrap .home-button i {
+    content: "\f015";
+    font-family: "Font Awesome 5 Free";
+    padding: 0 6px;
+    font-size: 36px;
 }
 
 .student-function {
@@ -1055,17 +1101,31 @@
 }
 
 .student-function>div {
-    margin: 0 10px;
     width: 60px;
+    border: 1px solid #666;
+    border-radius: 6px;
+    padding: 4px 10px;
     display: none;
 }
 
+.student-function>div a {
+    font-size: 18px;
+    line-height: 0;
+    text-align: center;
+}
+
 .student-function .student-function-button {
-    border: 1px solid #555;
     border-radius: 6px;
     padding: 6px 10px;
-    font-size: 24px;
 }
+
+.student-function .student-function-button i {
+    content: "\f058";
+    font-family: "Font Awesome 5 Free";
+    font-size: 56px;
+}
+
+.student-function .student-function-button i.checked {}
 
 .teacher-function {
     width: 220px;
@@ -1075,23 +1135,34 @@
 }
 
 .teacher-function>div {
-    margin: 0 10px;
     width: 60px;
+    border: 1px solid #666;
+    border-radius: 6px;
+    padding: 4px 10px;
     display: none;
 }
 
+.teacher-function>div a {
+    font-size: 18px;
+    line-height: 0;
+    text-align: center;
+}
+
 .teacher-function .teacher-function-button {
-    border: 1px solid #555;
-    border-radius: 6px;
     padding: 6px 10px;
-    font-size: 24px;
+}
+
+.teacher-function .teacher-function-button i {
+    content: "\f055";
+    font-family: "Font Awesome 5 Free";
+    font-size: 56px;
 }
 
 .teacher-create-qrcode .modal-wrap.qrcode {
     display: none;
 }
 
-.modal-wrap.qrcode .create-qr-layer{
+.modal-wrap.qrcode .create-qr-layer {
     position: absolute;
     width: 320px;
     height: 320px;
@@ -1105,12 +1176,12 @@
     z-index: 5;
 }
 
-.modal-wrap.qrcode .created-qrcode{
+.modal-wrap.qrcode .created-qrcode {
     position: relative;
     width: 280px;
     height: 280px;
     margin: 20px;
-    border:1px solid #eee;
+    border: 1px solid #eee;
     background: #eee;
 }
 
@@ -1127,6 +1198,7 @@
     bottom: 0;
     width: 390px;
     height: 844px;
+    z-index: 50;
 }
 
 .modal-wrap {
@@ -1138,7 +1210,7 @@
     width: 100%;
     height: 100%;
     background-color: rgba(200, 200, 200, 0.7);
-    z-index: 15;
+    z-index: 100;
 }
 
 .add-lecture-form {
@@ -1220,24 +1292,25 @@
     border-radius: 6px;
 }
 
-.check-day-button input[type="checkbox"] + label {
-	display: inline-block;
-	width: 36px;
-	height: 36px;
+.check-day-button input[type="checkbox"]+label {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
     text-align: center;
-    color:#aaa;
-	border: 2px solid #aaa;
-	cursor: pointer;
+    line-height: 30px;
+    color: #aaa;
+    border: 2px solid #aaa;
+    cursor: pointer;
 }
 
-.check-day-button input[type="checkbox"]:checked + label {
-	color:#444;
+.check-day-button input[type="checkbox"]:checked+label {
+    color: #444;
     border-color: #444;
     background: lightgreen;
 }
 
 .check-day-button input[type="checkbox"] {
-	display: none;
+    display: none;
 }
 
 .add-lecture-form .add-lecture-period {
@@ -1301,23 +1374,22 @@
     padding: 6px 10px;
     width: 140px;
     top: 434px;
-    right: 10px;
+    right: 30px;
     font-size: 24px;
     text-align: left;
 }
 
+.add-lecture-count #roomMaxSeat {
+    margin-top: 6px;
+    margin-left: 30px;
+}
+
 .add-lecture-form .add-lecture-count input {
-    position: relative;
-    width: 120px;
-    height: 36px;
-    margin: 4px 2px 0 20px;
-    padding: 4px;
-    background: none;
-    border: 1px solid #333;
-    border-radius: 6px;
-    color: #333;
-    font-size: 24px;
-    text-align: center;
+    display: none;
+}
+
+.add-lecture-form #modifyCourseId {
+    display: none;
 }
 
 .add-button-section {
@@ -1374,7 +1446,7 @@
     position: absolute;
     width: 320px;
     height: 620px;
-    top: 110px;
+    top: 95px;
     left: 0;
     right: 0;
     bottom: 0;
@@ -1485,6 +1557,11 @@
     text-align: center;
 }
 
+.add-teacher-form #modifyTeacherId {
+    position: absolute;
+    transform: scale(0);
+}
+
 /* ##### add_teacher.html end ##### */
 
 /* ##### add_student.html ##### */
@@ -1493,9 +1570,11 @@
     position: absolute;
     width: 320px;
     height: 620px;
-    left: 50%;
-    top: 48%;
-    transform: translate(-50%, -50%);
+    top: 95px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
     border: 1px solid #eee;
     border-radius: 6px;
     background: #eee;
@@ -1602,6 +1681,19 @@
     text-align: center;
 }
 
+.add-student-form #modifyStudentId {
+    position: absolute;
+    transform: scale(0);
+}
+
+.modify-delete-button {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    font-size: 14px;
+    text-decoration: underline;
+}
+
 /* ##### add_student.html end ##### */
 
 /* ##### modify_fragment ##### */
@@ -1615,6 +1707,7 @@
     bottom: 0;
     width: 390px;
     height: 844px;
+    z-index: 50;
 }
 
 /* ##### modify_fragment end ##### */
@@ -1727,9 +1820,11 @@
     padding: 6px 8px;
     text-align: left;
     font-size: 24px;
-    font-weight: 400;
     color: #eee;
+}
 
+.main-lecture.detail .teacher-info.detail b {
+    font-size: 22px;
 }
 
 .main-lecture.detail .teacher-about.detail {
@@ -1740,7 +1835,7 @@
 }
 
 .main-lecture.detail .teacher-about.detail b {
-    font-weight: 400;
+    font-size: 20px;
     margin-left: 10px;
 }
 
@@ -1752,11 +1847,11 @@
 
 /* ##### student_check.html ##### */
 
-.main-lecture.check{
+.main-lecture.check {
     height: 40px;
 }
 
-.check-count-section{
+.check-count-section {
     width: 320px;
     height: 130px;
     margin-top: 6px;
@@ -1764,19 +1859,23 @@
     justify-content: space-between;
 }
 
-.check-count-section>div{
+.check-count-section>div {
     width: 100px;
     height: 120px;
-    border:1px solid #666;
+    border: 1px solid #666;
     border-radius: 8px;
-    padding:8px 8px;
+    padding: 8px 8px;
     font-size: 20px;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
-.check-count-section>div span{
+.check-count-section>div b {
+    font-size: 20px;
+}
+
+.check-count-section>div span {
     font-size: 28px;
     line-height: 64px;
 }
@@ -1847,7 +1946,7 @@
     text-align: left;
 }
 
-.check-inout-period.student .student-period-check{
+.check-inout-period.student .student-period-check {
     width: 320px;
     height: 300px;
     display: flex;
@@ -1858,21 +1957,21 @@
     overflow: auto;
 }
 
-.student-period-check a{
-    color:#444;
+.student-period-check a {
+    color: #444;
 }
 
-.student-period-check .student-period-check-daily{
+.student-period-check .student-period-check-daily {
     width: 60px;
     height: 56px;
-    border:1px solid #444;
+    border: 1px solid #aaa;
     border-radius: 8px;
     margin: 2px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    line-height: 28px;
+    line-height: 26px;
 }
 
 /* ##### student_check.html end ##### */
@@ -1900,8 +1999,8 @@
     position: relative;
     width: 320px;
     height: 190px;
-    margin:0 auto;
-    margin-bottom:10px;
+    margin: 0 auto;
+    margin-bottom: 10px;
     border: 1px solid #ccc;
     border-radius: 6px;
     background: lightgreen;
@@ -1912,11 +2011,11 @@
     background: #eee;
 }
 
-.teacher-daily-check.detail .daily-checkin-student span{
+.teacher-daily-check.detail .daily-checkin-student span {
     font-size: 20px;
 }
 
-.daily-checkin-student .checkin-box{
+.daily-checkin-student .checkin-box {
     position: relative;
     width: 300px;
     height: 150px;
@@ -1930,16 +2029,297 @@
     overflow: auto;
 }
 
-.daily-checkin-student .checkin-box .checkin-student span{
+.daily-checkin-student .checkin-box .checkin-student span {
     display: inline-block;
     width: 70px;
-    border:1px solid;
+    border: 1px solid;
     border-radius: 8px;
     background: #fff;
-    margin:4px 2px 4px 3px;
-    padding:2px;
+    margin: 4px 2px 4px 3px;
+    padding: 2px;
     font-size: 16px;
 }
 
 
 /* ##### teacher_check.html end ##### */
+
+/* ##### academy_notice_form.html ##### */
+
+.form-fragment {
+    position: fixed;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 390px;
+    height: 844px;
+    z-index: 50;
+}
+
+.notice-form {
+    position: absolute;
+    width: 320px;
+    height: 470px;
+    top: 270px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    background: #eee;
+    text-align: left;
+}
+
+.notice-title-area {
+    position: relative;
+    height: 80px;
+    padding: 10px 0 10px 10px;
+    font-size: 24px;
+}
+
+.notice-title-area input {
+    position: relative;
+    width: 280px;
+    height: 40px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    margin: 4px 0 0 10px;
+    padding: 2px 4px;
+    font-size: 20px;
+}
+
+.notice-content-area {
+    position: relative;
+    height: 320px;
+    padding: 10px 0 10px 10px;
+    font-size: 24px;
+}
+
+.notice-content-area textarea {
+    position: relative;
+    width: 280px;
+    height: 240px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    margin: 4px 0 0 10px;
+    padding: 2px 4px;
+    font-size: 18px;
+    resize: none;
+}
+
+.notice-button-section {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.notice-button-section .add-confirm.notice .notice-confirm-button {
+    border: 1px solid #444;
+    border-radius: 6px;
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    color: #333;
+    text-align: center;
+    padding-bottom: 0;
+}
+
+.notice-button-section .add-close.notice button {
+    font-size: 20px;
+    height: 50px;
+    text-align: center;
+    padding: 0;
+
+}
+
+.notice-form .modify-delete-button {
+    position: absolute;
+    padding-right: 2px;
+    font-size: 14px;
+}
+
+/* ##### academy_notice_form.html end ##### */
+
+/* ##### password_modify.html ##### */
+
+.password-modify-text {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    margin-top: 130px;
+    text-align: left;
+    font-family: 'NOTO SANS BOLD';
+    font-size: 24px;
+    line-height: 24px;
+}
+
+.password-modify-text span {
+    font-size: 18px;
+    line-height: 0px;
+    color: #777;
+}
+
+.password-modify-form {
+    width: 100%;
+    margin-top: 44px;
+}
+
+.password-modify-form .field {
+    position: relative;
+    margin: 10px 0;
+}
+
+.password-modify-form .field>input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #efefef;
+    padding: 4px 8px;
+}
+
+.password-modify-form .field>i{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.forgot-pw {
+    position: relative;
+    font-size: 14px;
+    text-align: right;
+    color: #aaa;
+    top: -6px;
+}
+
+.password-modify-form .password-modify-submit {
+    width: 100%;
+    height: 54px;
+    margin-top: 40px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    color: #fff;
+    background: #000;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* ##### password_modify.html end ##### */
+
+/* ##### password_modify_complete.html ##### */
+
+.password-modify-complete-section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.password-modify-complete-logo {
+    width: 200px;
+    height: 200px;
+}
+
+.password-modify-complete-logo i{
+    font-size: 140px;
+}
+
+.password-modify-complete-text {
+    font-family: 'NOTO SANS BOLD';
+    font-size: 24px;
+}
+
+.password-modify-complete-text span{
+    font-size: 18px;
+    color:#777;
+}
+
+.password-modify-complete-section button {
+    position: relative;
+    width: 100%;
+    height: 54px;
+    margin-top: 40px;
+    margin-bottom:30px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    color: #fff;
+    background: #000;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* ##### password_modify_complete.html end ##### */
+
+/* ##### password_forgot.html ##### */
+
+.password-forgot-text {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    margin-top: 130px;
+    text-align: left;
+    font-family: 'NOTO SANS BOLD';
+    font-size: 24px;
+    line-height: 24px;
+}
+
+.password-forgot-text span {
+    font-size: 18px;
+    line-height: 0px;
+    color: #777;
+}
+
+.password-forgot-form {
+    width: 100%;
+    margin-top: 44px;
+}
+
+.password-forgot-form .field {
+    position: relative;
+    margin: 10px 0;
+}
+
+.password-forgot-form .field>input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #efefef;
+    padding: 4px 8px;
+}
+
+.password-forgot-form .password-forgot-submit {
+    width: 320px;
+    height: 54px;
+    margin-top: 40px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    color: #fff;
+    background: #000;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.password-find-message{
+    position: absolute;
+    width: 320px;
+    height: 190px;
+    top: 276px;
+    border:1px solid #ccc;
+    background: #ccc;
+    border-radius: 6px;
+    z-index: 10;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility:hidden;
+}
+
+/* ##### password_forgot.html end ##### */
