@@ -30,8 +30,7 @@ public class NotificationController {
 	
 	@Autowired
 	AndroidPushNotificationService androidPushNotificationService;
-	
-	@Scheduled(fixedRate = 10000 )
+
 	@GetMapping("/send")
 	public @ResponseBody ResponseEntity<String> send() throws JSONException, InterruptedException {
 		String notifications = AndroidPushPeriodicNotifications.PeriodicNotificationJson();
