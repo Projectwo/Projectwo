@@ -86,6 +86,11 @@ public class QrController {
 		
 		if(attendance == null) {
 			attendanceService.regAttendance(course, student, localDate);
+			
+			//푸시알림을 위한 타이머
+			
+			
+			
 		}else {
 			attendanceService.regLeave(course, student, localDate);
 		}

@@ -18,6 +18,10 @@
             <a th:href="@{/password/forgot}">비밀번호를 잊으셨나요?</a>
         </div>
         <input class="login-submit" type="submit" value="로그인">
+        
+        <button  onclick="get_token('')">
+            token
+        </button>
     </form>
     <!-- <div>
         <button onclick="location.href='member/main'">임시 로그인(학생) /</button>
@@ -27,6 +31,43 @@
     <div class="contact-academy">
         그린 컴퓨터 아카데미&nbsp;(051-123-4567)
     </div>
+<script type="text/javascript">
+var userToken = "UserToken"
+//<!-- 모바일 디바이스 > JS -->
+function receive_token(returnToken) {
+	//<!-- 안드로이드에서 전달받음 -->
+	//if (android_agent > -1) {
+		alert('UserToken\n' + returnToken);
+		//location.href = `/course/${courseId}/${date}`;
+	//}
+	//<!-- IOS에서 전달받음 -->
+	//else if (iphone > -1 || ipad > -1) {
+		alert('UserToken\n' + returnData);
+	//}
+}
+//<!-- JS > 모바일 디바이스 -->
+function get_token(getToken) {
+	//<!-- 안드로이드로 보낸다 -->
+	userToken = UserToken;
+	//if (android_agent > -1) {
+		alert('UserToken\n' + getToken);
+
+		window.android.get_token(userToken);
+	//}
+	//<!-- IOS로 보낸다 -->
+	//else if (iphone > -1 || ipad > -1) {
+		alert('UserToken\n' + getToken);
+
+		window.android.get_token(userToken);
+	//}
+}
+
+window.onload = function() {
+	alert("gg")
+	get_token('현재 DB토큰') 
+	
+}
+</script>
 </div>
 
 </html>

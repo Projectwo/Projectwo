@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.TimerTask;
 
 import org.springframework.stereotype.Service;
 
@@ -124,7 +125,50 @@ public class AttendanceService {
 		attendanceRepository.save(attendance);
 		
 	}	
+
 	
+	
+//	//푸시알림 타이머
+//	public void pushTimer() {
+//		TimerTask task = new TimerTask() {
+//
+//			@Override
+//			public void run() {
+//				// TODO Auto-generated method stub
+//				
+//			}
+//			
+//		}
+//		
+//	}
 	
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

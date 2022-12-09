@@ -10,18 +10,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /*
  * 프로젝트를 실행한 뒤 "/send" 로 접속하여 동작이 실행되게한다. 
  * firebase project의 server key를 가지고 디바이스 토큰으로 알림을 json 데이터 형식으로 firebase에게 요청한다.
  */
 
+@Slf4j
 @RestController
 @RequiredArgsConstructor
 public class NotificationController {
@@ -42,6 +43,9 @@ public class NotificationController {
 		
 		try {
 			String firebaseResponse = pushNotification.get();
+			
+			log.info("#### NotificationController firebaseResponse=" + firebaseResponse);
+			
 			return new ResponseEntity<>(firebaseResponse, HttpStatus.OK);
 			
 		}catch(InterruptedException e) {
