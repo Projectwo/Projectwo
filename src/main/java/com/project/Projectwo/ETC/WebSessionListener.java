@@ -21,5 +21,12 @@ public class WebSessionListener implements HttpSessionListener {
         log.info("session time -> {}", httpSessionEvent.getSession().getMaxInactiveInterval());
         
     }
+    
+ // by 안준언, 세션 만료 이벤트 발생시 자동 실행, 세션 만료시 친구의 접속 상태를 false로 수정
+    @Override
+    public void sessionDestroyed(HttpSessionEvent httpSessionEvent) {
+        log.info("sessionDestroyed -> {}", httpSessionEvent.getSession());
+        
+    }
 
 }

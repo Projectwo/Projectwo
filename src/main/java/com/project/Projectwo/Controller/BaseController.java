@@ -55,7 +55,6 @@ public class BaseController {
     	
     	Member member = this.memberService.getMember(principal.getName());
     	
-    	System.out.println(principal.getName());
     	if("admin".equalsIgnoreCase(member.getRole())) {
     		return "academy/academy_main";
     	} else {

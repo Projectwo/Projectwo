@@ -19,7 +19,6 @@ import lombok.RequiredArgsConstructor;
 @EnableWebSecurity
 public class SecurityConfig {
 	
-	private final UserSecurityService userSecurityService;
 	private final LoginSuccessHandler loginSuccessHandler;
 	
 	@Bean

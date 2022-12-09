@@ -6,10 +6,10 @@
     </div>
     <form class="login-form" th:action="@{/}" method="post">
         <div class="field">
-            <input class="userid" type="text" placeholder="ID(학생번호, 강사번호 등)" name="username" id="username">
+            <input class="userid" type="text" placeholder="ID(학생번호, 강사번호 등)" name="username" id="username" th:value="${identity}">
         </div>
         <div class="field">
-            <input class="userpw" type="password" placeholder="PASSWORD" name="password" id="password">
+            <input class="userpw" type="password" placeholder="PASSWORD" name="password" id="password" th:value="${password}">
         </div>
         <div class="forgot-pw">
             <a href="#">Forgot Password?</a>

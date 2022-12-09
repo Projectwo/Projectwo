@@ -882,6 +882,3 @@ function modifyStudentEvent() {
 	}
 }
 
-document.querySelectorAll('.modal-close-button').addEventListener("click", function(){
-	console.log("a")
-});
