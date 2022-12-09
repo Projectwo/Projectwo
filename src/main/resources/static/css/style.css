@@ -32,18 +32,18 @@
     margin-top: 100px;
 }
 
-.index-logo .fas.fa-desktop{
+.index-logo .fas.fa-desktop {
     padding-top: 40px;
     font-size: 220px;
 }
 
-.index-logo .far.fa-copyright{
+.index-logo .far.fa-copyright {
     position: absolute;
     left: 130px;
     top: 130px;
-    transform:translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     font-size: 110px;
-    color:green;
+    color: green;
 }
 
 .login-text {
@@ -73,7 +73,7 @@
     padding: 4px 8px;
 }
 
-.login-form .field>i{
+.login-form .field>i {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -571,11 +571,14 @@
 
 .notice-area .notice-recent>button {
     position: relative;
-    width: 100%;
+    width: 250px;
     height: 44px;
     padding-bottom: 4px;
     font-size: 22px;
     text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .notice-area .notice-recent:first-child {
@@ -740,7 +743,7 @@
     margin-left: 8px;
 }
 
-.main-lecture.academy-list .lecture-info-count span{ 
+.main-lecture.academy-list .lecture-info-count span {
     font-size: 14px;
 }
 
@@ -2181,7 +2184,7 @@
     padding: 4px 8px;
 }
 
-.password-modify-form .field>i{
+.password-modify-form .field>i {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -2226,7 +2229,7 @@
     height: 200px;
 }
 
-.password-modify-complete-logo i{
+.password-modify-complete-logo i {
     font-size: 140px;
 }
 
@@ -2235,9 +2238,9 @@
     font-size: 24px;
 }
 
-.password-modify-complete-text span{
+.password-modify-complete-text span {
     font-size: 18px;
-    color:#777;
+    color: #777;
 }
 
 .password-modify-complete-section button {
@@ -2245,7 +2248,7 @@
     width: 100%;
     height: 54px;
     margin-top: 40px;
-    margin-bottom:30px;
+    margin-bottom: 30px;
     border: 1px solid #000;
     border-radius: 6px;
     color: #fff;
@@ -2306,12 +2309,12 @@
     font-weight: bold;
 }
 
-.password-find-message{
+.password-find-message {
     position: absolute;
     width: 320px;
     height: 190px;
     top: 276px;
-    border:1px solid #ccc;
+    border: 1px solid #ccc;
     background: #ccc;
     border-radius: 6px;
     z-index: 10;
@@ -2319,7 +2322,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    visibility:hidden;
+    visibility: hidden;
 }
 
 /* ##### password_forgot.html end ##### */
