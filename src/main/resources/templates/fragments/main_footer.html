@@ -96,8 +96,8 @@
 			//<!-- 안드로이드에서 전달받음 -->
 			if (android_agent > -1) {
 				//alert('Mobile > JS [Open] [A] [NONE]');
-				alert('Beacon 출석이 확인되었습니다.' + returnData);
-				location.href = "/attend?UserIdx=" + userIdx;
+				alert('Beacon 출석이 확인되었습니다.\n' + returnData);
+				location.href = `/course/${courseId}/${date}`;
 			}
 			//<!-- IOS에서 전달받음 -->
 			else if (iphone > -1 || ipad > -1) {
@@ -118,25 +118,58 @@
 		}
 
 		//<!-- 모바일 디바이스 > JS -->
-		function receive_Close(returnData) {
+		function qr_true(returnData) {
 			//<!-- 안드로이드에서 전달받음 -->
 			if (android_agent > -1) {
-				alert('Mobile > JS [Close] [A] [DATA] : ' + returnData);
+				//alert('Mobile > JS [Open] [A] [NONE]');
+				alert('QR 출석이 확인되었습니다.\n' + returnData);
+				location.href = `/course/${courseId}/${date}`;
 			}
 			//<!-- IOS에서 전달받음 -->
 			else if (iphone > -1 || ipad > -1) {
-				alert('Mobile > JS [Close] [I] [DATA] : ' + data);
+				alert('Mobile > JS [Open] [I] [NONE]');
 			}
 		}
 
+
+		function qr_false() {
+			//<!-- 안드로이드에서 전달받음 -->
+			if (android_agent > -1) {
+				//alert('Mobile > JS [Open] [A] [NONE]');
+				alert('Beacon 인식에 실패했습니다.');
+			}
+			//<!-- IOS에서 전달받음 -->
+			else if (iphone > -1 || ipad > -1) {
+				alert('Mobile > JS [Open] [I] [NONE]');
+			}
+		}
+		
+		//////////////////////////////////////////////////
+		//by 장유란, 1. html 버튼 클릭 시 위의 send_beacon 함수 실행
+		//<!-- 버튼 클릭 이벤트 정의 --> 
+		$(document).ready(function () {
+			$("#Beacon_btn").click(function () {
+				//alert('JS > Mobile : Beacon() 메소드 호출 실시');
+
+				//<!-- 자바스크립트 함수를 호출해서 모바일 디바이스 별 구분 처리 실시 -->
+				send_beacon();
+			});
+			$("#QR_btn").click(function () {
+				//alert('JS > Mobile : QR() 메소드 호출 실시');
+				//<!-- 자바스크립트 함수를 호출해서 모바일 디바이스 별 구분 처리 실시 -->
+				send_qr();
+			});
+		});
+		
+		//by 장유란, 2. 버튼 클릭으로 함수 실행 시 app내부 open함수 실행
 		//<!-- JS > 모바일 디바이스 -->
-		function send_Open() {
+		function send_beacon() {
 			//<!-- 안드로이드로 보낸다 -->
 			if (android_agent > -1) {
 				//"Spring -> app 유저식별값 전달필요"
 
 				alert("Spring -> app 유저식별값 전달필요")
-				window.android.open(userIdx);
+				window.android.open(userIdx, courseId, date);
 			}
 			//<!-- IOS로 보낸다 -->
 			else if (iphone > -1 || ipad > -1) {
@@ -145,32 +178,17 @@
 		}
 
 		//<!-- JS > 모바일 디바이스 -->
-		function send_Close(userIdx) {
+		function send_qr() {
 			//<!-- 안드로이드로 보낸다 -->
 			var userIdx = 1;
 			if (android_agent > -1) {
-				window.android.close(userIdx);
+				window.android.close(userIdx, courseId, date);
 			}
 			//<!-- IOS로 보낸다 -->
 			else if (iphone > -1 || ipad > -1) {
 				window.location = 'close:JS TO Mobile';
 			}
 		}
-
-		//<!-- 버튼 클릭 이벤트 정의 -->
-		$(document).ready(function () {
-			$("#Beacon_btn").click(function () {
-				//alert('JS > Mobile : Beacon() 메소드 호출 실시');
-
-				//<!-- 자바스크립트 함수를 호출해서 모바일 디바이스 별 구분 처리 실시 -->
-				send_Open();
-			});
-			$("#QR_btn").click(function () {
-				//alert('JS > Mobile : QR() 메소드 호출 실시');
-				//<!-- 자바스크립트 함수를 호출해서 모바일 디바이스 별 구분 처리 실시 -->
-				send_Close();
-			});
-		});
 	</script>
 </footer>
 

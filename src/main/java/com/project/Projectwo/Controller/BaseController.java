@@ -1,25 +1,36 @@
 package com.project.Projectwo.Controller;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.mysql.cj.protocol.x.Notice;
+import com.project.Projectwo.Entity.AcademyNotice;
+import com.project.Projectwo.Entity.AcademyNoticeCheck;
+import com.project.Projectwo.Entity.Attendance;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Student;
 import com.project.Projectwo.Entity.Teacher;
 import com.project.Projectwo.Form.MemberCreateForm;
+import com.project.Projectwo.Repository.CourseRepository;
+import com.project.Projectwo.Repository.StudentRepository;
 import com.project.Projectwo.Service.AcademyService;
 import com.project.Projectwo.Service.MemberService;
 
@@ -31,7 +42,8 @@ public class BaseController {
     
 	private final MemberService memberService;
 	private final AcademyService academyService;
-	
+	private final StudentRepository studentRepository;
+	static int classCnt = 0;
 	@RequestMapping("/")
     public String root(){
         return "member/login";
@@ -48,17 +60,37 @@ public class BaseController {
     }
     
     @RequestMapping("/main")
-    public String step(Principal principal) {
+    public String step(Principal principal, Model model) {
     	if(principal == null) {
     		return "redirect:/";
     	}
     	
     	Member member = this.memberService.getMember(principal.getName());
     	
+    	// by 장유란, member_main에서 member명, 강의리스트, 전체공지 출력
+    	List<AcademyNotice> academyNotices = academyService.getAllAcademyNotice();
+    	model.addAttribute("today", (LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd"))));
+
     	System.out.println(principal.getName());
+
+    	model.addAttribute("member", member);
+    	model.addAttribute("academyNotices", academyNotices);
+    	
     	if("admin".equalsIgnoreCase(member.getRole())) {
     		return "academy/academy_main";
     	} else {
+    		if(member.getRole().equals("student")) {
+    			List<Student> student = studentRepository.findByStudent(member);
+    			List<Attendance> attendanceList= student.get(classCnt).getAttendanceList();
+    	    	List<Student> studentClassList = member.getStudentClassList();
+    	    	model.addAttribute("classList", studentClassList);
+    	    	model.addAttribute("classCnt", classCnt);
+    	    	model.addAttribute("attendanceList", attendanceList);
+    	    	
+    		}else if(member.getRole().equals("teacher")){
+    	    	List<Teacher> teacherClassList = member.getTeacherClassList();
+    	    	model.addAttribute("classList", teacherClassList);
+    		}
     		return "member/member_main";
     	}
     }
@@ -128,6 +160,6 @@ public class BaseController {
 		return "member/password_forgot";
 	}
 
-	
+
     
 }

@@ -2,49 +2,21 @@
 
 <div th:fragment="academyNoticeFragment" id="academy" class="notice-fragment active">
     <div class="notice-area">
-        <div class="notice-recent">
+        <div class="notice-recent" th:if="${academyNotices} != null" th:each="academyNotices : ${academyNotices}"> 
             <!-- <= 여기에 th:each -->
             <!-- <button th:noticeId="${academy_notice.id}" th:onclick="noticeDetail(this.getAttribute('noticeId'))" th:text="${academy_notice.title}"></button> -->
             <!-- 위의 느낌으로 제목 버튼 만들면 될듯 -->
-            <button class="notice-function-button">학원 공지</button>
+            <button  th:text="${academyNotices.title}" class="notice-function-button">학원 공지</button>
             <button onclick="clickFormButton(this)" class="notice-function-modify modify-notice"
                 sec:authorize="hasRole('TEACHER')">
                 <i class="far fa-edit"></i>
             </button>
-            <div class="notice-content academy">
+            <div th:text="${academyNotices.content}" class="notice-content academy">
                 sss
                 <!-- th:text="${academy_notice.content}" -->
             </div>
             <div th:replace="fragments/notice_fragment/academy_notice_form :: academyNoticeAddFragment"></div>
             <div th:replace="fragments/notice_fragment/academy_notice_modify :: academyNoticeModifyFragment"></div>
-        </div>
-        <div class="notice-recent">
-            <!-- <= 여기에 th:each -->
-            <!-- <button th:noticeId="${academy_notice.id}" th:onclick="noticeDetail(this.getAttribute('noticeId'))" th:text="${academy_notice.title}"></button> -->
-            <!-- 위의 느낌으로 제목 버튼 만들면 될듯 -->
-            <button class="notice-function-button">학원 공지 2</button>
-            <button onclick="clickFormButton(this)" class="notice-function-modify modify-notice"
-                sec:authorize="hasRole('TEACHER')">
-                <i class="far fa-edit"></i>
-            </button>
-            <div class="notice-content academy">
-                내용 2
-                <!-- th:text="${academy_notice.content}" -->
-            </div>
-        </div>
-        <div class="notice-recent">
-            <!-- <= 여기에 th:each -->
-            <!-- <button th:noticeId="${academy_notice.id}" th:onclick="noticeDetail(this.getAttribute('noticeId'))" th:text="${academy_notice.title}"></button> -->
-            <!-- 위의 느낌으로 제목 버튼 만들면 될듯 -->
-            <button class="notice-function-button">학원 공지 2</button>
-            <button onclick="clickFormButton(this)" class="notice-function-modify modify-notice"
-                sec:authorize="hasRole('TEACHER')">
-                <i class="far fa-edit"></i>
-            </button>
-            <div class="notice-content academy">
-                내용 2
-                <!-- th:text="${academy_notice.content}" -->
-            </div>
         </div>
     </div>
     <script>

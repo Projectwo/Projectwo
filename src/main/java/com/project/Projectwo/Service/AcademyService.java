@@ -246,6 +246,12 @@ public class AcademyService {
 		Room room = _room.get();
 		return room;
 	}
+	
+	// by 장유란, 전체 강의 반환
+		public List<AcademyNotice> getAllAcademyNotice(){
+			List<AcademyNotice> AcademyNoticeList = this.academyNoticeRepository.findAll();
+			return AcademyNoticeList;
+		}
 
 	//	// by 안준언, 전체 공지 생성
 //	public void createAcademyNotice(String title, String Content) {
