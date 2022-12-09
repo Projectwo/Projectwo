@@ -5,19 +5,45 @@
     text-align: center;
     margin: 0 auto;
     max-width: 320px;
-    height: 800px;
+    height: 810px;
     padding-top: 40px;
     overflow: auto;
+}
+
+#prev-button {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    font-size: 30px;
+    line-height: 0;
+    border: 1px solid #666;
+    border-radius: 6px;
+    left: 0;
+    top: 110px;
 }
 
 /* ##### login.html ##### */
 
 .index-logo {
+    position: relative;
     width: 260px;
     height: 300px;
     margin: 0 auto;
     margin-top: 100px;
-    background: #000;
+}
+
+.index-logo .fas.fa-desktop{
+    padding-top: 40px;
+    font-size: 220px;
+}
+
+.index-logo .far.fa-copyright{
+    position: absolute;
+    left: 130px;
+    top: 130px;
+    transform:translate(-50%, -50%);
+    font-size: 110px;
+    color:green;
 }
 
 .login-text {
@@ -34,6 +60,7 @@
 }
 
 .login-form .field {
+    position: relative;
     margin: 10px 0;
 }
 
@@ -46,9 +73,15 @@
     padding: 4px 8px;
 }
 
+.login-form .field>i{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
 .forgot-pw {
     position: relative;
-    font-size: 14px;
+    font-size: 12px;
     text-align: right;
     color: #aaa;
     top: -6px;
@@ -281,7 +314,7 @@
 .main-lecture .lecture-info-schedule-checked li {
     width: 18px;
     height: 18px;
-    padding: 1px 2px;
+    padding: 1px 1px;
     color: #eee;
     margin-top: 2px;
     margin-left: 2px;
@@ -504,8 +537,8 @@
     height: 210px;
 }
 
-.notice-area .notice-recent .notice-function-modify{
-    position:absolute;
+.notice-area .notice-recent .notice-function-modify {
+    position: absolute;
     width: 40px;
     height: 36px;
     top: 0;
@@ -514,16 +547,16 @@
     display: none;
 }
 
-.notice-area .notice-recent.active .notice-function-modify{
+.notice-area .notice-recent.active .notice-function-modify {
     display: block;
 }
 
-.notice-recent .notice-function-modify i{
+.notice-recent .notice-function-modify i {
     content: "\f044";
     font-family: "Font Awesome 5 Free";
     padding-top: 10px;
     font-size: 20px;
-    
+
 }
 
 .notice-recent .notice-content {
@@ -632,6 +665,7 @@
     align-items: center;
     width: 100%;
     height: 36px;
+    padding-bottom: 10px;
 }
 
 .main-lecture.academy-list .lecture-name {
@@ -673,7 +707,7 @@
     color: #eee;
 }
 
-.main-lecture.academy-list .lecture-info-schedule-period span{
+.main-lecture.academy-list .lecture-info-schedule-period span {
     font-size: 14px;
     font-family: 'NOTO SANS THIN';
 }
@@ -704,6 +738,10 @@
     font-size: 14px;
     font-weight: 300;
     margin-left: 8px;
+}
+
+.main-lecture.academy-list .lecture-info-count span{ 
+    font-size: 14px;
 }
 
 .main-lecture.academy-list #courseId {
@@ -949,7 +987,7 @@
     transform: translate(-50%, -50%);
 }
 
-.footer-middle.academy .academy-function-button>button i{
+.footer-middle.academy .academy-function-button>button i {
     font-size: 48px;
 }
 
@@ -1648,7 +1686,7 @@
     transform: scale(0);
 }
 
-.modify-delete-button{
+.modify-delete-button {
     position: absolute;
     top: 4px;
     right: 8px;
@@ -2019,7 +2057,7 @@
     z-index: 50;
 }
 
-.notice-form{
+.notice-form {
     position: absolute;
     width: 320px;
     height: 470px;
@@ -2034,51 +2072,51 @@
     text-align: left;
 }
 
-.notice-title-area{
+.notice-title-area {
     position: relative;
     height: 80px;
-    padding:10px 0 10px 10px;
+    padding: 10px 0 10px 10px;
     font-size: 24px;
 }
 
-.notice-title-area input{
+.notice-title-area input {
     position: relative;
     width: 280px;
     height: 40px;
-    border:1px solid #444;
+    border: 1px solid #444;
     border-radius: 6px;
-    margin:4px 0 0 10px;
+    margin: 4px 0 0 10px;
     padding: 2px 4px;
     font-size: 20px;
 }
 
-.notice-content-area{
+.notice-content-area {
     position: relative;
     height: 320px;
     padding: 10px 0 10px 10px;
     font-size: 24px;
 }
 
-.notice-content-area textarea{
+.notice-content-area textarea {
     position: relative;
     width: 280px;
     height: 240px;
-    border:1px solid #444;
+    border: 1px solid #444;
     border-radius: 6px;
-    margin:4px 0 0 10px;
+    margin: 4px 0 0 10px;
     padding: 2px 4px;
     font-size: 18px;
-    resize:none;
+    resize: none;
 }
 
-.notice-button-section{
+.notice-button-section {
     position: relative;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
 }
 
-.notice-button-section .add-confirm.notice .notice-confirm-button{
+.notice-button-section .add-confirm.notice .notice-confirm-button {
     border: 1px solid #444;
     border-radius: 6px;
     width: 100px;
@@ -2086,21 +2124,202 @@
     font-size: 20px;
     color: #333;
     text-align: center;
-    padding-bottom:0;
+    padding-bottom: 0;
 }
 
-.notice-button-section .add-close.notice button{
+.notice-button-section .add-close.notice button {
     font-size: 20px;
     height: 50px;
     text-align: center;
-    padding:0;
+    padding: 0;
 
 }
 
-.notice-form .modify-delete-button{
+.notice-form .modify-delete-button {
     position: absolute;
-    padding-right:2px;
+    padding-right: 2px;
     font-size: 14px;
 }
 
 /* ##### academy_notice_form.html end ##### */
+
+/* ##### password_modify.html ##### */
+
+.password-modify-text {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    margin-top: 130px;
+    text-align: left;
+    font-family: 'NOTO SANS BOLD';
+    font-size: 24px;
+    line-height: 24px;
+}
+
+.password-modify-text span {
+    font-size: 18px;
+    line-height: 0px;
+    color: #777;
+}
+
+.password-modify-form {
+    width: 100%;
+    margin-top: 44px;
+}
+
+.password-modify-form .field {
+    position: relative;
+    margin: 10px 0;
+}
+
+.password-modify-form .field>input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #efefef;
+    padding: 4px 8px;
+}
+
+.password-modify-form .field>i{
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.forgot-pw {
+    position: relative;
+    font-size: 14px;
+    text-align: right;
+    color: #aaa;
+    top: -6px;
+}
+
+.password-modify-form .password-modify-submit {
+    width: 100%;
+    height: 54px;
+    margin-top: 40px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    color: #fff;
+    background: #000;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* ##### password_modify.html end ##### */
+
+/* ##### password_modify_complete.html ##### */
+
+.password-modify-complete-section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.password-modify-complete-logo {
+    width: 200px;
+    height: 200px;
+}
+
+.password-modify-complete-logo i{
+    font-size: 140px;
+}
+
+.password-modify-complete-text {
+    font-family: 'NOTO SANS BOLD';
+    font-size: 24px;
+}
+
+.password-modify-complete-text span{
+    font-size: 18px;
+    color:#777;
+}
+
+.password-modify-complete-section button {
+    position: relative;
+    width: 100%;
+    height: 54px;
+    margin-top: 40px;
+    margin-bottom:30px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    color: #fff;
+    background: #000;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* ##### password_modify_complete.html end ##### */
+
+/* ##### password_forgot.html ##### */
+
+.password-forgot-text {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    margin-top: 130px;
+    text-align: left;
+    font-family: 'NOTO SANS BOLD';
+    font-size: 24px;
+    line-height: 24px;
+}
+
+.password-forgot-text span {
+    font-size: 18px;
+    line-height: 0px;
+    color: #777;
+}
+
+.password-forgot-form {
+    width: 100%;
+    margin-top: 44px;
+}
+
+.password-forgot-form .field {
+    position: relative;
+    margin: 10px 0;
+}
+
+.password-forgot-form .field>input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #efefef;
+    padding: 4px 8px;
+}
+
+.password-forgot-form .password-forgot-submit {
+    width: 320px;
+    height: 54px;
+    margin-top: 40px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    color: #fff;
+    background: #000;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.password-find-message{
+    position: absolute;
+    width: 320px;
+    height: 190px;
+    top: 276px;
+    border:1px solid #ccc;
+    background: #ccc;
+    border-radius: 6px;
+    z-index: 10;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility:hidden;
+}
+
+/* ##### password_forgot.html end ##### */
