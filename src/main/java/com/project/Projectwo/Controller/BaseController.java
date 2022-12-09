@@ -112,5 +112,22 @@ public class BaseController {
 	public String teacherCheck(){
 		return "member/teacher_check";
 	}
+
+	@RequestMapping("/main/password/modify")
+	public String passwordModify(){
+		return "member/password_modify";
+	}
+
+	@RequestMapping("/main/password/modify/complete")
+	public String passwordModifyComplete(){
+		return "member/password_modify_complete";
+	}
+	
+	@RequestMapping("/password/forgot")
+	public String passwordForgot(){
+		return "member/password_forgot";
+	}
+
+	
     
 }
