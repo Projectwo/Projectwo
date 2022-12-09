@@ -20,9 +20,7 @@ public class AndroidPushPeriodicNotifications {
 		
 		LocalDate localDate = LocalDate.now();
 		
-		String sampleData[] = {
-				"device token value 1", 
-				"device token value 2", 
+		String sampleData[] = { 
 				"dALQVsrqR1aqdIHN5FEdZX:APA91bFyL-tROMnIvtw9Ypp5xeyTHg821Lb0Nc-ZdvpbyH8e4Mi86oZYq06yGl_XBqlhLgBw_3TGTeGCXKg4mb4Qv63UIkzfLDgZAP6RmLWrjUsHv903__R0HEwv1A2ajdbHAeqlKiAK"};
 		
 		JSONObject body = new JSONObject();

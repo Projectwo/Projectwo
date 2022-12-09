@@ -6,11 +6,11 @@ import java.util.concurrent.ExecutionException;
 import org.json.JSONException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +31,7 @@ public class NotificationController {
 	@Autowired
 	AndroidPushNotificationService androidPushNotificationService;
 	
+	@Scheduled(fixedRate = 10000 )
 	@GetMapping("/send")
 	public @ResponseBody ResponseEntity<String> send() throws JSONException, InterruptedException {
 		String notifications = AndroidPushPeriodicNotifications.PeriodicNotificationJson();
@@ -45,14 +46,14 @@ public class NotificationController {
 			return new ResponseEntity<>(firebaseResponse, HttpStatus.OK);
 			
 		}catch(InterruptedException e) {
-			logger.debug("got interrupted!!");
+			logger.debug("%%%%got interrupted!!");
 			throw new InterruptedException();
 			
 		}catch(ExecutionException e) {
-			logger.debug("execution error!!");
+			logger.debug("%%%%execution error!!");
 		}
 		
-		return new ResponseEntity<>("Push Notification ERROR!!", HttpStatus.BAD_REQUEST);
+		return new ResponseEntity<>("%%%%Push Notification ERROR!!", HttpStatus.BAD_REQUEST);
 		
 
 	}
