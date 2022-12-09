@@ -32,18 +32,18 @@
     margin-top: 100px;
 }
 
-.index-logo .fas.fa-desktop{
+.index-logo .fas.fa-desktop {
     padding-top: 40px;
     font-size: 220px;
 }
 
-.index-logo .far.fa-copyright{
+.index-logo .far.fa-copyright {
     position: absolute;
     left: 130px;
     top: 130px;
-    transform:translate(-50%, -50%);
+    transform: translate(-50%, -50%);
     font-size: 110px;
-    color:#2cae2c;
+    color: #2cae2c;
 }
 
 .login-text {
@@ -73,7 +73,7 @@
     padding: 4px 8px;
 }
 
-.login-form .field>i{
+.login-form .field>i {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -740,7 +740,7 @@
     margin-left: 8px;
 }
 
-.main-lecture.academy-list .lecture-info-count span{ 
+.main-lecture.academy-list .lecture-info-count span {
     font-size: 14px;
 }
 
@@ -931,6 +931,63 @@
     text-align: left;
     top: 58px;
     left: 16px;
+}
+
+.academy-student .student-lecture-regist {
+    position: absolute;
+    width: 160px;
+    height: 84px;
+    top: 2px;
+    right: 2px;
+    text-align: right;
+}
+
+.student-lecture-regist .student-lecture-regist-button {
+    position: relative;
+    font-size: 14px;
+    top: 56px;
+    right: 2px;
+    color: #666;
+    text-decoration: underline;
+}
+
+.student-lecture-regist .lecture-regist-list-section {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid #eee;
+    border-radius: 6px;
+    background: #eee;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    visibility: hidden;
+    z-index: 1;
+}
+
+.student-lecture-regist .lecture-regist-list {
+    position: relative;
+    width: 130px;
+    height: 26px;
+    padding: 2px 4px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #444;
+}
+
+.student-lecture-regist .lecture-regist-list-button {
+    display: flex;
+    justify-content: space-between;
+    width: 70px;
+}
+
+.student-lecture-regist .lecture-regist-list-button>button {
+    font-size: 14px;
+    color: #666;
 }
 
 .academy-student .student-id {
@@ -1681,9 +1738,42 @@
     text-align: center;
 }
 
+.add-student-form .add-lecture-regist {
+    position: relative;
+    padding: 6px 10px;
+    font-size: 24px;
+}
+
+.add-student-form .add-lecture-regist input {
+    position: relative;
+    width: 240px;
+    height: 36px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
+    background: none;
+    border: 1px solid #333;
+    border-radius: 6px;
+    color: #333;
+    font-size: 14px;
+    text-align: center;
+}
+
 .add-student-form #modifyStudentId {
     position: absolute;
     transform: scale(0);
+}
+
+.add-student-form .add-button-section {
+    margin-top: 20px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#modifyStudent .add-button-section {
+    margin-top: 100px;
 }
 
 .modify-delete-button {
@@ -2181,7 +2271,7 @@
     padding: 4px 8px;
 }
 
-.password-modify-form .field>i{
+.password-modify-form .field>i {
     position: absolute;
     top: 15px;
     right: 15px;
@@ -2226,7 +2316,7 @@
     height: 200px;
 }
 
-.password-modify-complete-logo i{
+.password-modify-complete-logo i {
     font-size: 140px;
 }
 
@@ -2235,9 +2325,9 @@
     font-size: 24px;
 }
 
-.password-modify-complete-text span{
+.password-modify-complete-text span {
     font-size: 18px;
-    color:#777;
+    color: #777;
 }
 
 .password-modify-complete-section button {
@@ -2245,7 +2335,7 @@
     width: 100%;
     height: 54px;
     margin-top: 40px;
-    margin-bottom:30px;
+    margin-bottom: 30px;
     border: 1px solid #000;
     border-radius: 6px;
     color: #fff;
@@ -2306,12 +2396,12 @@
     font-weight: bold;
 }
 
-.password-find-message{
+.password-find-message {
     position: absolute;
     width: 320px;
     height: 190px;
     top: 276px;
-    border:1px solid #ccc;
+    border: 1px solid #ccc;
     background: #ccc;
     border-radius: 6px;
     z-index: 10;
@@ -2319,7 +2409,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    visibility:hidden;
+    visibility: hidden;
 }
 
 /* ##### password_forgot.html end ##### */

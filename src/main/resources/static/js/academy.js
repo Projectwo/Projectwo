@@ -384,7 +384,7 @@ function getAllStudent(res) {
 			let classListOfStudent;
 
 			commonAjax('/getClassListOfStudent', mb, 'get', function(rs) {
-				//console.log(rs.length);
+				console.log(rs.length);
 				classListOfStudent = rs.length;
 				if (rs === null) {
 					classListOfStudent = "0";
@@ -417,6 +417,18 @@ function getAllStudent(res) {
 				member.address +
 				"</div>" +
 				"<div class='student-id'>" + member.id +
+				"</div>" +
+				"<div class='student-lecture-regist'>" +
+				"<button onclick='lectureRegistFucntion(this)' class='student-lecture-regist-button'>강의 등록</button>" +
+				"<div class='lecture-regist-list-section'>" +
+				"<select class='lecture-regist-list'>" +
+				"<option>강의 1</option>"+
+				"</select>" +
+				"<div class='lecture-regist-list-button'>" +
+				"<button>등록</button>" +
+				"<button onclick='lectureRegistCancle(this)' class='lecture-regist-cancle'>취소</button>" +
+				"</div>" +
+				"</div>" +
 				"</div>" +
 				"</div>" +
 				"</div>";
