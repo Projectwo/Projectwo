@@ -1,23 +1,9 @@
 package com.project.Projectwo;
 
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.project.Projectwo.Entity.Attendance;
-import com.project.Projectwo.Entity.Course;
-import com.project.Projectwo.Entity.Member;
-import com.project.Projectwo.Entity.Room;
-import com.project.Projectwo.Entity.Student;
 import com.project.Projectwo.Repository.AttendanceRepository;
 import com.project.Projectwo.Repository.CourseRepository;
 import com.project.Projectwo.Repository.MemberRepository;
@@ -26,6 +12,7 @@ import com.project.Projectwo.Repository.StudentRepository;
 import com.project.Projectwo.Service.AcademyService;
 
 import lombok.extern.slf4j.Slf4j;
+
 
 @Slf4j
 @SpringBootTest
@@ -125,6 +112,53 @@ class ProjectwoApplicationTests {
 //	// 계정 등록
 //	@Test
 //	void createMember() {
+//		Member member1 = new Member();
+//		member1.setIdentity("aaa");
+//		member1.setPassword(passwordEncoder.encode("aaa"));
+//		member1.setName("aaa");
+//		member1.setEmail("aaa@aaa");
+//		member1.setBirth_date(LocalDate.of(1991, 01, 01));
+//		member1.setAddress("aaa");
+//		member1.setTel("aaa");
+//		member1.setRole("student");
+//		
+//		this.memberRepository.save(member1);
+//		
+//		Member member2 = new Member();
+//		member2.setIdentity("bbb");
+//		member2.setPassword(passwordEncoder.encode("bbb"));
+//		member2.setName("bbb");
+//		member2.setEmail("bbb@bbb");
+//		member2.setBirth_date(LocalDate.of(1991, 01, 01));
+//		member2.setAddress("bbb");
+//		member2.setTel("bbb");
+//		member2.setRole("student");
+//		
+//		this.memberRepository.save(member2);
+//		
+//		Member member3 = new Member();
+//		member3.setIdentity("ccc");
+//		member3.setPassword(passwordEncoder.encode("ccc"));
+//		member3.setName("ccc");
+//		member3.setEmail("ccc@ccc");
+//		member3.setBirth_date(LocalDate.of(1991, 01, 01));
+//		member3.setAddress("ccc");
+//		member3.setTel("ccc");
+//		member3.setRole("teacher");
+//		
+//		this.memberRepository.save(member3);
+//		
+//		Member member4 = new Member();
+//		member4.setIdentity("ddd");
+//		member4.setPassword(passwordEncoder.encode("ddd"));
+//		member4.setName("ddd");
+//		member4.setEmail("ddd@ddd");
+//		member4.setBirth_date(LocalDate.of(1991, 01, 01));
+//		member4.setAddress("ddd");
+//		member4.setTel("ddd");
+//		member4.setRole("teacher");
+//		
+//		this.memberRepository.save(member4);
 //		
 //		Member member5 = new Member();
 //		member5.setIdentity("admin");
@@ -142,8 +176,8 @@ class ProjectwoApplicationTests {
 //	@Test
 //	void createRoom() {
 //		Room room = new Room();
-//		room.setName("101호");
-//		room.setMaxSeat(10);
+//		room.setName("427호");
+//		room.setMaxSeat(50);
 //		
 //		this.roomRepository.save(room);
 //	}

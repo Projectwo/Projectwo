@@ -3,13 +3,8 @@ package com.project.Projectwo.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -24,7 +19,6 @@ import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Room;
 import com.project.Projectwo.Entity.Teacher;
-import com.project.Projectwo.QR.QrCodeView;
 import com.project.Projectwo.Repository.AcademyNoticeCheckRepository;
 import com.project.Projectwo.Repository.AcademyNoticeRepository;
 import com.project.Projectwo.Repository.AttendanceRepository;
@@ -52,10 +46,10 @@ public class AcademyService {
 	private final RoomRepository roomRepository;
 	private final StudentRepository studentRepository;
 	private final TeacherRepository teacherRepository;
-	
+
 	private final PasswordEncoder passwordEncoder;
 	
-	// by 안준언, 유저 생성
+	// by 안준언, 유저 생성 (test 코드)
 	public void createMember(String identity, String password, String email,
 			String name, LocalDate birth_date, String address, String tel) {
 		Member member = new Member();
@@ -68,6 +62,131 @@ public class AcademyService {
 		member.setTel(tel);
 		
 		this.memberRepository.save(member);
+	}
+	
+	// by 안준언, 유저(teacher) 생성
+	public void createTeacher(String name, String birth_date, String tel,
+								String email, String address) {
+		Member member = new Member();
+		member.setRole("teacher");
+		member.setIdentity(name+tel);
+		member.setPassword(passwordEncoder.encode(name+tel));
+		member.setName(name);
+		member.setBirth_date(LocalDate.parse(birth_date));
+		member.setTel(tel);
+		member.setEmail(email);
+		member.setAddress(address);
+		
+		this.memberRepository.save(member);
+	}
+	
+	// by 안준언, 유저(student) 생성
+	public void createStudent(String name, String birth_date, String tel,
+									String email, String address) {
+			Member member = new Member();
+			member.setRole("student");
+			member.setIdentity(name+tel);
+			member.setPassword(passwordEncoder.encode(name+tel));
+			member.setName(name);
+			member.setBirth_date(LocalDate.parse(birth_date));
+			member.setTel(tel);
+			member.setEmail(email);
+			member.setAddress(address);
+			
+			this.memberRepository.save(member);
+	}
+	
+	// by 안준언, 유저(teacher) 수정
+	public void modifyMember(String memberId, String name, String birth_date, String tel,
+								String email, String address) {
+		Integer _memberId = Integer.parseInt(memberId);
+		
+		Optional<Member> _member = this.memberRepository.findById(_memberId);
+
+		Member member = _member.get();
+		member.setName(name);
+		member.setBirth_date(LocalDate.parse(birth_date));
+		member.setTel(tel);
+		member.setEmail(email);
+		member.setAddress(address);
+		
+		this.memberRepository.save(member);
+		
+	}
+		
+		
+	
+	// by 안준언, 새 강의 생성
+	public void createCourseAndTeacher(String title, String mon, String tue, String wed,
+								String thu, String fri, String sat, String sun,
+								String startDate, String endDate, String startTime,
+								String endTime, String roomName, String teacherName) {
+		Optional<Room> _room = this.roomRepository.findByName(roomName);
+		Room room = _room.get();
+		
+		Course course = new Course();
+		course.setTitle(title);
+		course.setDescription("please write description");
+		course.setMon(Boolean.parseBoolean(mon));
+		course.setTue(Boolean.parseBoolean(tue));
+		course.setWed(Boolean.parseBoolean(wed));
+		course.setThu(Boolean.parseBoolean(thu));
+		course.setFri(Boolean.parseBoolean(fri));
+		course.setSat(Boolean.parseBoolean(sat));
+		course.setSun(Boolean.parseBoolean(sun));
+		course.setStartDate(LocalDate.parse(startDate));
+		course.setEndDate(LocalDate.parse(endDate));
+		course.setStartTime(LocalTime.parse(startTime));
+		course.setEndTime(LocalTime.parse(endTime));
+		course.setRoom(room);
+		
+		this.courseRepository.save(course);
+		
+		Optional<Member> _member = this.memberRepository.findByName(teacherName);
+		Member member = _member.get();
+		
+		Teacher teacher = new Teacher();
+		teacher.setCourse(course);
+		teacher.setTeacher(member);
+		
+		this.teacherRepository.save(teacher);
+		
+	}
+	
+	public void modifyCourseAndTeacher(String id, String title, String mon, String tue, String wed,
+			String thu, String fri, String sat, String sun,
+			String startDate, String endDate, String startTime,
+			String endTime, String roomName, String teacherName) {
+		Optional<Room> _room = this.roomRepository.findByName(roomName);
+		Room room = _room.get();
+		
+		Integer courseId = (Integer.parseInt(id));
+		Optional<Course> _course = this.courseRepository.findById(courseId);
+		Course course = _course.get();
+		course.setTitle(title);
+		course.setMon(Boolean.parseBoolean(mon));
+		course.setTue(Boolean.parseBoolean(tue));
+		course.setWed(Boolean.parseBoolean(wed));
+		course.setThu(Boolean.parseBoolean(thu));
+		course.setFri(Boolean.parseBoolean(fri));
+		course.setSat(Boolean.parseBoolean(sat));
+		course.setSun(Boolean.parseBoolean(sun));
+		course.setStartDate(LocalDate.parse(startDate));
+		course.setEndDate(LocalDate.parse(endDate));
+		course.setStartTime(LocalTime.parse(startTime));
+		course.setEndTime(LocalTime.parse(endTime));
+		course.setRoom(room);
+		
+		this.courseRepository.save(course);
+		
+		Optional<Member> _member = this.memberRepository.findByName(teacherName);
+		Member member = _member.get();
+		
+		List<Teacher> _teacher = this.teacherRepository.findByCourse(course);
+		Teacher teacher = _teacher.get(0);
+		teacher.setTeacher(member);
+		this.teacherRepository.save(teacher);
+		
 	}
 	
 	// by 안준언, 전체 강의 리스트 반환
@@ -103,7 +222,7 @@ public class AcademyService {
 	}
 	
 	// by 안준언, pk(id)로 해당 수업 반환
-	public Course getCourse(int courseId) {
+	public Course getCourse(Integer courseId) {
 		Optional<Course> _course = this.courseRepository.findById(courseId);
 		if(_course.isEmpty()) {
 			return null;
@@ -127,6 +246,106 @@ public class AcademyService {
 		Room room = _room.get();
 		return room;
 	}
+	
+	// by 장유란, 전체 강의 반환
+		public List<AcademyNotice> getAllAcademyNotice(){
+			List<AcademyNotice> AcademyNoticeList = this.academyNoticeRepository.findAll();
+			return AcademyNoticeList;
+		}
+
+	//	// by 안준언, 전체 공지 생성
+//	public void createAcademyNotice(String title, String Content) {
+//		AcademyNotice academyNotice = new AcademyNotice();
+//		academyNotice.setTitle(title);
+//		academyNotice.setContent(Content);
+//		academyNotice.setCreateDate(LocalDateTime.now());
+//		
+//		this.academyNoticeRepository.save(academyNotice);
+//	}
+//	
+//	// by 안준언, 강의실 생성
+//	public void createRoom(String name, int MaxSeat) {
+//		Room room = new Room();
+//		room.setName(name);
+//		room.setMaxSeat(MaxSeat);
+//		
+//		this.roomRepository.save(room);
+//	}
+//	
+//	// by 안준언, 학원 강의 생성
+//	public void createCourse(String title, String description,
+//								LocalDate startDate, LocalDate endDate) {
+//		Course lecture = new Course();
+//		lecture.setTitle(title);
+//		lecture.setDescription(description);
+//		lecture.setStartDate(startDate);
+//		lecture.setEndDate(endDate);
+//		
+//		this.courseRepository.save(lecture);
+//	}
+//	
+	// by 안준언, 수강 등록 (수강정보 생성)
+	public void addStudent(Member student, Course course) {
+		Student classMember = new Student();
+		classMember.setStudent(student);
+		classMember.setCourse(course);
+		
+		this.studentRepository.save(classMember);
+	}
+		
+	// by 안준언, 강사 등록
+	public void addTeacher(Member teacher_, Course course) {
+		Teacher teacher = new Teacher();
+		teacher.setTeacher(teacher_);
+		teacher.setCourse(course);
+		
+		this.teacherRepository.save(teacher);
+	}
+	
+//	// by 안준언, 강의 공지사항 읽음 여부 생성
+//	public void createClassNoticeCheck(Student student, ClassNotice classNotice) {
+//		ClassNoticeCheck classNoticeCheck = new ClassNoticeCheck();
+//		classNoticeCheck.setStudent(student);
+//		classNoticeCheck.setClassNotice(classNotice);
+//		classNoticeCheck.setChecked(false);
+//		
+//		this.classNoticeCheckRepository.save(classNoticeCheck);
+//	}
+//	
+//	// by 안준언, 강의 공지사항 생성
+//	public void createClassNotice(String title, String content, LocalDateTime createDate,
+//									LocalDateTime modifyDate, Course course) {
+//		ClassNotice classNotice = new ClassNotice();
+//		classNotice.setTitle(title);
+//		classNotice.setContent(content);
+//		classNotice.setCreateDate(createDate);
+//		classNotice.setModifyDate(modifyDate);
+//		classNotice.setCourse(course);
+//		
+//		this.classNoticeRepository.save(classNotice);
+//	}
+//	
+//	// by 안준언, 출석 정보 생성
+//	public void createAttendance(LocalTime inTime, LocalTime outTime, String status,
+//									Student student) {
+//		Attendance attendance = new Attendance();
+//		attendance.setInTime(inTime);
+//		attendance.setOutTime(outTime);
+//		attendance.setStatus(status);
+//		attendance.setStudent(student);
+//		
+//		this.attendanceRepository.save(attendance);
+//	}
+//	
+//	// by 안준언, 전체 공지 읽음 여부 생성
+//	public void createAcademyNoticeCheck(Member member, AcademyNotice academyNotice) {
+//		AcademyNoticeCheck academyNoticeCheck = new AcademyNoticeCheck();
+//		academyNoticeCheck.setMember(member);
+//		academyNoticeCheck.setAcademyNotice(academyNotice);
+//		academyNoticeCheck.setChecked(false);
+//		
+//		this.academyNoticeCheckRepository.save(academyNoticeCheck);
+//	}
 
 	//	// by 안준언, 전체 공지 생성
 //	public void createAcademyNotice(String title, String Content) {

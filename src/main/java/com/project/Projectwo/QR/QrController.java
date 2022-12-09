@@ -1,6 +1,7 @@
 package com.project.Projectwo.QR;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -20,6 +21,10 @@ import com.project.Projectwo.Entity.Attendance;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Student;
+import com.project.Projectwo.Repository.AttendanceRepository;
+import com.project.Projectwo.Repository.CourseRepository;
+import com.project.Projectwo.Repository.MemberRepository;
+import com.project.Projectwo.Repository.StudentRepository;
 import com.project.Projectwo.Service.AcademyService;
 import com.project.Projectwo.Service.AttendanceService;
 import com.project.Projectwo.Service.MemberService;
@@ -32,21 +37,12 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class QrController {
 	
+
 	private final QRService qrService;
 	private final AcademyService academyService;
 	private final AttendanceService attendanceService;
 	private final MemberService memberService;
 	
-
-	@GetMapping("/cam")
-	public String getCam() {
-		return "cam";
-	}
-	
-	@GetMapping("/cam2")
-	public String getCam2() {
-		return "cam2";
-	}
 
 	//by 박은영
 	//"http://ip:9090/course/{courseId}/{LocalDate}로 qr생성
@@ -72,10 +68,10 @@ public class QrController {
 		//Course
 		Course course = academyService.getCourse(courseId);		
 
+
 		log.info("####localDate=" + localDate.toString()); 
 		log.info("####강의명=" + course.getTitle()); 
 		log.info("####강의설명=" + course.getDescription()); 
-
 
 		//Member
 		//session으로 안 할거면 이 부분 건드려야 돼
@@ -96,7 +92,7 @@ public class QrController {
 
 		return "redirect:/main";
 	}
-	
+
 	//by 박은영
 	//선생님 권한으로 학생 출결 정보 조회
 	@GetMapping("/teacher/{courseId}/{date}")
@@ -105,7 +101,9 @@ public class QrController {
 		
 		//Date
 		String stringDate = date;
+
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
 		LocalDate localDate = LocalDate.parse(stringDate, formatter);
 		
 		model1.addAttribute("localDate", localDate);
@@ -115,13 +113,14 @@ public class QrController {
 		model2.addAttribute("course", course);
 		
 		log.info("강의명=" + course.getTitle()); 
-		
+
+		//course로부터 학생 목록 가져오기
 		List<Student> classStudentList = this.academyService.getStudentList(course);
 		
 		
 		ArrayList<Member> studentMemberList = new ArrayList<Member>();
 		ArrayList<Attendance> todayAttendanceList = new ArrayList<Attendance>();
-		
+
 		Map<Member, Attendance> map = new HashMap<Member, Attendance>();
 		
 		for(int i=0; i<classStudentList.size(); i++) {
@@ -147,5 +146,4 @@ public class QrController {
 
 		return "attendance";
 	}
-
 }

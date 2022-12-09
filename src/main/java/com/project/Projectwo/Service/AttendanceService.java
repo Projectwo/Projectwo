@@ -71,7 +71,7 @@ public class AttendanceService {
 		}
 		
 		Attendance todayAttendance = oAttendance.get();
-		
+
 		return todayAttendance;
 	}
 	

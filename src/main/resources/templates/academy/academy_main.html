@@ -1,14 +1,14 @@
 <html layout:decorate="~{layout/layout}">
 
-<div layout:fragment="content">
+<div layout:fragment="content" sec:authorize="hasRole('ADMIN')">
     <div class="academy-list-tab">
         <button class="tab active" value="lecture">Class</button>
         <button class="tab" value="teacher">Teacher</button>
         <button class="tab" value="student">Student</button>
     </div>
-    <div th:replace="fragments/academy_class :: classFragment"></div>
-    <div th:replace="fragments/academy_teacher :: teacherFragment"></div>
-    <div th:replace="fragments/academy_student :: studentFragment"></div>
+    <div th:replace="fragments/academy_fragment/academy_class :: classFragment"></div>
+    <div th:replace="fragments/academy_fragment/academy_teacher :: teacherFragment"></div>
+    <div th:replace="fragments/academy_fragment/academy_student :: studentFragment"></div>
     <script>
         $(".academy-list-tab").children('button').click(function () {
             if ($('button').hasClass("active")) {
@@ -33,14 +33,9 @@
             }
 
         }) // by 조성빈, 클릭한 tab에 active 클래스 추가하는 기능
-        
-        window.onload = function() {
-        	getClassInfo();
-        	getTeacherInfo();
-        	getStudentInfo();
-        }
     </script>
-    <footer th:replace="fragments/academy_footer :: academyFooterFragment"></footer>
+    <footer th:replace="fragments/academy_fragment/academy_footer :: academyFooterFragment"></footer>
+    <script th:src ="@{/js/academy.js}"></script>
 </div>
 
 </html>

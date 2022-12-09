@@ -1,6 +1,8 @@
 package com.project.Projectwo.Controller;
 
 import java.security.Principal;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 
@@ -10,6 +12,7 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -28,7 +31,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @Controller
 public class AcademyController {
-
+	
 	private final MemberService memberService;
 	private final AcademyService academyService;
     
@@ -107,4 +110,116 @@ public class AcademyController {
     	Room room = this.academyService.getRoom((String)params.get("roomName"));
     	return room;
     }
+    
+    // by 안준언, academy 페이지 강의 생성
+    @PostMapping("/createCourse")
+    @ResponseBody
+    public void createCourse(@RequestParam HashMap<Object, Object> params) {
+    	String title = (String)params.get("title");
+    	String startDate = (String)params.get("startDate");
+    	String endDate = (String)params.get("endDate");
+    	String startTime = (String)params.get("startTime");
+    	String endTime = (String)params.get("endTime");
+    	String mon = (String)params.get("mon");
+    	String tue = (String)params.get("tue");
+    	String wed = (String)params.get("wed");
+    	String thu = (String)params.get("thu");
+    	String fri = (String)params.get("fri");
+    	String sat = (String)params.get("sat");
+    	String sun = (String)params.get("sun");
+    	
+    	String roomName = (String)params.get("roomName");
+    	String teacherName = (String)params.get("teacherName");
+    	
+    	this.academyService.createCourseAndTeacher(title, mon, tue, wed, thu, fri, sat, sun,
+    												startDate, endDate, startTime, endTime,
+    												roomName, teacherName);
+    }
+    
+    @PostMapping("/modifyCourse")
+    @ResponseBody
+    public void modifyCourse(@RequestParam HashMap<Object, Object> params) {
+    	String courseId = (String)params.get("id");
+    	String title = (String)params.get("title");
+    	String startDate = (String)params.get("startDate");
+    	String endDate = (String)params.get("endDate");
+    	String startTime = (String)params.get("startTime");
+    	String endTime = (String)params.get("endTime");
+    	String mon = (String)params.get("mon");
+    	String tue = (String)params.get("tue");
+    	String wed = (String)params.get("wed");
+    	String thu = (String)params.get("thu");
+    	String fri = (String)params.get("fri");
+    	String sat = (String)params.get("sat");
+    	String sun = (String)params.get("sun");
+    	
+    	String roomName = (String)params.get("roomName");
+    	String teacherName = (String)params.get("teacherName");
+    	
+    	this.academyService.modifyCourseAndTeacher(courseId, title, mon, tue, wed, thu, fri, sat, sun,
+    												startDate, endDate, startTime, endTime,
+    												roomName, teacherName);
+    }
+    
+    // by 안준언, academy 페이지 강사 생성
+    @PostMapping("/createTeacher")
+    @ResponseBody
+    public void createTeacher(@RequestParam HashMap<Object, Object> params) {
+    	String name = (String)params.get("name");
+    	String birth_date = (String)params.get("birth_date");
+    	String tel = (String)params.get("tel");
+    	String email = (String)params.get("email");
+    	String address = (String)params.get("address");
+    	
+    	this.academyService.createTeacher(name, birth_date, tel, email, address);
+    }
+    
+    // by 안준언, academy 페이지 강사 정보 수정
+    @PostMapping("/modifyMember")
+    @ResponseBody
+    public void modifyMember(@RequestParam HashMap<Object, Object> params) {
+
+    	String memberId = (String)params.get("memberId");
+    	String name = (String)params.get("name");
+    	String birth_date = (String)params.get("birth_date");
+    	String tel = (String)params.get("tel");
+    	String email = (String)params.get("email");
+    	String address = (String)params.get("address");
+    	
+    	this.academyService.modifyMember(memberId, name, birth_date, tel, email, address);
+    }
+    
+    // by 안준언, academy 페이지 학생 생성
+    @PostMapping("/createStudent")
+    @ResponseBody
+    public void createStudent(@RequestParam HashMap<Object, Object> params) {
+    	String name = (String)params.get("name");
+    	String birth_date = (String)params.get("birth_date");
+    	String tel = (String)params.get("tel");
+    	String email = (String)params.get("email");
+    	String address = (String)params.get("address");
+    	
+    	this.academyService.createStudent(name, birth_date, tel, email, address);
+    }
+    
+    // by 안준언, academy 페이지, 학생,강사 정보 수정
+    @PostMapping("/getMemberById")
+    @ResponseBody
+    public Member getStudent(@RequestParam HashMap<Object, Object> params) {
+    	Integer memberId = Integer.parseInt((String)params.get("memberId"));
+    	Member member = this.memberService.getMember(memberId);
+    	
+    	return member;
+    }
+    
+    // by 안준언, academy 페이지 Course 수정 폼 정보 반환
+    @PostMapping("/getCourseById")
+    @ResponseBody
+    public Course getCourseById(@RequestParam HashMap<Object, Object> params) {
+    	Integer courseId = Integer.parseInt((String)params.get("courseId"));
+    	Course course = this.academyService.getCourse(courseId);
+    	
+    	return course;
+    }
+
 }

@@ -1,11 +1,195 @@
 <html layout:decorate="~{layout/layout}">
 
 <footer th:fragment="mainFooterFragment">
-    <div class="footer-wrap">
-        <button class="home-button">홈</button>
-        <button class="checkin-out">출석</button>
-        <div th:replace="fragments/nav_button :: navFragment"></div>
-    </div>
+	<div class="footer-wrap">
+		<button onclick="location.href='/main'" class="home-button">
+			<i class="fas fa-home"></i>
+		</button>
+		<div class="student-function" sec:authorize="hasRole('STUDENT')">
+			<div class="student-check-beacon">
+				<a href="javascript:;" id="Beacon_btn" th:text="|비콘|"></a>
+			</div>
+			<button onclick="memberFunctionButton('student-function')" class="student-function-button">
+				<i class="far fa-check-circle checked"></i>
+				<!-- 출석 여부 확인 후 checked로 색상 변경 -->
+			</button>
+			<div class="student-check-qrcode">
+				<a href="javascript:;" id="QR_btn" th:text="|QR|"></a>
+			</div>
+		</div><!-- sec:role student 일 때 //// 임시매핑-->
+		<div class="teacher-function" sec:authorize="hasRole('TEACHER')">
+			<div class="teacher-create-notice">
+				<a href="javascript:noticeAddButton();" th:text="|공지 작성|"></a>
+			</div>
+			<button onclick="memberFunctionButton('teacher-function')" class="teacher-function-button">
+				<i class="fas fa-plus-circle"></i>
+			</button>
+			<div class="teacher-create-qrcode">
+				<a href="javascript:;" id="QR_btn" th:text="|QR 생성|"></a>
+			</div>
+		</div><!-- sec:role teacher 일 때 -->
+		<div th:replace="fragments/nav_button :: navFragment"></div>
+	</div>
+	<script>
+		function memberFunctionButton(e) {
+			const currentRole = document.getElementsByClassName(e);
+			const functionButton = $(currentRole).children('div');
+
+			if (functionButton.css('display') === 'none') {
+				functionButton.css({
+					'display': 'block'
+				});
+			} else {
+				functionButton.css({
+					'display': 'none'
+				});
+			}
+		}
+
+		function noticeAddButton(){
+            const existForm = document.getElementsByClassName("form-fragment add-notice");
+            const formStatus = $(existForm).css('display');
+
+            if(formStatus == 'none'){
+                $(existForm).css('display', 'block');
+            }
+		}
+
+		function clickFormButton(e) {
+            const clickedFormButton = e.className;
+            let arr = clickedFormButton.split(' ');
+            const selectedForm = $(".form-fragment." + arr[1]);
+            const formStatus = $(selectedForm).css('display');
+
+            if(formStatus == 'none'){
+                $(selectedForm).css('display', 'block');
+            }
+        } // by 조성빈, 각 버튼 클릭 시 영역 오픈 기능
+
+        function closeNoticeModal(e) {
+            const clickedFormButton = e.className;
+            let arr = clickedFormButton.split(' ');
+            const selectedForm = $(".form-fragment." + arr[1]);
+            const formStatus = $(selectedForm).css('display');
+
+            if(formStatus == 'block'){
+                $(selectedForm).css('display', 'none');
+            }
+        } // by 조성빈, 각 버튼 클릭 시 영역 닫기 기능
+	</script>
+	<!-- 자바 스크립트 및 j쿼리 파일 -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+
+	<!-- 내부 자바스크립트 J쿼리 이벤트 지정 -->
+	<script>
+		var userIdx = 1; // app으로 보낼 유저 정보
+		var courseId = 1;
+		var date = "2022-01-01"
+
+		var uagent = navigator.userAgent.toLowerCase(); //<!-- 유저에이전트 문자열을 얻어 소문자로 변환-->
+		var android_agent = uagent.search("android");
+		var iphone = uagent.search("iphone");
+		var ipad = uagent.search("ipad");
+
+		//<!-- 모바일 디바이스 > JS -->
+		function beacon_true(returnData) {
+			//<!-- 안드로이드에서 전달받음 -->
+			if (android_agent > -1) {
+				//alert('Mobile > JS [Open] [A] [NONE]');
+				alert('Beacon 출석이 확인되었습니다.\n' + returnData);
+				location.href = `/course/${courseId}/${date}`;
+			}
+			//<!-- IOS에서 전달받음 -->
+			else if (iphone > -1 || ipad > -1) {
+				alert('Mobile > JS [Open] [I] [NONE]');
+			}
+		}
+
+		function beacon_false() {
+			//<!-- 안드로이드에서 전달받음 -->
+			if (android_agent > -1) {
+				//alert('Mobile > JS [Open] [A] [NONE]');
+				alert('Beacon 인식에 실패했습니다.');
+			}
+			//<!-- IOS에서 전달받음 -->
+			else if (iphone > -1 || ipad > -1) {
+				alert('Mobile > JS [Open] [I] [NONE]');
+			}
+		}
+
+		//<!-- 모바일 디바이스 > JS -->
+		function qr_true(returnData) {
+			//<!-- 안드로이드에서 전달받음 -->
+			if (android_agent > -1) {
+				//alert('Mobile > JS [Open] [A] [NONE]');
+				alert('QR 출석이 확인되었습니다.\n' + returnData);
+				location.href = `/course/${courseId}/${date}`;
+			}
+			//<!-- IOS에서 전달받음 -->
+			else if (iphone > -1 || ipad > -1) {
+				alert('Mobile > JS [Open] [I] [NONE]');
+			}
+		}
+
+
+		function qr_false() {
+			//<!-- 안드로이드에서 전달받음 -->
+			if (android_agent > -1) {
+				//alert('Mobile > JS [Open] [A] [NONE]');
+				alert('Beacon 인식에 실패했습니다.');
+			}
+			//<!-- IOS에서 전달받음 -->
+			else if (iphone > -1 || ipad > -1) {
+				alert('Mobile > JS [Open] [I] [NONE]');
+			}
+		}
+		
+		//////////////////////////////////////////////////
+		//by 장유란, 1. html 버튼 클릭 시 위의 send_beacon 함수 실행
+		//<!-- 버튼 클릭 이벤트 정의 --> 
+		$(document).ready(function () {
+			$("#Beacon_btn").click(function () {
+				//alert('JS > Mobile : Beacon() 메소드 호출 실시');
+
+				//<!-- 자바스크립트 함수를 호출해서 모바일 디바이스 별 구분 처리 실시 -->
+				send_beacon();
+			});
+			$("#QR_btn").click(function () {
+				//alert('JS > Mobile : QR() 메소드 호출 실시');
+				//<!-- 자바스크립트 함수를 호출해서 모바일 디바이스 별 구분 처리 실시 -->
+				send_qr();
+			});
+		});
+		
+		//by 장유란, 2. 버튼 클릭으로 함수 실행 시 app내부 open함수 실행
+		//<!-- JS > 모바일 디바이스 -->
+		function send_beacon() {
+			//<!-- 안드로이드로 보낸다 -->
+			if (android_agent > -1) {
+				//"Spring -> app 유저식별값 전달필요"
+
+				alert("Spring -> app 유저식별값 전달필요")
+				window.android.open(userIdx, courseId, date);
+			}
+			//<!-- IOS로 보낸다 -->
+			else if (iphone > -1 || ipad > -1) {
+				window.location = 'open:';
+			}
+		}
+
+		//<!-- JS > 모바일 디바이스 -->
+		function send_qr() {
+			//<!-- 안드로이드로 보낸다 -->
+			var userIdx = 1;
+			if (android_agent > -1) {
+				window.android.close(userIdx, courseId, date);
+			}
+			//<!-- IOS로 보낸다 -->
+			else if (iphone > -1 || ipad > -1) {
+				window.location = 'close:JS TO Mobile';
+			}
+		}
+	</script>
 </footer>
 
 </html>
