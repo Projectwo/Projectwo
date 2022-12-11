@@ -1,22 +1,25 @@
 <html layout:decorate="~{layout/layout}">
 
-<div th:fragment="academyNoticeAddFragment" class="form-fragment add-notice" id="add-notice" style="display : none;">
+<div th:fragment="lectureNoticeModifyFragment" class="form-fragment modify-notice" id="modify-notice" style="display : none;">
     <div class="modal-wrap noticeFormFunction">
         <form class="notice-form">
             <div class="notice-title-area">
                 제목<br>
+                <!-- 수정 전 원본 정보 필요-->
                 <input type="text" class="notice-title-input" />
             </div>
+            <button type="button" onclick=";" class='modify-delete-button'>공지 삭제하기</button>
             <div class="notice-content-area">
                 내용<br>
+                <!-- 수정 전 원본 정보 필요-->
                 <textarea type="text" class="notice-content-input"></textarea>
             </div>
             <div class="notice-button-section">
                 <div class="add-confirm notice">
-                    <button type="submit" class="notice-confirm-button">등록</button>
+                    <button type="submit" class="notice-confirm-button">수정</button>
                 </div>
                 <div class="add-close notice">
-                    <button type="button" onclick="closeNoticeModal(this)" class="modal-close-button add-notice">취소</button>
+                    <button type="button" onclick="closeNoticeModal(this)" class="modal-close-button modify-notice">취소</button>
                 </div>
             </div>
         </form>

@@ -136,6 +136,14 @@ function getAllCourse(res) {
 
 			var currentStudentCount;
 
+			let mon = (course.mon) ? "<i class='far fa-check-circle'></i>" : "";
+			let tue = (course.tue) ? "<i class='far fa-check-circle'></i>" : "";
+			let wed = (course.wed) ? "<i class='far fa-check-circle'></i>" : "";
+			let thu = (course.thu) ? "<i class='far fa-check-circle'></i>" : "";
+			let fri = (course.fri) ? "<i class='far fa-check-circle'></i>" : "";
+			let sat = (course.sat) ? "<i class='far fa-check-circle'></i>" : "";
+			let sun = (course.sun) ? "<i class='far fa-check-circle'></i>" : "";
+
 			commonAjax('/getClassStudent', cs, 'get', function(rs) {
 				//console.log(rs.length);
 				currentStudentCount = rs.length;
@@ -157,13 +165,13 @@ function getAllCourse(res) {
 				"<li>월</li>" + "<li>화</li>" + "<li>수</li>" + "<li>목</li>" +
 				"<li>금</li>" + "<li>토</li>" + "<li>일</li>" + "</ul>" +
 				"<ul class='lecture-info-schedule-checked'>" +
-				"<li><span>" + course.mon + "</span></li>" +
-				"<li><span>" + course.tue + "</span></li>" +
-				"<li><span>" + course.wed + "</span></li>" +
-				"<li><span>" + course.thu + "</span></li>" +
-				"<li><span>" + course.fri + "</span></li>" +
-				"<li><span>" + course.sat + "</span></li>" +
-				"<li><span>" + course.sun + "</span></li>" + "</ul>" +
+				"<li><span>" + mon + "</span></li>" +
+				"<li><span>" + tue + "</span></li>" +
+				"<li><span>" + wed + "</span></li>" +
+				"<li><span>" + thu + "</span></li>" +
+				"<li><span>" + fri + "</span></li>" +
+				"<li><span>" + sat + "</span></li>" +
+				"<li><span>" + sun + "</span></li>" + "</ul>" +
 				"<div class='lecture-info-schedule-period'>" +
 				"<span class='period-start'>" +
 				course.startDate + "</span>" + "&nbsp;~&nbsp;" +
@@ -173,7 +181,7 @@ function getAllCourse(res) {
 				course.startTime + "&nbsp;~&nbsp;" + course.endTime +
 				"</div>" +
 				"<div class='lecture-info-count'>" +
-				"수강인원" + "<span>" + currentStudentCount +
+				"수강인원 " + "<span>" + currentStudentCount +
 				"</span>" + "&nbsp;/&nbsp;" + course.room.maxSeat +
 				"</div>" + "<div class='lecture-info-room'>" +
 				course.room.name + "호실" + "</div>" +
@@ -409,6 +417,18 @@ function getAllStudent(res) {
 				member.address +
 				"</div>" +
 				"<div class='student-id'>" + member.id +
+				"</div>" +
+				"<div class='student-lecture-regist'>" +
+				"<button onclick='lectureRegistFucntion(this)' class='student-lecture-regist-button'>강의 등록</button>" +
+				"<div class='lecture-regist-list-section'>" +
+				"<select class='lecture-regist-list'>" +
+				"<option>강의 1</option>"+
+				"</select>" +
+				"<div class='lecture-regist-list-button'>" +
+				"<button>등록</button>" +
+				"<button onclick='lectureRegistCancle(this)' class='lecture-regist-cancle'>취소</button>" +
+				"</div>" +
+				"</div>" +
 				"</div>" +
 				"</div>" +
 				"</div>";

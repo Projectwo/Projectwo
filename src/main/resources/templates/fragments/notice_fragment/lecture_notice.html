@@ -7,16 +7,25 @@
             <!-- <button th:noticeId="${lecture_notice.id}" th:onclick="noticeDetail(this.getAttribute('noticeId'))" th:text="${lecture_notice.title}"></button> -->
             <!-- 위의 느낌으로 제목 버튼 만들면 될듯 -->
             <button class="notice-function-button">강의 공지</button>
+            <button onclick="clickFormButton(this)" class="notice-function-modify modify-notice"
+                sec:authorize="hasRole('TEACHER')">
+                <i class="far fa-edit"></i>
+            </button>
             <div class="notice-content lecture">
                 내용
                 <!-- th:text="${lecture_notice.content}" -->
             </div>
+            <div th:replace="fragments/notice_fragment/lecture_notice_form :: lectureNoticeAddFragment"></div>
+            <div th:replace="fragments/notice_fragment/lecture_notice_modify :: lectureNoticeModifyFragment"></div>
         </div>
         <div class="notice-recent">
             <!-- <= 여기에 th:each -->
             <!-- <button th:noticeId="${lecture_notice.id}" th:onclick="noticeDetail(this.getAttribute('noticeId'))" th:text="${lecture_notice.title}"></button> -->
             <!-- 위의 느낌으로 제목 버튼 만들면 될듯 -->
             <button class="notice-function-button">강의 공지 2</button>
+            <button class="notice-function-modify" sec:authorize="hasRole('TEACHER')">
+                <i class="far fa-edit"></i>
+            </button>
             <div class="notice-content lecture">
                 내용 2
                 <!-- th:text="${lecture_notice.content}" -->
@@ -27,6 +36,9 @@
             <!-- <button th:noticeId="${lecture_notice.id}" th:onclick="noticeDetail(this.getAttribute('noticeId'))" th:text="${lecture_notice.title}"></button> -->
             <!-- 위의 느낌으로 제목 버튼 만들면 될듯 -->
             <button class="notice-function-button">강의 공지 2</button>
+            <button class="notice-function-modify" sec:authorize="hasRole('TEACHER')">
+                <i class="far fa-edit"></i>
+            </button>
             <div class="notice-content lecture">
                 내용 2
                 <!-- th:text="${lecture_notice.content}" -->

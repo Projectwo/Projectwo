@@ -5,19 +5,46 @@
     text-align: center;
     margin: 0 auto;
     max-width: 320px;
-    height: 800px;
+    height: 810px;
     padding-top: 40px;
     overflow: auto;
+}
+
+#prev-button {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    font-size: 30px;
+    line-height: 0;
+    border: 1px solid #444;
+    border-radius: 6px;
+    left: 0;
+    top: 110px;
 }
 
 /* ##### login.html ##### */
 
 .index-logo {
+    position: relative;
     width: 260px;
     height: 300px;
     margin: 0 auto;
     margin-top: 100px;
-    background: #000;
+}
+
+.index-logo .fas.fa-desktop {
+    padding-top: 40px;
+    font-size: 220px;
+    color: #444;
+}
+
+.index-logo .far.fa-copyright {
+    position: absolute;
+    left: 130px;
+    top: 130px;
+    transform: translate(-50%, -50%);
+    font-size: 110px;
+    color: #2cae2c;
 }
 
 .login-text {
@@ -34,6 +61,7 @@
 }
 
 .login-form .field {
+    position: relative;
     margin: 10px 0;
 }
 
@@ -44,11 +72,18 @@
     border-radius: 6px;
     background: #efefef;
     padding: 4px 8px;
+    color: #444;
+}
+
+.login-form .field>i {
+    position: absolute;
+    top: 15px;
+    right: 15px;
 }
 
 .forgot-pw {
     position: relative;
-    font-size: 14px;
+    font-size: 12px;
     text-align: right;
     color: #aaa;
     top: -6px;
@@ -58,10 +93,10 @@
     width: 100%;
     height: 54px;
     margin-top: 10px;
-    border: 1px solid #000;
+    border: 1px solid #2cae2c;
     border-radius: 6px;
     color: #fff;
-    background: #000;
+    background: #2cae2c;
     font-size: 16px;
     font-weight: bold;
 }
@@ -89,7 +124,7 @@
     display: flex;
     align-items: flex-end;
     justify-content: center;
-    color: #666;
+    color: #444;
 }
 
 /* ##### login.html end ##### */
@@ -114,6 +149,7 @@
     content: "\f0c9";
     font-family: "Font Awesome 5 Free";
     font-size: 36px;
+    color: #444;
 }
 
 .member-dropdown .member-dropdown-list {
@@ -126,7 +162,6 @@
     border: 1px solid #444;
     border-radius: 6px;
     background-color: #444;
-    color: #fff;
     z-index: 5;
 }
 
@@ -144,8 +179,8 @@
 .dropdown-member-function a {
     font-size: 12px;
     text-decoration: underline;
-    color: #eee;
     z-index: 10;
+    color: #fff;
 }
 
 .dropdown-member-lecture {
@@ -175,9 +210,10 @@
     border: 1px solid #aaa;
     border-radius: 6px;
     text-align: left;
-    background: #eee;
+    background: #fff;
     padding-left: 10px;
     cursor: pointer;
+    color: #444;
 }
 
 /* ##### nav_button.html end ##### */
@@ -196,21 +232,24 @@
 .main-profile-text {
     font-size: 14px;
     text-align: left;
+    color: #444;
 }
 
 .main-profile-text b {
     font-size: 22px;
+    color: #444;
 }
 
 .main-profile-text span {
     font-size: 14px;
+    color: #444;
 }
 
 .notice-new-alarm {
     position: absolute;
     width: 160px;
     height: 46px;
-    border: 1px solid #ccc;
+    border: 1px solid #aaa;
     border-radius: 6px;
     top: 66px;
     right: 0;
@@ -218,7 +257,7 @@
 
 .notice-new-alarm b {
     line-height: 46px;
-    color: #555;
+    color: #444;
     font-weight: 400;
 }
 
@@ -237,7 +276,6 @@
     padding: 4px 8px;
     text-align: left;
     font-size: 14px;
-    color: #eee;
 }
 
 .main-lecture .lecture-name b {
@@ -271,6 +309,7 @@
     border: 1px solid;
     border-radius: 4px;
     background: #eee;
+    color: #444;
 }
 
 .main-lecture .lecture-info-schedule-checked {
@@ -281,7 +320,7 @@
 .main-lecture .lecture-info-schedule-checked li {
     width: 18px;
     height: 18px;
-    padding: 1px 2px;
+    padding: 1px 1px;
     color: #eee;
     margin-top: 2px;
     margin-left: 2px;
@@ -303,6 +342,7 @@
 
 .student-checkinout {
     height: 194px;
+    color: #444;
 }
 
 .student-checkinout a {
@@ -314,13 +354,14 @@
     margin-top: 10px;
     font-size: 20px;
     text-align: left;
+    color: #444;
 }
 
 .student-today .student-daily-check {
     width: 100%;
     height: 52px;
     margin-top: 6px;
-    border: 1px solid #ccc;
+    border: 1px solid #aaa;
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -331,6 +372,11 @@
     margin-left: 10px;
     font-size: 24px;
     line-height: 0;
+    color : #444;
+}
+
+.student-daily-check .daily-date span{
+    color : #444;
 }
 
 .student-daily-check .daily-status {
@@ -338,6 +384,7 @@
     font-size: 24px;
     text-align: right;
     line-height: 0;
+    color : #444;
 }
 
 .student-weekly {
@@ -345,6 +392,7 @@
     margin-top: 10px;
     font-size: 20px;
     text-align: left;
+    color : #444;
 }
 
 .student-weekly .student-weekly-check {
@@ -359,20 +407,22 @@
 .student-weekly-check .student-weekly-date {
     width: 50px;
     height: 54px;
-    border: 1px solid #ccc;
+    border: 1px solid #aaa;
     border-radius: 6px;
     text-align: center;
     line-height: 24px;
     font-size: 18px;
+    color : #444;
 }
 
 .student-weekly-check .student-weekly-date span {
     font-size: 16px;
+    color : #444;
 }
 
 .teacher-checkinout {
     height: 194px;
-    color: #000;
+    color: #444;
 }
 
 .teacher-checkinout a {
@@ -384,6 +434,7 @@
     margin-top: 10px;
     font-size: 20px;
     text-align: left;
+    color: #444;
 }
 
 .teacher-today .teacher-daily-check {
@@ -398,9 +449,9 @@
 .teacher-daily-check .daily-check {
     width: 154px;
     height: 150px;
-    border: 1px solid #ccc;
+    border: 1px solid #2cae2c;
     border-radius: 6px;
-    background: lightgreen;
+    background: #2cae2c;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -410,18 +461,20 @@
 .teacher-daily-check .daily-check span {
     line-height: 0;
     font-size: 28px;
+    color: #fff;
 }
 
 .teacher-daily-check .daily-check b {
     font-size: 48px;
+    color: #fff;
 }
 
 .teacher-daily-check .daily-non-check {
     width: 154px;
     height: 150px;
-    border: 1px solid #ccc;
+    border: 1px solid #aaa;
     border-radius: 6px;
-    background: #aaa;
+    background: #fff;
     display: flex;
     align-items: center;
     flex-direction: column;
@@ -431,19 +484,21 @@
 .teacher-daily-check .daily-non-check span {
     line-height: 0;
     font-size: 28px;
+    color: #444;
 }
 
 .teacher-daily-check .daily-non-check b {
     font-size: 48px;
+    color: #444;
 }
 
 .main-notice {
     position: relative;
     width: 100%;
     margin-top: 10px;
-
     font-size: 20px;
     text-align: left;
+    color: #444;
 }
 
 .main-notice .notice-category {
@@ -453,17 +508,17 @@
     display: flex;
     align-items: flex-end;
     font-size: 12px;
-    color: #777;
+    color: #444;
 }
 
 .main-notice .notice-category button {
-    color: #888;
+    color: #444;
     font-size: 14px;
 
 }
 
 .main-notice .notice-category button.active {
-    color: #222;
+    color: #444;
     font-family: 'NOTO SANS BOLD';
 }
 
@@ -472,7 +527,7 @@
     width: 100%;
     height: 226px;
     margin-top: 6px;
-    border: 1px solid #ccc;
+    border: 1px solid #aaa;
     border-radius: 6px;
     display: flex;
     flex-direction: column;
@@ -498,28 +553,54 @@
     border-radius: 6px;
     margin-bottom: 10px;
     overflow: hidden;
+    color: #444;
 }
 
 .notice-area .notice-recent.active {
-    height: 200px;
+    height: 210px;
+}
+
+.notice-area .notice-recent .notice-function-modify {
+    position: absolute;
+    width: 40px;
+    height: 36px;
+    top: 0;
+    right: 0;
+    text-align: center;
+    display: none;
+}
+
+.notice-area .notice-recent.active .notice-function-modify {
+    display: block;
+}
+
+.notice-recent .notice-function-modify i {
+    content: "\f044";
+    font-family: "Font Awesome 5 Free";
+    padding-top: 10px;
+    font-size: 20px;
+    color: #444;
 }
 
 .notice-recent .notice-content {
     position: relative;
     width: 100%;
-    height: 150px;
+    height: 158px;
     padding: 4px 6px;
-    border: 1px solid #ccc;
+    border: 1px solid #aaa;
     border-radius: 6px;
+    overflow: auto;
+    color: #444;
 }
 
-.notice-area .notice-recent button {
+.notice-area .notice-recent>button {
     position: relative;
     width: 100%;
     height: 44px;
     padding-bottom: 4px;
     font-size: 22px;
     text-align: left;
+    color: #444;
 }
 
 .notice-area .notice-recent:first-child {
@@ -544,10 +625,12 @@
     border: 1px solid #aaa;
     border-radius: 10px;
     font-size: 20px;
+    color: #444;
 }
 
 .academy-list-tab .tab.active {
-    background-color: #aaa;
+    background-color: #2cae2c;
+    color: #fff;
 }
 
 .tab-content {
@@ -592,9 +675,9 @@
     height: 28px;
     right: 6px;
     top: 6px;
-    border: 1px solid #aaa;
+    border: 1px solid #2cae2c;
     border-radius: 50%;
-    background: #aaa;
+    background: #2cae2c;
 }
 
 .main-lecture.academy-list .lecture-modify-button i {
@@ -609,6 +692,7 @@
     align-items: center;
     width: 100%;
     height: 36px;
+    padding-bottom: 10px;
 }
 
 .main-lecture.academy-list .lecture-name {
@@ -628,7 +712,7 @@
     position: relative;
     top: 0;
     font-size: 18px;
-    color: #ccc;
+    color: #aaa;
 }
 
 .main-lecture.academy-list .lecture-info-schedule {
@@ -650,7 +734,7 @@
     color: #eee;
 }
 
-.main-lecture.academy-list .lecture-info-schedule-period span{
+.main-lecture.academy-list .lecture-info-schedule-period span {
     font-size: 14px;
     font-family: 'NOTO SANS THIN';
 }
@@ -683,6 +767,10 @@
     margin-left: 8px;
 }
 
+.main-lecture.academy-list .lecture-info-count span {
+    font-size: 14px;
+}
+
 .main-lecture.academy-list #courseId {
     display: none;
 }
@@ -703,9 +791,9 @@
     width: 100%;
     height: 90px;
     margin: 20px 0;
-    border: 1px solid #ddd;
+    border: 1px solid #444;
     border-radius: 6px;
-    background: #ddd;
+    background: #444;
 }
 
 .academy-teacher:first-child {
@@ -723,9 +811,9 @@
     height: 28px;
     right: 6px;
     top: 6px;
-    border: 1px solid #aaa;
+    border: 1px solid #2cae2c;
     border-radius: 50%;
-    background: #aaa;
+    background: #2cae2c;
 }
 
 .teacher-modify-button i {
@@ -750,7 +838,6 @@
 .academy-teacher .teacher-class b {
     font-size: 18px;
     height: 20px;
-    color: #666;
 }
 
 .academy-teacher .teacher-info-detail {
@@ -799,9 +886,9 @@
     width: 100%;
     height: 90px;
     margin: 20px 0;
-    border: 1px solid #ddd;
+    border: 1px solid #444;
     border-radius: 6px;
-    background: #ddd;
+    background: #444;
 }
 
 .academy-student:first-child {
@@ -819,9 +906,9 @@
     height: 28px;
     right: 6px;
     top: 6px;
-    border: 1px solid #aaa;
+    border: 1px solid #2cae2c;
     border-radius: 50%;
-    background: #aaa;
+    background: #2cae2c;
 }
 
 .student-modify-button i {
@@ -846,7 +933,6 @@
 .academy-student .student-class b {
     font-size: 18px;
     height: 20px;
-    color: #666;
 }
 
 .academy-student .student-info-detail {
@@ -870,6 +956,69 @@
     text-align: left;
     top: 58px;
     left: 16px;
+}
+
+.student-lecture-regist .student-lecture-regist-button {
+    position: absolute;
+    width: 60px;
+    font-size: 14px;
+    top: 60px;
+    right: 4px;
+    text-decoration: underline;
+}
+
+.student-lecture-regist .lecture-regist-list-section {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 160px;
+    height: 84px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #fff;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    visibility: hidden;
+    z-index: -1;
+}
+
+.student-lecture-regist .lecture-regist-list-section.active {
+    z-index: 0;
+}
+
+.student-lecture-regist .lecture-regist-list {
+    position: relative;
+    width: 130px;
+    height: 26px;
+    padding: 2px 4px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #444;
+}
+
+.student-lecture-regist .lecture-regist-list-button {
+    display: flex;
+    justify-content: space-evenly;
+    width: 120px;
+}
+
+.student-lecture-regist .lecture-regist-list-button>button {
+    border: 1px solid;
+    border-radius: 6px;
+    margin: 0 10px;
+    padding: 1px 4px;
+    font-size: 14px;
+    color: #444;
+}
+
+.student-lecture-regist .lecture-regist-list-button>button:first-child {
+    border-color: #2cae2c;
+    background: #2cae2c;
+    color: #fff;
 }
 
 .academy-student .student-id {
@@ -926,7 +1075,7 @@
     transform: translate(-50%, -50%);
 }
 
-.footer-middle.academy .academy-function-button>button i{
+.footer-middle.academy .academy-function-button>button i {
     font-size: 48px;
 }
 
@@ -973,6 +1122,10 @@
     color: #444;
 }
 
+.footer-left.academy .category-lecture option {
+    color: #444;
+}
+
 .new-lecture .footer-right.academy {
     position: relative;
     width: 120px;
@@ -987,9 +1140,9 @@
     position: relative;
     width: 100px;
     height: 26px;
-    border: 1px solid #777;
+    border: 1px solid #444;
     border-radius: 6px;
-    color: #777;
+    color: #444;
     z-index: 0;
     font-size: 14px;
 }
@@ -999,9 +1152,9 @@
     width: 100px;
     height: 26px;
     margin-top: 4px;
-    border: 1px solid #777;
+    border: 1px solid #444;
     border-radius: 6px;
-    color: #777;
+    color: #444;
     z-index: 0;
     font-size: 14px;
 }
@@ -1030,6 +1183,7 @@
     font-family: "Font Awesome 5 Free";
     padding: 0 6px;
     font-size: 36px;
+    color: #444;
 }
 
 .student-function {
@@ -1041,7 +1195,7 @@
 
 .student-function>div {
     width: 60px;
-    border: 1px solid #666;
+    border: 1px solid #444;
     border-radius: 6px;
     padding: 4px 10px;
     display: none;
@@ -1062,9 +1216,12 @@
     content: "\f058";
     font-family: "Font Awesome 5 Free";
     font-size: 56px;
+    color: #444;
 }
 
-.student-function .student-function-button i.checked {}
+.student-function .student-function-button i.checked {
+    color: #2cae2c;
+}
 
 .teacher-function {
     width: 220px;
@@ -1075,7 +1232,7 @@
 
 .teacher-function>div {
     width: 60px;
-    border: 1px solid #666;
+    border: 1px solid #444;
     border-radius: 6px;
     padding: 4px 10px;
     display: none;
@@ -1161,9 +1318,9 @@
     right: 0;
     bottom: 0;
     margin: 0 auto;
-    border: 1px solid #eee;
+    border: 1px solid #aaa;
     border-radius: 6px;
-    background: #eee;
+    background: #fff;
     text-align: left;
 }
 
@@ -1171,6 +1328,7 @@
     position: relative;
     padding: 6px 10px;
     font-size: 24px;
+    color: #444;
 }
 
 .add-lecture-form .add-title input {
@@ -1180,9 +1338,9 @@
     margin: 4px 8px 0 8px;
     padding: 4px;
     background: none;
-    border: 1px solid #333;
+    border: 1px solid #444;
     border-radius: 6px;
-    color: #333;
+    color: #444;
     font-size: 24px;
     text-align: center;
 }
@@ -1191,6 +1349,7 @@
     position: relative;
     padding: 6px 10px;
     font-size: 24px;
+    color: #444;
 }
 
 .add-lecture-form .add-teacher-name select {
@@ -1200,9 +1359,9 @@
     margin: 4px 8px 0 8px;
     padding: 4px;
     background: none;
-    border: 1px solid #333;
+    border: 1px solid #444;
     border-radius: 6px;
-    color: #333;
+    color: #444;
     font-size: 20px;
     text-align: center;
 }
@@ -1214,6 +1373,7 @@
     left: 0;
     margin: 10px;
     font-size: 24px;
+    color: #444;
 }
 
 .check-lecture-week .check-day-button {
@@ -1243,9 +1403,9 @@
 }
 
 .check-day-button input[type="checkbox"]:checked+label {
-    color: #444;
-    border-color: #444;
-    background: lightgreen;
+    border-color: #2cae2c;
+    background: #2cae2c;
+    color: #fff;
 }
 
 .check-day-button input[type="checkbox"] {
@@ -1257,16 +1417,19 @@
     padding: 6px 10px;
     font-size: 24px;
     width: 320px;
+    color: #444;
 }
 
 .add-lecture-period .lecture-period-start {
     position: absolute;
     left: 6px;
+    color: #444;
 }
 
 .add-lecture-period .lecture-period-end {
     position: absolute;
     right: 6px;
+    color: #444;
 }
 
 .add-lecture-form .add-lecture-time {
@@ -1275,16 +1438,19 @@
     padding: 6px 10px;
     font-size: 24px;
     width: 320px;
+    color: #444;
 }
 
 .add-lecture-time .lecture-time-start {
     position: absolute;
     left: 6px;
+    color: #444;
 }
 
 .add-lecture-time .lecture-time-end {
     position: absolute;
     right: 6px;
+    color: #444;
 }
 
 .add-lecture-form .add-lecture-room {
@@ -1292,6 +1458,7 @@
     padding: 6px 10px;
     margin-top: 36px;
     font-size: 24px;
+    color: #444;
 }
 
 .add-lecture-form .add-lecture-room select {
@@ -1301,9 +1468,9 @@
     margin: 4px 8px 0 8px;
     padding: 4px;
     background: none;
-    border: 1px solid #333;
+    border: 1px solid #444;
     border-radius: 6px;
-    color: #333;
+    color: #444;
     font-size: 20px;
     text-align: center;
 }
@@ -1316,11 +1483,21 @@
     right: 30px;
     font-size: 24px;
     text-align: left;
+    color: #444;
 }
 
 .add-lecture-count #roomMaxSeat {
-    margin-top: 6px;
+    margin-top: 2px;
     margin-left: 30px;
+    font-size: 24px;
+    color: #444;
+}
+
+.add-lecture-count #modifyRoomMaxSeat {
+    margin-top: 2px;
+    margin-left: 30px;
+    font-size: 24px;
+    color: #444;
 }
 
 .add-lecture-form .add-lecture-count input {
@@ -1352,13 +1529,13 @@
 
 .modal-close-button {
     position: relative;
-    border: 1px solid #444;
+    border: 1px solid #aaa;
     border-radius: 6px;
     padding: 10px;
     width: 100px;
     font-size: 20px;
-    color: #fff;
-    background-color: #aaa;
+    color: #444;
+    background-color: #fff;
 }
 
 .add-confirm {
@@ -1369,12 +1546,12 @@
 
 .add-confirm-button {
     position: relative;
-    border: 1px solid #444;
+    border: 1px solid #2cae2c;
     border-radius: 6px;
+    background: #2cae2c;
     padding: 10px;
     width: 100px;
     font-size: 20px;
-    color: #333;
 }
 
 /* ##### add_lecture.html end ##### */
@@ -1390,9 +1567,9 @@
     right: 0;
     bottom: 0;
     margin: 0 auto;
-    border: 1px solid #eee;
+    border: 1px solid #aaa;
     border-radius: 6px;
-    background: #eee;
+    background: #fff;
     text-align: left;
 }
 
@@ -1400,6 +1577,7 @@
     position: relative;
     padding: 6px 10px;
     font-size: 24px;
+    color: #444;
 }
 
 .add-teacher-form .add-name input {
@@ -1409,9 +1587,9 @@
     margin: 4px 8px 0 8px;
     padding: 4px;
     background: none;
-    border: 1px solid #333;
+    border: 1px solid #444;
     border-radius: 6px;
-    color: #333;
+    color: #444;
     font-size: 24px;
     text-align: center;
 }
@@ -1420,6 +1598,7 @@
     position: relative;
     padding: 6px 10px;
     font-size: 24px;
+    color: #444;
 }
 
 .add-teacher-form .add-birthday input {
@@ -1429,9 +1608,9 @@
     margin: 4px 8px 0 8px;
     padding: 4px;
     background: none;
-    border: 1px solid #333;
+    border: 1px solid #444;
     border-radius: 6px;
-    color: #333;
+    color: #444;
     font-size: 24px;
     text-align: center;
 }
@@ -1440,6 +1619,7 @@
     position: relative;
     padding: 6px 10px;
     font-size: 24px;
+    color: #444;
 }
 
 .add-teacher-form .add-tel input {
@@ -1449,9 +1629,9 @@
     margin: 4px 8px 0 8px;
     padding: 4px;
     background: none;
-    border: 1px solid #333;
+    border: 1px solid #444;
     border-radius: 6px;
-    color: #333;
+    color: #444;
     font-size: 24px;
     text-align: center;
 }
@@ -1460,6 +1640,7 @@
     position: relative;
     padding: 6px 10px;
     font-size: 24px;
+    color: #444;
 }
 
 .add-teacher-form .add-mail input {
@@ -1469,9 +1650,9 @@
     margin: 4px 8px 0 8px;
     padding: 4px;
     background: none;
-    border: 1px solid #333;
+    border: 1px solid #444;
     border-radius: 6px;
-    color: #333;
+    color: #444;
     font-size: 24px;
     text-align: center;
 }
@@ -1480,6 +1661,7 @@
     position: relative;
     padding: 6px 10px;
     font-size: 24px;
+    color: #444;
 }
 
 .add-teacher-form .add-address input {
@@ -1489,9 +1671,9 @@
     margin: 4px 8px 0 8px;
     padding: 4px;
     background: none;
-    border: 1px solid #333;
+    border: 1px solid #444;
     border-radius: 6px;
-    color: #333;
+    color: #444;
     font-size: 24px;
     text-align: center;
 }
@@ -1514,9 +1696,9 @@
     right: 0;
     bottom: 0;
     margin: 0 auto;
-    border: 1px solid #eee;
+    border: 1px solid #aaa;
     border-radius: 6px;
-    background: #eee;
+    background: #fff;
     text-align: left;
 }
 
@@ -1524,6 +1706,7 @@
     position: relative;
     padding: 6px 10px;
     font-size: 24px;
+    color: #444;
 }
 
 .add-student-form .add-name input {
@@ -1533,9 +1716,9 @@
     margin: 4px 8px 0 8px;
     padding: 4px;
     background: none;
-    border: 1px solid #333;
+    border: 1px solid #444;
     border-radius: 6px;
-    color: #333;
+    color: #444;
     font-size: 24px;
     text-align: center;
 }
@@ -1544,6 +1727,7 @@
     position: relative;
     padding: 6px 10px;
     font-size: 24px;
+    color: #444;
 }
 
 .add-student-form .add-birthday input {
@@ -1553,9 +1737,9 @@
     margin: 4px 8px 0 8px;
     padding: 4px;
     background: none;
-    border: 1px solid #333;
+    border: 1px solid #444;
     border-radius: 6px;
-    color: #333;
+    color: #444;
     font-size: 24px;
     text-align: center;
 }
@@ -1564,6 +1748,7 @@
     position: relative;
     padding: 6px 10px;
     font-size: 24px;
+    color: #444;
 }
 
 .add-student-form .add-tel input {
@@ -1573,9 +1758,9 @@
     margin: 4px 8px 0 8px;
     padding: 4px;
     background: none;
-    border: 1px solid #333;
+    border: 1px solid #444;
     border-radius: 6px;
-    color: #333;
+    color: #444;
     font-size: 24px;
     text-align: center;
 }
@@ -1584,6 +1769,7 @@
     position: relative;
     padding: 6px 10px;
     font-size: 24px;
+    color: #444;
 }
 
 .add-student-form .add-mail input {
@@ -1593,9 +1779,9 @@
     margin: 4px 8px 0 8px;
     padding: 4px;
     background: none;
-    border: 1px solid #333;
+    border: 1px solid #444;
     border-radius: 6px;
-    color: #333;
+    color: #444;
     font-size: 24px;
     text-align: center;
 }
@@ -1604,6 +1790,7 @@
     position: relative;
     padding: 6px 10px;
     font-size: 24px;
+    color: #444;
 }
 
 .add-student-form .add-address input {
@@ -1613,10 +1800,31 @@
     margin: 4px 8px 0 8px;
     padding: 4px;
     background: none;
-    border: 1px solid #333;
+    border: 1px solid #444;
     border-radius: 6px;
-    color: #333;
+    color: #444;
     font-size: 24px;
+    text-align: center;
+}
+
+.add-student-form .add-lecture-regist {
+    position: relative;
+    padding: 6px 10px;
+    font-size: 24px;
+    color: #444;
+}
+
+.add-student-form .add-lecture-regist input {
+    position: relative;
+    width: 240px;
+    height: 36px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
+    background: none;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #444;
+    font-size: 14px;
     text-align: center;
 }
 
@@ -1625,12 +1833,26 @@
     transform: scale(0);
 }
 
-.modify-delete-button{
+.add-student-form .add-button-section {
+    margin-top: 20px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#modifyStudent .add-button-section {
+    margin-top: 100px;
+}
+
+.modify-delete-button {
     position: absolute;
     top: 4px;
     right: 8px;
     font-size: 14px;
     text-decoration: underline;
+    color: #444;
 }
 
 /* ##### add_student.html end ##### */
@@ -1661,12 +1883,16 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: #555;
-    border: 1px solid #ccc;
+    color: #444;
+    border: 1px solid #aaa;
     border-radius: 6px;
     padding: 2px 10px;
     font-weight: 500;
     text-align: left;
+}
+
+.detail-academy-profile span {
+    color: #444;
 }
 
 .detail-academy-profile .detail-academy-info {
@@ -1680,6 +1906,7 @@
     line-height: 18px;
     font-size: 14px;
     font-weight: 400;
+    color: #444;
 }
 
 .main-lecture.detail {
@@ -1744,14 +1971,15 @@
     height: 60px;
     margin: 0 auto;
     margin-top: 14px;
-    border: 1px solid #eee;
+    border: 1px solid #aaa;
     border-radius: 6px;
-    background: #eee;
+    background: #fff;
 }
 
 .main-lecture.detail .lecture-about-desc span {
     font-size: 16px;
     line-height: 60px;
+    color: #444;
 }
 
 .main-lecture.detail .teacher-info.detail {
@@ -1801,28 +2029,60 @@
 .check-count-section>div {
     width: 100px;
     height: 120px;
-    border: 1px solid #666;
+    border: 1px solid #444;
     border-radius: 8px;
     padding: 8px 8px;
     font-size: 20px;
+    background:#fff;
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
 }
 
+.check-count-section>div:first-child{
+    background:#444;
+}
+
+.check-count-section>div:first-child span{
+    color:#fff;
+}
+
+.check-count-section>div:first-child b{
+    color:#fff;
+}
+
+.check-count-section>div:last-child{
+    background:#2cae2c;
+}
+
+.check-count-section>div:last-child span{
+    color:#fff;
+}
+
+.check-count-section>div:last-child b{
+    color:#fff;
+}
+
 .check-count-section>div b {
     font-size: 20px;
+    color:#444;
 }
 
 .check-count-section>div span {
     font-size: 28px;
     line-height: 64px;
+    color:#444;
 }
 
 .check-inout-today.student {
     width: 320px;
     font-size: 20px;
     text-align: left;
+    color : #444;
+}
+
+.check-inout-today.student>span{
+    color : #444;
 }
 
 .check-inout-today.student .student-daily-check.detail {
@@ -1832,15 +2092,16 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
+    color: #444;
 }
 
 .student-daily-check.detail .daily-checkin-time {
     width: 154px;
     height: 50px;
     padding: 2px 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #aaa;
     border-radius: 6px;
-    background: lightgreen;
+    background-color : #2cae2c;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -1860,9 +2121,9 @@
     width: 154px;
     height: 50px;
     padding: 2px 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #444;
     border-radius: 6px;
-    background: #aaa;
+    background: #444;
     display: flex;
     align-items: center;
     flex-direction: row;
@@ -1883,6 +2144,7 @@
     margin-top: 10px;
     font-size: 20px;
     text-align: left;
+    color:#444;
 }
 
 .check-inout-period.student .student-period-check {
@@ -1913,6 +2175,13 @@
     line-height: 26px;
 }
 
+.student-period-check .student-period-check-daily span{
+    color: #444;
+}
+.student-period-check .student-period-check-daily b{
+    color: #444;
+}
+
 /* ##### student_check.html end ##### */
 
 /* ##### teacher_check.html ##### */
@@ -1922,6 +2191,7 @@
     height: 400px;
     font-size: 20px;
     text-align: left;
+    color: #444;
 }
 
 .check-inout-today.teacher .teacher-daily-check.detail {
@@ -1940,14 +2210,18 @@
     height: 190px;
     margin: 0 auto;
     margin-bottom: 10px;
-    border: 1px solid #ccc;
+    border: 1px solid #aaa;
     border-radius: 6px;
-    background: lightgreen;
+    background: #2cae2c;
     text-align: center;
 }
 
 .teacher-daily-check.detail .daily-checkin-student.none {
-    background: #eee;
+    background: #fff;
+}
+
+.teacher-daily-check.detail .daily-checkin-student.none span{
+    color:#444;
 }
 
 .teacher-daily-check.detail .daily-checkin-student span {
@@ -1977,6 +2251,12 @@
     margin: 4px 2px 4px 3px;
     padding: 2px;
     font-size: 16px;
+    color:#444;
+}
+
+.daily-checkin-student .checkin-box .checkin-student.none span{
+    background: #444;
+    color:#fff;
 }
 
 
@@ -1984,5 +2264,287 @@
 
 /* ##### academy_notice_form.html ##### */
 
+.form-fragment {
+    position: fixed;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 390px;
+    height: 844px;
+    z-index: 50;
+}
+
+.notice-form {
+    position: absolute;
+    width: 320px;
+    height: 470px;
+    top: 270px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #fff;
+    text-align: left;
+}
+
+.notice-title-area {
+    position: relative;
+    height: 80px;
+    padding: 10px 0 10px 10px;
+    font-size: 24px;
+    color: #444;
+}
+
+.notice-title-area input {
+    position: relative;
+    width: 280px;
+    height: 40px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    margin: 4px 0 0 10px;
+    padding: 2px 4px;
+    font-size: 20px;
+    color: #444;
+}
+
+.notice-content-area {
+    position: relative;
+    height: 320px;
+    padding: 10px 0 10px 10px;
+    font-size: 24px;
+    color: #444;
+}
+
+.notice-content-area textarea {
+    position: relative;
+    width: 280px;
+    height: 240px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    margin: 4px 0 0 10px;
+    padding: 2px 4px;
+    font-size: 18px;
+    resize: none;
+    color: #444;
+}
+
+.notice-button-section {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.notice-button-section .add-confirm.notice .notice-confirm-button {
+    border: 1px solid #2cae2c;
+    border-radius: 6px;
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    background-color: #2cae2c;
+    text-align: center;
+    padding-bottom: 0;
+}
+
+.notice-button-section .add-close.notice button {
+    font-size: 20px;
+    height: 50px;
+    text-align: center;
+    padding: 0;
+
+}
+
+.notice-form .modify-delete-button {
+    position: absolute;
+    padding-right: 2px;
+    font-size: 14px;
+}
 
 /* ##### academy_notice_form.html end ##### */
+
+/* ##### password_modify.html ##### */
+
+.password-modify-text {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    margin-top: 130px;
+    text-align: left;
+    font-family: 'NOTO SANS BOLD';
+    font-size: 24px;
+    line-height: 24px;
+    color: #444;
+}
+
+.password-modify-text span {
+    font-size: 18px;
+    line-height: 0px;
+    color: #444;
+}
+
+.password-modify-form {
+    width: 100%;
+    margin-top: 44px;
+}
+
+.password-modify-form .field {
+    position: relative;
+    margin: 10px 0;
+}
+
+.password-modify-form .field>input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #efefef;
+    padding: 4px 8px;
+    color: #444;
+}
+
+.password-modify-form .field>i {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.forgot-pw {
+    position: relative;
+    font-size: 14px;
+    text-align: right;
+    color: #aaa;
+    top: -6px;
+}
+
+.password-modify-form .password-modify-submit {
+    width: 100%;
+    height: 54px;
+    margin-top: 40px;
+    border: 1px solid #2cae2c;
+    border-radius: 6px;
+    background: #2cae2c;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* ##### password_modify.html end ##### */
+
+/* ##### password_modify_complete.html ##### */
+
+.password-modify-complete-section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.password-modify-complete-logo {
+    width: 200px;
+    height: 200px;
+}
+
+.password-modify-complete-logo i {
+    font-size: 140px;
+}
+
+.password-modify-complete-text {
+    font-family: 'NOTO SANS BOLD';
+    font-size: 24px;
+}
+
+.password-modify-complete-text span {
+    font-size: 18px;
+    color: #444;
+}
+
+.password-modify-complete-section button {
+    position: relative;
+    width: 100%;
+    height: 54px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    color: #fff;
+    background: #000;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* ##### password_modify_complete.html end ##### */
+
+/* ##### password_forgot.html ##### */
+
+.password-forgot-text {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    margin-top: 130px;
+    text-align: left;
+    font-family: 'NOTO SANS BOLD';
+    font-size: 24px;
+    line-height: 24px;
+    color: #444;
+}
+
+.password-forgot-text span {
+    font-size: 18px;
+    line-height: 0px;
+    color: #444;
+}
+
+.password-forgot-form {
+    width: 100%;
+    margin-top: 44px;
+}
+
+.password-forgot-form .field {
+    position: relative;
+    margin: 10px 0;
+}
+
+.password-forgot-form .field>input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #efefef;
+    padding: 4px 8px;
+}
+
+.password-forgot-form .password-forgot-submit {
+    width: 320px;
+    height: 54px;
+    margin-top: 40px;
+    border: 1px solid #2cae2c;
+    border-radius: 6px;
+    color: #fff;
+    background: #2cae2c;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.password-find-message {
+    position: absolute;
+    width: 320px;
+    height: 190px;
+    top: 276px;
+    border: 1px solid #444;
+    background: #444;
+    border-radius: 6px;
+    z-index: 10;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+}
+
+/* ##### password_forgot.html end ##### */

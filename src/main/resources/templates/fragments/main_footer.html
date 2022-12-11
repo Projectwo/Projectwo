@@ -19,7 +19,7 @@
 		</div><!-- sec:role student 일 때 //// 임시매핑-->
 		<div class="teacher-function" sec:authorize="hasRole('TEACHER')">
 			<div class="teacher-create-notice">
-				<a href="javascript:;" id="Beacon_btn" th:text="|공지 작성|"></a>
+				<a href="javascript:noticeAddButton();" th:text="|공지 작성|"></a>
 			</div>
 			<button onclick="memberFunctionButton('teacher-function')" class="teacher-function-button">
 				<i class="fas fa-plus-circle"></i>
@@ -45,6 +45,37 @@
 				});
 			}
 		}
+
+		function noticeAddButton(){
+            const existForm = document.getElementsByClassName("form-fragment add-notice");
+            const formStatus = $(existForm).css('display');
+
+            if(formStatus == 'none'){
+                $(existForm).css('display', 'block');
+            }
+		}
+
+		function clickFormButton(e) {
+            const clickedFormButton = e.className;
+            let arr = clickedFormButton.split(' ');
+            const selectedForm = $(".form-fragment." + arr[1]);
+            const formStatus = $(selectedForm).css('display');
+
+            if(formStatus == 'none'){
+                $(selectedForm).css('display', 'block');
+            }
+        } // by 조성빈, 각 버튼 클릭 시 영역 오픈 기능
+
+        function closeNoticeModal(e) {
+            const clickedFormButton = e.className;
+            let arr = clickedFormButton.split(' ');
+            const selectedForm = $(".form-fragment." + arr[1]);
+            const formStatus = $(selectedForm).css('display');
+
+            if(formStatus == 'block'){
+                $(selectedForm).css('display', 'none');
+            }
+        } // by 조성빈, 각 버튼 클릭 시 영역 닫기 기능
 	</script>
 	<!-- 자바 스크립트 및 j쿼리 파일 -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
