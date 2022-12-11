@@ -6,14 +6,12 @@
         <div class="member-dropdown-list">
             <div class="dropdown-member-function">
                 <a href="#">비밀번호 변경</a>
-                <a th:href="@{/}">로그아웃</a>
+                <a th:href="@{/logout}">로그아웃</a>
             </div>
             <div class="dropdown-member-lecture">
                 My Class
                 <ul>
-                    <li><button>임시 강의 1</button></li>
-                    <li><button>임시 강의 2</button></li>
-                    <li><button>임시 강의 3</button></li>
+                    <li th:each="student : ${member.studentClassList}"><button th:text="${student.course.title}">임시 강의 1</button></li>
                 </ul>
             </div>
         </div>

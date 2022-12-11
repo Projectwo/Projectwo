@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,7 +49,7 @@ public class BaseController {
     }
     
     @RequestMapping("/main")
-    public String step(Principal principal) {
+    public String step(Principal principal, Model model) {
     	if(principal == null) {
     		return "redirect:/";
     	}
@@ -58,6 +59,8 @@ public class BaseController {
     	if("admin".equalsIgnoreCase(member.getRole())) {
     		return "academy/academy_main";
     	} else {
+    		model.addAttribute("member", member);
+    		
     		return "member/member_main";
     	}
     }
