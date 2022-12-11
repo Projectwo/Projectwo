@@ -21,8 +21,8 @@ public class AndroidPushPeriodicNotifications {
 		
 		//TODO: 여기에 안드로이드에서 받은 기기 토큰 넣어주기 자동화
 		String sampleData[] = { 
-				"frhnKXWCQr6-hVhsmascjt:APA91bH19WyAZdN7yOGX9ViMsvwiX3w5o3B5D4FUit1KWMMqE63vqmOa5KWupNsSKDDfq0oa0DM8BueDsS-da6bTTyCDUhT0VcAqDjKvDfA5BUhRcpadB-Kkoe-Ulyj8ZO03HKJveaDG"};
-		
+				"eQqJhBxSQVuqPNOSgmEOfH:APA91bGA-aZ19LUzr-F65MQ05isTBJej3YCcJVMTkHapAeKENmH2VLAu4MFBoz1Hkl0DrVSQb9EIyBO6GhWzyyhPe8_B76scpiV2rZkrdLaRd5X4kQ0WweCs0H6oclrnWAIFuk5vbjGq"
+		};
 		JSONObject body = new JSONObject();
 		
 		List<String> tokenList = new ArrayList<String>();

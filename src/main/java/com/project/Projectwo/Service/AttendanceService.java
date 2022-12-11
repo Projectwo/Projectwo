@@ -2,8 +2,10 @@ package com.project.Projectwo.Service;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.temporal.ChronoField;
 import java.util.List;
 import java.util.Optional;
+import java.util.Timer;
 import java.util.TimerTask;
 
 import org.springframework.stereotype.Service;
@@ -128,24 +130,71 @@ public class AttendanceService {
 
 	
 	
-//	//푸시알림 타이머
-//	public void pushTimer() {
-//		TimerTask task = new TimerTask() {
-//
-//			@Override
-//			public void run() {
-//				// TODO Auto-generated method stub
-//				
-//			}
-//			
+	//푸시알림 타이머
+	public void pushNotificationTimer(LocalTime localStartTime, LocalTime localEndTime, Attendance attendance) {
+		
+		
+		/* 실제 구현
+		//delayTime의 시간이 지난 후에, period 간격으로 timerTask를 수행
+		long startTime = localStartTime.getLong(ChronoField.MILLI_OF_DAY);
+		long endTime = localEndTime.getLong(ChronoField.MILLI_OF_DAY);
+		
+		long delayTime = endTime - startTime;
+		
+		String stringStartTime = Long.toString(startTime);
+		String stringEndTime = Long.toString(endTime);
+		String stringDelayTime = Long.toString(delayTime);
+		
+		log.info("####pushNotificationTimer의 startTime=" + stringStartTime);
+		log.info("####pushNotificationTimer의 endTime=" + stringEndTime);
+		log.info("####pushNotificationTimer의 DelayTime=" + stringDelayTime);
+
+		
+		//2분 간격
+		long period = 120000;
+		
+		*/
+		
+		//테스트용
+		long delayTime = 10000L;
+		long period = 10000L;
+
+
+		TimerTask timerTask = new TimerTask() {
+
+			@Override
+			public void run() {
+				// TODO Auto-generated method stub
+				// 아마 데이터베이스 비교해서 입실 상태이면 "알림 보내기"
+				if(attendance != null){
+					
+					if(attendance.getStatus().equals("입실") || attendance.getStatus().equals("지각")) {
+						log.info("####푸시알림####");
+						
+					}else {
+						log.info("$$$$퇴실완료$$$$");
+					}
+				}else {
+					log.info("####status==null");
+				}
+			}
+			
+		};
+		
+		Timer timer = new Timer();
+		log.info("####timerTask 전");
+		timer.schedule(timerTask, delayTime, period);
+		
+		
+//		//만약에 알림끄기를 구현해야 되면 여기서
+//		if() {
+//			timer.cancel();
 //		}
-//		
-//	}
+		
+	}
 	
 
 }
-
-
 
 
 

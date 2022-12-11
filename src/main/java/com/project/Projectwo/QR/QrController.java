@@ -1,7 +1,7 @@
 package com.project.Projectwo.QR;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -21,10 +21,6 @@ import com.project.Projectwo.Entity.Attendance;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Student;
-import com.project.Projectwo.Repository.AttendanceRepository;
-import com.project.Projectwo.Repository.CourseRepository;
-import com.project.Projectwo.Repository.MemberRepository;
-import com.project.Projectwo.Repository.StudentRepository;
 import com.project.Projectwo.Service.AcademyService;
 import com.project.Projectwo.Service.AttendanceService;
 import com.project.Projectwo.Service.MemberService;
@@ -87,9 +83,14 @@ public class QrController {
 		if(attendance == null) {
 			attendanceService.regAttendance(course, student, localDate);
 			
-			//푸시알림을 위한 타이머
+			//TODO: 푸시알림을 위한 타이머
+			LocalTime localStartTime = course.getStartTime();
+			LocalTime localEndTime = course.getEndTime();
 			
 			
+			log.info("####course's start time=" + localStartTime.toString());
+			log.info("####course's end time=" + localEndTime.toString());
+			attendanceService.pushNotificationTimer(localStartTime, localEndTime, attendance);
 			
 		}else {
 			attendanceService.regLeave(course, student, localDate);

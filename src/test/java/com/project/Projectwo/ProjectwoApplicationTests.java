@@ -1,9 +1,17 @@
 package com.project.Projectwo;
 
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.temporal.ChronoField;
+import java.util.Optional;
+
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.project.Projectwo.Entity.Course;
+import com.project.Projectwo.Entity.Room;
 import com.project.Projectwo.Repository.AttendanceRepository;
 import com.project.Projectwo.Repository.CourseRepository;
 import com.project.Projectwo.Repository.MemberRepository;
@@ -39,6 +47,29 @@ class ProjectwoApplicationTests {
 	@Autowired
 	private StudentRepository studentRepository;
 	
+//	@Test
+//	public void compareTime() {
+//		
+//		Optional<Course> oCourse = courseRepository.findById(1);
+//		Course course = oCourse.get();
+//		
+//		LocalTime localStartTime = course.getStartTime();
+//		LocalTime localEndTime = course.getStartTime();
+//		
+//		//delayTime의 시간이 지난 후에, period 간격으로 timerTask를 수행
+//		long startTime = localStartTime.getLong(ChronoField.MILLI_OF_SECOND);
+//		long endTime = localEndTime.getLong(ChronoField.MILLI_OF_SECOND);
+//		
+//		long delayTime = endTime - startTime; 
+//		
+//		String stringDelayTime = Long.toString(delayTime);
+//		
+//		log.info("####pushNotificationTimer의 startTime" + startTime);
+//		log.info("####pushNotificationTimer의 endTime" + endTime);
+//		log.info("####pushNotificationTimer의 DelayTime" + stringDelayTime);
+//		
+//		
+//	}
 //	@Test
 //	public void PeriodicNotificationJson() throws JSONException {
 //			
