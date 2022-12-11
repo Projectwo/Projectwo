@@ -64,6 +64,13 @@ public class AcademyService {
 		this.memberRepository.save(member);
 	}
 	
+	public Member getMember(Integer memberId) {
+		Optional<Member> _member = this.memberRepository.findById(memberId);
+		Member member = _member.get();
+		
+		return member;
+	}
+	
 	// by 안준언, 유저(teacher) 생성
 	public void createTeacher(String name, String birth_date, String tel,
 								String email, String address) {
@@ -112,6 +119,13 @@ public class AcademyService {
 		
 		this.memberRepository.save(member);
 		
+	}
+	
+	// by 안준언, 유저(teacher&student) 삭제
+	public void deleteMember(Integer memberId) {
+		Optional<Member> _member = this.memberRepository.findById(memberId);
+		Member member = _member.get();
+		this.memberRepository.delete(member);
 	}
 		
 		
@@ -188,6 +202,12 @@ public class AcademyService {
 		this.teacherRepository.save(teacher);
 		
 	}
+	// by 안준언, 강의삭제
+	public void deleteCourse(Integer courseId) {
+		Optional<Course> _course = this.courseRepository.findById(courseId);
+		Course course = _course.get();
+		this.courseRepository.delete(course);
+	}
 	
 	// by 안준언, 전체 강의 리스트 반환
 	public List<Course> getAllCourse(){
@@ -228,6 +248,13 @@ public class AcademyService {
 			return null;
 		}
 		Course course = _course.get();
+		return course;
+	}
+	
+	public Course getCourse(String title) {
+		Optional<Course> _course = this.courseRepository.findByTitle(title);
+		Course course = _course.get();
+		
 		return course;
 	}
 	
@@ -278,13 +305,25 @@ public class AcademyService {
 //		this.courseRepository.save(lecture);
 //	}
 //	
-	// by 안준언, 수강 등록 (수강정보 생성)
+	
+	// by 안준언, 수강 등록 (수강정보 생성) + 출결 정보 함께 생성
 	public void addStudent(Member student, Course course) {
 		Student classMember = new Student();
 		classMember.setStudent(student);
 		classMember.setCourse(course);
 		
 		this.studentRepository.save(classMember);
+		
+//		LocalDate startDate = course.getStartDate();
+//		LocalDate endDate = course.getEndDate().plusDays(1);
+		
+		for(LocalDate date = course.getStartDate(); date.isBefore(course.getEndDate().plusDays(1)); date = date.plusDays(1)) {
+			Attendance attendance = new Attendance();
+			attendance.setStudent(classMember);
+			attendance.setToday(date);
+			attendance.setStatus("needed check");
+			this.attendanceRepository.save(attendance);
+		}
 	}
 		
 	// by 안준언, 강사 등록

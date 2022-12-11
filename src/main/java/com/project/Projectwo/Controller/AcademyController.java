@@ -128,6 +128,7 @@ public class AcademyController {
     												roomName, teacherName);
     }
     
+    // by 안준언, 강의 수정
     @PostMapping("/modifyCourse")
     @ResponseBody
     public void modifyCourse(@RequestParam HashMap<Object, Object> params) {
@@ -151,6 +152,13 @@ public class AcademyController {
     	this.academyService.modifyCourseAndTeacher(courseId, title, mon, tue, wed, thu, fri, sat, sun,
     												startDate, endDate, startTime, endTime,
     												roomName, teacherName);
+    }
+    
+    // by 안준언, 강의 삭제
+    @PostMapping("/deleteCourse")
+    @ResponseBody
+    public void deleteCourse(@RequestParam HashMap<Object, Object> params) {
+    	this.academyService.deleteCourse(Integer.parseInt((String)params.get("courseId")));
     }
     
     // by 안준언, academy 페이지 강사 생성
@@ -204,6 +212,13 @@ public class AcademyController {
     	return member;
     }
     
+    // by 안준언, academy 페이지, 학생,강사 삭제
+    @PostMapping("/deleteMember")
+    @ResponseBody
+    public void deleteMember(@RequestParam HashMap<Object, Object> params) {
+    	this.academyService.deleteMember(Integer.parseInt((String)params.get("memberId")));
+    }
+    
     // by 안준언, academy 페이지 Course 수정 폼 정보 반환
     @PostMapping("/getCourseById")
     @ResponseBody
@@ -214,4 +229,11 @@ public class AcademyController {
     	return course;
     }
     
+    @PostMapping("/registCourse")
+    @ResponseBody
+    public void registCourse(@RequestParam HashMap<Object, Object> params) {
+    	Member member = this.academyService.getMember(Integer.parseInt((String)params.get("memberId")));
+    	Course course = this.academyService.getCourse((String)params.get("title"));
+    	this.academyService.addStudent(member, course);
+    }
 }
