@@ -1,5 +1,6 @@
 package com.project.Projectwo.Service;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -318,11 +319,51 @@ public class AcademyService {
 //		LocalDate endDate = course.getEndDate().plusDays(1);
 		
 		for(LocalDate date = course.getStartDate(); date.isBefore(course.getEndDate().plusDays(1)); date = date.plusDays(1)) {
+
 			Attendance attendance = new Attendance();
 			attendance.setStudent(classMember);
 			attendance.setToday(date);
 			attendance.setStatus("needed check");
-			this.attendanceRepository.save(attendance);
+			
+			DayOfWeek dayOfWeek = date.getDayOfWeek();
+			
+			switch(dayOfWeek) {
+			case SUNDAY :
+				if(course.isSun()) {
+					this.attendanceRepository.save(attendance);
+				}
+				break;
+			case MONDAY :
+				if(course.isMon()) {
+					this.attendanceRepository.save(attendance);
+				}
+				break;
+			case TUESDAY :
+				if(course.isTue()) {
+					this.attendanceRepository.save(attendance);
+				}
+				break;
+			case WEDNESDAY :
+				if(course.isWed()) {
+					this.attendanceRepository.save(attendance);
+				}
+				break;
+			case THURSDAY :
+				if(course.isThu()) {
+					this.attendanceRepository.save(attendance);
+				}
+				break;
+			case FRIDAY :
+				if(course.isFri()) {
+					this.attendanceRepository.save(attendance);
+				}
+				break;
+			case SATURDAY :
+				if(course.isSun()) {
+					this.attendanceRepository.save(attendance);
+				}
+				break;
+			}
 		}
 	}
 		
