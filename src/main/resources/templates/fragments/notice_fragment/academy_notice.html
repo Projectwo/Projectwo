@@ -1,0 +1,36 @@
+<html layout:decorate="~{layout/layout}">
+
+<div th:fragment="academyNoticeFragment" id="academy" class="notice-fragment active">
+    <div class="notice-area">
+        <div class="notice-recent" th:if="${academyNotices} != null" th:each="academyNotices : ${academyNotices}"> 
+            <button th:text="${academyNotices.title}" class="notice-function-button">학원 공지</button>
+            <button onclick="clickFormButton(this)" class="notice-function-modify modify-notice"
+                sec:authorize="hasRole('TEACHER')">
+                <i class="far fa-edit"></i>
+            </button>
+            <div th:text="${academyNotices.content}" class="notice-content academy"></div>
+            <div th:replace="fragments/notice_fragment/academy_notice_form :: academyNoticeAddFragment"></div>
+            <div th:replace="fragments/notice_fragment/academy_notice_modify :: academyNoticeModifyFragment"></div>
+        </div>
+    </div>
+    <script>
+        window.onload = function () {
+            noticeDetail()
+        }
+
+        function noticeDetail() {
+            // 데이터 매핑 완료한 후에 noticeDetail(noticeId)
+            $(".notice-function-button").off('click', ".notice-function-button").on('click', function () {
+                const target = this;
+
+                if (!$(this).parent().hasClass('active')) {
+                    $(this).parent().addClass('active')
+                } else {
+                    $(this).parent().removeClass('active')
+                }
+            })
+        }
+    </script>
+</div>
+
+</html>

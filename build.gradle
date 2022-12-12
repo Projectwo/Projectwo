@@ -5,7 +5,8 @@ plugins {
 }
 
 group = 'com.project'
-version = '0.0.1-SNAPSHOT'
+version = '0.0.8'
+
 sourceCompatibility = '11'
 
 configurations {
@@ -19,15 +20,41 @@ repositories {
 }
 
 dependencies {
+	implementation group: 	'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
+	
+	//push
+	implementation		'com.google.firebase:firebase-admin:6.8.1' 
+	implementation		group: 'com.squareup.okhttp3', name: 'okhttp', version: '4.2.2'
+	
+	// https://mvnrepository.com/artifact/org.json/json
+	implementation 		'org.json:json:20200518'
+
+	implementation 		'org.springframework.boot:spring-boot-starter-security'
+    implementation 		'org.thymeleaf.extras:thymeleaf-extras-springsecurity5'
 	implementation 		'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation 		'org.springframework.boot:spring-boot-starter-thymeleaf'
+	implementation		'nz.net.ultraq.thymeleaf:thymeleaf-layout-dialect'
 	implementation 		'org.springframework.boot:spring-boot-starter-web'
 	implementation 		'org.springframework.boot:spring-boot-starter-validation'
 	implementation		'mysql:mysql-connector-java'
+	runtimeOnly 		'com.h2database:h2'
 	compileOnly 		'org.projectlombok:lombok'
 	developmentOnly 	'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'
 	testImplementation 	'org.springframework.boot:spring-boot-starter-test'
+
+	//qr코드 생성
+	// https://mvnrepository.com/artifact/com.google.zxing/javase
+	implementation 		'com.google.zxing:javase:3.5.0'
+
+	//jwt
+	// https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api
+	implementation 		'io.jsonwebtoken:jjwt-api:0.11.5'
+	
+	//jwt 오류 해결을 위한 의존성 주입
+	implementation 		'io.jsonwebtoken:jjwt-impl:0.11.5'
+	implementation 		'io.jsonwebtoken:jjwt-jackson:0.11.5'
+
 }
 
 tasks.named('test') {

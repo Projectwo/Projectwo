@@ -1,0 +1,31 @@
+<div th:fragment="navFragment">
+    <div class="member-dropdown">
+        <button type="button" class="member-dropdown-button" onclick="menuDrop()">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="member-dropdown-list">
+            <div class="dropdown-member-function">
+                <a th:href="@{/main/password/modify}">비밀번호 변경</a>
+                <a th:href="@{/}">로그아웃</a>
+            </div>
+            <div class="dropdown-member-lecture">
+                My Class
+                <ul>
+                    <li th:if=${classList}!=null th:each="classList : ${classList}">
+                    <button th:data-id="${classList.course.title}" th:text="${classList.course.title}">
+                    임시 강의 1</button>
+                    </li>  
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+		function menuDrop() {
+			if ($(".member-dropdown").hasClass("active")) {
+				$(".member-dropdown").removeClass("active");
+			} else {
+				$(".member-dropdown").addClass("active");
+			}
+		}
+	</script>
+</div>
