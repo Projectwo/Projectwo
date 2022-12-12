@@ -1,10 +1,19 @@
-<html>
+<html layout:decorate="~{layout/layout}">
 
-    <div sec:authorize="hasRole('STUDENT')" th:each="student : ${member.studentClassList}">
-    <a th:text="${student.course.title}" th:href="@{|/course/${member.id}/${student.course.id}|}"></a>
+<div layout:fragment="content" sec:authorize="hasAnyRole('STUDENT', 'TEACHER')">
+    <div class="member-step-lecture">
+        My Class List
+        <ul>
+            <li sec:authorize="hasRole('STUDENT')" th:each="student : ${member.studentClassList}">
+                <button type="button" th:text="${student.course.title}"
+                    th:onclick="'location.href=\'' + @{|/course/${member.id}/${student.course.id}|} + '\''"></button>
+            </li>
+            <li sec:authorize="hasRole('TEACHER')" th:each="teacher : ${member.teacherClassList}">
+                <button type="button" th:text="${teacher.course.title}"
+                    th:onclick="'location.href=\'' + @{|/course/${member.id}/${teacher.course.id}|} + '\''"></button>
+            </li>
+        </ul>
     </div>
-    <div sec:authorize="hasRole('TEACHER')" th:each="teacher : ${member.teacherClassList}">
-    <a th:text="${teacher.course.title}" th:href="@{|/course/${member.id}/${teacher.course.id}|}"></a>
-    </div>
+</div>
 
 </html>

@@ -218,6 +218,45 @@
 
 /* ##### nav_button.html end ##### */
 
+/* ##### member_step.html ##### */
+
+.member-step-lecture{
+    position: relative;
+    width: 320px;
+    margin-top: 200px;
+    padding: 0 10px;
+    font-size: 22px;
+}
+
+.member-step-lecture ul{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.member-step-lecture ul li{
+    margin:6px 0;
+    width: 280px;
+    height: 44px;
+}
+
+.member-step-lecture button{
+    width: 100%;
+    height: 46px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #444;
+    padding-left: 10px;
+    cursor: pointer;
+    color:#fff;
+    text-align: center;
+    font-family: 'NOTO SANS BOLD';
+}
+
+/* ##### member_step.html end ##### */
+
 /* ##### member_main.html ##### */
 
 .main-profile {
@@ -701,18 +740,21 @@
     padding: 0 8px;
     text-align: left;
     font-size: 20px;
-    color: #eee;
 }
 
 .main-lecture.academy-list .lecture-name b {
     font-size: 22px;
+    color: #fff;
 }
 
 .main-lecture.academy-list .lecture-teacher {
     position: relative;
     top: 0;
     font-size: 18px;
-    color: #aaa;
+}
+
+.main-lecture.academy-list .lecture-teacher b{
+    color:#eee;
 }
 
 .main-lecture.academy-list .lecture-info-schedule {
@@ -728,30 +770,32 @@
 .main-lecture.academy-list .lecture-info-schedule-period {
     position: absolute;
     text-align: right;
-    height: 18px;
+    height: 20px;
+    line-height: 17px;
     top: 40px;
-    right: 10px;
-    color: #eee;
+    right: 6px;
+    color: #fff;
 }
 
 .main-lecture.academy-list .lecture-info-schedule-period span {
     font-size: 14px;
     font-family: 'NOTO SANS THIN';
+    color: #fff;
 }
 
 .main-lecture.academy-list .lecture-info-schedule-time {
     position: absolute;
     margin-top: 4px;
-    top: 60px;
-    right: 10px;
+    top: 55px;
+    right: 6px;
     font-size: 16px;
     font-family: 'NOTO SANS THIN';
 }
 
 .main-lecture.academy-list .lecture-info-room {
     position: absolute;
-    right: 10px;
-    top: 84px;
+    right: 6px;
+    top: 80px;
     text-align: right;
     color: #eee;
     font-size: 16px;
@@ -769,6 +813,7 @@
 
 .main-lecture.academy-list .lecture-info-count span {
     font-size: 14px;
+    color:#eee;
 }
 
 .main-lecture.academy-list #courseId {
@@ -833,11 +878,13 @@
     font-size: 24px;
     height: 20px;
     margin: 4px 12px;
+    color:#fff;
 }
 
 .academy-teacher .teacher-class b {
     font-size: 18px;
     height: 20px;
+    color:#eee;
 }
 
 .academy-teacher .teacher-info-detail {
@@ -849,11 +896,17 @@
 .academy-teacher .teacher-birthday {
     position: relative;
     text-align: left;
+    color:#fff;
+}
+
+.academy-teacher .teacher-birthday span{
+    color:#fff;
 }
 
 .academy-teacher .teacher-tel {
     position: relative;
     text-align: left;
+    color:#fff;
 }
 
 .academy-teacher .teacher-address {
@@ -861,6 +914,7 @@
     text-align: left;
     top: 58px;
     left: 16px;
+    color:#fff;
 }
 
 .academy-teacher .teacher-id {
@@ -928,27 +982,36 @@
     font-size: 24px;
     height: 20px;
     margin: 4px 12px;
+    color:#fff;
 }
 
 .academy-student .student-class b {
     font-size: 18px;
     height: 20px;
+    color:#eee;
 }
 
 .academy-student .student-info-detail {
     display: flex;
     justify-content: flex-start;
     margin-left: 16px;
+
 }
 
 .academy-student .student-birthday {
     position: relative;
     text-align: left;
+    color:#fff;
+}
+
+.academy-student .student-birthday span{
+    color:#fff;
 }
 
 .academy-student .student-tel {
     position: relative;
     text-align: left;
+    color:#fff;
 }
 
 .academy-student .student-address {
@@ -956,6 +1019,7 @@
     text-align: left;
     top: 58px;
     left: 16px;
+    color:#fff;
 }
 
 .student-lecture-regist .student-lecture-regist-button {
@@ -965,6 +1029,7 @@
     top: 60px;
     right: 4px;
     text-decoration: underline;
+    color:#fff;
 }
 
 .student-lecture-regist .lecture-regist-list-section {
@@ -1943,6 +2008,7 @@
 .lecture-info.detail .lecture-info-schedule-checked {
     display: flex;
     justify-content: flex-start;
+    color:#fff;
 }
 
 .lecture-info.detail .lecture-info-count {
@@ -1950,8 +2016,11 @@
     margin-left: 4px;
     font-size: 14px;
     font-weight: 400;
-    color: #eee;
     text-align: left;
+}
+
+.lecture-info.detail .lecture-info-count span{
+    color:#eee;
 }
 
 .lecture-info-about.detail {
