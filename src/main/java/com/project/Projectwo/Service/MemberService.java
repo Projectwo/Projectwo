@@ -57,6 +57,7 @@ public class MemberService {
 		List<Member> allMember = this.memberRepository.findByRole(role);
 		return allMember;
 	}
+
 	
 	// by 박은영
 		public Student getStudent(Member member, Course course) {
@@ -71,6 +72,7 @@ public class MemberService {
 			return student;
 		}
 	
+		
 	/*
 	 공통
 	 회원가입

@@ -197,6 +197,7 @@ var android_agent = uagent.search("android");
 var iphone = uagent.search("iphone");
 var ipad = uagent.search("ipad");
 var db_token = '123123123';	//DB상에 저장된 토큰
+let return_token = '';
 	$(document).ready(function send_token() {
 			//<!-- 안드로이드로 보낸다 -->
 			if (android_agent > -1) {
@@ -214,12 +215,16 @@ var db_token = '123123123';	//DB상에 저장된 토큰
 				alert('휴대폰에서 받아온 토큰값.\n' + returnData);
 				//location.href = `/saveToken`;
 				//Controller에서 Mapping '/saveToken'인 함수 생성해서 DB저장
-				saveToken();
+				return_token += returnData;
+				let msg = {
+						returnData: returnData
+				}
+				saveToken(msg);
 			}
 		}
 		
-	function saveToken() {
-	commonAjax('/saveToken', null, 'get', function(result) {
+	function saveToken(msg) {
+	commonAjax('/saveToken', msg, 'get', function(result) {
 		alert("saveToken");
 	})
 }
