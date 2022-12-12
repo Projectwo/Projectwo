@@ -399,6 +399,12 @@ public class AcademyService {
 		}
 	}
 	
+	// by 장유란, 전체 강의 반환
+	public List<AcademyNotice> getAllAcademyNotice(){			
+		List<AcademyNotice> AcademyNoticeList = this.academyNoticeRepository.findAll();
+		return AcademyNoticeList;
+	}
+	
 	// by 안준언, 특정 학생, 특정 수업의 오늘 기준 이전 6개 출결정보 반환
 	public List<Attendance> getBefore6Attendance(Student student) {
 		LocalDate today = LocalDate.now();

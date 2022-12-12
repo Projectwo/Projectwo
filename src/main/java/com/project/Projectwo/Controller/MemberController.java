@@ -2,6 +2,7 @@ package com.project.Projectwo.Controller;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
@@ -9,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.project.Projectwo.Entity.AcademyNotice;
 import com.project.Projectwo.Entity.Attendance;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
@@ -39,6 +41,10 @@ public class MemberController {
 		Student student = this.academyService.getStudent(course, member);
 		Teacher teacher = this.academyService.getTeacher(course, member);
 		Attendance attendance = this.academyService.getTodayAttendance(student);
+
+		// by 장유란, member_main에서 member명, 강의리스트, 전체공지 출력
+		List<AcademyNotice> academyNotices = academyService.getAllAcademyNotice();
+    	model.addAttribute("today", (LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd"))));
 		List<Attendance> sixAttList = this.academyService.getBefore6Attendance(student);
 		
 		
@@ -47,6 +53,7 @@ public class MemberController {
 		model.addAttribute("student", student);
 		model.addAttribute("teacher", teacher);
 		model.addAttribute("attendance", attendance);
+		model.addAttribute("academyNotices", academyNotices);
 		model.addAttribute("sixAttList", sixAttList);
 		
 		return "member/member_main";
