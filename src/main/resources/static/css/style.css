@@ -79,6 +79,7 @@
     position: absolute;
     top: 15px;
     right: 15px;
+
 }
 
 .forgot-pw {
@@ -347,6 +348,7 @@
 
 .student-checkinout a {
     color: #444;
+
 }
 
 .student-checkinout .student-today {
@@ -496,6 +498,7 @@
     position: relative;
     width: 100%;
     margin-top: 10px;
+
     font-size: 20px;
     text-align: left;
     color: #444;
@@ -688,6 +691,7 @@
     font-family: "Font Awesome 5 Free";
     padding: 0 6px 10px 6px;
     font-size: 16px;
+
 }
 
 .main-lecture.academy-list .lecture-title {
@@ -824,6 +828,7 @@
     font-family: "Font Awesome 5 Free";
     padding: 0 6px 10px 6px;
     font-size: 16px;
+
 }
 
 .academy-teacher .teacher-title {
@@ -919,6 +924,7 @@
     font-family: "Font Awesome 5 Free";
     padding: 0 6px 10px 6px;
     font-size: 16px;
+
 }
 
 .academy-student .student-title {
@@ -1213,6 +1219,7 @@
 .student-function .student-function-button {
     border-radius: 6px;
     padding: 6px 10px;
+
 }
 
 .student-function .student-function-button i {
@@ -1225,6 +1232,14 @@
 .student-function .student-function-button i.checked {
     color: #2cae2c;
 }
+
+.student-function .student-function-button i {
+    content: "\f058";
+    font-family: "Font Awesome 5 Free";
+    font-size: 56px;
+}
+
+.student-function .student-function-button i.checked {}
 
 .teacher-function {
     width: 220px;
@@ -1501,6 +1516,7 @@
     margin-left: 30px;
     font-size: 24px;
     color: #444;
+
 }
 
 .add-lecture-form .add-lecture-count input {

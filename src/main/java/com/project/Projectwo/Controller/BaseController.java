@@ -81,11 +81,13 @@ public class BaseController {
     	} else {
     		if(member.getRole().equals("student")) {
     			List<Student> student = studentRepository.findByStudent(member);
-    			List<Attendance> attendanceList= student.get(classCnt).getAttendanceList();
+    			if(student.size()>0) {
+        			List<Attendance> attendanceList= student.get(classCnt).getAttendanceList();
+        			model.addAttribute("classCnt", classCnt);
+        	    	model.addAttribute("attendanceList", attendanceList);
+    			}
     	    	List<Student> studentClassList = member.getStudentClassList();
     	    	model.addAttribute("classList", studentClassList);
-    	    	model.addAttribute("classCnt", classCnt);
-    	    	model.addAttribute("attendanceList", attendanceList);
     	    	
     		}else if(member.getRole().equals("teacher")){
     	    	List<Teacher> teacherClassList = member.getTeacherClassList();
@@ -126,7 +128,7 @@ public class BaseController {
 	// 		bindingResult.reject("signupFailed", e.getMessage());
 	// 		return "signup_form";
 	// 	}
-		
+
 	// 	return "redirect:/";
 	// }
 
