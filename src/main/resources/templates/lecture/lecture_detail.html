@@ -34,14 +34,14 @@
                     <li><span th:block th:if="${course.sun}"><i class="far fa-check-circle"></i></span></li>
                 </ul>
                 <div class="lecture-info-count">
-                    수강인원 <span>27</span> / <span th:text="${course.room.maxSeat}">30</span>
+                    수강인원 <span th:text="${course.studentList.size()}">0</span> / <span th:text="${course.room.maxSeat}">30</span>
                 </div>
             </div>
             <div class="lecture-info-about detail">
-                <div class="lecture-about-period">
-                    <span th:text="${course.startDate}"></span>
+                <div class="lecture-about-period" >
+                    <span th:with="year = ${#temporals.year(course.startDate)}" th:text="|${#strings.substring(year,2,4)}.${#temporals.month(course.startDate)}.${#temporals.day(course.startDate)}|"></span>
                     ~
-                    <span th:text="${course.endDate}"></span>
+                    <span th:with="year = ${#temporals.year(course.endDate)}" th:text="|${#strings.substring(year,2,4)}.${#temporals.month(course.endDate)}.${#temporals.day(course.endDate)}|"></span>
                 </div>
                 <div class="lecture-about-time">
                     <span th:text="${course.startTime}"></span>
@@ -58,8 +58,8 @@
         <div class="teacher-info detail">
             <b>담당강사</b><br>
             <div class="teacher-about detail">
-                <b>Steve</b>
-                <b>010-1234-5678</b>
+                <b th:text="${course.teacherList[0].teacher.name}">Steve</b>
+                <b th:text="${course.teacherList[0].teacher.tel}">010-1234-5678</b>
             </div>
         </div>
     </div>

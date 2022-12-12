@@ -455,7 +455,12 @@
     margin-top: 6px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+}
+
+.student-weekly .student-weekly-check>a{
+    margin:0 2px;
 }
 
 .student-weekly-check .student-weekly-date {
@@ -2062,10 +2067,7 @@
 }
 
 .lecture-info-about.detail>div span{
-    color:#fff;
-    font-size: 14px;
-    font-family: 'NOTO SANS THIN';
-
+    color:#eee;
 }
 
 .main-lecture.detail .lecture-about-desc {
