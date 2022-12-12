@@ -1,6 +1,8 @@
 package com.project.Projectwo.Controller;
 
+import java.security.Principal;
 import java.time.LocalDate;
+import java.util.List;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,13 +27,19 @@ public class MemberController {
 	private final AcademyService academyService;
 	
 	@RequestMapping(value = "/course/{memberId}/{courseId}")
-	public String CoursePage(Model model, @PathVariable("memberId") Integer memberId, @PathVariable("courseId") Integer courseId) {
+	public String CoursePage(Principal principal, Model model,
+								@PathVariable("memberId") Integer memberId,
+								@PathVariable("courseId") Integer courseId) {
+		if(principal == null) {
+			return "redirect:/";
+		}
 		Member member = this.memberService.getMember(memberId);
 		Course course = this.academyService.getCourse(courseId);
 		
 		Student student = this.academyService.getStudent(course, member);
 		Teacher teacher = this.academyService.getTeacher(course, member);
 		Attendance attendance = this.academyService.getTodayAttendance(student);
+		List<Attendance> sixAttList = this.academyService.getBefore6Attendance(student);
 		
 		
 		model.addAttribute("member", member);
@@ -39,6 +47,8 @@ public class MemberController {
 		model.addAttribute("student", student);
 		model.addAttribute("teacher", teacher);
 		model.addAttribute("attendance", attendance);
+		model.addAttribute("sixAttList", sixAttList);
+		
 		return "member/member_main";
 	}
 }

@@ -4,6 +4,8 @@ import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -332,7 +334,7 @@ public class AcademyService {
 			Attendance attendance = new Attendance();
 			attendance.setStudent(classMember);
 			attendance.setToday(date);
-			attendance.setStatus("needed check");
+			attendance.setStatus("미출결");
 			
 			DayOfWeek dayOfWeek = date.getDayOfWeek();
 			
@@ -368,7 +370,7 @@ public class AcademyService {
 				}
 				break;
 			case SATURDAY :
-				if(course.isSun()) {
+				if(course.isSat()) {
 					this.attendanceRepository.save(attendance);
 				}
 				break;
@@ -391,18 +393,62 @@ public class AcademyService {
 		Optional<Attendance> _todayAttendace = this.attendanceRepository.findByStudentAndToday(student, today);
 		if(_todayAttendace.isPresent()) {
 			Attendance todayAttendance = _todayAttendace.get();
-			return todayAttendance;			
+			return todayAttendance;
 		} else {
-			Attendance attendance = new Attendance();
-			attendance.setInTime(null);
-			attendance.setOutTime(null);
-			attendance.setStatus("ㅇㅇ");
-			attendance.setStudent(student);
-			attendance.setToday(LocalDate.of(1000, 1, 1));
 			return null;
 		}
 	}
 	
+	// by 안준언, 특정 학생, 특정 수업의 오늘 기준 이전 6개 출결정보 반환
+	public List<Attendance> getBefore6Attendance(Student student) {
+		LocalDate today = LocalDate.now();
+		Optional<Attendance> _todayAttendace = this.attendanceRepository.findByStudentAndToday(student, today);
+		if(_todayAttendace.isPresent()) {
+			
+			Attendance todayAttendance = _todayAttendace.get();
+			
+			List<Attendance> attList = student.getAttendanceList();
+			List<Attendance> sixAttList = new ArrayList<Attendance>();
+			
+			int cnt = 0;
+			for(int i = attList.indexOf(todayAttendance)-1; 0<=i; i--) {
+				Attendance att = attList.get(i);
+				sixAttList.add(att);
+				cnt++;
+				if(cnt == 6) {
+					break;
+				}
+			}
+			sixAttList.sort((attendance1, attendance2) -> 
+				attendance1.getToday().compareTo(attendance2.getToday()));
+			
+			return sixAttList;
+			
+		} else {
+			Attendance at = new Attendance();
+			at.setToday(today);
+			
+			List<Attendance> attList = student.getAttendanceList();
+			List<Attendance> sixAttList = new ArrayList<Attendance>();
+			attList.add(at);
+			attList.sort((attendance1, attendance2) -> 
+				attendance1.getToday().compareTo(attendance2.getToday()));
+			
+			int cnt = 0;
+			
+			for(int i=attList.indexOf(at)-1; 0<=i; i--) {
+				Attendance att = attList.get(i);
+				sixAttList.add(att);
+				cnt++;
+				if(cnt == 6) {
+					break;
+				}
+			}
+			sixAttList.sort((attendance1, attendance2) -> 
+				attendance1.getToday().compareTo(attendance2.getToday()));
+			return sixAttList;
+		}
+	}
 //	// by 안준언, 강의 공지사항 읽음 여부 생성
 //	public void createClassNoticeCheck(Student student, ClassNotice classNotice) {
 //		ClassNoticeCheck classNoticeCheck = new ClassNoticeCheck();
