@@ -403,6 +403,12 @@ public class AcademyService {
 		}
 	}
 	
+	// by 장유란, 전체 강의 반환
+	public List<AcademyNotice> getAllAcademyNotice(){			
+		List<AcademyNotice> AcademyNoticeList = this.academyNoticeRepository.findAll();
+		return AcademyNoticeList;
+	}
+	
 //	// by 안준언, 강의 공지사항 읽음 여부 생성
 //	public void createClassNoticeCheck(Student student, ClassNotice classNotice) {
 //		ClassNoticeCheck classNoticeCheck = new ClassNoticeCheck();
