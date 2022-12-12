@@ -22,7 +22,7 @@ public class Academy {
 	@NotNull
 	@Column(length = 30)
 	private String name;
-	
+
 	@Column(columnDefinition = "TEXT")
 	private String history;
 	

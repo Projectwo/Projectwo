@@ -30,7 +30,7 @@ public class MemberService {
 			return member;
 		}
 	}
-	
+
 	// by 안준언, pk(id)로 특정 멤버 반환 (오버로딩)
 	public Member getMember(Integer memberId) {
 		Optional<Member> mb = this.memberRepository.findById(memberId);
@@ -58,7 +58,6 @@ public class MemberService {
 		return allMember;
 	}
 
-	
 	// by 박은영
 		public Student getStudent(Member member, Course course) {
 			
@@ -71,7 +70,7 @@ public class MemberService {
 			
 			return student;
 		}
-	
+
 		
 	/*
 	 공통

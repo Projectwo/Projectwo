@@ -2,6 +2,7 @@ package com.project.Projectwo.ETC;
 
 public class ETC {
 
+	/* 
 	/**
 	   git 추적을 위해 임의로 생성한 클래스 입니다.
 	   Service, Controller, Repository, Entity 이외의

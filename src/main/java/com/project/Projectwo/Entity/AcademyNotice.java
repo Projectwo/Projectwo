@@ -29,7 +29,7 @@ public class AcademyNotice {
 	
 	@NotNull
 	private LocalDateTime createDate;
-	
+
 	private LocalDateTime modifyDate;
 
 }

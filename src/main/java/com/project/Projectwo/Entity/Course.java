@@ -34,7 +34,7 @@ public class Course {
 	@NotNull
 	@Column(unique = true, length = 300)
 	private String title;
-	
+
 	@Column(columnDefinition = "TEXT")
 	private String description;
 	
@@ -71,7 +71,7 @@ public class Course {
 	@NotNull
 	@ManyToOne
 	private Room room;
-	
+
 	// by 안준언, 수강생 리스트
 	@JsonBackReference
 	@OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
@@ -86,5 +86,5 @@ public class Course {
 	@JsonBackReference
 	@OneToMany(mappedBy = "course", cascade = CascadeType.REMOVE)
 	private List<ClassNotice> classNoticeList;
-	
+
 }

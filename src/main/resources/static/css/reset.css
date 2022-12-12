@@ -24,11 +24,6 @@
 
 
 @font-face {
-    font-family: 'NOTO SANS KR';
-    src: url('../fonts/Noto_Sans_KR/NotoSansKR-Regular.otf') format('truetype');
-}
-
-@font-face {
     font-family: 'NOTO SANS THIN';
     src: url('../fonts/Noto_Sans_KR/NotoSansKR-Thin.otf') format('truetype');
 }
@@ -105,7 +100,6 @@ ul,
 li {
     list-style: none;
 }
-
 input[type="date"] {
     position: relative;
     width: 150px;

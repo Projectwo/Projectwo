@@ -1,7 +1,7 @@
 package com.project.Projectwo.QR;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -45,21 +45,7 @@ public class QrController {
 	private final AcademyService academyService;
 	private final AttendanceService attendanceService;
 	private final MemberService memberService;
-	
-	@GetMapping("/test")
-	public String getTest() {
-		return "main";
-	}
-
-	@GetMapping("/cam")
-	public String getCam() {
-		return "cam";
-	}
-	
-	@GetMapping("/cam2")
-	public String getCam2() {
-		return "cam2";
-	}
+	private final QrService qrService;
 
 	//by 박은영
 	//"http://ip:9090/course/{courseId}/{LocalDate}로 qr생성
@@ -67,80 +53,60 @@ public class QrController {
 	@GetMapping("/createQr")
 	public void createQr(HttpServletRequest request, HttpServletResponse response) {
 
-		QrCodeView qrCodeView = new QrCodeView();
-		
-		String ip = GetIp.getIp();
-
-		LocalDateTime localDate = LocalDateTime.now();
-		String stringDate = localDate.format(DateTimeFormatter.ofPattern("yyyyMMdd"));
-		
-		log.info(stringDate);
-
-		//TODO: session로 teacher, course 특정지어서 강의 하나 가져오기
-		Integer course = 1;
-		String content = "http://" + ip + ":9090/course/" + course + "/" + stringDate;
-	
-		log.info(content);
-		
-		Map<String, Object> model = new HashMap<>();
-		
-		
-		model.put("content", content);
-		try {
-			qrCodeView.renderMergedOutputModel(model, request, response);
-		
-		}catch(Exception e) {
-			e.printStackTrace();
-		}
+		qrService.createQr(request, response);
 	
 	}
 	
-
+	
 	//by 박은영
 	//학생 - 입실,퇴실 등록
 	@GetMapping("/course/{courseId}/{date}")
-	public String setAttendance(@PathVariable("courseId") Integer courseId, @PathVariable("date") String date) {
+	public String setAttendance(@PathVariable("courseId") Integer courseId, @PathVariable("date") String date, HttpSession session) {
 		
 		//Date
 		String stringDate = date;
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 		LocalDate localDate = LocalDate.parse(stringDate, formatter);
-		Member member = memberService.getMember("aaa");
-		//Date
-		//model1.addAttribute("localDate", localDate);
-		
+
 		//Course
 		Course course = academyService.getCourse(courseId);		
-		//model2.addAttribute("course", course);
-		
+
 
 		log.info("####localDate=" + localDate.toString()); 
 		log.info("####강의명=" + course.getTitle()); 
 		log.info("####강의설명=" + course.getDescription()); 
 
+		//Member
+		//session으로 안 할거면 이 부분 건드려야 돼
+		String sessionMemberName = (String)session.getAttribute("Identity");
+
+		Member member = memberService.getMember("aaa");
 		Student student = memberService.getStudent(member, course);
 		
-		log.info("student=" + student.getStudent().getName());
+		log.info("student's name=" + student.getStudent().getName());
 
-		
 		Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
-		System.out.println(attendance.toString());
 		
-		if(attendance != null) {
+		if(attendance == null) {
+			attendanceService.regAttendance(course, student, localDate);
 			
-			log.info("####attendance is not null");			
-			if(attendance.getStatus().equals("")) { //입실
-				attendanceService.regAttendance(course, student);
-			}else if(attendance.getStatus().equals("입실")||attendance.getStatus().equals("지각")){ //퇴실
-				attendanceService.regLeave(course, student);
-			}	
+			//TODO: 푸시알림을 위한 타이머
+			LocalTime localStartTime = course.getStartTime();
+			LocalTime localEndTime = course.getEndTime();
+			
+			
+			log.info("####course's start time=" + localStartTime.toString());
+			log.info("####course's end time=" + localEndTime.toString());
+			attendanceService.pushNotificationTimer(localStartTime, localEndTime, attendance);
+			
 		}else {
-			log.info("####attendance is null");	
+			attendanceService.regLeave(course, student, localDate);
 		}
 
 		return "redirect:/main";
 	}
 
+	//by 박은영
 	//선생님 권한으로 학생 출결 정보 조회
 	@GetMapping("/teacher/{courseId}/{date}")
 	public String getAttendance(@PathVariable("courseId") Integer courseId, @PathVariable("date") String date,
@@ -148,7 +114,10 @@ public class QrController {
 		
 		//Date
 		String stringDate = date;
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMdd");
+
+
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
 		LocalDate localDate = LocalDate.parse(stringDate, formatter);
 		
 		model1.addAttribute("localDate", localDate);
@@ -158,33 +127,33 @@ public class QrController {
 		model2.addAttribute("course", course);
 		
 		log.info("강의명=" + course.getTitle()); 
-		
+
 		//course로부터 학생 목록 가져오기
 		List<Student> classStudentList = this.academyService.getStudentList(course);
 		
 		
 		ArrayList<Member> studentMemberList = new ArrayList<Member>();
 		ArrayList<Attendance> todayAttendanceList = new ArrayList<Attendance>();
+
+		Map<Member, Attendance> map = new HashMap<Member, Attendance>();
 		
 		for(int i=0; i<classStudentList.size(); i++) {
 
-			Student student = classStudentList.get(i);
-			
 			//student에서 member로 전환 (이름 가져오려고)
+			Student student = classStudentList.get(i);
 			Member member = student.getStudent();
-			studentMemberList.add(i, member);
-			
+
+						
 			//"일별" 학생 출결 정보 가져오기
 			Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
 			
-			todayAttendanceList.add(i, attendance);
+			map.put(member, attendance);
 
-			
 		}
+		model3.addAttribute("map", map);
 		
-		model3.addAttribute("studentMemberList", studentMemberList);
-		model4.addAttribute("todayAttendanceList", todayAttendanceList);
-		
+		//---------------------------------------------------------------------//
+
 		return "attendance";
 	}
 }

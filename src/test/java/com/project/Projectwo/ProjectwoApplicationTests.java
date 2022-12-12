@@ -19,9 +19,11 @@ import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Room;
 import com.project.Projectwo.Entity.Student;
 import com.project.Projectwo.Entity.Teacher;
+import com.project.Projectwo.Repository.AttendanceRepository;
 import com.project.Projectwo.Repository.CourseRepository;
 import com.project.Projectwo.Repository.MemberRepository;
 import com.project.Projectwo.Repository.RoomRepository;
+import com.project.Projectwo.Repository.StudentRepository;
 import com.project.Projectwo.Service.AcademyService;
 
 import lombok.extern.slf4j.Slf4j;
@@ -45,7 +47,105 @@ class ProjectwoApplicationTests {
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
-
+	
+	@Autowired 
+	private AttendanceRepository attendanceRepository;
+	
+	@Autowired
+	private StudentRepository studentRepository;
+	
+//	@Test
+//	public void compareTime() {
+//		
+//		Optional<Course> oCourse = courseRepository.findById(1);
+//		Course course = oCourse.get();
+//		
+//		LocalTime localStartTime = course.getStartTime();
+//		LocalTime localEndTime = course.getStartTime();
+//		
+//		//delayTime의 시간이 지난 후에, period 간격으로 timerTask를 수행
+//		long startTime = localStartTime.getLong(ChronoField.MILLI_OF_SECOND);
+//		long endTime = localEndTime.getLong(ChronoField.MILLI_OF_SECOND);
+//		
+//		long delayTime = endTime - startTime; 
+//		
+//		String stringDelayTime = Long.toString(delayTime);
+//		
+//		log.info("####pushNotificationTimer의 startTime" + startTime);
+//		log.info("####pushNotificationTimer의 endTime" + endTime);
+//		log.info("####pushNotificationTimer의 DelayTime" + stringDelayTime);
+//		
+//		
+//	}
+//	@Test
+//	public void PeriodicNotificationJson() throws JSONException {
+//			
+//			LocalDate localDate = LocalDate.now();
+//			
+//			String sampleData[] = {"device token value 1", "device token value 2", "device token value 3"};
+//			
+//			JSONObject body = new JSONObject();
+//			
+//			List<String> tokenList = new ArrayList<String>();
+//			
+//			for(int i=0; i<sampleData.length; i++) {
+//				tokenList.add(sampleData[i]);
+//				
+//			}
+//			
+//			JSONArray jsonArray = new JSONArray();
+//			
+//			for(int i=0; i<tokenList.size(); i++) {
+//				jsonArray.put(tokenList.get(i));
+//	
+//				System.out.println("####jsonArray[" + i + "]= " + jsonArray.getString(i));
+//			}
+//			
+//			body.put("registration_ids", jsonArray);
+//			
+//			JSONObject notification = new JSONObject();
+//			notification.put("title", "ProjectApp");
+//			notification.put("body", localDate.toString() + " 퇴실 미완료");
+//			
+//			body.put("notification", notification);
+//			
+//			System.out.println("####JSONObject body= " + body.toString());
+//
+//		}
+//	@Test
+//	void test() {
+//
+//		Optional<Course> oCourse = courseRepository.findById(1);
+//		Course course = oCourse.get();
+//
+//		int attendInt = 0;
+//		int notAttendInt = 0;
+//		List<Student> studentList = studentRepository.findByCourse(course);
+//		
+//		
+//		for(int i=0; i<studentList.size(); i++) {
+//			Student student = studentList.get(i);
+//			
+//			try {
+//				Optional<Attendance> oAttendance = attendanceRepository.findByStudentAndToday(student, LocalDate.of(2022, 12, 05));
+//			}catch(Exception e) {
+//				log.info("####Exception e=" + e.toString());
+//			}
+//			
+////			Attendance attendance = oAttendance.get();
+////			
+////			if(attendance.getStatus().equals("입실") || attendance.getStatus().equals("지각")) {
+////				attendInt++;
+////			}else {
+////				notAttendInt++;
+////			}
+////			
+//		}
+//
+//		log.info("####attendInt=" + attendInt);
+//		log.info("####notAttendInt=" + notAttendInt);
+//		
+//	}
 //	// 계정 등록
 //	@Test
 //	void createMember() {
@@ -109,7 +209,7 @@ class ProjectwoApplicationTests {
 //		
 //		this.memberRepository.save(member5);
 //	}
-	
+
 //	// 강의실 생성
 //	@Test
 //	void createRoom() {
@@ -119,7 +219,7 @@ class ProjectwoApplicationTests {
 //		
 //		this.roomRepository.save(room);
 //	}
-	
+
 //	// 강의 개설
 //	@Test
 //	void createCourse() {
@@ -151,6 +251,52 @@ class ProjectwoApplicationTests {
 //		course1.setRoom(room);
 //		
 //		this.courseRepository.save(course1);
+//	}
+//	// 강사, 학생 등록
+//	@Test
+//	void createStudentAndTeacher() {
+//		Optional<Course> cs1 = this.courseRepository.findById(1);
+//		Course course1 = cs1.get();
+//		
+//		Optional<Course> cs2 = this.courseRepository.findById(2);
+//		Course course2 = cs2.get();
+//		
+//		Optional<Member> mb1 = this.memberRepository.findByIdentity("aaa");
+//		Member member1 = mb1.get();
+//		
+//		Optional<Member> mb2 = this.memberRepository.findByIdentity("bbb");
+//		Member member2 = mb2.get();
+//
+//		Optional<Member> mb3 = this.memberRepository.findByIdentity("ccc");
+//		Member member3 = mb3.get();
+//		
+//		Optional<Member> mb4 = this.memberRepository.findByIdentity("ddd");
+//		Member member4 = mb4.get();
+//		
+//		this.academyService.createStudent(member1, course1);
+//		this.academyService.createStudent(member1, course2);
+//		this.academyService.createStudent(member2, course1);
+//		this.academyService.createStudent(member2, course2);
+//		
+//		this.academyService.createTeacher(member3, course1);
+//		this.academyService.createTeacher(member3, course2);
+//		this.academyService.createTeacher(member4, course1);
+//		this.academyService.createTeacher(member4, course2);
+//		
+//	}
+//	// 수업,강의 리스트 확인
+//	@Transactional
+//	@Test
+//	void checkclassList() {
+//		Optional<Member> mb1 = this.memberRepository.findById(1);
+//		Member member1 = mb1.get();
+//		List<Student> studentClassList = member1.getStudentClassList();
+//		assertEquals(studentClassList.size(), 2);
+//		
+//		Optional<Member> mb3 = this.memberRepository.findById(3);
+//		Member member3 = mb3.get();
+//		List<Teacher> teacherClassList = member3.getTeacherClassList();
+//		assertEquals(teacherClassList.size(), 2);
 //	}
 
 //	// 강사, 학생 등록
