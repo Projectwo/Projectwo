@@ -2,12 +2,6 @@
     margin: 0;
     padding: 0;
     outline: none;
-<<<<<<< HEAD
-    font-family: 'NOTO SANS KR', 'NOTO SANS LIGHT', 'NOTO SANS MEDIUM', 'NOTO SANS BOLD', sans-serif, serif;
-    font-size: 16px;
-}
-
-=======
     font-family: 'NOTO SANS KR', 'NOTO SANS THIN', 'NOTO SANS BOLD', sans-serif, serif;
     font-size: 16px;
     color:#fff;
@@ -29,25 +23,9 @@
 }
 
 
->>>>>>> dev
 @font-face {
-    font-family: 'NOTO SANS KR';
-    src: url('../fonts/Noto_Sans_KR/NotoSansKR-Regular.otf') format('truetype');
-}
-
-@font-face {
-<<<<<<< HEAD
-    font-family: 'NOTO SANS MEDIUM';
-    src: url('../fonts/Noto_Sans_KR/NotoSansKR-Medium.otf') format('truetype');
-}
-
-@font-face {
-    font-family: 'NOTO SANS LIGHT';
-    src: url('../fonts/Noto_Sans_KR/NotoSansKR-Light.otf') format('truetype');
-=======
     font-family: 'NOTO SANS THIN';
     src: url('../fonts/Noto_Sans_KR/NotoSansKR-Thin.otf') format('truetype');
->>>>>>> dev
 }
 
 @font-face {
@@ -110,11 +88,7 @@ button {
 
 a {
     text-decoration: none;
-<<<<<<< HEAD
-    color: #777;
-=======
     color: #444;
->>>>>>> dev
 }
 
 table {
@@ -126,20 +100,12 @@ ul,
 li {
     list-style: none;
 }
-<<<<<<< HEAD
-=======
-
->>>>>>> dev
 input[type="date"] {
     position: relative;
     width: 150px;
     min-height: 30px;
     padding:8px;
-<<<<<<< HEAD
-    border: 1px solid #ddd;
-=======
     border: 1px solid #444;
->>>>>>> dev
     border-radius: 6px;
     font-size: 14px;
 }
@@ -147,11 +113,7 @@ input[type="date"] {
 input[type="date"]::before {
     content: attr(data-placeholder);
     width: 100%;
-<<<<<<< HEAD
-    color: #c3c3c3;
-=======
     color: #aaa;
->>>>>>> dev
     text-align: center;
 }
 
@@ -170,11 +132,7 @@ input[type="time"] {
     width: 150px;
     min-height: 30px;
     padding:8px;
-<<<<<<< HEAD
-    border: 1px solid #ddd;
-=======
     border: 1px solid #444;
->>>>>>> dev
     border-radius: 6px;
     font-size: 14px;
 }
@@ -182,11 +140,7 @@ input[type="time"] {
 input[type="time"]::before {
     content: attr(data-placeholder);
     width: 100%;
-<<<<<<< HEAD
-    color: #c3c3c3;
-=======
     color: #aaa;
->>>>>>> dev
     text-align: center;
 }
 

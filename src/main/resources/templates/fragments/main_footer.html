@@ -85,20 +85,13 @@
 		var userIdx = 1; // app으로 보낼 유저 정보
 		var courseId = 1;
 		var date = "2022-01-01"
-<<<<<<< HEAD
 		var userToken;
-=======
 
->>>>>>> dev
 		var uagent = navigator.userAgent.toLowerCase(); //<!-- 유저에이전트 문자열을 얻어 소문자로 변환-->
 		var android_agent = uagent.search("android");
 		var iphone = uagent.search("iphone");
 		var ipad = uagent.search("ipad");
-<<<<<<< HEAD
-		
-=======
 
->>>>>>> dev
 		//<!-- 모바일 디바이스 > JS -->
 		function beacon_true(returnData) {
 			//<!-- 안드로이드에서 전달받음 -->
@@ -112,11 +105,7 @@
 				alert('Mobile > JS [Open] [I] [NONE]');
 			}
 		}
-<<<<<<< HEAD
-		
-=======
 
->>>>>>> dev
 		function beacon_false() {
 			//<!-- 안드로이드에서 전달받음 -->
 			if (android_agent > -1) {
@@ -200,13 +189,10 @@
 			else if (iphone > -1 || ipad > -1) {
 				window.location = 'close:JS TO Mobile';
 			}
-		}
-<<<<<<< HEAD
-		
+		}	
 		
 		
 	</script>
-=======
 	</script>
 	<script>
 
@@ -247,7 +233,6 @@ let return_token = '';
 	})
 }
 </script>
->>>>>>> dev
 </footer>
 
 </html>
