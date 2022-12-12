@@ -8,10 +8,10 @@
     </div>
     <form class="login-form" th:action="@{/}" method="post">
         <div class="field">
-            <input class="userid" type="text" placeholder="아이디(학생번호, 강사번호 등)" name="username" id="username">
+            <input class="userid" type="text" placeholder="아이디(학생번호, 강사번호 등)" name="username" id="username" th:value="${identity}">
         </div>
         <div class="field">
-            <input class="userpw" type="password" placeholder="비밀번호" name="password" id="password">
+            <input class="userpw" type="password" placeholder="비밀번호" name="password" id="password" th:value="${password}">
             <i class="fas fa-lock"></i>
         </div>
         <div class="forgot-pw">

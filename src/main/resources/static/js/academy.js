@@ -110,6 +110,18 @@ function modifyCourseBtnEvent() {
 				document.getElementById("modifyRoomSelect").addEventListener("change", modifyShowMaxSeat);
 			}, false)
 			document.getElementById('modifyCourseBtn').addEventListener("click", modifyCourse);
+			document.querySelector('.modify-delete-button').addEventListener("click", function(){
+				console.log(courseId)
+				let msg = {
+					courseId: courseId
+				}
+				commonAjax('/deleteCourse', msg, 'post', function(){
+					document.getElementById('modifyCourseBtn').addEventListener("click", closeModal('modify'));
+					getClassInfo();
+					getTeacherInfo();
+					getStudentInfo();
+				})
+			})
 		});
 	})
 }
@@ -209,10 +221,10 @@ function modifyTeacherBtnEvent() {
 			let parent = teacher.parentNode;
 			let children = parent.childNodes;
 			console.log(children)
-			let memderId = children[4].textContent;
+			let memberId = children[4].textContent;
 
 			let msg = {
-				memberId: memderId
+				memberId: memberId
 			}
 
 			commonAjax('/getMemberById', msg, 'post', function(member) {
@@ -251,6 +263,19 @@ function modifyTeacherBtnEvent() {
 				$("#modifyTeacher").empty().append(tag);
 			}, false)
 			modifyTeacherEvent();
+			document.querySelector('.modify-delete-button').addEventListener("click", function(){
+				console.log(memberId);
+				
+				let msg = {
+					memberId: memberId
+				}
+				commonAjax('/deleteMember', msg, 'post', function(){
+					document.querySelector('.add-confirm-button').addEventListener("click", closeModal('modify'));
+					getTeacherInfo();
+					getClassInfo();
+					getStudentInfo();
+				}) 
+			})
 		});
 	})
 }
@@ -326,10 +351,10 @@ function modifyStudentBtnEvent() {
 			let parent = student.parentNode;
 			let children = parent.childNodes;
 			console.log(children)
-			let memderId = children[4].textContent;
+			let memberId = children[4].textContent;
 
 			let msg = {
-				memberId: memderId
+				memberId: memberId
 			}
 
 			commonAjax('/getMemberById', msg, 'post', function(member) {
@@ -368,6 +393,18 @@ function modifyStudentBtnEvent() {
 				$("#modifyStudent").empty().append(tag);
 			}, false)
 			modifyStudentEvent();
+			document.querySelector('.modify-delete-button').addEventListener("click", function(){
+				
+				let msg = {
+					memberId: memberId
+				}
+				commonAjax('/deleteMember', msg, 'post', function(){
+					document.querySelector('.add-confirm-button').addEventListener("click", closeModal('modify'));
+					getStudentInfo();
+					getClassInfo();
+					getTeacherInfo();
+				}) 
+			})
 		});
 	})
 }
@@ -384,7 +421,7 @@ function getAllStudent(res) {
 			let classListOfStudent;
 
 			commonAjax('/getClassListOfStudent', mb, 'get', function(rs) {
-				console.log(rs.length);
+				//console.log(rs.length);
 				classListOfStudent = rs.length;
 				if (rs === null) {
 					classListOfStudent = "0";
@@ -421,11 +458,11 @@ function getAllStudent(res) {
 				"<div class='student-lecture-regist'>" +
 				"<button onclick='lectureRegistFucntion(this)' class='student-lecture-regist-button'>강의 등록</button>" +
 				"<div class='lecture-regist-list-section'>" +
-				"<select class='lecture-regist-list'>" +
+				"<select class='lecture-regist-list' id='courseSelect'>" +
 				"<option>강의 1</option>"+
 				"</select>" +
 				"<div class='lecture-regist-list-button'>" +
-				"<button>등록</button>" +
+				"<button class='regist_class_btn'>등록</button>" +
 				"<button onclick='lectureRegistCancle(this)' class='lecture-regist-cancle'>취소</button>" +
 				"</div>" +
 				"</div>" +
@@ -435,7 +472,47 @@ function getAllStudent(res) {
 		})
 	}
 	$("#allStudentList").empty().append(tag);
+	commonAjax('/getAllCourse', null, 'get', function(result) {
+		//console.log(result);
+		let tag = "";
+		if (result != null) {
+		result.forEach(function(course) {
+			tag += "<option>" + course.title + "</option>";
+		})
+	}
+	$(".lecture-regist-list").empty().append(tag);
+	}, false)
+	registCourse();
 }
+
+function registCourse(){
+	let ex = document.querySelectorAll(".regist_class_btn");
+	ex.forEach(function(aaa){
+		aaa.addEventListener("click", function(){
+			let parent = aaa.parentNode.parentNode.parentNode.parentNode
+			let child = parent.childNodes;
+			let memberId = child[4].textContent;
+			
+			let aparent = aaa.parentNode.parentNode
+			let achild = aparent.childNodes
+			let title = achild[0].value
+			
+			let msg = {
+				memberId: memberId,
+				title: title
+			}
+			console.log(msg)
+			commonAjax('/registCourse', msg, 'post', function(){
+				getClassInfo();
+				getTeacherInfo();
+				getStudentInfo();
+			})
+			
+		})
+		
+	})
+}
+
 
 // by 안준언, Academy 계정에서 강의 생성시 강의실 관련 정보 출력
 document.getElementById("addCourseBtn").addEventListener("click", getRoom);
@@ -589,6 +666,8 @@ function addStudent() {
 
 	commonAjax('/createStudent', msg, 'post', function() {
 		getStudentInfo();
+		getClassInfo();
+		getTeacherInfo();
 	})
 
 	document.getElementById('studentName').value = null;
@@ -659,6 +738,8 @@ function addCourse() {
 
 	commonAjax('/createCourse', msg, 'post', function() {
 		getClassInfo();
+		getTeacherInfo();
+		getStudentInfo();
 	})
 
 
@@ -711,6 +792,8 @@ function addTeacher() {
 
 	commonAjax('/createTeacher', msg, 'post', function() {
 		getTeacherInfo();
+		getClassInfo();
+		getStudentInfo();
 	})
 
 	document.getElementById('teacherName').value = null;
@@ -782,6 +865,8 @@ function modifyCourse() {
 
 	commonAjax('/modifyCourse', msg, 'post', function() {
 		getClassInfo();
+		getTeacherInfo();
+		getStudentInfo();
 	})
 
 
@@ -842,6 +927,8 @@ function modifyTeacherEvent() {
 
 		commonAjax('/modifyMember', msg, 'post', function() {
 			getTeacherInfo();
+			getClassInfo();
+			getStudentInfo();
 		})
 
 		document.getElementById('teacherModifyName').value = null;
@@ -890,6 +977,8 @@ function modifyStudentEvent() {
 
 		commonAjax('/modifyMember', msg, 'post', function() {
 			getStudentInfo();
+			getClassInfo();
+			getTeacherInfo();
 		})
 
 		document.getElementById('studentModifyName').value = null;

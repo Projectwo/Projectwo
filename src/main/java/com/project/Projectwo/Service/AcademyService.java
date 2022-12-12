@@ -1,5 +1,6 @@
 package com.project.Projectwo.Service;
 
+import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -64,6 +65,13 @@ public class AcademyService {
 		this.memberRepository.save(member);
 	}
 	
+	public Member getMember(Integer memberId) {
+		Optional<Member> _member = this.memberRepository.findById(memberId);
+		Member member = _member.get();
+		
+		return member;
+	}
+	
 	// by 안준언, 유저(teacher) 생성
 	public void createTeacher(String name, String birth_date, String tel,
 								String email, String address) {
@@ -112,6 +120,13 @@ public class AcademyService {
 		
 		this.memberRepository.save(member);
 		
+	}
+	
+	// by 안준언, 유저(teacher&student) 삭제
+	public void deleteMember(Integer memberId) {
+		Optional<Member> _member = this.memberRepository.findById(memberId);
+		Member member = _member.get();
+		this.memberRepository.delete(member);
 	}
 		
 		
@@ -188,6 +203,12 @@ public class AcademyService {
 		this.teacherRepository.save(teacher);
 		
 	}
+	// by 안준언, 강의삭제
+	public void deleteCourse(Integer courseId) {
+		Optional<Course> _course = this.courseRepository.findById(courseId);
+		Course course = _course.get();
+		this.courseRepository.delete(course);
+	}
 	
 	// by 안준언, 전체 강의 리스트 반환
 	public List<Course> getAllCourse(){
@@ -209,6 +230,12 @@ public class AcademyService {
 		return classList;
 	}
 	
+	// by 안준언, 특정 강사의 특정 수업 반환
+	public Teacher getTeacher(Course course, Member member) {
+		Teacher teacher = this.teacherRepository.findByCourseAndTeacher(course, member);
+		return teacher;
+	}
+	
 	// by 안준언, 한 수업의 수강 학생 리스트 반환
 	public List<Student> getStudentList(Course course) {
 		List<Student> studentList = this.studentRepository.findByCourse(course);
@@ -221,6 +248,12 @@ public class AcademyService {
 		return classList;
 	}
 	
+	// by 안준언, 특정 수강생의 특정 수업 반환
+	public Student getStudent(Course course, Member member) {
+		Student student = this.studentRepository.findByCourseAndStudent(course, member);
+		return student;
+	}
+	
 	// by 안준언, pk(id)로 해당 수업 반환
 	public Course getCourse(Integer courseId) {
 		Optional<Course> _course = this.courseRepository.findById(courseId);
@@ -228,6 +261,13 @@ public class AcademyService {
 			return null;
 		}
 		Course course = _course.get();
+		return course;
+	}
+	
+	public Course getCourse(String title) {
+		Optional<Course> _course = this.courseRepository.findByTitle(title);
+		Course course = _course.get();
+		
 		return course;
 	}
 	
@@ -278,13 +318,62 @@ public class AcademyService {
 //		this.courseRepository.save(lecture);
 //	}
 //	
-	// by 안준언, 수강 등록 (수강정보 생성)
+	
+	// by 안준언, 수강 등록 (수강정보 생성) + 출결 정보 함께 생성
 	public void addStudent(Member student, Course course) {
 		Student classMember = new Student();
 		classMember.setStudent(student);
 		classMember.setCourse(course);
 		
 		this.studentRepository.save(classMember);
+		
+		for(LocalDate date = course.getStartDate(); date.isBefore(course.getEndDate().plusDays(1)); date = date.plusDays(1)) {
+
+			Attendance attendance = new Attendance();
+			attendance.setStudent(classMember);
+			attendance.setToday(date);
+			attendance.setStatus("needed check");
+			
+			DayOfWeek dayOfWeek = date.getDayOfWeek();
+			
+			switch(dayOfWeek) {
+			case SUNDAY :
+				if(course.isSun()) {
+					this.attendanceRepository.save(attendance);
+				}
+				break;
+			case MONDAY :
+				if(course.isMon()) {
+					this.attendanceRepository.save(attendance);
+				}
+				break;
+			case TUESDAY :
+				if(course.isTue()) {
+					this.attendanceRepository.save(attendance);
+				}
+				break;
+			case WEDNESDAY :
+				if(course.isWed()) {
+					this.attendanceRepository.save(attendance);
+				}
+				break;
+			case THURSDAY :
+				if(course.isThu()) {
+					this.attendanceRepository.save(attendance);
+				}
+				break;
+			case FRIDAY :
+				if(course.isFri()) {
+					this.attendanceRepository.save(attendance);
+				}
+				break;
+			case SATURDAY :
+				if(course.isSun()) {
+					this.attendanceRepository.save(attendance);
+				}
+				break;
+			}
+		}
 	}
 		
 	// by 안준언, 강사 등록
@@ -294,6 +383,24 @@ public class AcademyService {
 		teacher.setCourse(course);
 		
 		this.teacherRepository.save(teacher);
+	}
+	
+	// by 안준언, 특정 학생, 특정 수업의 오늘 출결 정보 반환
+	public Attendance getTodayAttendance(Student student) {
+		LocalDate today = LocalDate.now();
+		Optional<Attendance> _todayAttendace = this.attendanceRepository.findByStudentAndToday(student, today);
+		if(_todayAttendace.isPresent()) {
+			Attendance todayAttendance = _todayAttendace.get();
+			return todayAttendance;			
+		} else {
+			Attendance attendance = new Attendance();
+			attendance.setInTime(null);
+			attendance.setOutTime(null);
+			attendance.setStatus("ㅇㅇ");
+			attendance.setStudent(student);
+			attendance.setToday(LocalDate.of(1000, 1, 1));
+			return null;
+		}
 	}
 	
 //	// by 안준언, 강의 공지사항 읽음 여부 생성

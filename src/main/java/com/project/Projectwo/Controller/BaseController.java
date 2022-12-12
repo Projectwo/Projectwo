@@ -9,6 +9,7 @@ import javax.validation.Valid;
 
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -48,56 +49,57 @@ public class BaseController {
     }
     
     @RequestMapping("/main")
-    public String step(Principal principal) {
+    public String step(Principal principal, Model model) {
     	if(principal == null) {
     		return "redirect:/";
     	}
     	
     	Member member = this.memberService.getMember(principal.getName());
     	
-    	System.out.println(principal.getName());
     	if("admin".equalsIgnoreCase(member.getRole())) {
     		return "academy/academy_main";
     	} else {
-    		return "member/member_main";
+    		model.addAttribute("member", member);
+    		
+    		return "member/member_step";
     	}
     }
     
-    // @GetMapping("/signup")
-	// public String signup(MemberCreateForm memberCreateForm) {
-	// 	return "signup_form";
-	// }
+    @GetMapping("/signup")
+	public String signup(MemberCreateForm memberCreateForm) {
+		return "signup_form";
+	}
 	
-	// public String signup(@Valid MemberCreateForm memberCreateForm,
-	// 						BindingResult bindingResult) {
-	// 	if(bindingResult.hasErrors()) {
-	// 		return "signup_form";
-	// 	}
+	public String signup(@Valid MemberCreateForm memberCreateForm,
+							BindingResult bindingResult) {
+		if(bindingResult.hasErrors()) {
+			return "signup_form";
+		}
 		
-	// 	if(!memberCreateForm.getPassword1().equals(memberCreateForm.getPassword2())) {
-	// 		bindingResult.rejectValue("password2", "passwordIncorrect",
-	// 									"2개의 비밀번호가 일치하지 않습니다.");
-	// 		return "signup_form";
-	// 	}
+		if(!memberCreateForm.getPassword1().equals(memberCreateForm.getPassword2())) {
+			bindingResult.rejectValue("password2", "passwordIncorrect",
+										"2개의 비밀번호가 일치하지 않습니다.");
+			return "signup_form";
+		}
 		
-	// 	try {
-	// 		academyService.createMember(memberCreateForm.getIdentity(), memberCreateForm.getPassword1(),
-	// 				memberCreateForm.getName(), memberCreateForm.getEmail(),
-	// 				memberCreateForm.getBirth_date(), memberCreateForm.getAddress(),
-	// 				memberCreateForm.getTel());
-	// 	} catch(DataIntegrityViolationException e) {
-	// 		e.printStackTrace();
-	// 		bindingResult.reject("signupFailed", "이미 등록된 사용자입니다.");
-	// 		return "signup_form";
-	// 	} catch(Exception e) {
-	// 		e.printStackTrace();
-	// 		bindingResult.reject("signupFailed", e.getMessage());
-	// 		return "signup_form";
-	// 	}
+		try {
+			academyService.createMember(memberCreateForm.getIdentity(), memberCreateForm.getPassword1(),
+					memberCreateForm.getName(), memberCreateForm.getEmail(),
+					memberCreateForm.getBirth_date(), memberCreateForm.getAddress(),
+					memberCreateForm.getTel());
+		} catch(DataIntegrityViolationException e) {
+			e.printStackTrace();
+			bindingResult.reject("signupFailed", "이미 등록된 사용자입니다.");
+			return "signup_form";
+		} catch(Exception e) {
+			e.printStackTrace();
+			bindingResult.reject("signupFailed", e.getMessage());
+			return "signup_form";
+		}
 		
-	// 	return "redirect:/";
-	// }
-    
+		return "redirect:/";
+	}
+
 	@RequestMapping("/main/lecture/detail")
 	public String lectureDetail(){
 		return "lecture/lecture_detail";
@@ -112,19 +114,5 @@ public class BaseController {
 	public String teacherCheck(){
 		return "member/teacher_check";
 	}
-
-	@RequestMapping("/main/password/modify")
-	public String passwordModify(){
-		return "member/password_modify";
-	}
-
-	@RequestMapping("/main/password/modify/complete")
-	public String passwordModifyComplete(){
-		return "member/password_modify_complete";
-	}
-	
-	@RequestMapping("/password/forgot")
-	public String passwordForgot(){
-		return "member/password_forgot";
-	}
+    
 }

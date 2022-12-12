@@ -24,21 +24,7 @@ import com.project.Projectwo.Repository.MemberRepository;
 import com.project.Projectwo.Repository.RoomRepository;
 import com.project.Projectwo.Service.AcademyService;
 
-import com.project.Projectwo.Entity.Course;
-import com.project.Projectwo.Entity.Member;
-import com.project.Projectwo.Entity.Student;
-import com.project.Projectwo.Entity.Teacher;
-import com.project.Projectwo.Repository.CourseRepository;
-import com.project.Projectwo.Repository.MemberRepository;
-import com.project.Projectwo.Service.AcademyService;
 
-import com.project.Projectwo.Entity.Course;
-import com.project.Projectwo.Entity.Member;
-import com.project.Projectwo.Entity.Student;
-import com.project.Projectwo.Entity.Teacher;
-import com.project.Projectwo.Repository.CourseRepository;
-import com.project.Projectwo.Repository.MemberRepository;
-import com.project.Projectwo.Service.AcademyService;
 
 @SpringBootTest
 class ProjectwoApplicationTests {
@@ -125,11 +111,35 @@ class ProjectwoApplicationTests {
 //	// 강의실 생성
 //	@Test
 //	void createRoom() {
-//		Room room = new Room();
-//		room.setName("427호");
-//		room.setMaxSeat(50);
+//		Room room1 = new Room();
+//		room1.setName("101호");
+//		room1.setMaxSeat(10);		
+//		this.roomRepository.save(room1);
 //		
-//		this.roomRepository.save(room);
+//		Room room2 = new Room();
+//		room2.setName("102호");
+//		room2.setMaxSeat(20);
+//		this.roomRepository.save(room2);
+//		
+//		Room room3 = new Room();
+//		room3.setName("103호");
+//		room3.setMaxSeat(30);
+//		this.roomRepository.save(room3);
+//		
+//		Room room4 = new Room();
+//		room4.setName("104호");
+//		room4.setMaxSeat(40);
+//		this.roomRepository.save(room4);
+//		
+//		Room room5 = new Room();
+//		room5.setName("105호");
+//		room5.setMaxSeat(50);
+//		this.roomRepository.save(room5);
+//		
+//		Room room6 = new Room();
+//		room6.setName("106호");
+//		room6.setMaxSeat(60);
+//		this.roomRepository.save(room6);
 //	}
 	
 //	// 강의 개설

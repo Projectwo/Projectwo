@@ -1,17 +1,10 @@
 package com.project.Projectwo.Controller;
 
-import java.security.Principal;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.HashMap;
 import java.util.List;
 
-import javax.validation.Valid;
 
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +15,6 @@ import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Room;
 import com.project.Projectwo.Entity.Student;
 import com.project.Projectwo.Entity.Teacher;
-import com.project.Projectwo.Form.MemberCreateForm;
 import com.project.Projectwo.Service.AcademyService;
 import com.project.Projectwo.Service.MemberService;
 
@@ -136,6 +128,7 @@ public class AcademyController {
     												roomName, teacherName);
     }
     
+    // by 안준언, 강의 수정
     @PostMapping("/modifyCourse")
     @ResponseBody
     public void modifyCourse(@RequestParam HashMap<Object, Object> params) {
@@ -159,6 +152,13 @@ public class AcademyController {
     	this.academyService.modifyCourseAndTeacher(courseId, title, mon, tue, wed, thu, fri, sat, sun,
     												startDate, endDate, startTime, endTime,
     												roomName, teacherName);
+    }
+    
+    // by 안준언, 강의 삭제
+    @PostMapping("/deleteCourse")
+    @ResponseBody
+    public void deleteCourse(@RequestParam HashMap<Object, Object> params) {
+    	this.academyService.deleteCourse(Integer.parseInt((String)params.get("courseId")));
     }
     
     // by 안준언, academy 페이지 강사 생성
@@ -212,6 +212,13 @@ public class AcademyController {
     	return member;
     }
     
+    // by 안준언, academy 페이지, 학생,강사 삭제
+    @PostMapping("/deleteMember")
+    @ResponseBody
+    public void deleteMember(@RequestParam HashMap<Object, Object> params) {
+    	this.academyService.deleteMember(Integer.parseInt((String)params.get("memberId")));
+    }
+    
     // by 안준언, academy 페이지 Course 수정 폼 정보 반환
     @PostMapping("/getCourseById")
     @ResponseBody
@@ -222,4 +229,11 @@ public class AcademyController {
     	return course;
     }
     
+    @PostMapping("/registCourse")
+    @ResponseBody
+    public void registCourse(@RequestParam HashMap<Object, Object> params) {
+    	Member member = this.academyService.getMember(Integer.parseInt((String)params.get("memberId")));
+    	Course course = this.academyService.getCourse((String)params.get("title"));
+    	this.academyService.addStudent(member, course);
+    }
 }
