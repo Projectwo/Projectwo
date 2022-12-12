@@ -39,7 +39,6 @@ public class Course {
 	private String description;
 	
 	@NotNull
-
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private LocalDate startDate;
 	

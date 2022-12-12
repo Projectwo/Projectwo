@@ -30,11 +30,13 @@ import com.project.Projectwo.Entity.Student;
 import com.project.Projectwo.Entity.Teacher;
 import com.project.Projectwo.Form.MemberCreateForm;
 import com.project.Projectwo.Repository.CourseRepository;
+import com.project.Projectwo.Repository.MemberRepository;
 import com.project.Projectwo.Repository.StudentRepository;
 import com.project.Projectwo.Service.AcademyService;
 import com.project.Projectwo.Service.MemberService;
 
 import lombok.RequiredArgsConstructor;
+import net.bytebuddy.asm.MemberRemoval;
 
 @RequiredArgsConstructor
 @Controller
@@ -43,6 +45,7 @@ public class BaseController {
 	private final MemberService memberService;
 	private final AcademyService academyService;
 	private final StudentRepository studentRepository;
+	private final MemberRepository memberRepository;
 	static int classCnt = 0;
 	@RequestMapping("/")
     public String root(){
@@ -81,11 +84,13 @@ public class BaseController {
     	} else {
     		if(member.getRole().equals("student")) {
     			List<Student> student = studentRepository.findByStudent(member);
-    			List<Attendance> attendanceList= student.get(classCnt).getAttendanceList();
+    			if(student.size()>0) {
+        			List<Attendance> attendanceList= student.get(classCnt).getAttendanceList();
+        			model.addAttribute("classCnt", classCnt);
+        	    	model.addAttribute("attendanceList", attendanceList);
+    			}
     	    	List<Student> studentClassList = member.getStudentClassList();
     	    	model.addAttribute("classList", studentClassList);
-    	    	model.addAttribute("classCnt", classCnt);
-    	    	model.addAttribute("attendanceList", attendanceList);
     	    	
     		}else if(member.getRole().equals("teacher")){
     	    	List<Teacher> teacherClassList = member.getTeacherClassList();
@@ -126,7 +131,7 @@ public class BaseController {
 	// 		bindingResult.reject("signupFailed", e.getMessage());
 	// 		return "signup_form";
 	// 	}
-		
+
 	// 	return "redirect:/";
 	// }
 
@@ -179,6 +184,22 @@ public class BaseController {
 		return "member/password_forgot";
 	}
 
+	@GetMapping("/saveToken")
+	@ResponseBody
+	public void saveToken(@RequestParam HashMap<Object, Object> params, Principal principal){
+		String identity = principal.getName();		
+		String token_data = (String)params.get("returnData");
+		
+		Member member = memberService.getMember(identity);
+		if (token_data.equals("null") ) {
+			System.out.println("token의 값이 null");
 
+		}else {
+			member.setToken(token_data);
+			memberRepository.save(member);
+		}
+		System.out.println(token_data);
+
+	}
     
 }

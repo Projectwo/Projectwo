@@ -1,9 +1,9 @@
 package com.project.Projectwo.QR;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.joda.time.LocalDate;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -23,6 +23,7 @@ public class AndroidPushPeriodicNotifications {
 		String sampleData[] = { 
 				"eQqJhBxSQVuqPNOSgmEOfH:APA91bGA-aZ19LUzr-F65MQ05isTBJej3YCcJVMTkHapAeKENmH2VLAu4MFBoz1Hkl0DrVSQb9EIyBO6GhWzyyhPe8_B76scpiV2rZkrdLaRd5X4kQ0WweCs0H6oclrnWAIFuk5vbjGq"
 		};
+		
 		JSONObject body = new JSONObject();
 		
 		List<String> tokenList = new ArrayList<String>();
@@ -55,17 +56,4 @@ public class AndroidPushPeriodicNotifications {
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 

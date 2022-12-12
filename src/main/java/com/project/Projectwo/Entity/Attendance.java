@@ -33,7 +33,8 @@ public class Attendance {
 	
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="HH:mm", timezone="Asia/Seoul")
 	private LocalTime outTime;
-	
+
+	@NotNull
 	@Column(length = 20)
 	private String status;
 	

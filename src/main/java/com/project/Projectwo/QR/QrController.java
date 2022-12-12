@@ -21,6 +21,10 @@ import com.project.Projectwo.Entity.Attendance;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Student;
+import com.project.Projectwo.Repository.AttendanceRepository;
+import com.project.Projectwo.Repository.CourseRepository;
+import com.project.Projectwo.Repository.MemberRepository;
+import com.project.Projectwo.Repository.StudentRepository;
 import com.project.Projectwo.Service.AcademyService;
 import com.project.Projectwo.Service.AttendanceService;
 import com.project.Projectwo.Service.MemberService;
@@ -33,19 +37,22 @@ import lombok.extern.slf4j.Slf4j;
 @Controller
 public class QrController {
 	
-
-	private final QRService qrService;
+	private final CourseRepository courseRepository;
+	private final AttendanceRepository attendanceRepository;
+	private final StudentRepository studentRepository;
+	private final MemberRepository memberRepository;
+	
 	private final AcademyService academyService;
 	private final AttendanceService attendanceService;
 	private final MemberService memberService;
-	
+	private final QrService qrService;
 
 	//by 박은영
 	//"http://ip:9090/course/{courseId}/{LocalDate}로 qr생성
 	//TODO: courseId 특정 지어서 가져와야 됨
 	@GetMapping("/createQr")
 	public void createQr(HttpServletRequest request, HttpServletResponse response) {
-		
+
 		qrService.createQr(request, response);
 	
 	}
@@ -108,6 +115,7 @@ public class QrController {
 		//Date
 		String stringDate = date;
 
+
 		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
 		LocalDate localDate = LocalDate.parse(stringDate, formatter);
@@ -119,7 +127,6 @@ public class QrController {
 		model2.addAttribute("course", course);
 		
 		log.info("강의명=" + course.getTitle()); 
-
 		//course로부터 학생 목록 가져오기
 		List<Student> classStudentList = this.academyService.getStudentList(course);
 		
@@ -145,10 +152,6 @@ public class QrController {
 		model3.addAttribute("map", map);
 		
 		//---------------------------------------------------------------------//
-		
-		
-		
-		
 
 		return "attendance";
 	}

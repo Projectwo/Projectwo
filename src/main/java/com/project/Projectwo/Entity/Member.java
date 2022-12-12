@@ -56,7 +56,11 @@ public class Member {
 	
 	@NotNull
 	private String role;
-	
+
+	// by 장유란, 모바일 토큰 저장
+	@Column
+	private String token;
+
 	// by 안준언, 내 수업 리스트 (학생 계정)
 	@JsonBackReference
 	@OneToMany(mappedBy = "student", cascade = CascadeType.REMOVE)

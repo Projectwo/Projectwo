@@ -15,7 +15,7 @@ import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Service
-public class QRService {
+public class QrService {
 	
 	//by 박은영 (IP주소 얻기)
 	public static String getIp(){

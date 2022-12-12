@@ -28,6 +28,25 @@
             </div>
         </div><!-- 해당 div에 each -->
     </div>
+<<<<<<< HEAD
+=======
+    <script>
+        function lectureRegistFucntion(e) {
+            const targetStudent = $(e).parent();
+            const targetRegist = $(targetStudent).children('.lecture-regist-list-section')
+
+            targetRegist.addClass('active');
+            targetRegist.css('visibility', 'visible');
+        }
+
+        function lectureRegistCancle(e) {
+            const targetRegist = $(e).parent().parent();
+
+            targetRegist.removeClass('active');
+            targetRegist.css('visibility', 'hidden');
+        }
+    </script>
+>>>>>>> dev
 </div>
 
 </html>

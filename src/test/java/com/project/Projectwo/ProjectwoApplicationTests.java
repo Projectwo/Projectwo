@@ -1,17 +1,24 @@
 package com.project.Projectwo;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.time.temporal.ChronoField;
+import java.util.List;
 import java.util.Optional;
 
-import org.junit.Test;
+import javax.transaction.Transactional;
+
+import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.project.Projectwo.Entity.Course;
+import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Room;
+import com.project.Projectwo.Entity.Student;
+import com.project.Projectwo.Entity.Teacher;
 import com.project.Projectwo.Repository.AttendanceRepository;
 import com.project.Projectwo.Repository.CourseRepository;
 import com.project.Projectwo.Repository.MemberRepository;
@@ -139,7 +146,6 @@ class ProjectwoApplicationTests {
 //		log.info("####notAttendInt=" + notAttendInt);
 //		
 //	}
-
 //	// 계정 등록
 //	@Test
 //	void createMember() {
@@ -290,4 +296,5 @@ class ProjectwoApplicationTests {
 //		List<Teacher> teacherClassList = member3.getTeacherClassList();
 //		assertEquals(teacherClassList.size(), 2);
 //	}
+
 }

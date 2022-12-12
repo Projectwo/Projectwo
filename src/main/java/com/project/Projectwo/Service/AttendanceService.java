@@ -62,6 +62,7 @@ public class AttendanceService {
 
 		return attendTF;
 	}
+
 	
 	//by 박은영
 	//'당일' 학생 출결 정보 가져오기
@@ -77,7 +78,7 @@ public class AttendanceService {
 
 		return todayAttendance;
 	}
-	
+
 	//입실
 	public void regAttendance(Course course, Student student, LocalDate localDate) {
 		Attendance attendance = new Attendance();
@@ -195,29 +196,3 @@ public class AttendanceService {
 	
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
