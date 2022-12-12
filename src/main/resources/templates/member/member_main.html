@@ -13,10 +13,9 @@
     <div class="notice-new-alarm">
         <b>읽지 않은 공지 1건</b>
     </div>
-    <a sec:authorize="hasRole('STUDENT')" th:href="@{/main/lecture/detail}">
+    <a sec:authorize="hasRole('STUDENT')" th:href="@{|/course/${member.id}/${course.id}/detail|}">
         <div class="main-lecture">
             <div class="lecture-name">
-                <!-- b에 강의명, span에 학원명 -->
                 <b th:text="${course.title}">Java 기초 과정</b><span th:text="| @${course.room.name}호실|"></span>
             </div>
             <div class="lecture-info">
@@ -39,17 +38,16 @@
                     <li><span th:block th:if="${course.sun}"><i class="far fa-check-circle"></i></span></li>
                 </ul>
                 <div class="lecture-info-schedule-time">
-                	<span th:text="${course.startTime}"></span>
+                    <span th:text="${course.startTime}"></span>
                     ~
                     <span th:text="${course.endTime}"></span>
                 </div>
             </div>
         </div>
     </a>
-    <a sec:authorize="hasRole('TEACHER')" th:href="@{/main/lecture/detail}">
+    <a sec:authorize="hasRole('TEACHER')" th:href="@{|/course/${member.id}/${course.id}/detail|}">
         <div class="main-lecture">
             <div class="lecture-name">
-                <!-- b에 강의명, span에 학원명 -->
                 <b th:text="${course.title}">Java 기초 과정</b><span th:text="| @${course.room.name}호실|"></span>
             </div>
             <div class="lecture-info">
@@ -72,7 +70,7 @@
                     <li><span th:block th:if="${course.sun}"><i class="far fa-check-circle"></i></span></li>
                 </ul>
                 <div class="lecture-info-schedule-time">
-                	<span th:text="${course.startTime}"></span>
+                    <span th:text="${course.startTime}"></span>
                     ~
                     <span th:text="${course.endTime}"></span>
                 </div>
@@ -81,30 +79,30 @@
     </a>
     <div class="student-checkinout" sec:authorize="hasRole('STUDENT')">
         <div class="student-today">
-            Today
-            <a th:href="@{|/attendance/${member.id}/${course.id}|}" >
+            Today <span></span>
+            <a th:href="@{|/course/${member.id}/${course.id}/attendance|}">
                 <div class="student-daily-check">
                     <div class="daily-date">
-                        <span th:if="${attendance != null}" th:text="${attendance.today}">11/18</span>
+                        <span th:if="${attendance != null}" th:text="${today}"></span>
+                        <b th:if="${attendance != null}" th:text="${#temporals.dayOfWeekNameShort(attendance.today)}"></b>
+                        <span th:if="${attendance == null}">오늘은 수업이 없는 날입니다!</span>
                     </div>
-                    <span class="daily-status" th:if="${attendance != null}" th:text="${attendance.status}">
-                        출석
-                    </span>
+                    <span class="daily-status" th:if="${attendance != null}" th:text="${attendance.status}"></span>
                 </div>
             </a>
         </div>
         <div class="student-weekly">
-            Weekly
+            Recent
             <div class="student-weekly-check">
-                <a th:href="@{|/attendance/${member.id}/${course.id}|}" th:each="attendance : ${sixAttList}">
+                <a th:href="@{/main/lecture/check/student}" th:each="attendance : ${sixAttList}">
                     <div class="student-weekly-date">
-                        <span th:text="${attendance.today}">Mon</span><br>
+                        <span th:text="|${#temporals.month(attendance.today)}/${#temporals.day(attendance.today)}|">Mon</span><br>
                         <span th:text="${attendance.status}">지각</span>
                     </div>
                 </a>
             </div>
         </div>
-    </div><!-- sec:role student 일 때 -->
+    </div>
     <div class="teacher-checkinout" sec:authorize="hasRole('TEACHER')">
         <div class="teacher-today">
             Today
@@ -121,7 +119,7 @@
                 </div>
             </a>
         </div>
-    </div><!-- sec:role teacher 일 때 -->
+    </div>
     <div class="main-notice">
         Notice
         <div class="notice-category">
