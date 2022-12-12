@@ -189,11 +189,15 @@
     padding: 0 10px;
     text-align: left;
     font-size: 22px;
+    color:#fff;
 }
 
 .dropdown-member-lecture ul {
     display: flex;
     flex-direction: column;
+    width: 300px;
+    height: 170px;
+    overflow: auto;
 }
 
 .dropdown-member-lecture li {
@@ -315,14 +319,21 @@
     padding: 4px 8px;
     text-align: left;
     font-size: 14px;
+    color:#fff;
 }
 
 .main-lecture .lecture-name b {
-    font-size: 18px;
+    font-size: 24px;
+    margin-left: 4px;
+    color:#fff;
+}
+
+.main-lecture .lecture-name span{
+    color:#fff;
 }
 
 .main-lecture .lecture-info {
-    margin-top: 10px;
+    margin-top: 0;
     padding: 4px 6px;
 }
 
@@ -375,8 +386,12 @@
 
 .main-lecture .lecture-info-schedule-time {
     margin-top: 10px;
-    color: #eee;
+    color:#fff;
     text-align: right;
+}
+
+.main-lecture .lecture-info-schedule-time span{
+    color:#fff;
 }
 
 .student-checkinout {
@@ -1987,6 +2002,7 @@
 
 .main-lecture.detail .lecture-name b {
     font-size: 24px;
+    color:#fff;
 }
 
 .lecture-about-section {
@@ -2017,6 +2033,7 @@
     font-size: 14px;
     font-weight: 400;
     text-align: left;
+    color:#eee;
 }
 
 .lecture-info.detail .lecture-info-count span{
@@ -2035,6 +2052,10 @@
     font-size: 14px;
 }
 
+.lecture-info-about.detail>div{
+    color:#eee;
+}
+
 .main-lecture.detail .lecture-about-desc {
     max-width: 300px;
     height: 60px;
@@ -2044,6 +2065,8 @@
     border-radius: 6px;
     background: #fff;
 }
+
+
 
 .main-lecture.detail .lecture-about-desc span {
     font-size: 16px;
@@ -2061,6 +2084,7 @@
 
 .main-lecture.detail .teacher-info.detail b {
     font-size: 22px;
+    color: #eee;
 }
 
 .main-lecture.detail .teacher-about.detail {

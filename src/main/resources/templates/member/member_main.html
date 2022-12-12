@@ -17,7 +17,7 @@
         <div class="main-lecture">
             <div class="lecture-name">
                 <!-- b에 강의명, span에 학원명 -->
-                <b th:text="${course.title}">Java 기초 과정</b> @<span th:text="${course.room.name}">426호실</span>
+                <b th:text="${course.title}">Java 기초 과정</b><span th:text="| @${course.room.name}호실|"></span>
             </div>
             <div class="lecture-info">
                 <ul class="lecture-info-schedule">
@@ -50,7 +50,7 @@
         <div class="main-lecture">
             <div class="lecture-name">
                 <!-- b에 강의명, span에 학원명 -->
-                <b th:text="${course.title}">Java 기초 과정</b> @<span th:text="${course.room.name}">426호실</span>
+                <b th:text="${course.title}">Java 기초 과정</b><span th:text="| @${course.room.name}호실|"></span>
             </div>
             <div class="lecture-info">
                 <ul class="lecture-info-schedule">
