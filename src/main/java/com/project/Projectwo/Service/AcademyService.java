@@ -230,6 +230,12 @@ public class AcademyService {
 		return classList;
 	}
 	
+	// by 안준언, 특정 강사의 특정 수업 반환
+	public Teacher getTeacher(Course course, Member member) {
+		Teacher teacher = this.teacherRepository.findByCourseAndTeacher(course, member);
+		return teacher;
+	}
+	
 	// by 안준언, 한 수업의 수강 학생 리스트 반환
 	public List<Student> getStudentList(Course course) {
 		List<Student> studentList = this.studentRepository.findByCourse(course);
@@ -240,6 +246,12 @@ public class AcademyService {
 	public List<Student> getAllClassOfStudent(Member member) {
 		List<Student> classList = this.studentRepository.findByStudent(member);
 		return classList;
+	}
+	
+	// by 안준언, 특정 수강생의 특정 수업 반환
+	public Student getStudent(Course course, Member member) {
+		Student student = this.studentRepository.findByCourseAndStudent(course, member);
+		return student;
 	}
 	
 	// by 안준언, pk(id)로 해당 수업 반환
@@ -315,9 +327,6 @@ public class AcademyService {
 		
 		this.studentRepository.save(classMember);
 		
-//		LocalDate startDate = course.getStartDate();
-//		LocalDate endDate = course.getEndDate().plusDays(1);
-		
 		for(LocalDate date = course.getStartDate(); date.isBefore(course.getEndDate().plusDays(1)); date = date.plusDays(1)) {
 
 			Attendance attendance = new Attendance();
@@ -374,6 +383,24 @@ public class AcademyService {
 		teacher.setCourse(course);
 		
 		this.teacherRepository.save(teacher);
+	}
+	
+	// by 안준언, 특정 학생, 특정 수업의 오늘 출결 정보 반환
+	public Attendance getTodayAttendance(Student student) {
+		LocalDate today = LocalDate.now();
+		Optional<Attendance> _todayAttendace = this.attendanceRepository.findByStudentAndToday(student, today);
+		if(_todayAttendace.isPresent()) {
+			Attendance todayAttendance = _todayAttendace.get();
+			return todayAttendance;			
+		} else {
+			Attendance attendance = new Attendance();
+			attendance.setInTime(null);
+			attendance.setOutTime(null);
+			attendance.setStatus("ㅇㅇ");
+			attendance.setStudent(student);
+			attendance.setToday(LocalDate.of(1000, 1, 1));
+			return null;
+		}
 	}
 	
 //	// by 안준언, 강의 공지사항 읽음 여부 생성

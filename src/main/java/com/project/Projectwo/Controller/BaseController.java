@@ -61,7 +61,7 @@ public class BaseController {
     	} else {
     		model.addAttribute("member", member);
     		
-    		return "member/member_main";
+    		return "member/member_step";
     	}
     }
     

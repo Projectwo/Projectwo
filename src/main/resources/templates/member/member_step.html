@@ -1,0 +1,10 @@
+<html>
+
+    <div sec:authorize="hasRole('STUDENT')" th:each="student : ${member.studentClassList}">
+    <a th:text="${student.course.title}" th:href="@{|/course/${member.id}/${student.course.id}|}"></a>
+    </div>
+    <div sec:authorize="hasRole('TEACHER')" th:each="teacher : ${member.teacherClassList}">
+    <a th:text="${teacher.course.title}" th:href="@{|/course/${member.id}/${teacher.course.id}|}"></a>
+    </div>
+
+</html>

@@ -11,7 +11,8 @@
             <div class="dropdown-member-lecture">
                 My Class
                 <ul>
-                    <li th:each="student : ${member.studentClassList}"><button th:text="${student.course.title}">임시 강의 1</button></li>
+                    <li sec:authorize="hasRole('STUDENT')" th:each="student : ${member.studentClassList}"><button th:text="${student.course.title}">임시 강의 1</button></li>
+                    <li sec:authorize="hasRole('TEACHER')" th:each="student : ${member.teacherClassList}"><button th:text="${student.course.title}">임시 강의 1</button></li>
                 </ul>
             </div>
         </div>
