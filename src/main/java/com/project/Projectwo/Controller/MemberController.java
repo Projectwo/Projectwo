@@ -40,22 +40,41 @@ public class MemberController {
 		
 		Student student = this.academyService.getStudent(course, member);
 		Teacher teacher = this.academyService.getTeacher(course, member);
-		Attendance attendance = this.academyService.getTodayAttendance(student);
+		if(student != null) {
+			Attendance attendance = this.academyService.getTodayAttendance(student);			
+			model.addAttribute("attendance", attendance);
+			List<Attendance> sixAttList = this.academyService.getBefore6Attendance(student);
+			model.addAttribute("sixAttList", sixAttList);
+		}
 
 		// by 장유란, member_main에서 member명, 강의리스트, 전체공지 출력
 		List<AcademyNotice> academyNotices = academyService.getAllAcademyNotice();
     	model.addAttribute("today", (LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd"))));
-		List<Attendance> sixAttList = this.academyService.getBefore6Attendance(student);
 		
 		
 		model.addAttribute("member", member);
 		model.addAttribute("course", course);
 		model.addAttribute("student", student);
 		model.addAttribute("teacher", teacher);
-		model.addAttribute("attendance", attendance);
 		model.addAttribute("academyNotices", academyNotices);
-		model.addAttribute("sixAttList", sixAttList);
 		
 		return "member/member_main";
+	}
+	
+	@RequestMapping(value = "/attendance/{memberId}/{courseId}")
+	public String AttendancePage(Principal principal, Model model,
+									@PathVariable("memberId") Integer memberId,
+									@PathVariable("courseId") Integer courseId) {
+		Member member = this.memberService.getMember(memberId);
+		Course course = this.academyService.getCourse(courseId);
+		
+		Student student = this.academyService.getStudent(course, member);
+		Teacher teacher = this.academyService.getTeacher(course, member);
+		
+		model.addAttribute("member", member);
+		model.addAttribute("course", course);
+		model.addAttribute("student", student);
+		model.addAttribute("teacher", teacher);
+		return "member/student_check";
 	}
 }

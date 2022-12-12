@@ -82,7 +82,7 @@
     <div class="student-checkinout" sec:authorize="hasRole('STUDENT')">
         <div class="student-today">
             Today
-            <a th:href="@{/main/lecture/check/student}" >
+            <a th:href="@{|/attendance/${member.id}/${course.id}|}" >
                 <div class="student-daily-check">
                     <div class="daily-date">
                         <span th:if="${attendance != null}" th:text="${attendance.today}">11/18</span>
@@ -96,7 +96,7 @@
         <div class="student-weekly">
             Weekly
             <div class="student-weekly-check">
-                <a th:href="@{/main/lecture/check/student}" th:each="attendance : ${sixAttList}">
+                <a th:href="@{|/attendance/${member.id}/${course.id}|}" th:each="attendance : ${sixAttList}">
                     <div class="student-weekly-date">
                         <span th:text="${attendance.today}">Mon</span><br>
                         <span th:text="${attendance.status}">지각</span>

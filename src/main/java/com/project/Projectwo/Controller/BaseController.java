@@ -105,11 +105,6 @@ public class BaseController {
 		return "lecture/lecture_detail";
 	}
 
-	@RequestMapping("/main/lecture/check/student")
-	public String studentCheck(){
-		return "member/student_check";
-	}
-
 	@RequestMapping("/main/lecture/check/teacher")
 	public String teacherCheck(){
 		return "member/teacher_check";
