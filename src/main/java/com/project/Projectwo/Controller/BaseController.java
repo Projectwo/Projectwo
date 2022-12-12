@@ -181,6 +181,11 @@ public class BaseController {
 		return "member/password_forgot";
 	}
 
-
+	@GetMapping("/saveToken")
+	@ResponseBody
+	public String saveToken(){
+		System.out.println("token DB저장용 메소드");
+		return "token 저장";
+	}
     
 }

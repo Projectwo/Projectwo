@@ -190,6 +190,40 @@
 			}
 		}
 	</script>
+	<script>
+
+var uagent = navigator.userAgent.toLowerCase(); //<!-- 유저에이전트 문자열을 얻어 소문자로 변환-->
+var android_agent = uagent.search("android");
+var iphone = uagent.search("iphone");
+var ipad = uagent.search("ipad");
+var db_token = '123123123';	//DB상에 저장된 토큰
+	$(document).ready(function send_token() {
+			//<!-- 안드로이드로 보낸다 -->
+			if (android_agent > -1) {
+				alert("DB저장토큰 app내부로 전달, 앱내부dbToken함수 실행\n"+db_token)
+				window.android.dbToken(db_token);
+			}
+			//<!-- IOS로 보낸다 -->
+			else if (iphone > -1 || ipad > -1) {
+				window.location = 'dbToken:';
+			}
+	})
+	function receive_token(returnData) {
+			//<!-- 안드로이드에서 전달받음 -->
+			if (android_agent > -1) {
+				alert('휴대폰에서 받아온 토큰값.\n' + returnData);
+				//location.href = `/saveToken`;
+				//Controller에서 Mapping '/saveToken'인 함수 생성해서 DB저장
+				saveToken();
+			}
+		}
+		
+	function saveToken() {
+	commonAjax('/saveToken', null, 'get', function(result) {
+		alert("saveToken");
+	})
+}
+</script>
 </footer>
 
 </html>
