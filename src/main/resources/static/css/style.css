@@ -430,12 +430,18 @@
 }
 
 .student-daily-check .daily-date span {
+    font-size: 22px;
     color: #444;
 }
 
+.student-daily-check .daily-date b{
+    font-size: 18px;
+    color:#aaa;
+}
+
 .student-daily-check .daily-status {
-    margin-right: 10px;
-    font-size: 24px;
+    margin-right: 12px;
+    font-size: 22px;
     text-align: right;
     line-height: 0;
     color: #444;
@@ -463,8 +469,12 @@
     margin:0 2px;
 }
 
+.student-weekly .student-weekly-check>a:last-child{
+    margin-left: 3px;
+}
+
 .student-weekly-check .student-weekly-date {
-    width: 50px;
+    width: 49px;
     height: 54px;
     border: 1px solid #aaa;
     border-radius: 6px;
@@ -571,7 +581,7 @@
 }
 
 .main-notice .notice-category button {
-    color: #444;
+    color: #aaa;
     font-size: 14px;
 
 }
@@ -2064,6 +2074,7 @@
 
 .lecture-info-about.detail>div {
     color: #eee;
+    margin-top: 1px;
 }
 
 .lecture-info-about.detail>div span{
@@ -2109,6 +2120,9 @@
 .main-lecture.detail .teacher-about.detail b {
     font-size: 20px;
     margin-left: 10px;
+}
+.main-lecture.detail .teacher-about.detail b:last-child{
+    margin-right: 10px;
 }
 
 .main-notice.detail .notice-area {

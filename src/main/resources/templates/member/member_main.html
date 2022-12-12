@@ -38,7 +38,7 @@
                     <li><span th:block th:if="${course.sun}"><i class="far fa-check-circle"></i></span></li>
                 </ul>
                 <div class="lecture-info-schedule-time">
-                	<span th:text="${course.startTime}"></span>
+                    <span th:text="${course.startTime}"></span>
                     ~
                     <span th:text="${course.endTime}"></span>
                 </div>
@@ -70,7 +70,7 @@
                     <li><span th:block th:if="${course.sun}"><i class="far fa-check-circle"></i></span></li>
                 </ul>
                 <div class="lecture-info-schedule-time">
-                	<span th:text="${course.startTime}"></span>
+                    <span th:text="${course.startTime}"></span>
                     ~
                     <span th:text="${course.endTime}"></span>
                 </div>
@@ -79,15 +79,15 @@
     </a>
     <div class="student-checkinout" sec:authorize="hasRole('STUDENT')">
         <div class="student-today">
-            Today <span th:text="${today}"></span>
-            <a th:href="@{/main/lecture/check/student}" >
+            Today <span></span>
+            <a th:href="@{/main/lecture/check/student}">
                 <div class="student-daily-check">
                     <div class="daily-date">
-                        <span th:if="${attendance != null}" th:text="${#dates.month(attendance.today)}">11/18</span>
+                        <span th:if="${attendance != null}" th:text="${today}"></span>
+                        <b th:if="${attendance != null}" th:text="${#temporals.dayOfWeekNameShort(attendance.today)}"></b>
+                        <span th:if="${attendance == null}">오늘은 수업이 없는 날입니다!</span>
                     </div>
-                    <span class="daily-status" th:if="${attendance != null}" th:text="${attendance.status}">
-                        출석
-                    </span>
+                    <span class="daily-status" th:if="${attendance != null}" th:text="${attendance.status}"></span>
                 </div>
             </a>
         </div>
