@@ -96,32 +96,12 @@
         <div class="student-weekly">
             Weekly
             <div class="student-weekly-check">
-                <a th:href="@{/main/lecture/check/student}">
+                <a th:href="@{/main/lecture/check/student}" th:each="attendance : ${sixAttList}">
                     <div class="student-weekly-date">
-                        <span>Mon</span><br>
-                        지각
+                        <span th:text="${attendance.today}">Mon</span><br>
+                        <span th:text="${attendance.status}">지각</span>
                     </div>
                 </a>
-                <div class="student-weekly-date">
-                    <span>Tue</span><br>
-                    출석
-                </div>
-                <div class="student-weekly-date">
-                    <span>Wed</span><br>
-                    조퇴
-                </div>
-                <div class="student-weekly-date">
-                    <span>Thu</span><br>
-                    결석
-                </div>
-                <div class="student-weekly-date">
-                    <span>Fri</span><br>
-                    출석
-                </div>
-                <div class="student-weekly-date">
-                    <span>Sat</span><br>
-                    -
-                </div>
             </div>
         </div>
     </div><!-- sec:role student 일 때 -->
