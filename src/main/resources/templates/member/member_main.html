@@ -16,7 +16,6 @@
     <a sec:authorize="hasRole('STUDENT')" th:href="@{|/course/${member.id}/${course.id}/detail|}">
         <div class="main-lecture">
             <div class="lecture-name">
-                <!-- b에 강의명, span에 학원명 -->
                 <b th:text="${course.title}">Java 기초 과정</b><span th:text="| @${course.room.name}호실|"></span>
             </div>
             <div class="lecture-info">
@@ -46,10 +45,9 @@
             </div>
         </div>
     </a>
-    <a sec:authorize="hasRole('TEACHER')" th:href="@{/main/lecture/detail}">
+    <a sec:authorize="hasRole('TEACHER')" th:href="@{|/course/${member.id}/${course.id}/detail|}">
         <div class="main-lecture">
             <div class="lecture-name">
-                <!-- b에 강의명, span에 학원명 -->
                 <b th:text="${course.title}">Java 기초 과정</b><span th:text="| @${course.room.name}호실|"></span>
             </div>
             <div class="lecture-info">
@@ -104,7 +102,7 @@
                 </a>
             </div>
         </div>
-    </div><!-- sec:role student 일 때 -->
+    </div>
     <div class="teacher-checkinout" sec:authorize="hasRole('TEACHER')">
         <div class="teacher-today">
             Today
@@ -121,7 +119,7 @@
                 </div>
             </a>
         </div>
-    </div><!-- sec:role teacher 일 때 -->
+    </div>
     <div class="main-notice">
         Notice
         <div class="notice-category">

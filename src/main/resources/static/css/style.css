@@ -2062,8 +2062,10 @@
 }
 
 .lecture-info-about.detail>div span{
-    color:#eee;
+    color:#fff;
     font-size: 14px;
+    font-family: 'NOTO SANS THIN';
+
 }
 
 .main-lecture.detail .lecture-about-desc {
