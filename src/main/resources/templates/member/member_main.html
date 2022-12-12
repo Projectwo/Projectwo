@@ -13,7 +13,7 @@
     <div class="notice-new-alarm">
         <b>읽지 않은 공지 1건</b>
     </div>
-    <a sec:authorize="hasRole('STUDENT')" th:href="@{/main/lecture/detail}">
+    <a sec:authorize="hasRole('STUDENT')" th:href="@{|/course/${member.id}/${course.id}/detail|}">
         <div class="main-lecture">
             <div class="lecture-name">
                 <!-- b에 강의명, span에 학원명 -->

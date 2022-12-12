@@ -2012,6 +2012,7 @@
 .lecture-about-section {
     width: 320px;
     display: flex;
+    color:#eee;
 }
 
 .main-lecture.detail .lecture-info.detail {
@@ -2060,6 +2061,11 @@
     color: #eee;
 }
 
+.lecture-info-about.detail>div span{
+    color:#eee;
+    font-size: 14px;
+}
+
 .main-lecture.detail .lecture-about-desc {
     max-width: 300px;
     height: 60px;
@@ -2069,8 +2075,6 @@
     border-radius: 6px;
     background: #fff;
 }
-
-
 
 .main-lecture.detail .lecture-about-desc span {
     font-size: 16px;
