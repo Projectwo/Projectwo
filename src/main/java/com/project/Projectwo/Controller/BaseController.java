@@ -29,16 +29,6 @@ public class BaseController {
     public String root(){
         return "member/login";
     }
-
-    @RequestMapping("/member/main")
-    public String studentMain(){
-        return "member/member_main";
-    }
-
-    @RequestMapping("/academy/main")
-    public String academyMain(){
-        return "academy/academy_main";
-    }
     
     @RequestMapping("/main")
     public String step(Principal principal, Model model) {

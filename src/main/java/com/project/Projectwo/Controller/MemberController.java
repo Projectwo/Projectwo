@@ -1,5 +1,6 @@
 package com.project.Projectwo.Controller;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -28,7 +29,12 @@ public class MemberController {
 	private final AcademyService academyService;
 	
 	@RequestMapping(value = "/course/{memberId}/{courseId}")
-	public String CoursePage(Model model, @PathVariable("memberId") Integer memberId, @PathVariable("courseId") Integer courseId) {
+	public String CoursePage(Principal principal, Model model,
+								@PathVariable("memberId") Integer memberId,
+								@PathVariable("courseId") Integer courseId) {
+		if(principal == null) {
+			return "redirect:/";
+		}
 		Member member = this.memberService.getMember(memberId);
 		Course course = this.academyService.getCourse(courseId);
 		
@@ -39,6 +45,8 @@ public class MemberController {
 		// by 장유란, member_main에서 member명, 강의리스트, 전체공지 출력
 		List<AcademyNotice> academyNotices = academyService.getAllAcademyNotice();
     	model.addAttribute("today", (LocalDate.now().format(DateTimeFormatter.ofPattern("MM/dd"))));
+		List<Attendance> sixAttList = this.academyService.getBefore6Attendance(student);
+		
 		
 		model.addAttribute("member", member);
 		model.addAttribute("course", course);
@@ -46,6 +54,7 @@ public class MemberController {
 		model.addAttribute("teacher", teacher);
 		model.addAttribute("attendance", attendance);
 		model.addAttribute("academyNotices", academyNotices);
+		model.addAttribute("sixAttList", sixAttList);
 		
 		return "member/member_main";
 	}
