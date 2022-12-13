@@ -11,6 +11,8 @@ import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.Projectwo.Entity.AcademyNotice;
 import com.project.Projectwo.Entity.AcademyNoticeCheck;
@@ -465,6 +467,7 @@ public class AcademyService {
 		}
 		return null;
 	}
+	
 //	// by 안준언, 강의 공지사항 읽음 여부 생성
 //	public void createClassNoticeCheck(Student student, ClassNotice classNotice) {
 //		ClassNoticeCheck classNoticeCheck = new ClassNoticeCheck();

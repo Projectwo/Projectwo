@@ -3,6 +3,7 @@ package com.project.Projectwo;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
@@ -14,11 +15,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.project.Projectwo.Entity.AcademyNotice;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Room;
 import com.project.Projectwo.Entity.Student;
 import com.project.Projectwo.Entity.Teacher;
+import com.project.Projectwo.Repository.AcademyNoticeRepository;
 import com.project.Projectwo.Repository.CourseRepository;
 import com.project.Projectwo.Repository.MemberRepository;
 import com.project.Projectwo.Repository.RoomRepository;
@@ -39,11 +42,29 @@ class ProjectwoApplicationTests {
 	private CourseRepository courseRepository;
 	
 	@Autowired
+	private AcademyNoticeRepository academyNoticeRepository;
+	
+	@Autowired
 	private RoomRepository roomRepository;
 	
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
+//	// 학원 공지 등록
+//	@Test
+//	void createAcademyNotice() {
+//		AcademyNotice academyNotice1 = new AcademyNotice();
+//		academyNotice1.setTitle("공지1");
+//		academyNotice1.setContent("첫공지");
+//		academyNotice1.setCreateDate(LocalDateTime.now());
+//		this.academyNoticeRepository.save(academyNotice1);
+//		
+//		AcademyNotice academyNotice2 = new AcademyNotice();
+//		academyNotice2.setTitle("공지2");
+//		academyNotice2.setContent("두번째 공지");
+//		academyNotice2.setCreateDate(LocalDateTime.now());
+//		this.academyNoticeRepository.save(academyNotice2);
+//	}
 //	// 계정 등록
 //	@Test
 //	void createMember() {

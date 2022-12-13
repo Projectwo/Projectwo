@@ -5,10 +5,15 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.Projectwo.Entity.AcademyNotice;
 import com.project.Projectwo.Entity.Attendance;
@@ -16,6 +21,7 @@ import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Student;
 import com.project.Projectwo.Entity.Teacher;
+import com.project.Projectwo.Form.AcademyNoticeForm;
 import com.project.Projectwo.Service.AcademyService;
 import com.project.Projectwo.Service.MemberService;
 
@@ -57,6 +63,25 @@ public class MemberController {
 		if(member.getRole().equals("teacher")) {
 			Teacher teacher = this.academyService.getTeacher(course, member);
 			model.addAttribute("teacher", teacher);
+			
+			List<Student> studentList = this.academyService.getStudentList(course);
+			int totalStudent = studentList.size();
+			model.addAttribute("totalStudent", totalStudent);
+			
+			int checkedStudent = 0;
+			for(int i=0; i<studentList.size(); i++) {
+				Attendance att = this.academyService.getTodayAttendance(studentList.get(i));
+				if(att == null) {
+					break;
+				}
+				if(att.getInTime() != null) {
+					checkedStudent++;
+				}
+			}
+			model.addAttribute("checkedStudent", checkedStudent);
+			
+			int uncheckedStudent = totalStudent - checkedStudent;
+			model.addAttribute("uncheckedStudent", uncheckedStudent);
 		}
 		
 		model.addAttribute("member", member);
@@ -125,4 +150,11 @@ public class MemberController {
 		
 		return "member/student_check";
 	}
+	
+	@PostMapping("/createNotice")
+	public String createCourseNotice(AcademyNoticeForm academyNoticeForm) {
+		System.out.println(academyNoticeForm);
+		return "redirect:/";
+	}
+	
 }
