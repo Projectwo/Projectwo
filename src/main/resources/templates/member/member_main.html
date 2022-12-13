@@ -80,11 +80,18 @@
     <div class="student-checkinout" sec:authorize="hasRole('STUDENT')">
         <div class="student-today">
             Today <span></span>
-            <a th:href="@{|/course/${member.id}/${course.id}/attendance|}">
+            <a th:if="${attendance != null}" th:href="@{|/course/${member.id}/${course.id}/attendance/${attendance.id}|}">
                 <div class="student-daily-check">
                     <div class="daily-date">
                         <span th:if="${attendance != null}" th:text="${today}"></span>
                         <b th:if="${attendance != null}" th:text="${#temporals.dayOfWeekNameShort(attendance.today)}"></b>
+                    </div>
+                    <span class="daily-status" th:if="${attendance != null}" th:text="${attendance.status}"></span>
+                </div>
+            </a>
+            <a th:if="${attendance == null}" th:href="@{|/course/${member.id}/${course.id}/attendance/${sixAttList[0].id}|}">
+                <div class="student-daily-check">
+                    <div class="daily-date">
                         <span th:if="${attendance == null}">오늘은 수업이 없는 날입니다!</span>
                     </div>
                     <span class="daily-status" th:if="${attendance != null}" th:text="${attendance.status}"></span>
@@ -94,7 +101,7 @@
         <div class="student-weekly">
             Recent
             <div class="student-weekly-check">
-                <a th:href="@{/main/lecture/check/student}" th:each="attendance : ${sixAttList}">
+                <a th:href="@{|/course/${member.id}/${course.id}/attendance/${attendance.id}|}" th:each="attendance : ${sixAttList}">
                     <div class="student-weekly-date">
                         <span th:text="|${#temporals.month(attendance.today)}/${#temporals.day(attendance.today)}|">Mon</span><br>
                         <span th:text="${attendance.status}">지각</span>

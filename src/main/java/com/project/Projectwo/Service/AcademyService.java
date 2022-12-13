@@ -426,7 +426,7 @@ public class AcademyService {
 				}
 			}
 			sixAttList.sort((attendance1, attendance2) -> 
-				attendance1.getToday().compareTo(attendance2.getToday()));
+				attendance2.getToday().compareTo(attendance1.getToday()));
 			
 			return sixAttList;
 			
@@ -451,9 +451,19 @@ public class AcademyService {
 				}
 			}
 			sixAttList.sort((attendance1, attendance2) -> 
-				attendance1.getToday().compareTo(attendance2.getToday()));
+				attendance2.getToday().compareTo(attendance1.getToday()));
 			return sixAttList;
 		}
+	}
+	
+	// by 안준언, 출석 반환
+	public Attendance getAttendance(Integer attendanceId) {
+		Optional<Attendance> _attendance = this.attendanceRepository.findById(attendanceId);
+		if(_attendance.isPresent()) {
+			Attendance attendance = _attendance.get();
+			return attendance;
+		}
+		return null;
 	}
 //	// by 안준언, 강의 공지사항 읽음 여부 생성
 //	public void createClassNoticeCheck(Student student, ClassNotice classNotice) {
