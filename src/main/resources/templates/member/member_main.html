@@ -1,0 +1,151 @@
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content" sec:authorize="hasAnyRole('STUDENT', 'TEACHER')">
+    <div class="main-profile">
+        <div class="main-profile-text">
+            그린 컴퓨터 아카데미<br><!-- b에 이름, span에 권한 -->
+            <b th:text="${member.name}">홍길동</b>
+            <span sec:authorize="hasRole('STUDENT')">수강생</span>
+            <span sec:authorize="hasRole('TEACHER')">강사</span>
+            님
+        </div>
+    </div>
+    <div class="notice-new-alarm">
+        <b>읽지 않은 공지 1건</b>
+    </div>
+    <a sec:authorize="hasRole('STUDENT')" th:href="@{|/course/${member.id}/${course.id}/detail|}">
+        <div class="main-lecture">
+            <div class="lecture-name">
+                <b th:text="${course.title}">Java 기초 과정</b><span th:text="| @${course.room.name}호실|"></span>
+            </div>
+            <div class="lecture-info">
+                <ul class="lecture-info-schedule">
+                    <li>월</li>
+                    <li>화</li>
+                    <li>수</li>
+                    <li>목</li>
+                    <li>금</li>
+                    <li>토</li>
+                    <li>일</li>
+                </ul>
+                <ul class="lecture-info-schedule-checked">
+                    <li><span th:block th:if="${course.mon}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.tue}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.wed}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.thu}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.fri}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.sat}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.sun}"><i class="far fa-check-circle"></i></span></li>
+                </ul>
+                <div class="lecture-info-schedule-time">
+                    <span th:text="${course.startTime}"></span>
+                    ~
+                    <span th:text="${course.endTime}"></span>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a sec:authorize="hasRole('TEACHER')" th:href="@{|/course/${member.id}/${course.id}/detail|}">
+        <div class="main-lecture">
+            <div class="lecture-name">
+                <b th:text="${course.title}">Java 기초 과정</b><span th:text="| @${course.room.name}호실|"></span>
+            </div>
+            <div class="lecture-info">
+                <ul class="lecture-info-schedule">
+                    <li>월</li>
+                    <li>화</li>
+                    <li>수</li>
+                    <li>목</li>
+                    <li>금</li>
+                    <li>토</li>
+                    <li>일</li>
+                </ul>
+                <ul class="lecture-info-schedule-checked">
+                    <li><span th:block th:if="${course.mon}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.tue}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.wed}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.thu}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.fri}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.sat}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.sun}"><i class="far fa-check-circle"></i></span></li>
+                </ul>
+                <div class="lecture-info-schedule-time">
+                    <span th:text="${course.startTime}"></span>
+                    ~
+                    <span th:text="${course.endTime}"></span>
+                </div>
+            </div>
+        </div>
+    </a>
+    <div class="student-checkinout" sec:authorize="hasRole('STUDENT')">
+        <div class="student-today">
+            Today <span></span>
+            <a th:href="@{/main/lecture/check/student}">
+                <div class="student-daily-check">
+                    <div class="daily-date">
+                        <span th:if="${attendance != null}" th:text="${today}"></span>
+                        <b th:if="${attendance != null}" th:text="${#temporals.dayOfWeekNameShort(attendance.today)}"></b>
+                        <span th:if="${attendance == null}">오늘은 수업이 없는 날입니다!</span>
+                    </div>
+                    <span class="daily-status" th:if="${attendance != null}" th:text="${attendance.status}"></span>
+                </div>
+            </a>
+        </div>
+        <div class="student-weekly">
+            Recent
+            <div class="student-weekly-check">
+                <a th:href="@{/main/lecture/check/student}" th:each="attendance : ${sixAttList}">
+                    <div class="student-weekly-date">
+                        <span th:text="|${#temporals.month(attendance.today)}/${#temporals.day(attendance.today)}|">Mon</span><br>
+                        <span th:text="${attendance.status}">지각</span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="teacher-checkinout" sec:authorize="hasRole('TEACHER')">
+        <div class="teacher-today">
+            Today
+            <a th:href="@{/main/lecture/check/teacher}">
+                <div class="teacher-daily-check">
+                    <div class="daily-check">
+                        <span>출결</span><br>
+                        <b>10</b>
+                    </div>
+                    <div class="daily-non-check">
+                        <span>미출결</span><br>
+                        <b>10</b>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="main-notice">
+        Notice
+        <div class="notice-category">
+            <button onclick="selectCategory('academy')" class="academy category-academy active">Academy</button>
+            &nbsp;&nbsp;/&nbsp;&nbsp;
+            <button onclick="selectCategory('lecture')" class="lecture category-lecture">Lecture</button>
+        </div>
+        <div th:replace="fragments/notice_fragment/academy_notice :: academyNoticeFragment"></div>
+        <div th:replace="fragments/notice_fragment/lecture_notice :: lectureNoticeFragment"></div>
+    </div>
+    <footer th:replace="fragments/main_footer :: mainFooterFragment"></footer>
+    <script>
+        function selectCategory(e) {
+            $(".main-notice").ready(function () {
+                const clickedCategory = e;
+                const selectedCategory = document.getElementsByClassName(e);
+                const selectedNotice = document.getElementById(e);
+
+                $('button').removeClass('active');
+                $(selectedCategory).addClass('active');
+
+                $('.notice-fragment').removeClass('active');
+                $(selectedNotice).addClass('active');
+            })
+        } // by 조성빈, 선택한 notice 출력하는 기능
+    </script>
+</div>
+
+</html>

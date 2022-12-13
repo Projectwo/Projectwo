@@ -1,0 +1,32 @@
+<html layout:decorate="~{layout/layout}">
+
+<div layout:fragment="content">
+    <div class="index-logo">
+        <!-- 어플 로고나 학원 로고 같은 거 넣으면 될듯 -->
+        <i class="fas fa-desktop"></i>
+        <i class="far fa-copyright"></i>
+    </div>
+    <form class="login-form" th:action="@{/}" method="post">
+        <div class="field">
+            <input class="userid" type="text" placeholder="아이디(학생번호, 강사번호 등)" name="username" id="username" th:value="${identity}">
+        </div>
+        <div class="field">
+            <input class="userpw" type="password" placeholder="비밀번호" name="password" id="password" th:value="${password}">
+            <i class="fas fa-lock"></i>
+        </div>
+        <div class="forgot-pw">
+            <a th:href="@{/password/forgot}">비밀번호를 잊으셨나요?</a>
+        </div>
+        <input class="login-submit" type="submit" value="로그인">
+    </form>
+    <!-- <div>
+        <button onclick="location.href='member/main'">임시 로그인(학생) /</button>
+        <button onclick="location.href='#'">임시 로그인(강사) /</button>
+        <button onclick="location.href='academy/main'">임시 로그인(학원)</button>
+    </div> -->
+    <div class="contact-academy">
+        그린 컴퓨터 아카데미&nbsp;(051-123-4567)
+    </div>
+</div>
+
+</html>
