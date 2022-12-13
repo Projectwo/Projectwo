@@ -1,28 +1,20 @@
 package com.project.Projectwo.Entity;
 
-<<<<<<< HEAD
 import java.time.LocalDate;
 import java.util.List;
 
 import javax.persistence.CascadeType;
-=======
->>>>>>> 5b424037fec2ecace99705a2ab1eccf4bc93a773
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-<<<<<<< HEAD
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-=======
-import javax.validation.constraints.NotNull;
-
->>>>>>> 5b424037fec2ecace99705a2ab1eccf4bc93a773
 import lombok.Getter;
 import lombok.Setter;
 
@@ -37,7 +29,6 @@ public class Member {
 	
 	@NotNull
 	@Column(unique = true, length = 50)
-<<<<<<< HEAD
 	private String identity;
 	
 	@NotNull
@@ -46,19 +37,12 @@ public class Member {
 	@NotNull
 	@Column(length = 30)
 	private String name;
-=======
-	private String member_id;
-	
-	@NotNull
-	private String member_pw;
->>>>>>> 5b424037fec2ecace99705a2ab1eccf4bc93a773
 	
 	@NotNull
 	@Column(unique = true, length = 150)
 	private String email;
 	
 	@NotNull
-<<<<<<< HEAD
 	@JsonFormat(shape= JsonFormat.Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
 	private LocalDate birth_date;
 	
@@ -91,19 +75,4 @@ public class Member {
 	@JsonBackReference
 	@OneToMany(mappedBy = "member", cascade = CascadeType.REMOVE)
 	private List<AcademyNoticeCheck> academyNoticeList;
-=======
-	@Column(length = 30)
-	private String name;
-	
-	private int age;
-	
-	@Column(length = 200)
-	private String address;
-	
-	@Column(length = 50)
-	private String tel;
-	
-	private int auth;
-
->>>>>>> 5b424037fec2ecace99705a2ab1eccf4bc93a773
 }

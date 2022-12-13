@@ -90,15 +90,15 @@ public class QrController {
 
 		Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
 		
-		String response = "";
-		try {
-			response = fcmService.sendMessage(member.getToken());
-		} catch (FirebaseMessagingException e) {
-			
-			e.printStackTrace();
-		}
-		
-		log.info("##############FirebaseMessaging=" + response);
+//		String response = "";
+//		try {
+//			response = fcmService.sendMessage(member.getToken());
+//		} catch (FirebaseMessagingException e) {
+//			
+//			e.printStackTrace();
+//		}
+//		
+//		log.info("##############FirebaseMessaging=" + response);
 		
 		if(attendance == null) {
 			attendanceService.regAttendance(course, student, localDate);

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
- package com.project.Projectwo.Entity;
-=======
 package com.project.Projectwo.Entity;
->>>>>>> 5b424037fec2ecace99705a2ab1eccf4bc93a773
 
 import java.time.LocalDateTime;
 
@@ -36,23 +32,10 @@ public class ClassNotice {
 	
 	@NotNull
 	private LocalDateTime createDate;
-<<<<<<< HEAD
-
-=======
 	
-	@NotNull
->>>>>>> 5b424037fec2ecace99705a2ab1eccf4bc93a773
 	private LocalDateTime modifyDate;
 	
 	@NotNull
 	@ManyToOne
-<<<<<<< HEAD
 	private Course course;
-=======
-	private Lecture lecture;
-	
-	@NotNull
-	@ManyToOne
-	private ClassTeacher classTeacher;
->>>>>>> 5b424037fec2ecace99705a2ab1eccf4bc93a773
 }

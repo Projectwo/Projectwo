@@ -22,7 +22,6 @@ public class Academy {
 	@NotNull
 	@Column(length = 30)
 	private String name;
-<<<<<<< HEAD
 
 	@Column(columnDefinition = "TEXT")
 	private String history;
@@ -33,18 +32,4 @@ public class Academy {
 	@NotNull
 	@Column(length = 50)
 	private String tel;
-=======
-	
-	private String url;
-	
-	@Column(columnDefinition = "TEXT")
-	private String history;
-	
-	@NotNull
-	@Column(length = 50)
-	private String tel;
-	
-	@Column(length = 200)
-	private String address;
->>>>>>> 5b424037fec2ecace99705a2ab1eccf4bc93a773
 }
