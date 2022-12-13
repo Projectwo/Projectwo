@@ -1,5 +1,6 @@
 package com.project.Projectwo.Controller;
 
+<<<<<<< HEAD
 import java.util.HashMap;
 import java.util.List;
 
@@ -234,4 +235,11 @@ public class AcademyController {
     	Course course = this.academyService.getCourse((String)params.get("title"));
     	this.academyService.addStudent(member, course);
     }
+=======
+import org.springframework.stereotype.Controller;
+
+@Controller
+public class AcademyController {
+
+>>>>>>> 5b424037fec2ecace99705a2ab1eccf4bc93a773
 }

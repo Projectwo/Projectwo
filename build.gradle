@@ -37,7 +37,10 @@ dependencies {
 	implementation 		'org.springframework.boot:spring-boot-starter-web'
 	implementation 		'org.springframework.boot:spring-boot-starter-validation'
 	implementation		'mysql:mysql-connector-java'
+<<<<<<< HEAD
 	runtimeOnly 		'com.h2database:h2'
+=======
+>>>>>>> 5b424037fec2ecace99705a2ab1eccf4bc93a773
 	compileOnly 		'org.projectlombok:lombok'
 	developmentOnly 	'org.springframework.boot:spring-boot-devtools'
 	annotationProcessor 'org.projectlombok:lombok'

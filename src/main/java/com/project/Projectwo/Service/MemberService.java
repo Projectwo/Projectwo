@@ -1,5 +1,6 @@
 package com.project.Projectwo.Service;
 
+<<<<<<< HEAD
 import java.util.List;
 import java.util.Optional;
 
@@ -93,4 +94,11 @@ public class MemberService {
 	공지글 작성/수정
 	 */
 	
+=======
+import org.springframework.stereotype.Service;
+
+@Service
+public class MemberService {
+
+>>>>>>> 5b424037fec2ecace99705a2ab1eccf4bc93a773
 }

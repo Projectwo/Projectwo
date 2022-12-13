@@ -1,8 +1,4 @@
-<<<<<<< HEAD
- package com.project.Projectwo.Entity;
-=======
 package com.project.Projectwo.Entity;
->>>>>>> 5b424037fec2ecace99705a2ab1eccf4bc93a773
 
 import java.time.LocalDateTime;
 
@@ -20,39 +16,31 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class ClassNotice {
-	
+public class Schedule {
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@NotNull
-	@Column(length = 50)
-	private String title;
+	@Column(length = 20)
+	private String day;
 	
 	@NotNull
-	@Column(columnDefinition = "TEXT")
-	private String content;
+	private LocalDateTime startTime;
 	
 	@NotNull
-	private LocalDateTime createDate;
-<<<<<<< HEAD
-
-=======
-	
-	@NotNull
->>>>>>> 5b424037fec2ecace99705a2ab1eccf4bc93a773
-	private LocalDateTime modifyDate;
+	private LocalDateTime endTime;
 	
 	@NotNull
 	@ManyToOne
-<<<<<<< HEAD
-	private Course course;
-=======
 	private Lecture lecture;
 	
 	@NotNull
 	@ManyToOne
+	private Room room;
+	
+	@NotNull
+	@ManyToOne
 	private ClassTeacher classTeacher;
->>>>>>> 5b424037fec2ecace99705a2ab1eccf4bc93a773
 }
