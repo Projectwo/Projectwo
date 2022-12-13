@@ -486,7 +486,31 @@
 
 .student-weekly-check .student-weekly-date span {
     font-size: 16px;
-    color: #444;
+    color: #fff;
+}
+
+.출석{
+    background-color: #2cae2c;
+}
+
+.지각, .조퇴{
+    background-color: #f9f90f;
+}
+
+.student-weekly-date.지각 span, .student-weekly-date.조퇴 span{
+    color:#444;
+}
+
+.결석{
+    background-color: rgb(214, 18, 18);
+}
+
+.미출결{
+    background-color: #eee;
+}
+
+.student-weekly-date.미출결 span{
+    color:#444;
 }
 
 .teacher-checkinout {
