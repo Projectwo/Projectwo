@@ -93,10 +93,10 @@
     width: 100%;
     height: 54px;
     margin-top: 10px;
-    border: 1px solid #000;
+    border: 1px solid #2cae2c;
     border-radius: 6px;
     color: #fff;
-    background: #000;
+    background: #2cae2c;
     font-size: 16px;
     font-weight: bold;
 }
@@ -162,7 +162,6 @@
     border: 1px solid #444;
     border-radius: 6px;
     background-color: #444;
-    color: #fff;
     z-index: 5;
 }
 
@@ -190,13 +189,14 @@
     padding: 0 10px;
     text-align: left;
     font-size: 22px;
+    color: #fff;
 }
 
 .dropdown-member-lecture ul {
-    width: 300px;
-    height: 170px;
     display: flex;
     flex-direction: column;
+    width: 300px;
+    height: 170px;
     overflow: auto;
 }
 
@@ -221,6 +221,45 @@
 }
 
 /* ##### nav_button.html end ##### */
+
+/* ##### member_step.html ##### */
+
+.member-step-lecture {
+    position: relative;
+    width: 320px;
+    margin-top: 200px;
+    padding: 0 10px;
+    font-size: 22px;
+}
+
+.member-step-lecture ul {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.member-step-lecture ul li {
+    margin: 6px 0;
+    width: 280px;
+    height: 44px;
+}
+
+.member-step-lecture button {
+    width: 100%;
+    height: 46px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #444;
+    padding-left: 10px;
+    cursor: pointer;
+    color: #fff;
+    text-align: center;
+    font-family: 'NOTO SANS BOLD';
+}
+
+/* ##### member_step.html end ##### */
 
 /* ##### member_main.html ##### */
 
@@ -280,15 +319,21 @@
     padding: 4px 8px;
     text-align: left;
     font-size: 14px;
-    color: #eee;
+    color: #fff;
 }
 
 .main-lecture .lecture-name b {
-    font-size: 18px;
+    font-size: 24px;
+    margin-left: 4px;
+    color: #fff;
+}
+
+.main-lecture .lecture-name span {
+    color: #fff;
 }
 
 .main-lecture .lecture-info {
-    margin-top: 10px;
+    margin-top: 0;
     padding: 4px 6px;
 }
 
@@ -341,8 +386,12 @@
 
 .main-lecture .lecture-info-schedule-time {
     margin-top: 10px;
-    color: #eee;
+    color: #fff;
     text-align: right;
+}
+
+.main-lecture .lecture-info-schedule-time span {
+    color: #fff;
 }
 
 .student-checkinout {
@@ -352,7 +401,6 @@
 
 .student-checkinout a {
     color: #444;
-    
 }
 
 .student-checkinout .student-today {
@@ -382,12 +430,18 @@
 }
 
 .student-daily-check .daily-date span {
+    font-size: 22px;
     color: #444;
 }
 
+.student-daily-check .daily-date b{
+    font-size: 18px;
+    color:#aaa;
+}
+
 .student-daily-check .daily-status {
-    margin-right: 10px;
-    font-size: 24px;
+    margin-right: 12px;
+    font-size: 22px;
     text-align: right;
     line-height: 0;
     color: #444;
@@ -407,11 +461,20 @@
     margin-top: 6px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
+    flex-direction: row-reverse;
+}
+
+.student-weekly .student-weekly-check>a{
+    margin:0 2px;
+}
+
+.student-weekly .student-weekly-check>a:last-child{
+    margin-left: 3px;
 }
 
 .student-weekly-check .student-weekly-date {
-    width: 50px;
+    width: 49px;
     height: 54px;
     border: 1px solid #aaa;
     border-radius: 6px;
@@ -502,7 +565,6 @@
     position: relative;
     width: 100%;
     margin-top: 10px;
-
     font-size: 20px;
     text-align: left;
     color: #444;
@@ -515,11 +577,11 @@
     display: flex;
     align-items: flex-end;
     font-size: 12px;
-    color: #777;
+    color: #444;
 }
 
 .main-notice .notice-category button {
-    color: #888;
+    color: #aaa;
     font-size: 14px;
 
 }
@@ -635,6 +697,7 @@
     border: 1px solid #aaa;
     border-radius: 10px;
     font-size: 20px;
+    color: #444;
 }
 
 .academy-list-tab .tab.active {
@@ -694,7 +757,6 @@
     font-family: "Font Awesome 5 Free";
     padding: 0 6px 10px 6px;
     font-size: 16px;
-
 }
 
 .main-lecture.academy-list .lecture-title {
@@ -711,18 +773,22 @@
     padding: 0 8px;
     text-align: left;
     font-size: 20px;
-    color: #eee;
 }
 
 .main-lecture.academy-list .lecture-name b {
     font-size: 22px;
+    color: #fff;
+    margin-left: 0;
 }
 
 .main-lecture.academy-list .lecture-teacher {
     position: relative;
     top: 0;
     font-size: 18px;
-    color: #aaa;
+}
+
+.main-lecture.academy-list .lecture-teacher b {
+    color: #eee;
 }
 
 .main-lecture.academy-list .lecture-info-schedule {
@@ -738,34 +804,32 @@
 .main-lecture.academy-list .lecture-info-schedule-period {
     position: absolute;
     text-align: right;
-    height: 18px;
+    height: 20px;
+    line-height: 17px;
     top: 40px;
-    right: 10px;
-    color: #eee;
+    right: 6px;
+    color: #fff;
 }
 
 .main-lecture.academy-list .lecture-info-schedule-period span {
-    font-size: 14px;
-    font-family: 'NOTO SANS THIN';
+    color: #fff;
 }
 
 .main-lecture.academy-list .lecture-info-schedule-time {
     position: absolute;
     margin-top: 4px;
-    top: 60px;
-    right: 10px;
+    top: 54px;
+    right: 6px;
     font-size: 16px;
-    font-family: 'NOTO SANS THIN';
 }
 
 .main-lecture.academy-list .lecture-info-room {
     position: absolute;
-    right: 10px;
-    top: 84px;
+    right: 6px;
+    top: 80px;
     text-align: right;
     color: #eee;
     font-size: 16px;
-    font-family: 'NOTO SANS THIN';
 }
 
 .main-lecture.academy-list .lecture-info-count {
@@ -779,6 +843,7 @@
 
 .main-lecture.academy-list .lecture-info-count span {
     font-size: 14px;
+    color: #eee;
 }
 
 .main-lecture.academy-list #courseId {
@@ -843,12 +908,13 @@
     font-size: 24px;
     height: 20px;
     margin: 4px 12px;
+    color: #fff;
 }
 
 .academy-teacher .teacher-class b {
     font-size: 18px;
     height: 20px;
-    color: #666;
+    color: #eee;
 }
 
 .academy-teacher .teacher-info-detail {
@@ -860,11 +926,17 @@
 .academy-teacher .teacher-birthday {
     position: relative;
     text-align: left;
+    color: #fff;
+}
+
+.academy-teacher .teacher-birthday span {
+    color: #fff;
 }
 
 .academy-teacher .teacher-tel {
     position: relative;
     text-align: left;
+    color: #fff;
 }
 
 .academy-teacher .teacher-address {
@@ -872,6 +944,7 @@
     text-align: left;
     top: 58px;
     left: 16px;
+    color: #fff;
 }
 
 .academy-teacher .teacher-id {
@@ -927,7 +1000,6 @@
     font-family: "Font Awesome 5 Free";
     padding: 0 6px 10px 6px;
     font-size: 16px;
-
 }
 
 .academy-student .student-title {
@@ -940,27 +1012,36 @@
     font-size: 24px;
     height: 20px;
     margin: 4px 12px;
+    color: #fff;
 }
 
 .academy-student .student-class b {
     font-size: 18px;
     height: 20px;
+    color: #eee;
 }
 
 .academy-student .student-info-detail {
     display: flex;
     justify-content: flex-start;
     margin-left: 16px;
+
 }
 
 .academy-student .student-birthday {
     position: relative;
     text-align: left;
+    color: #fff;
+}
+
+.academy-student .student-birthday span {
+    color: #fff;
 }
 
 .academy-student .student-tel {
     position: relative;
     text-align: left;
+    color: #fff;
 }
 
 .academy-student .student-address {
@@ -968,6 +1049,7 @@
     text-align: left;
     top: 58px;
     left: 16px;
+    color: #fff;
 }
 
 .student-lecture-regist .student-lecture-regist-button {
@@ -977,6 +1059,7 @@
     top: 60px;
     right: 4px;
     text-decoration: underline;
+    color: #fff;
 }
 
 .student-lecture-regist .lecture-regist-list-section {
@@ -1152,6 +1235,9 @@
     position: relative;
     width: 100px;
     height: 26px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #444;
     z-index: 0;
     font-size: 14px;
 }
@@ -1219,7 +1305,6 @@
 .student-function .student-function-button {
     border-radius: 6px;
     padding: 6px 10px;
-
 }
 
 .student-function .student-function-button i {
@@ -1232,14 +1317,6 @@
 .student-function .student-function-button i.checked {
     color: #2cae2c;
 }
-
-.student-function .student-function-button i {
-    content: "\f058";
-    font-family: "Font Awesome 5 Free";
-    font-size: 56px;
-}
-
-.student-function .student-function-button i.checked {}
 
 .teacher-function {
     width: 220px;
@@ -1516,11 +1593,6 @@
     margin-left: 30px;
     font-size: 24px;
     color: #444;
-}
-
-.add-lecture-count #roomMaxSeat {
-    margin-top: 6px;
-    margin-left: 30px;
 }
 
 .add-lecture-form .add-lecture-count input {
@@ -1945,11 +2017,13 @@
 
 .main-lecture.detail .lecture-name b {
     font-size: 24px;
+    color: #fff;
 }
 
 .lecture-about-section {
     width: 320px;
     display: flex;
+    color:#eee;
 }
 
 .main-lecture.detail .lecture-info.detail {
@@ -1966,6 +2040,7 @@
 .lecture-info.detail .lecture-info-schedule-checked {
     display: flex;
     justify-content: flex-start;
+    color: #fff;
 }
 
 .lecture-info.detail .lecture-info-count {
@@ -1973,8 +2048,12 @@
     margin-left: 4px;
     font-size: 14px;
     font-weight: 400;
-    color: #eee;
     text-align: left;
+    color: #eee;
+}
+
+.lecture-info.detail .lecture-info-count span {
+    color: #eee;
 }
 
 .lecture-info-about.detail {
@@ -1987,6 +2066,15 @@
     line-height: 20px;
     color: #eee;
     font-size: 14px;
+}
+
+.lecture-info-about.detail>div {
+    color: #eee;
+    margin-top: 1px;
+}
+
+.lecture-info-about.detail>div span{
+    color:#eee;
 }
 
 .main-lecture.detail .lecture-about-desc {
@@ -2015,6 +2103,7 @@
 
 .main-lecture.detail .teacher-info.detail b {
     font-size: 22px;
+    color: #eee;
 }
 
 .main-lecture.detail .teacher-about.detail {
@@ -2027,6 +2116,9 @@
 .main-lecture.detail .teacher-about.detail b {
     font-size: 20px;
     margin-left: 10px;
+}
+.main-lecture.detail .teacher-about.detail b:last-child{
+    margin-right: 10px;
 }
 
 .main-notice.detail .notice-area {
@@ -2241,7 +2333,6 @@
 }
 
 .teacher-daily-check.detail .daily-checkin-student.none {
-    background: #eee;
     background: #fff;
 }
 
@@ -2282,7 +2373,6 @@
 .daily-checkin-student .checkin-box .checkin-student.none span {
     background: #444;
     color: #fff;
-
 }
 
 
@@ -2549,10 +2639,6 @@
     width: 320px;
     height: 54px;
     margin-top: 40px;
-    border: 1px solid #000;
-    border-radius: 6px;
-    color: #fff;
-    background: #000;
     border: 1px solid #2cae2c;
     border-radius: 6px;
     color: #fff;

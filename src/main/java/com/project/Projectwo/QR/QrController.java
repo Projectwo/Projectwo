@@ -1,7 +1,6 @@
 package com.project.Projectwo.QR;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -17,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
+import com.google.firebase.messaging.FirebaseMessagingException;
 import com.project.Projectwo.Entity.Attendance;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
@@ -46,6 +46,7 @@ public class QrController {
 	private final AttendanceService attendanceService;
 	private final MemberService memberService;
 	private final QrService qrService;
+	private final FCMService fcmService;
 
 	//by 박은영
 	//"http://ip:9090/course/{courseId}/{LocalDate}로 qr생성
@@ -81,29 +82,41 @@ public class QrController {
 		String sessionMemberName = (String)session.getAttribute("Identity");
 
 		Member member = memberService.getMember("aaa");
+		Integer memberId = member.getId();
+				
 		Student student = memberService.getStudent(member, course);
 		
 		log.info("student's name=" + student.getStudent().getName());
 
 		Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
 		
+		String response = "";
+		try {
+			response = fcmService.sendMessage(member.getToken());
+		} catch (FirebaseMessagingException e) {
+			
+			e.printStackTrace();
+		}
+		
+		log.info("##############FirebaseMessaging=" + response);
+		
 		if(attendance == null) {
 			attendanceService.regAttendance(course, student, localDate);
 			
-			//TODO: 푸시알림을 위한 타이머
-			LocalTime localStartTime = course.getStartTime();
-			LocalTime localEndTime = course.getEndTime();
-			
-			
-			log.info("####course's start time=" + localStartTime.toString());
-			log.info("####course's end time=" + localEndTime.toString());
-			attendanceService.pushNotificationTimer(localStartTime, localEndTime, attendance);
+//			//TODO: 푸시알림을 위한 타이머
+//			LocalTime localStartTime = course.getStartTime();
+//			LocalTime localEndTime = course.getEndTime();
+//			
+//			
+//			log.info("####course's start time=" + localStartTime.toString());
+//			log.info("####course's end time=" + localEndTime.toString());
+//			attendanceService.pushNotificationTimer(localStartTime, localEndTime, attendance);
 			
 		}else {
 			attendanceService.regLeave(course, student, localDate);
 		}
 
-		return "redirect:/main";
+		return "redirect:/course/" + memberId + "/" + courseId;
 	}
 
 	//by 박은영

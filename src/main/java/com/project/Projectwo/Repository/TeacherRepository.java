@@ -11,4 +11,5 @@ import com.project.Projectwo.Entity.Teacher;
 public interface TeacherRepository extends JpaRepository<Teacher, Integer> {
 	List<Teacher> findByCourse(Course course);
 	List<Teacher> findByTeacher(Member teacher);
+	Teacher findByCourseAndTeacher(Course course, Member teacher);
 }

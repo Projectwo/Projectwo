@@ -13,11 +13,10 @@
     <div class="notice-new-alarm">
         <b>읽지 않은 공지 1건</b>
     </div>
-    <a th:href="@{/main/lecture/detail}">
+    <a sec:authorize="hasRole('STUDENT')" th:href="@{|/course/${member.id}/${course.id}/detail|}">
         <div class="main-lecture">
             <div class="lecture-name">
-                <!-- b에 강의명, span에 학원명 -->
-                <b>Java 기초 과정</b> @<span>426호실</span>
+                <b th:text="${course.title}">Java 기초 과정</b><span th:text="| @${course.room.name}호실|"></span>
             </div>
             <div class="lecture-info">
                 <ul class="lecture-info-schedule">
@@ -30,66 +29,80 @@
                     <li>일</li>
                 </ul>
                 <ul class="lecture-info-schedule-checked">
-                    <li><span><i class="far fa-check-circle"></i></span></li>
-                    <li><span><i class="far fa-check-circle"></i></span></li>
-                    <li><span><i class="far fa-check-circle"></i></span></li>
-                    <li><span><i class="far fa-check-circle"></i></span></li>
-                    <li><span><i class="far fa-check-circle"></i></span></li>
-                    <li><span><i class="far fa-check-circle"></i></span></li>
-                    <li><span><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.mon}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.tue}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.wed}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.thu}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.fri}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.sat}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.sun}"><i class="far fa-check-circle"></i></span></li>
                 </ul>
                 <div class="lecture-info-schedule-time">
-                    AM 07:00 ~ PM 09:00
+                    <span th:text="${course.startTime}"></span>
+                    ~
+                    <span th:text="${course.endTime}"></span>
+                </div>
+            </div>
+        </div>
+    </a>
+    <a sec:authorize="hasRole('TEACHER')" th:href="@{|/course/${member.id}/${course.id}/detail|}">
+        <div class="main-lecture">
+            <div class="lecture-name">
+                <b th:text="${course.title}">Java 기초 과정</b><span th:text="| @${course.room.name}호실|"></span>
+            </div>
+            <div class="lecture-info">
+                <ul class="lecture-info-schedule">
+                    <li>월</li>
+                    <li>화</li>
+                    <li>수</li>
+                    <li>목</li>
+                    <li>금</li>
+                    <li>토</li>
+                    <li>일</li>
+                </ul>
+                <ul class="lecture-info-schedule-checked">
+                    <li><span th:block th:if="${course.mon}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.tue}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.wed}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.thu}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.fri}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.sat}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.sun}"><i class="far fa-check-circle"></i></span></li>
+                </ul>
+                <div class="lecture-info-schedule-time">
+                    <span th:text="${course.startTime}"></span>
+                    ~
+                    <span th:text="${course.endTime}"></span>
                 </div>
             </div>
         </div>
     </a>
     <div class="student-checkinout" sec:authorize="hasRole('STUDENT')">
         <div class="student-today">
-            Today
+            Today <span></span>
             <a th:href="@{/main/lecture/check/student}">
                 <div class="student-daily-check">
-                    <div class="daily-date" th:data-today="${today}">
-                        11/18 <span>Fri</span>
+                    <div class="daily-date">
+                        <span th:if="${attendance != null}" th:text="${today}"></span>
+                        <b th:if="${attendance != null}" th:text="${#temporals.dayOfWeekNameShort(attendance.today)}"></b>
+                        <span th:if="${attendance == null}">오늘은 수업이 없는 날입니다!</span>
                     </div>
-                    <span class="daily-status">
-                        출석
-                    </span>
+                    <span class="daily-status" th:if="${attendance != null}" th:text="${attendance.status}"></span>
                 </div>
             </a>
         </div>
         <div class="student-weekly">
-            Weekly
+            Recent
             <div class="student-weekly-check">
-                <a th:href="@{/main/lecture/check/student}">
+                <a th:href="@{/main/lecture/check/student}" th:each="attendance : ${sixAttList}">
                     <div class="student-weekly-date">
-                        <span>Mon</span><br>
-                        지각
+                        <span th:text="|${#temporals.month(attendance.today)}/${#temporals.day(attendance.today)}|">Mon</span><br>
+                        <span th:text="${attendance.status}">지각</span>
                     </div>
                 </a>
-                <div class="student-weekly-date">
-                    <span>Tue</span><br>
-                    출석
-                </div>
-                <div class="student-weekly-date">
-                    <span>Wed</span><br>
-                    조퇴
-                </div>
-                <div class="student-weekly-date">
-                    <span>Thu</span><br>
-                    결석
-                </div>
-                <div class="student-weekly-date">
-                    <span>Fri</span><br>
-                    출석
-                </div>
-                <div class="student-weekly-date">
-                    <span>Sat</span><br>
-                    -
-                </div>
             </div>
         </div>
-    </div><!-- sec:role student 일 때 -->
+    </div>
     <div class="teacher-checkinout" sec:authorize="hasRole('TEACHER')">
         <div class="teacher-today">
             Today
@@ -106,7 +119,7 @@
                 </div>
             </a>
         </div>
-    </div><!-- sec:role teacher 일 때 -->
+    </div>
     <div class="main-notice">
         Notice
         <div class="notice-category">
@@ -132,18 +145,7 @@
                 $(selectedNotice).addClass('active');
             })
         } // by 조성빈, 선택한 notice 출력하는 기능
-
-        
     </script>
-
-    <!-- <script>
-        //by 장유란, 날짜 지정
-        const today = document.querySelector(".daily-date");
-        window.onload = function () {
-            document.querySelector(".daily-date").innerHTML = today.dataset.today +
-                ` <span>${Date().substr(0,3)}</span>`
-        }
-    </script> -->
 </div>
 
 </html>
