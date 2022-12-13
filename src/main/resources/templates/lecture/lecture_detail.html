@@ -1,6 +1,6 @@
 <html layout:decorate="~{layout/layout}">
 
-<div layout:fragment="content">
+<div layout:fragment="content" sec:authorize="hasAnyRole('STUDENT', 'TEACHER')">
     <div class="detail-academy-profile">
         <span>그린컴퓨터아카데미</span>
         <div class="detail-academy-info">
@@ -11,7 +11,7 @@
     <div class="main-lecture detail">
         <div class="lecture-name">
             <!-- b에 강의명, span에 학원명 -->
-            <b>Java 기초 과정</b>
+            <b th:text="${course.title}">Java 기초 과정</b>
         </div>
         <div class="lecture-about-section">
             <div class="lecture-info detail">
@@ -25,27 +25,30 @@
                     <li>일</li>
                 </ul>
                 <ul class="lecture-info-schedule-checked">
-                    <li><span><i class="far fa-check-circle"></i></span></li>
-                    <li><span><i class="far fa-check-circle"></i></span></li>
-                    <li><span><i class="far fa-check-circle"></i></span></li>
-                    <li><span><i class="far fa-check-circle"></i></span></li>
-                    <li><span><i class="far fa-check-circle"></i></span></li>
-                    <li><span><i class="far fa-check-circle"></i></span></li>
-                    <li><span><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.mon}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.tue}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.wed}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.thu}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.fri}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.sat}"><i class="far fa-check-circle"></i></span></li>
+                    <li><span th:block th:if="${course.sun}"><i class="far fa-check-circle"></i></span></li>
                 </ul>
                 <div class="lecture-info-count">
-                    수강인원 <span>27</span> / <span>30</span>
+                    수강인원 <span th:text="${course.studentList.size()}">0</span> / <span th:text="${course.room.maxSeat}">30</span>
                 </div>
             </div>
             <div class="lecture-info-about detail">
-                <div class="lecture-about-period">
-                    22.07.11 ~ 22.12.22
+                <div class="lecture-about-period" >
+                    <span th:with="year = ${#temporals.year(course.startDate)}" th:text="|${#strings.substring(year,2,4)}.${#temporals.month(course.startDate)}.${#temporals.day(course.startDate)}|"></span>
+                    ~
+                    <span th:with="year = ${#temporals.year(course.endDate)}" th:text="|${#strings.substring(year,2,4)}.${#temporals.month(course.endDate)}.${#temporals.day(course.endDate)}|"></span>
                 </div>
                 <div class="lecture-about-time">
-                    AM 07:00 ~ PM 09:00
+                    <span th:text="${course.startTime}"></span>
+                    ~
+                    <span th:text="${course.endTime}"></span>
                 </div>
-                <div class="lecture-about-room">
-                    혜도빌딩 426호실
+                <div class="lecture-about-room" th:text="|${course.room.name}호실|">
                 </div>
             </div>
         </div>
@@ -55,8 +58,8 @@
         <div class="teacher-info detail">
             <b>담당강사</b><br>
             <div class="teacher-about detail">
-                <b>Steve</b>
-                <b>010-1234-5678</b>
+                <b th:text="${course.teacherList[0].teacher.name}">Steve</b>
+                <b th:text="${course.teacherList[0].teacher.tel}">010-1234-5678</b>
             </div>
         </div>
     </div>

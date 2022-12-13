@@ -110,6 +110,18 @@ function modifyCourseBtnEvent() {
 				document.getElementById("modifyRoomSelect").addEventListener("change", modifyShowMaxSeat);
 			}, false)
 			document.getElementById('modifyCourseBtn').addEventListener("click", modifyCourse);
+			document.querySelector('.modify-delete-button').addEventListener("click", function(){
+				console.log(courseId)
+				let msg = {
+					courseId: courseId
+				}
+				commonAjax('/deleteCourse', msg, 'post', function(){
+					document.getElementById('modifyCourseBtn').addEventListener("click", closeModal('modify'));
+					getClassInfo();
+					getTeacherInfo();
+					getStudentInfo();
+				})
+			})
 		});
 	})
 }
@@ -144,6 +156,20 @@ function getAllCourse(res) {
 			let sat = (course.sat) ? "<i class='far fa-check-circle'></i>" : "";
 			let sun = (course.sun) ? "<i class='far fa-check-circle'></i>" : "";
 
+			// by 조성빈, course date split 통해 포맷 강제 변환
+			let arrDateS = course.startDate.split('-');
+			const arrYearS = arrDateS[0];
+			const arrMonthS = arrDateS[1];
+			const arrDayS = arrDateS[2];
+			const arrYyS = arrYearS.substring(2,4);
+
+			// by 조성빈, course date split 통해 포맷 강제 변환
+			let arrDateE = course.endDate.split('-');
+			const arrYearE = arrDateE[0];
+			const arrMonthE = arrDateE[1];
+			const arrDayE = arrDateE[2];
+			const arrYyE = arrYearE.substring(2,4);
+
 			commonAjax('/getClassStudent', cs, 'get', function(rs) {
 				//console.log(rs.length);
 				currentStudentCount = rs.length;
@@ -174,9 +200,11 @@ function getAllCourse(res) {
 				"<li><span>" + sun + "</span></li>" + "</ul>" +
 				"<div class='lecture-info-schedule-period'>" +
 				"<span class='period-start'>" +
-				course.startDate + "</span>" + "&nbsp;~&nbsp;" +
+				arrYyS + "." + arrMonthS + "." + arrDayS +
+				"</span>" + "&nbsp;~&nbsp;" +
 				"<span class='period-end'>" +
-				course.endDate + "</span>" + "</div>" +
+				arrYyE + "." + arrMonthE + "." + arrDayE +
+				"</span>" + "</div>" +
 				"<div class='lecture-info-schedule-time'>" +
 				course.startTime + "&nbsp;~&nbsp;" + course.endTime +
 				"</div>" +
@@ -209,10 +237,10 @@ function modifyTeacherBtnEvent() {
 			let parent = teacher.parentNode;
 			let children = parent.childNodes;
 			console.log(children)
-			let memderId = children[4].textContent;
+			let memberId = children[4].textContent;
 
 			let msg = {
-				memberId: memderId
+				memberId: memberId
 			}
 
 			commonAjax('/getMemberById', msg, 'post', function(member) {
@@ -251,6 +279,19 @@ function modifyTeacherBtnEvent() {
 				$("#modifyTeacher").empty().append(tag);
 			}, false)
 			modifyTeacherEvent();
+			document.querySelector('.modify-delete-button').addEventListener("click", function(){
+				console.log(memberId);
+				
+				let msg = {
+					memberId: memberId
+				}
+				commonAjax('/deleteMember', msg, 'post', function(){
+					document.querySelector('.add-confirm-button').addEventListener("click", closeModal('modify'));
+					getTeacherInfo();
+					getClassInfo();
+					getStudentInfo();
+				}) 
+			})
 		});
 	})
 }
@@ -326,10 +367,10 @@ function modifyStudentBtnEvent() {
 			let parent = student.parentNode;
 			let children = parent.childNodes;
 			console.log(children)
-			let memderId = children[4].textContent;
+			let memberId = children[4].textContent;
 
 			let msg = {
-				memberId: memderId
+				memberId: memberId
 			}
 
 			commonAjax('/getMemberById', msg, 'post', function(member) {
@@ -368,6 +409,18 @@ function modifyStudentBtnEvent() {
 				$("#modifyStudent").empty().append(tag);
 			}, false)
 			modifyStudentEvent();
+			document.querySelector('.modify-delete-button').addEventListener("click", function(){
+				
+				let msg = {
+					memberId: memberId
+				}
+				commonAjax('/deleteMember', msg, 'post', function(){
+					document.querySelector('.add-confirm-button').addEventListener("click", closeModal('modify'));
+					getStudentInfo();
+					getClassInfo();
+					getTeacherInfo();
+				}) 
+			})
 		});
 	})
 }
@@ -418,12 +471,64 @@ function getAllStudent(res) {
 				"</div>" +
 				"<div class='student-id'>" + member.id +
 				"</div>" +
+				"<div class='student-lecture-regist'>" +
+				"<button onclick='lectureRegistFucntion(this)' class='student-lecture-regist-button'>강의 등록</button>" +
+				"<div class='lecture-regist-list-section'>" +
+				"<select class='lecture-regist-list' id='courseSelect'>" +
+				"<option>강의 1</option>"+
+				"</select>" +
+				"<div class='lecture-regist-list-button'>" +
+				"<button class='regist_class_btn'>등록</button>" +
+				"<button onclick='lectureRegistCancle(this)' class='lecture-regist-cancle'>취소</button>" +
+				"</div>" +
+				"</div>" +
+				"</div>" +
 				"</div>" +
 				"</div>";
 		})
 	}
 	$("#allStudentList").empty().append(tag);
+	commonAjax('/getAllCourse', null, 'get', function(result) {
+		//console.log(result);
+		let tag = "";
+		if (result != null) {
+		result.forEach(function(course) {
+			tag += "<option>" + course.title + "</option>";
+		})
+	}
+	$(".lecture-regist-list").empty().append(tag);
+	}, false)
+	registCourse();
 }
+
+function registCourse(){
+	let ex = document.querySelectorAll(".regist_class_btn");
+	ex.forEach(function(aaa){
+		aaa.addEventListener("click", function(){
+			let parent = aaa.parentNode.parentNode.parentNode.parentNode
+			let child = parent.childNodes;
+			let memberId = child[4].textContent;
+			
+			let aparent = aaa.parentNode.parentNode
+			let achild = aparent.childNodes
+			let title = achild[0].value
+			
+			let msg = {
+				memberId: memberId,
+				title: title
+			}
+			console.log(msg)
+			commonAjax('/registCourse', msg, 'post', function(){
+				getClassInfo();
+				getTeacherInfo();
+				getStudentInfo();
+			})
+			
+		})
+		
+	})
+}
+
 
 // by 안준언, Academy 계정에서 강의 생성시 강의실 관련 정보 출력
 document.getElementById("addCourseBtn").addEventListener("click", getRoom);
@@ -577,6 +682,8 @@ function addStudent() {
 
 	commonAjax('/createStudent', msg, 'post', function() {
 		getStudentInfo();
+		getClassInfo();
+		getTeacherInfo();
 	})
 
 	document.getElementById('studentName').value = null;
@@ -647,6 +754,8 @@ function addCourse() {
 
 	commonAjax('/createCourse', msg, 'post', function() {
 		getClassInfo();
+		getTeacherInfo();
+		getStudentInfo();
 	})
 
 
@@ -699,6 +808,8 @@ function addTeacher() {
 
 	commonAjax('/createTeacher', msg, 'post', function() {
 		getTeacherInfo();
+		getClassInfo();
+		getStudentInfo();
 	})
 
 	document.getElementById('teacherName').value = null;
@@ -770,6 +881,8 @@ function modifyCourse() {
 
 	commonAjax('/modifyCourse', msg, 'post', function() {
 		getClassInfo();
+		getTeacherInfo();
+		getStudentInfo();
 	})
 
 
@@ -830,6 +943,8 @@ function modifyTeacherEvent() {
 
 		commonAjax('/modifyMember', msg, 'post', function() {
 			getTeacherInfo();
+			getClassInfo();
+			getStudentInfo();
 		})
 
 		document.getElementById('teacherModifyName').value = null;
@@ -878,6 +993,8 @@ function modifyStudentEvent() {
 
 		commonAjax('/modifyMember', msg, 'post', function() {
 			getStudentInfo();
+			getClassInfo();
+			getTeacherInfo();
 		})
 
 		document.getElementById('studentModifyName').value = null;

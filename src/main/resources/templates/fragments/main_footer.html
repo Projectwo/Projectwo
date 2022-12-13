@@ -2,7 +2,7 @@
 
 <footer th:fragment="mainFooterFragment">
 	<div class="footer-wrap">
-		<button onclick="location.href='/main'" class="home-button">
+		<button th:onclick="'location.href=\'' + @{|/course/${member.id}/${course.id}|} + '\''" class="home-button">
 			<i class="fas fa-home"></i>
 		</button>
 		<div class="student-function" sec:authorize="hasRole('STUDENT')">

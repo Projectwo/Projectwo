@@ -8,10 +8,10 @@
     </div>
     <form class="login-form" th:action="@{/}" method="post">
         <div class="field">
-            <input class="userid" type="text" placeholder="아이디(학생번호, 강사번호 등)" name="username" id="username">
+            <input class="userid" type="text" placeholder="아이디(학생번호, 강사번호 등)" name="username" id="username" th:value="${identity}">
         </div>
         <div class="field">
-            <input class="userpw" type="password" placeholder="비밀번호" name="password" id="password">
+            <input class="userpw" type="password" placeholder="비밀번호" name="password" id="password" th:value="${password}">
             <i class="fas fa-lock"></i>
         </div>
         <div class="forgot-pw">
@@ -27,47 +27,6 @@
     <div class="contact-academy">
         그린 컴퓨터 아카데미&nbsp;(051-123-4567)
     </div>
-<script type="text/javascript">
-
-	var userToken = "UserToken"
-	
-	//<!-- 모바일 디바이스 > JS -->
-	function receive_token(returnToken) {
-		//<!-- 안드로이드에서 전달받음 -->
-		//if (android_agent > -1) {
-			alert('UserToken\n' + returnToken);
-			//location.href = `/course/${courseId}/${date}`;
-		//}
-		//<!-- IOS에서 전달받음 -->
-		//else if (iphone > -1 || ipad > -1) {
-			alert('UserToken\n' + returnData);
-		//}
-	}
-	
-//	//<!-- JS > 모바일 디바이스 -->
-//	function get_token(getToken) {
-//		//<!-- 안드로이드로 보낸다 -->
-//		userToken = UserToken;
-//		//if (android_agent > -1) {
-//			alert('UserToken\n' + getToken);
-//	
-//			window.android.get_token(userToken);
-//		//}
-//		//<!-- IOS로 보낸다 -->
-//		//else if (iphone > -1 || ipad > -1) {
-//			alert('UserToken\n' + getToken);
-//	
-//			window.android.get_token(userToken);
-//		//}
-//	}
-
-	
-	window.onload = function() {
-		alert("gg")
-		get_token('현재 DB토큰') 
-		
-	}
-</script>
 </div>
 
 </html>
