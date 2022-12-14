@@ -11,6 +11,8 @@ import java.util.Optional;
 
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.project.Projectwo.Entity.AcademyNotice;
 import com.project.Projectwo.Entity.AcademyNoticeCheck;
@@ -426,7 +428,7 @@ public class AcademyService {
 				}
 			}
 			sixAttList.sort((attendance1, attendance2) -> 
-				attendance1.getToday().compareTo(attendance2.getToday()));
+				attendance2.getToday().compareTo(attendance1.getToday()));
 			
 			return sixAttList;
 			
@@ -451,10 +453,21 @@ public class AcademyService {
 				}
 			}
 			sixAttList.sort((attendance1, attendance2) -> 
-				attendance1.getToday().compareTo(attendance2.getToday()));
+				attendance2.getToday().compareTo(attendance1.getToday()));
 			return sixAttList;
 		}
 	}
+	
+	// by 안준언, 출석 반환
+	public Attendance getAttendance(Integer attendanceId) {
+		Optional<Attendance> _attendance = this.attendanceRepository.findById(attendanceId);
+		if(_attendance.isPresent()) {
+			Attendance attendance = _attendance.get();
+			return attendance;
+		}
+		return null;
+	}
+	
 //	// by 안준언, 강의 공지사항 읽음 여부 생성
 //	public void createClassNoticeCheck(Student student, ClassNotice classNotice) {
 //		ClassNoticeCheck classNoticeCheck = new ClassNoticeCheck();
@@ -464,20 +477,18 @@ public class AcademyService {
 //		
 //		this.classNoticeCheckRepository.save(classNoticeCheck);
 //	}
-//	
-//	// by 안준언, 강의 공지사항 생성
-//	public void createClassNotice(String title, String content, LocalDateTime createDate,
-//									LocalDateTime modifyDate, Course course) {
-//		ClassNotice classNotice = new ClassNotice();
-//		classNotice.setTitle(title);
-//		classNotice.setContent(content);
-//		classNotice.setCreateDate(createDate);
-//		classNotice.setModifyDate(modifyDate);
-//		classNotice.setCourse(course);
-//		
-//		this.classNoticeRepository.save(classNotice);
-//	}
-//	
+	
+	// by 안준언, 강의 공지사항 생성
+	public void createClassNotice(String title, String content, Course course) {
+		ClassNotice classNotice = new ClassNotice();
+		classNotice.setTitle(title);
+		classNotice.setContent(content);
+		classNotice.setCreateDate(LocalDateTime.now());
+		classNotice.setCourse(course);
+		
+		this.classNoticeRepository.save(classNotice);
+	}
+	
 //	// by 안준언, 출석 정보 생성
 //	public void createAttendance(LocalTime inTime, LocalTime outTime, String status,
 //									Student student) {

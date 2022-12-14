@@ -12,7 +12,7 @@
                 My Class
                 <ul>
                     <li sec:authorize="hasRole('STUDENT')" th:each="student : ${member.studentClassList}"><button type="button" th:onclick="'location.href=\'' + @{|/course/${member.id}/${student.course.id}|} + '\''" th:text="${student.course.title}">임시 강의 1</button></li>
-                    <li sec:authorize="hasRole('TEACHER')" th:each="student : ${member.teacherClassList}"><button type="button" th:onclick="'location.href=\'' + @{|/course/${member.id}/${teacher.course.id}|} + '\''" th:text="${student.course.title}">임시 강의 1</button></li>
+                    <li sec:authorize="hasRole('TEACHER')" th:each="teacher : ${member.teacherClassList}"><button type="button" th:onclick="'location.href=\'' + @{|/course/${member.id}/${teacher.course.id}|} + '\''" th:text="${teacher.course.title}">임시 강의 1</button></li>
                 </ul>
             </div>
         </div>

@@ -5,7 +5,7 @@
         <div class="notice-recent" th:if="${academyNotices} != null" th:each="academyNotices : ${academyNotices}"> 
             <button th:text="${academyNotices.title}" class="notice-function-button">학원 공지</button>
             <button onclick="clickFormButton(this)" class="notice-function-modify modify-notice"
-                sec:authorize="hasRole('TEACHER')">
+                sec:authorize="hasRole('ADMIN')">
                 <i class="far fa-edit"></i>
             </button>
             <div th:text="${academyNotices.content}" class="notice-content academy"></div>
