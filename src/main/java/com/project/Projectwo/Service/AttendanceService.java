@@ -16,6 +16,7 @@ import com.project.Projectwo.Entity.Attendance;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Student;
+import com.project.Projectwo.QR.FCMService;
 import com.project.Projectwo.Repository.AttendanceRepository;
 import com.project.Projectwo.Repository.CourseRepository;
 import com.project.Projectwo.Repository.StudentRepository;

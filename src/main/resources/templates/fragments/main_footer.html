@@ -25,7 +25,7 @@
 				<i class="fas fa-plus-circle"></i>
 			</button>
 			<div class="teacher-create-qrcode">
-				<a href="javascript:;" id="QR_btn" th:text="|QR 생성|"></a>
+				<a href="javascript:;" th:href="@{|/createQr/${teacher.course.id}|}" id="QR_create_btn" th:text="|QR 생성|"></a>
 			</div>
 		</div><!-- sec:role teacher 일 때 -->
 		<div th:replace="fragments/nav_button :: navFragment"></div>
@@ -84,7 +84,7 @@
 	<script>
 		var userIdx = 1; // app으로 보낼 유저 정보
 		var courseId = 1;
-		var date = "2022-01-01"
+		var date = ""
 		var userToken;
 
 		var uagent = navigator.userAgent.toLowerCase(); //<!-- 유저에이전트 문자열을 얻어 소문자로 변환-->
@@ -98,6 +98,7 @@
 			if (android_agent > -1) {
 				//alert('Mobile > JS [Open] [A] [NONE]');
 				alert('Beacon 출석이 확인되었습니다.\n' + returnData);
+				date = returnData;
 				location.href = `/course/${courseId}/${date}`;
 			}
 			//<!-- IOS에서 전달받음 -->
@@ -124,7 +125,8 @@
 			if (android_agent > -1) {
 				//alert('Mobile > JS [Open] [A] [NONE]');
 				alert('QR 출석이 확인되었습니다.\n' + returnData);
-				location.href = `/course/${courseId}/${date}`;
+				//date = returnData;
+				//location.href = `/course/${courseId}/${date}`;
 			}
 			//<!-- IOS에서 전달받음 -->
 			else if (iphone > -1 || ipad > -1) {
@@ -190,8 +192,7 @@
 				window.location = 'close:JS TO Mobile';
 			}
 		}	
-		
-		
+
 	</script>
 	</script>
 	<script>
