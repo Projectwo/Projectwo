@@ -61,7 +61,7 @@ public class QrController {
 	
 	//by 박은영
 	//학생 - 입실,퇴실 등록
-	@GetMapping("/course/{courseId}/{date}")
+	@GetMapping("/attend/{courseId}/{date}")
 	public String setAttendance(@PathVariable("courseId") Integer courseId, @PathVariable("date") String date, HttpSession session) {
 		
 		//Date
@@ -90,15 +90,18 @@ public class QrController {
 
 		Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
 		
-//		String response = "";
-//		try {
-//			response = fcmService.sendMessage(member.getToken());
-//		} catch (FirebaseMessagingException e) {
-//			
-//			e.printStackTrace();
-//		}
-//		
-//		log.info("##############FirebaseMessaging=" + response);
+		String token = member.getToken();
+		log.info("##############token=" + token);
+		
+		String response = "";
+		try {
+			response = fcmService.sendMessage(token);
+		} catch (FirebaseMessagingException e) {
+			
+			e.printStackTrace();
+		}
+		
+		log.info("##############FirebaseMessaging=" + response);
 		
 		if(attendance == null) {
 			attendanceService.regAttendance(course, student, localDate);

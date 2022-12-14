@@ -44,7 +44,7 @@ public class QrService {
 			
 		//TODO: QR생성은 admin에서 일괄처리 courseId에 값 넣는 거는 알아서 하겠지...
 		Integer courseId = 1;
-		String content = "http://" + ip + ":9090/course/" + courseId + "/" + stringDate;
+		String content = "http://" + ip + ":9090/attend/" + courseId + "/" + stringDate;
 			
 		log.info(content);
 			
