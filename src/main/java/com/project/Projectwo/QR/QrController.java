@@ -90,30 +90,8 @@ public class QrController {
 
 		Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
 		
-		String token = member.getToken();
-		log.info("##############token=" + token);
-		
-		String response = "";
-		try {
-			response = fcmService.sendMessage(token);
-		} catch (FirebaseMessagingException e) {
-			
-			e.printStackTrace();
-		}
-		
-		log.info("##############FirebaseMessaging=" + response);
-		
 		if(attendance == null) {
 			attendanceService.regAttendance(course, student, localDate);
-			
-//			//TODO: 푸시알림을 위한 타이머
-//			LocalTime localStartTime = course.getStartTime();
-//			LocalTime localEndTime = course.getEndTime();
-//			
-//			
-//			log.info("####course's start time=" + localStartTime.toString());
-//			log.info("####course's end time=" + localEndTime.toString());
-//			attendanceService.pushNotificationTimer(localStartTime, localEndTime, attendance);
 			
 		}else {
 			attendanceService.regLeave(course, student, localDate);
