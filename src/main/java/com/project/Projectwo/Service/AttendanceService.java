@@ -141,31 +141,32 @@ public class AttendanceService {
 		String token = member.getToken();
 		log.info("##############push timer's token=" + token);
 		
+		//강의 종료 시간 - 강의 시작 시간
+		long startTime = course.getStartTime().getLong(ChronoField.MILLI_OF_DAY);
+		long endTime = course.getEndTime().getLong(ChronoField.MILLI_OF_DAY);
+		long courseTime = endTime - startTime;
 		
-		//실제 구현
-		//courseEndTime부터 period 간격으로 timerTask를 수행
-		//long courseEndTime = course.getEndTime().getLong(ChronoField.MILLI_OF_DAY);
+		//강의 시작 시간 - 입실 시간
+		long checkInTime = attendance.getInTime().getLong(ChronoField.MILLI_OF_DAY);
+		long gap = startTime - checkInTime;
+		long delay = courseTime + gap;
 		
-		long longCourseEndTime = course.getEndTime().getLong(ChronoField.MILLI_OF_DAY);
-		Date courseEndTime = new Date(longCourseEndTime);
-
-		log.info("####pushNotificationTimer의 courseEndTime=" + courseEndTime);
-		log.info("####pushNotificationTimer의 courseEndTime.toString()=" + courseEndTime.toString());
-
+		log.info("####startTime=" + startTime);
+		log.info("####endTime=" + endTime);
+		log.info("####courseTime=" + courseTime);
+		log.info("####checkInTime=" + checkInTime);
+		log.info("####gap=" + gap);
+		log.info("####delay=" + delay);
+		
 		//2분 간격
 		long period = 120000;
-		
-		//테스트용
-		//long startTime = 10000L;
-		//long period = 10000L;
-
 
 		TimerTask timerTask = new TimerTask() {
 
 			@Override
 			public void run() {
 				
-				// 아마 데이터베이스 비교해서 입실 상태이면 "알림 보내기"
+				//데이터베이스 비교해서 입실 상태이면 "알림 보내기"
 				if(attendance.getStatus().equals("입실") || attendance.getStatus().equals("지각")) {
 						log.info("####푸시알림####");
 						
@@ -185,17 +186,8 @@ public class AttendanceService {
 		};
 		
 		Timer timer = new Timer();
-		log.info("####timerTask 전");
-		timer.schedule(timerTask, courseEndTime, period);
-		
-		
-		
-	//		//만약에 알림끄기를 구현해야 되면 여기서
-	//		if() {
-	//			timer.cancel();
-	//		}
-		
-		
+		timer.schedule(timerTask, delay, period);
+
 	}
 
 }
