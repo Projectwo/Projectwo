@@ -3,6 +3,7 @@ package com.project.Projectwo.Controller;
 import java.security.Principal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -92,7 +93,14 @@ public class MemberController {
 	}
 
 	@RequestMapping(value = "/course/{memberId}/{courseId}/detail")
-	public String lectureDetail(Model model, @PathVariable("memberId") Integer memberId, @PathVariable("courseId") Integer courseId){
+	public String lectureDetail(Principal principal, Model model,
+								@PathVariable("memberId") Integer memberId,
+								@PathVariable("courseId") Integer courseId){
+		
+		if(principal == null) {
+			return "redirect:/";
+		}
+		
 		Member member = this.memberService.getMember(memberId);
 		Course course = this.academyService.getCourse(courseId);
 		
@@ -119,6 +127,10 @@ public class MemberController {
 									@PathVariable("memberId") Integer memberId,
 									@PathVariable("courseId") Integer courseId,
 									@PathVariable("attendanceId") Integer attendanceId) {
+		
+		if(principal == null) {
+			return "redirect:/";
+		}
 		
 		Member member = this.memberService.getMember(memberId);
 		Course course = this.academyService.getCourse(courseId);
@@ -151,10 +163,60 @@ public class MemberController {
 		return "member/student_check";
 	}
 	
-	@PostMapping("/createNotice")
-	public String createCourseNotice(AcademyNoticeForm academyNoticeForm) {
-		System.out.println(academyNoticeForm);
-		return "redirect:/";
+	@PostMapping("/createNotice/{courseId}")
+	public String createCourseNotice(HttpServletRequest request,
+										@PathVariable("courseId") Integer courseId,
+										@RequestParam String title,
+										@RequestParam String content) {
+		Course course = this.academyService.getCourse(courseId);
+		this.academyService.createClassNotice(title, content, course);
+		
+		String referer = request.getHeader("Referer");
+		
+		return "redirect:" + referer;
+	}
+	
+	@RequestMapping(value = "/check/{memberId}/{courseId}")
+	public String teacherClassAttendace(Principal principal, Model model,
+										@PathVariable("courseId") Integer courseId,
+										@PathVariable("memberId") Integer memberId) {
+		
+		if(principal == null) {
+			return "redirect:/";
+		}
+		
+		Member member = this.academyService.getMember(memberId);
+		Course course = this.academyService.getCourse(courseId);
+		List<Student> studentList = this.academyService.getStudentList(course);
+		int totalDay = studentList.get(0).getAttendanceList().size();
+		Attendance todayAtt = this.academyService.getTodayAttendance(studentList.get(0));
+		
+		int today = studentList.get(0).getAttendanceList().indexOf(todayAtt);
+		
+		double attAvg = (today/(double)totalDay)*100;
+		
+		List<Student> checkedList = new ArrayList<>();
+		List<Student> uncheckedList = new ArrayList<>();
+		
+		for(int i = 0; i < studentList.size(); i++) {
+			Attendance att = this.academyService.getTodayAttendance(studentList.get(i)); 
+			if(att.getInTime() != null) {
+				checkedList.add(att.getStudent());
+			} else {
+				uncheckedList.add(att.getStudent());
+			}
+		}
+		
+		model.addAttribute("member", member);
+		model.addAttribute("course", course);
+		model.addAttribute("totalDay", totalDay);
+		model.addAttribute("today", today);
+		model.addAttribute("attAvg", attAvg);
+		model.addAttribute("checkedList", checkedList);
+		model.addAttribute("uncheckedList", uncheckedList);
+		
+		
+		return "member/teacher_check";
 	}
 	
 }

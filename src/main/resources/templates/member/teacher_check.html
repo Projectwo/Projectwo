@@ -4,7 +4,7 @@
     <div class="main-profile">
         <div class="main-profile-text">
             그린 컴퓨터 아카데미<br><!-- b에 이름, span에 권한 -->
-            <b th:text="${loginMember}">홍길동</b>
+            <b th:text="${member.name}">홍길동</b>
             <span sec:authorize="hasRole('STUDENT')">수강생</span>
             <span sec:authorize="hasRole('TEACHER')">강사</span>
             님
@@ -13,26 +13,26 @@
     <div class="notice-new-alarm">
         <b>읽지 않은 공지 1건</b>
     </div>
-    <a th:href="@{/main/lecture/detail}">
+    <a th:href="@{|/course/${member.id}/${course.id}/detail|}">
         <div class="main-lecture check">
             <div class="lecture-name">
                 <!-- b에 강의명, span에 학원명 -->
-                <b>Java 기초 과정</b> @<span>426호실</span>
+                <b th:text="${course.title}">Java 기초 과정</b> @<span th:text="| @${course.room.name}호실|">426호실</span>
             </div>
         </div>
     </a>
     <div class="check-count-section">
         <div class="check-count-all-day">
             <b>총 일수</b>
-            <span>120</span>
+            <span th:text="${totalDay}">120</span>
         </div>
         <div class="check-count-in-day">
             <b>경과일수</b>
-            <span>100</span>
+            <span th:text="${today}">100</span>
         </div>
         <div class="check-count-in-rate">
             <b>진행율</b>
-            <span>87.4%</span>
+            <span th:text="|${#numbers.formatInteger(attAvg, 1, 'COMMA')}%|">87.4%</span>
         </div>
     </div>
     <div class="check-inout-today teacher">
@@ -40,188 +40,17 @@
         <div class="teacher-daily-check detail">
             <div class="daily-checkin-student none">
                 <span>미출결</span><br>
-                <div class="checkin-box none">
+                <div class="checkin-box none" th:if="${uncheckedList} != null" th:each="student : ${uncheckedList}">
                     <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
+                        <span th:text="${student.student.name}">안준언</span>
                     </div>
                 </div>
             </div>
             <div class="daily-checkin-student">
                 <span>출결</span>
-                <div class="checkin-box">
+                <div class="checkin-box" th:if="${checkedList} != null" th:each="student : ${checkedList}">
                     <div class="checkin-student">
-                        <span>조성빈</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언이</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
-                    </div>
-                    <div class="checkin-student none">
-                        <span>안준언</span>
+                        <span th:text="${student.student.name}">조성빈</span>
                     </div>
                 </div>
             </div>

@@ -113,7 +113,7 @@
     <div class="teacher-checkinout" sec:authorize="hasRole('TEACHER')">
         <div class="teacher-today">
             Today
-            <a th:href="@{/main/lecture/check/teacher}">
+            <a th:href="@{|/check/${member.id}/${course.id}|}">
                 <div class="teacher-daily-check">
                     <div class="daily-check">
                         <span>출결</span><br>

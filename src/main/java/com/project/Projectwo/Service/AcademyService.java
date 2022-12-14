@@ -477,20 +477,18 @@ public class AcademyService {
 //		
 //		this.classNoticeCheckRepository.save(classNoticeCheck);
 //	}
-//	
-//	// by 안준언, 강의 공지사항 생성
-//	public void createClassNotice(String title, String content, LocalDateTime createDate,
-//									LocalDateTime modifyDate, Course course) {
-//		ClassNotice classNotice = new ClassNotice();
-//		classNotice.setTitle(title);
-//		classNotice.setContent(content);
-//		classNotice.setCreateDate(createDate);
-//		classNotice.setModifyDate(modifyDate);
-//		classNotice.setCourse(course);
-//		
-//		this.classNoticeRepository.save(classNotice);
-//	}
-//	
+	
+	// by 안준언, 강의 공지사항 생성
+	public void createClassNotice(String title, String content, Course course) {
+		ClassNotice classNotice = new ClassNotice();
+		classNotice.setTitle(title);
+		classNotice.setContent(content);
+		classNotice.setCreateDate(LocalDateTime.now());
+		classNotice.setCourse(course);
+		
+		this.classNoticeRepository.save(classNotice);
+	}
+	
 //	// by 안준언, 출석 정보 생성
 //	public void createAttendance(LocalTime inTime, LocalTime outTime, String status,
 //									Student student) {
