@@ -812,18 +812,15 @@
 }
 
 .main-lecture.academy-list .lecture-info-schedule-period span {
-    font-size: 14px;
-    font-family: 'NOTO SANS THIN';
     color: #fff;
 }
 
 .main-lecture.academy-list .lecture-info-schedule-time {
     position: absolute;
     margin-top: 4px;
-    top: 55px;
+    top: 54px;
     right: 6px;
     font-size: 16px;
-    font-family: 'NOTO SANS THIN';
 }
 
 .main-lecture.academy-list .lecture-info-room {
@@ -833,7 +830,6 @@
     text-align: right;
     color: #eee;
     font-size: 16px;
-    font-family: 'NOTO SANS THIN';
 }
 
 .main-lecture.academy-list .lecture-info-count {

@@ -156,6 +156,20 @@ function getAllCourse(res) {
 			let sat = (course.sat) ? "<i class='far fa-check-circle'></i>" : "";
 			let sun = (course.sun) ? "<i class='far fa-check-circle'></i>" : "";
 
+			// by 조성빈, course date split 통해 포맷 강제 변환
+			let arrDateS = course.startDate.split('-');
+			const arrYearS = arrDateS[0];
+			const arrMonthS = arrDateS[1];
+			const arrDayS = arrDateS[2];
+			const arrYyS = arrYearS.substring(2,4);
+
+			// by 조성빈, course date split 통해 포맷 강제 변환
+			let arrDateE = course.endDate.split('-');
+			const arrYearE = arrDateE[0];
+			const arrMonthE = arrDateE[1];
+			const arrDayE = arrDateE[2];
+			const arrYyE = arrYearE.substring(2,4);
+
 			commonAjax('/getClassStudent', cs, 'get', function(rs) {
 				//console.log(rs.length);
 				currentStudentCount = rs.length;
@@ -186,9 +200,11 @@ function getAllCourse(res) {
 				"<li><span>" + sun + "</span></li>" + "</ul>" +
 				"<div class='lecture-info-schedule-period'>" +
 				"<span class='period-start'>" +
-				course.startDate + "</span>" + "&nbsp;~&nbsp;" +
+				arrYyS + "." + arrMonthS + "." + arrDayS +
+				"</span>" + "&nbsp;~&nbsp;" +
 				"<span class='period-end'>" +
-				course.endDate + "</span>" + "</div>" +
+				arrYyE + "." + arrMonthE + "." + arrDayE +
+				"</span>" + "</div>" +
 				"<div class='lecture-info-schedule-time'>" +
 				course.startTime + "&nbsp;~&nbsp;" + course.endTime +
 				"</div>" +
