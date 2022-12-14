@@ -2,20 +2,30 @@ package com.project.Projectwo.QR;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
+import com.project.Projectwo.Entity.Member;
+import com.project.Projectwo.Entity.Student;
+import com.project.Projectwo.Entity.Teacher;
+import com.project.Projectwo.Service.MemberService;
+
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
+@RequiredArgsConstructor
 @Service
 public class QrService {
+	
+	private final MemberService memberService;
 	
 	//by 박은영 (IP주소 얻기)
 	public static String getIp(){
@@ -30,23 +40,18 @@ public class QrService {
 	
 	
 	//by 박은영 (QR코드 생성)
-	public void createQr(HttpServletRequest request, HttpServletResponse response) {
+	public void createQr(HttpServletRequest request, HttpServletResponse response, Integer courseId) {
 
 		QrCodeView qrCodeView = new QrCodeView();
 			
 		String ip = this.getIp();
 
-		LocalDateTime localDate = LocalDateTime.now();
+		LocalDate localDate = LocalDate.now();
 		String stringDate = localDate.toString();
-			
-		log.info(stringDate);
-			
-			
-		//TODO: QR생성은 admin에서 일괄처리 courseId에 값 넣는 거는 알아서 하겠지...
-		Integer courseId = 1;
+
 		String content = "http://" + ip + ":9090/attend/" + courseId + "/" + stringDate;
 			
-		log.info(content);
+		log.info("####QR주소=" + content);
 			
 		Map<String, Object> model = new HashMap<>();
 			
