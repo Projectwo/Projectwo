@@ -1,4 +1,4 @@
-package com.project.Projectwo.QR;
+package com.project.Projectwo.Controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -27,7 +27,9 @@ import com.project.Projectwo.Repository.MemberRepository;
 import com.project.Projectwo.Repository.StudentRepository;
 import com.project.Projectwo.Service.AcademyService;
 import com.project.Projectwo.Service.AttendanceService;
+import com.project.Projectwo.Service.FCMService;
 import com.project.Projectwo.Service.MemberService;
+import com.project.Projectwo.Service.QrService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -61,7 +63,7 @@ public class QrController {
 	
 	//by 박은영
 	//학생 - 입실,퇴실 등록
-	@GetMapping("/course/{courseId}/{date}")
+	@GetMapping("/attend/{courseId}/{date}")
 	public String setAttendance(@PathVariable("courseId") Integer courseId, @PathVariable("date") String date, HttpSession session) {
 		
 		//Date
@@ -86,31 +88,10 @@ public class QrController {
 				
 		Student student = memberService.getStudent(member, course);
 		
-		log.info("student's name=" + student.getStudent().getName());
-
 		Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
-		
-		String response = "";
-		try {
-			response = fcmService.sendMessage(member.getToken());
-		} catch (FirebaseMessagingException e) {
-			
-			e.printStackTrace();
-		}
-		
-		log.info("##############FirebaseMessaging=" + response);
 		
 		if(attendance == null) {
 			attendanceService.regAttendance(course, student, localDate);
-			
-//			//TODO: 푸시알림을 위한 타이머
-//			LocalTime localStartTime = course.getStartTime();
-//			LocalTime localEndTime = course.getEndTime();
-//			
-//			
-//			log.info("####course's start time=" + localStartTime.toString());
-//			log.info("####course's end time=" + localEndTime.toString());
-//			attendanceService.pushNotificationTimer(localStartTime, localEndTime, attendance);
 			
 		}else {
 			attendanceService.regLeave(course, student, localDate);

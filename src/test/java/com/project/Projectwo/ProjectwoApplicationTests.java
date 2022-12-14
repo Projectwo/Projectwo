@@ -1,24 +1,12 @@
 package com.project.Projectwo;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.util.List;
-import java.util.Optional;
-
-import javax.transaction.Transactional;
+import java.util.Date;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
-import com.project.Projectwo.Entity.Course;
-import com.project.Projectwo.Entity.Member;
-import com.project.Projectwo.Entity.Room;
-import com.project.Projectwo.Entity.Student;
-import com.project.Projectwo.Entity.Teacher;
 import com.project.Projectwo.Repository.AttendanceRepository;
 import com.project.Projectwo.Repository.CourseRepository;
 import com.project.Projectwo.Repository.MemberRepository;
@@ -53,7 +41,7 @@ class ProjectwoApplicationTests {
 	
 	@Autowired
 	private StudentRepository studentRepository;
-	
+
 //	@Test
 //	public void compareTime() {
 //		

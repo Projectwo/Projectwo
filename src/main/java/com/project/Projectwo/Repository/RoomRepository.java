@@ -8,4 +8,5 @@ import com.project.Projectwo.Entity.Room;
 
 public interface RoomRepository extends JpaRepository<Room, Integer> {
 	Optional<Room> findByName(String name);
+
 }
