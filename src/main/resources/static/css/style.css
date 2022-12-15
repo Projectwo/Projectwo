@@ -1240,6 +1240,7 @@
     border: 1px solid #aaa;
     border-radius: 6px;
     font-size: 14px;
+    color:#444;
 }
 
 .footer-left.academy .category-lecture {
@@ -2592,6 +2593,7 @@
     background: #2cae2c;
     font-size: 16px;
     font-weight: bold;
+    color:#fff;
 }
 
 /* ##### password_modify.html end ##### */
@@ -2708,6 +2710,7 @@
     align-items: center;
     justify-content: center;
     visibility: hidden;
+    color:#fff;
 }
 
 /* ##### password_forgot.html end ##### */

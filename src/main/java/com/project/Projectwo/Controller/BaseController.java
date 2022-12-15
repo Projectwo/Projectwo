@@ -82,14 +82,19 @@ public class BaseController {
 		return "redirect:/";
 	}
 
-	@RequestMapping("/main/lecture/check/student")
-	public String studentCheck(){
-		return "member/student_check";
+	@RequestMapping("/password/forgot")
+	public String forgotPassword(){
+		return "member/password_forgot";
 	}
 
-	@RequestMapping("/main/lecture/check/teacher")
-	public String teacherCheck(){
-		return "member/teacher_check";
+	@RequestMapping("/password/modify")
+	public String modifyPassword(){
+		return "member/password_modify";
+	}
+
+	@RequestMapping("/password/modify/complete")
+	public String completeModifyPassword(){
+		return "member/password_modify_complete";
 	}
     
 }
