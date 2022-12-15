@@ -2225,11 +2225,13 @@
 
 .student-daily-check.detail .daily-checkin-time span {
     font-size: 24px;
+    color:#fff;
 }
 
 .student-daily-check.detail .daily-checkin-time b {
     font-size: 28px;
     font-weight: 400;
+    color:#fff;
 }
 
 .student-daily-check.detail .daily-checkout-time {
@@ -2247,11 +2249,13 @@
 
 .student-daily-check.detail .daily-checkout-time span {
     font-size: 24px;
+    color:#fff;
 }
 
 .student-daily-check.detail .daily-checkout-time b {
     font-size: 28px;
     font-weight: 400;
+    color:#fff;
 }
 
 .check-inout-period.student {

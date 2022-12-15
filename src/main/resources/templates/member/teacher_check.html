@@ -40,16 +40,16 @@
         <div class="teacher-daily-check detail">
             <div class="daily-checkin-student none">
                 <span>미출결</span><br>
-                <div class="checkin-box none" th:if="${uncheckedList} != null" th:each="student : ${uncheckedList}">
-                    <div class="checkin-student none">
+                <div class="checkin-box none" >
+                    <div class="checkin-student none" th:if="${uncheckedList} != null" th:each="student : ${uncheckedList}">
                         <span th:text="${student.student.name}">안준언</span>
                     </div>
                 </div>
             </div>
             <div class="daily-checkin-student">
                 <span>출결</span>
-                <div class="checkin-box" th:if="${checkedList} != null" th:each="student : ${checkedList}">
-                    <div class="checkin-student">
+                <div class="checkin-box" >
+                    <div class="checkin-student" th:if="${checkedList} != null" th:each="student : ${checkedList}">
                         <span th:text="${student.student.name}">조성빈</span>
                     </div>
                 </div>

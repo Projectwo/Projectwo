@@ -40,21 +40,21 @@
         <div class="student-daily-check detail">
             <div class="daily-checkin-time">
                 <span>입실</span><br>
-                <b th:text="${_attendance.inTime}">10:02</b>
+                <b th:text="${_attendance.inTime != null ? _attendance.inTime : '-- : --'}">10:02</b>
             </div>
             <div class="daily-checkout-time">
                 <span>퇴실</span><br>
-                <b th:text="${_attendance.outTime}">17:52</b>
+                <b th:text="${_attendance.outTime != null ? _attendance.outTime : '-- : --'}">17:52</b>
             </div>
         </div>
     </div>
     <div class="check-inout-period student">
         Period
-        <div class="student-period-check" th:each="attendance : ${student.attendanceList}">
-            <a th:href="@{|/course/${member.id}/${course.id}/attendance/${attendance.id}|}">
+        <div class="student-period-check">
+            <a th:each="attendance : ${student.attendanceList}" th:href="@{|/course/${member.id}/${course.id}/attendance/${attendance.id}|}">
                 <div class="student-period-check-daily">
                     <span th:text="|${#temporals.month(attendance.today)}/${#temporals.day(attendance.today)}|">12/01</span>
-                    <b th:text="${attendance.status}">출석</bth>
+                    <b th:text="${attendance.status}">출석</b>
                 </div>
             </a>
         </div>
