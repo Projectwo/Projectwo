@@ -26,7 +26,7 @@
 				<i class="fas fa-plus-circle"></i>
 			</button>
 			<div class="teacher-create-qrcode">
-				<button href="javascript:;" th:href="@{|/createQr/${teacher.course.id}|}" id="QR_create_btn"
+				<button type="button" href="javascript:;" id="QR_create_btn" th:data-courseId="${course.id}"
 					th:text="|QR 생성|"></button>
 			</div>
 		</div><!-- sec:role teacher 일 때 -->
@@ -80,9 +80,8 @@
 	<!-- 내부 자바스크립트 J쿼리 이벤트 지정 -->
 	<script>
 		var userIdx = 1; // app으로 보낼 유저 정보
-		var courseId = 1;
+		var courseId = document.querySelector(".lecture-name").dataset.courseid;
 		var date = ""
-		var userToken;
 
 		var uagent = navigator.userAgent.toLowerCase(); //<!-- 유저에이전트 문자열을 얻어 소문자로 변환-->
 		var android_agent = uagent.search("android");
@@ -95,8 +94,9 @@
 			if (android_agent > -1) {
 				//alert('Mobile > JS [Open] [A] [NONE]');
 				alert('Beacon 출석이 확인되었습니다.\n' + returnData);
-				date = returnData;
-				location.href = `/course/${courseId}/${date}`;
+				date=returnData;
+				courseId = document.querySelector(".lecture-name").dataset.courseid;
+				location.href = `/attend/${courseId}/${date}`;
 			}
 			//<!-- IOS에서 전달받음 -->
 			else if (iphone > -1 || ipad > -1) {
@@ -122,8 +122,7 @@
 			if (android_agent > -1) {
 				//alert('Mobile > JS [Open] [A] [NONE]');
 				alert('QR 출석이 확인되었습니다.\n' + returnData);
-				//date = returnData;
-				//location.href = `/course/${courseId}/${date}`;
+				location.href = `/course/${courseId}/${date}`;
 			}
 			//<!-- IOS에서 전달받음 -->
 			else if (iphone > -1 || ipad > -1) {
@@ -149,9 +148,6 @@
 		//<!-- 버튼 클릭 이벤트 정의 --> 
 		$(document).ready(function () {
 			$("#Beacon_btn").click(function () {
-				//alert('JS > Mobile : Beacon() 메소드 호출 실시');
-
-				//<!-- 자바스크립트 함수를 호출해서 모바일 디바이스 별 구분 처리 실시 -->
 				send_beacon();
 			});
 			$("#QR_btn").click(function () {
@@ -161,14 +157,17 @@
 			});
 		});
 
+		$(document).ready(function () {
+			$("#QR_create_btn").click(function (e) {
+				courseId = e.currentTarget.dataset.courseid;
+				location.href = `/createQr/`+courseId;
+			});
+		});
 		//by 장유란, 2. 버튼 클릭으로 함수 실행 시 app내부 open함수 실행
 		//<!-- JS > 모바일 디바이스 -->
 		function send_beacon() {
 			//<!-- 안드로이드로 보낸다 -->
 			if (android_agent > -1) {
-				//"Spring -> app 유저식별값 전달필요"
-
-				alert("Spring -> app 유저식별값 전달필요")
 				window.android.open(userIdx, courseId, date);
 			}
 			//<!-- IOS로 보낸다 -->
@@ -201,7 +200,7 @@
 		$(document).ready(function send_token() {
 			//<!-- 안드로이드로 보낸다 -->
 			if (android_agent > -1) {
-				alert("DB저장토큰 app내부로 전달, 앱내부dbToken함수 실행\n" + db_token)
+				//alert("DB저장토큰 app내부로 전달, 앱내부dbToken함수 실행\n" + db_token)
 				window.android.dbToken(db_token);
 			}
 			//<!-- IOS로 보낸다 -->
@@ -213,9 +212,7 @@
 		function receive_token(returnData) {
 			//<!-- 안드로이드에서 전달받음 -->
 			if (android_agent > -1) {
-				alert('휴대폰에서 받아온 토큰값.\n' + returnData);
-				//location.href = `/saveToken`;
-				//Controller에서 Mapping '/saveToken'인 함수 생성해서 DB저장
+				//alert('휴대폰에서 받아온 토큰값.\n' + returnData);
 				return_token += returnData;
 				let msg = {
 					returnData: returnData
@@ -226,7 +223,7 @@
 
 		function saveToken(msg) {
 			commonAjax('/saveToken', msg, 'get', function (result) {
-				alert("saveToken");
+				//alert("saveToken");
 			})
 		}
 	</script>

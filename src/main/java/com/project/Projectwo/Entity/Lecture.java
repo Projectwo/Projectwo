@@ -1,10 +1,13 @@
 package com.project.Projectwo.Entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
@@ -13,23 +16,26 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Academy {
+public class Lecture {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
 	@NotNull
-	@Column(length = 30)
-	private String name;
-
-	@Column(columnDefinition = "TEXT")
-	private String history;
-	
-	@Column(length = 200)
-	private String address;
+	@Column(unique = true, length = 300)
+	private String lectureName;
 	
 	@NotNull
-	@Column(length = 50)
-	private String tel;
+	@Column(columnDefinition = "TEXT")
+	private String lectureDesc;
+	
+	@NotNull
+	private LocalDate startDate;
+	
+	@NotNull
+	private LocalDate endDate;
+	
+	@ManyToOne
+	private LectureList lectureList;
 }

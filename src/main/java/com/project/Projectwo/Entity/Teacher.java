@@ -26,4 +26,8 @@ public class Teacher {
 	@NotNull
 	@ManyToOne
 	private Course course;
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> yuran
