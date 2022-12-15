@@ -83,9 +83,8 @@
 	<!-- 내부 자바스크립트 J쿼리 이벤트 지정 -->
 	<script>
 		var userIdx = 1; // app으로 보낼 유저 정보
-		var courseId = 1;
-		var date = "2022-01-01"
-		var userToken;
+		var courseId = document.querySelector(".lecture-name").dataset.courseid;
+		var date = ""
 
 		var uagent = navigator.userAgent.toLowerCase(); //<!-- 유저에이전트 문자열을 얻어 소문자로 변환-->
 		var android_agent = uagent.search("android");
@@ -98,7 +97,9 @@
 			if (android_agent > -1) {
 				//alert('Mobile > JS [Open] [A] [NONE]');
 				alert('Beacon 출석이 확인되었습니다.\n' + returnData);
-				location.href = `/course/${courseId}/${date}`;
+				date=returnData;
+				courseId = document.querySelector(".lecture-name").dataset.courseid;
+				location.href = `/attend/${courseId}/${date}`;
 			}
 			//<!-- IOS에서 전달받음 -->
 			else if (iphone > -1 || ipad > -1) {
