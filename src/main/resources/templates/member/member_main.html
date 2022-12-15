@@ -81,7 +81,13 @@
         <div class="student-today">
             Today <span></span>
             <a th:href="@{/main/lecture/check/student}">
-                <div class="student-daily-check" th:classappend="${attendance.status}">
+                <div class="student-daily-check" th:if="${attendance == null}">
+                    <div class="daily-date" >
+                        <span th:text="|${course.startDate} > ${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}| ? '아직 개강하지 않은 수업입니다.'"></span>
+                    </div>
+                    <span class="daily-status" th:if="${attendance != null}" th:text="${attendance.status}"></span>
+                </div>
+                <div class="student-daily-check" th:if="${attendance != null}" th:classappend="${attendance.status}">
                     <div class="daily-date">
                         <span th:if="${attendance != null}" th:text="${today}"></span>
                         <b th:if="${attendance != null}" th:text="${#temporals.dayOfWeekNameShort(attendance.today)}"></b>
