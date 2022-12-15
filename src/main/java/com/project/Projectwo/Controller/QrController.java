@@ -1,4 +1,4 @@
-package com.project.Projectwo.QR;
+package com.project.Projectwo.Controller;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -28,7 +28,9 @@ import com.project.Projectwo.Repository.MemberRepository;
 import com.project.Projectwo.Repository.StudentRepository;
 import com.project.Projectwo.Service.AcademyService;
 import com.project.Projectwo.Service.AttendanceService;
+import com.project.Projectwo.Service.FCMService;
 import com.project.Projectwo.Service.MemberService;
+import com.project.Projectwo.Service.QrService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -88,8 +90,6 @@ public class QrController {
 		if (member.getRole().equals("student")) {
 
 			Student student = memberService.getStudent(member, course);
-
-			log.info("student's name=" + student.getStudent().getName());
 
 			Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
 

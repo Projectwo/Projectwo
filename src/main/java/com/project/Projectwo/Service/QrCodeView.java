@@ -1,4 +1,4 @@
-package com.project.Projectwo.QR;
+package com.project.Projectwo.Service;
 
 import java.awt.image.BufferedImage;
 import java.io.File;

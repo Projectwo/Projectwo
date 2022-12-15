@@ -1,4 +1,4 @@
-package com.project.Projectwo.QR;
+package com.project.Projectwo.Service;
 
 import java.net.InetAddress;
 import java.net.UnknownHostException;
@@ -50,7 +50,7 @@ public class QrService {
 		String stringDate = localDate.toString();
 
 		String content = "http://" + ip + ":9090/attend/" + courseId + "/" + stringDate;
-			
+		
 		log.info("####QR주소=" + content);
 			
 		Map<String, Object> model = new HashMap<>();

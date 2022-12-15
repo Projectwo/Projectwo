@@ -17,7 +17,7 @@ import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Student;
 import com.project.Projectwo.Entity.Teacher;
-import com.project.Projectwo.QR.FCMService;
+
 import com.project.Projectwo.Service.AcademyService;
 import com.project.Projectwo.Service.AttendanceService;
 import com.project.Projectwo.Service.MemberService;

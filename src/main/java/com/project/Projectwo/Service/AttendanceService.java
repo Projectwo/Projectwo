@@ -16,7 +16,6 @@ import com.project.Projectwo.Entity.Attendance;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Student;
-import com.project.Projectwo.QR.FCMService;
 import com.project.Projectwo.Repository.AttendanceRepository;
 import com.project.Projectwo.Repository.CourseRepository;
 import com.project.Projectwo.Repository.StudentRepository;
@@ -75,7 +74,6 @@ public class AttendanceService {
 		Optional<Attendance> oAttendance = attendanceRepository.findByStudentAndToday(student, localDate);
 		
 		if(oAttendance.isEmpty()) {
-			log.info("####oAttendance is null");
 			return null;
 		}
 		
@@ -177,17 +175,13 @@ public class AttendanceService {
 							
 							e.printStackTrace();
 						}
-						
-						log.info("##############FirebaseMessaging=" + response);
 
+						log.info("#######FirebaseMessaging=" + response);
 				}
-			
 			}
 		};
 		
 		Timer timer = new Timer();
 		timer.schedule(timerTask, delay, period);
-
 	}
-
 }
