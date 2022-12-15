@@ -8,14 +8,8 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
-
-import com.project.Projectwo.Entity.Member;
-import com.project.Projectwo.Entity.Student;
-import com.project.Projectwo.Entity.Teacher;
-import com.project.Projectwo.Service.MemberService;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;

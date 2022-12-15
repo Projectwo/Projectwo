@@ -31,7 +31,8 @@ public class ClassNotice {
 	private String content;
 	
 	@NotNull
-
+	private LocalDateTime createDate;
+	
 	private LocalDateTime modifyDate;
 	
 	@NotNull

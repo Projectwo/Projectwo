@@ -2,6 +2,7 @@ package com.project.Projectwo.Service;
 
 import java.time.DayOfWeek;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.Projectwo.Entity.AcademyNotice;
 import com.project.Projectwo.Entity.Attendance;
+import com.project.Projectwo.Entity.ClassNotice;
 import com.project.Projectwo.Entity.Course;
 import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Entity.Room;
@@ -450,7 +452,18 @@ public class AcademyService {
 			return sixAttList;
 		}
 	}
-	
+
+
+	// by 안준언, 출석 반환
+	public Attendance getAttendance(Integer attendanceId) {
+		Optional<Attendance> _attendance = this.attendanceRepository.findById(attendanceId);
+		if(_attendance.isPresent()) {
+			Attendance attendance = _attendance.get();
+			return attendance;
+		}
+		return null;
+	}
+		
 //	// by 안준언, 강의 공지사항 읽음 여부 생성
 //	public void createClassNoticeCheck(Student student, ClassNotice classNotice) {
 //		ClassNoticeCheck classNoticeCheck = new ClassNoticeCheck();
@@ -461,19 +474,17 @@ public class AcademyService {
 //		this.classNoticeCheckRepository.save(classNoticeCheck);
 //	}
 //	
-//	// by 안준언, 강의 공지사항 생성
-//	public void createClassNotice(String title, String content, LocalDateTime createDate,
-//									LocalDateTime modifyDate, Course course) {
-//		ClassNotice classNotice = new ClassNotice();
-//		classNotice.setTitle(title);
-//		classNotice.setContent(content);
-//		classNotice.setCreateDate(createDate);
-//		classNotice.setModifyDate(modifyDate);
-//		classNotice.setCourse(course);
-//		
-//		this.classNoticeRepository.save(classNotice);
-//	}
-//	
+// by 안준언, 강의 공지사항 생성	
+public void createClassNotice(String title, String content, Course course) {
+	ClassNotice classNotice = new ClassNotice();
+	classNotice.setTitle(title);
+	classNotice.setContent(content);
+	classNotice.setCreateDate(LocalDateTime.now());
+	classNotice.setCourse(course);
+		
+	this.classNoticeRepository.save(classNotice);
+}
+
 //	// by 안준언, 출석 정보 생성
 //	public void createAttendance(LocalTime inTime, LocalTime outTime, String status,
 //									Student student) {

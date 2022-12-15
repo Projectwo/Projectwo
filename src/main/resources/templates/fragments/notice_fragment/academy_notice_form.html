@@ -1,6 +1,6 @@
 <html layout:decorate="~{layout/layout}">
 
-<div th:fragment="academyNoticeAddFragment" class="form-fragment add-notice" id="add-notice" style="display : none;">
+<div th:fragment="academyNoticeAddFragment" class="form-fragment add-notice academy" id="add-notice" style="display : none;" sec:authorize="hasRole('ADMIIN')">
     <div class="modal-wrap noticeFormFunction">
         <form class="notice-form">
             <div class="notice-title-area">

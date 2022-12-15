@@ -126,7 +126,7 @@ public class AcademyController {
     												startDate, endDate, startTime, endTime,
     												roomName, teacherName);
     }
-    
+
     @PostMapping("/modifyCourse")
     @ResponseBody
     public void modifyCourse(@RequestParam HashMap<Object, Object> params) {

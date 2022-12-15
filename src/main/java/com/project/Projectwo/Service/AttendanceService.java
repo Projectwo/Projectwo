@@ -3,7 +3,6 @@ package com.project.Projectwo.Service;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.temporal.ChronoField;
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.Timer;
@@ -163,6 +162,7 @@ public class AttendanceService {
 
 			@Override
 			public void run() {
+				
 				//데이터베이스 비교해서 입실 상태이면 "알림 보내기"
 				if(attendance.getStatus().equals("입실") || attendance.getStatus().equals("지각")) {
 						log.info("####푸시알림####");
@@ -175,10 +175,9 @@ public class AttendanceService {
 							
 							e.printStackTrace();
 						}
-						//log.info("#######FirebaseMessaging=" + response.toString());
-						System.out.println(attendance.getStudent().getStudent().getName());
-						System.out.println(attendance.getStudent().getCourse().getTitle());
-				}	
+						
+						log.info("#######FirebaseMessaging=" + response);
+				}
 			}
 		};
 		

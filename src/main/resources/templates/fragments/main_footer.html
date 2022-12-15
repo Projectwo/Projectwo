@@ -19,13 +19,15 @@
 		</div><!-- sec:role student 일 때 //// 임시매핑-->
 		<div class="teacher-function" sec:authorize="hasRole('TEACHER')">
 			<div class="teacher-create-notice">
-				<a href="javascript:noticeAddButton();" th:text="|공지 작성|"></a>
+				<button onclick="clickFormButton(this);" class="notice-function-add add-notice"
+					th:text="|공지 작성|"></button>
 			</div>
 			<button onclick="memberFunctionButton('teacher-function')" class="teacher-function-button">
 				<i class="fas fa-plus-circle"></i>
 			</button>
 			<div class="teacher-create-qrcode">
-				<a href="javascript:;" th:href="@{|/createQr/${teacher.course.id}|}" id="QR_create_btn" th:text="|QR 생성|"></a>
+				<button href="javascript:;" th:href="@{|/createQr/${teacher.course.id}|}" id="QR_create_btn"
+					th:text="|QR 생성|"></button>
 			</div>
 		</div><!-- sec:role teacher 일 때 -->
 		<div th:replace="fragments/nav_button :: navFragment"></div>
@@ -46,36 +48,31 @@
 			}
 		}
 
-		function noticeAddButton(){
-            const existForm = document.getElementsByClassName("form-fragment add-notice");
-            const formStatus = $(existForm).css('display');
-
-            if(formStatus == 'none'){
-                $(existForm).css('display', 'block');
-            }
-		}
-
 		function clickFormButton(e) {
-            const clickedFormButton = e.className;
-            let arr = clickedFormButton.split(' ');
-            const selectedForm = $(".form-fragment." + arr[1]);
-            const formStatus = $(selectedForm).css('display');
+			const clickedFormButton = e.className;
+			let arr = clickedFormButton.split(' ');
+			const selectedForm = $(".form-fragment." + arr[1]);
+			const formStatus = $(selectedForm).css('display');
 
-            if(formStatus == 'none'){
-                $(selectedForm).css('display', 'block');
-            }
-        } // by 조성빈, 각 버튼 클릭 시 영역 오픈 기능
+			if (clickedFormButton == 'notice-function-add add-notice') {
+				selectCategory('lecture');
+			}
 
-        function closeNoticeModal(e) {
-            const clickedFormButton = e.className;
-            let arr = clickedFormButton.split(' ');
-            const selectedForm = $(".form-fragment." + arr[1]);
-            const formStatus = $(selectedForm).css('display');
+			if (formStatus == 'none') {
+				$(selectedForm).css('display', 'block');
+			}
+		} // by 조성빈, 각 버튼 클릭 시 영역 오픈 기능
 
-            if(formStatus == 'block'){
-                $(selectedForm).css('display', 'none');
-            }
-        } // by 조성빈, 각 버튼 클릭 시 영역 닫기 기능
+		function closeNoticeModal(e) {
+			const clickedFormButton = e.className;
+			let arr = clickedFormButton.split(' ');
+			const selectedForm = $(".form-fragment." + arr[1]);
+			const formStatus = $(selectedForm).css('display');
+
+			if (formStatus == 'block') {
+				$(selectedForm).css('display', 'none');
+			}
+		} // by 조성빈, 각 버튼 클릭 시 영역 닫기 기능
 	</script>
 	<!-- 자바 스크립트 및 j쿼리 파일 -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
@@ -145,7 +142,7 @@
 				alert('Mobile > JS [Open] [I] [NONE]');
 			}
 		}
-		
+
 		//////////////////////////////////////////////////
 		//by 장유란, 1. html 버튼 클릭 시 위의 send_beacon 함수 실행
 		//<!-- 버튼 클릭 이벤트 정의 --> 
@@ -162,7 +159,7 @@
 				send_qr();
 			});
 		});
-		
+
 		//by 장유란, 2. 버튼 클릭으로 함수 실행 시 app내부 open함수 실행
 		//<!-- JS > 모바일 디바이스 -->
 		function send_beacon() {
@@ -190,31 +187,29 @@
 			else if (iphone > -1 || ipad > -1) {
 				window.location = 'close:JS TO Mobile';
 			}
-		}	
-
-
-	</script>
+		}
 	</script>
 	<script>
-
-var uagent = navigator.userAgent.toLowerCase(); //<!-- 유저에이전트 문자열을 얻어 소문자로 변환-->
-var android_agent = uagent.search("android");
-var iphone = uagent.search("iphone");
-var ipad = uagent.search("ipad");
-var db_token = '123123123';	//DB상에 저장된 토큰
-let return_token = '';
-	$(document).ready(function send_token() {
+		var uagent = navigator.userAgent.toLowerCase(); //<!-- 유저에이전트 문자열을 얻어 소문자로 변환-->
+		var android_agent = uagent.search("android");
+		var iphone = uagent.search("iphone");
+		var ipad = uagent.search("ipad");
+		var db_token = '123123123'; //DB상에 저장된 토큰
+		let return_token = '';
+		
+		$(document).ready(function send_token() {
 			//<!-- 안드로이드로 보낸다 -->
 			if (android_agent > -1) {
-				alert("DB저장토큰 app내부로 전달, 앱내부dbToken함수 실행\n"+db_token)
+				alert("DB저장토큰 app내부로 전달, 앱내부dbToken함수 실행\n" + db_token)
 				window.android.dbToken(db_token);
 			}
 			//<!-- IOS로 보낸다 -->
 			else if (iphone > -1 || ipad > -1) {
 				window.location = 'dbToken:';
 			}
-	})
-	function receive_token(returnData) {
+		})
+
+		function receive_token(returnData) {
 			//<!-- 안드로이드에서 전달받음 -->
 			if (android_agent > -1) {
 				alert('휴대폰에서 받아온 토큰값.\n' + returnData);
@@ -222,18 +217,18 @@ let return_token = '';
 				//Controller에서 Mapping '/saveToken'인 함수 생성해서 DB저장
 				return_token += returnData;
 				let msg = {
-						returnData: returnData
+					returnData: returnData
 				}
 				saveToken(msg);
 			}
 		}
-		
-	function saveToken(msg) {
-	commonAjax('/saveToken', msg, 'get', function(result) {
-		alert("saveToken");
-	})
-}
-</script>
+
+		function saveToken(msg) {
+			commonAjax('/saveToken', msg, 'get', function (result) {
+				alert("saveToken");
+			})
+		}
+	</script>
 </footer>
 
 </html>
