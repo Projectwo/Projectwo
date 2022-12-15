@@ -1,4 +1,4 @@
- package com.project.Projectwo.Entity;
+package com.project.Projectwo.Entity;
 
 import java.time.LocalDateTime;
 
@@ -31,7 +31,6 @@ public class ClassNotice {
 	private String content;
 	
 	@NotNull
-	private LocalDateTime createDate;
 
 	private LocalDateTime modifyDate;
 	

@@ -14,3 +14,4 @@ public interface AttendanceRepository extends JpaRepository<Attendance, Integer>
 	Optional<Attendance> findByStudentAndToday(Student student, LocalDate date);
 
 }
+
