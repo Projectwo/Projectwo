@@ -52,9 +52,19 @@
         Period
         <div class="student-period-check">
             <a th:each="attendance : ${student.attendanceList}" th:href="@{|/course/${member.id}/${course.id}/attendance/${attendance.id}|}">
-                <div class="student-period-check-daily">
+                <div class="student-period-check-daily" th:if="${attendance.status != '미출결'}" th:switch="${attendance.status}" th:classappend="${attendance.status}">
                     <span th:text="|${#temporals.month(attendance.today)}/${#temporals.day(attendance.today)}|">12/01</span>
-                    <b th:text="${attendance.status}">출석</b>
+                    <span th:case="${'출석'}" th:text="${attendance.status}">출석</span>
+                    <span th:case="${'지각'}" th:text="${attendance.status}">지각</span>
+                    <span th:case="${'조퇴'}" th:text="${attendance.status}">조퇴</span>
+                </div>
+                <div class="student-period-check-daily" th:if="${attendance.status == '미출결'} and ${#temporals.format(attendance.today, 'yyyy-MM-dd')} == ${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')} or ${#temporals.format(attendance.today, 'yyyy-MM-dd')} > ${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}" th:classappend="${attendance.status}">
+                    <span th:text="|${#temporals.month(attendance.today)}/${#temporals.day(attendance.today)}|">12/01</span>
+                    <span>미출결</span>
+                </div>
+                <div class="student-period-check-daily" th:if="${attendance.status == '미출결'} and ${#temporals.format(attendance.today, 'yyyy-MM-dd')} != ${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')} and ${#temporals.format(attendance.today, 'yyyy-MM-dd')} < ${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}" th:classappend="결석">
+                    <span th:text="|${#temporals.month(attendance.today)}/${#temporals.day(attendance.today)}|">12/01</span>
+                    <span>결석</span>
                 </div>
             </a>
         </div>

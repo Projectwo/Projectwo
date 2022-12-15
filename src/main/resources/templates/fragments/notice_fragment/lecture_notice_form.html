@@ -1,6 +1,6 @@
 <html layout:decorate="~{layout/layout}">
 
-<div th:fragment="lectureNoticeAddFragment" class="form-fragment add-notice" id="add-notice" style="display : none;">
+<div th:fragment="lectureNoticeAddFragment" class="form-fragment add-notice lecture" id="add-notice" style="display : none;">
     <div class="modal-wrap noticeFormFunction">
         <form class="notice-form" th:action="@{|/createNotice/${course.id}|}" method="POST">
             <div class="notice-title-area">
