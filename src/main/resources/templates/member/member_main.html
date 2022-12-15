@@ -15,7 +15,7 @@
     </div>
     <a sec:authorize="hasRole('STUDENT')" th:href="@{|/course/${member.id}/${course.id}/detail|}">
         <div class="main-lecture">
-            <div class="lecture-name">
+            <div class="lecture-name" th:data-courseId=${course.id}>
                 <b th:text="${course.title}">Java 기초 과정</b><span th:text="| @${course.room.name}호실|"></span>
             </div>
             <div class="lecture-info">

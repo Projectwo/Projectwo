@@ -26,7 +26,7 @@
 				<i class="fas fa-plus-circle"></i>
 			</button>
 			<div class="teacher-create-qrcode">
-				<button href="javascript:;" th:href="@{|/createQr/${teacher.course.id}|}" id="QR_create_btn"
+				<button type="button" href="javascript:;" id="QR_create_btn" th:data-courseId="${course.id}"
 					th:text="|QR 생성|"></button>
 			</div>
 		</div><!-- sec:role teacher 일 때 -->
@@ -157,6 +157,12 @@
 			});
 		});
 
+		$(document).ready(function () {
+			$("#QR_create_btn").click(function (e) {
+				courseId = e.currentTarget.dataset.courseid;
+				location.href = `/createQr/`+courseId;
+			});
+		});
 		//by 장유란, 2. 버튼 클릭으로 함수 실행 시 app내부 open함수 실행
 		//<!-- JS > 모바일 디바이스 -->
 		function send_beacon() {
