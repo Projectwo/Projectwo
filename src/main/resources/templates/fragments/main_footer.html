@@ -148,9 +148,6 @@
 		//<!-- 버튼 클릭 이벤트 정의 --> 
 		$(document).ready(function () {
 			$("#Beacon_btn").click(function () {
-				//alert('JS > Mobile : Beacon() 메소드 호출 실시');
-
-				//<!-- 자바스크립트 함수를 호출해서 모바일 디바이스 별 구분 처리 실시 -->
 				send_beacon();
 			});
 			$("#QR_btn").click(function () {
@@ -165,9 +162,6 @@
 		function send_beacon() {
 			//<!-- 안드로이드로 보낸다 -->
 			if (android_agent > -1) {
-				//"Spring -> app 유저식별값 전달필요"
-
-				alert("Spring -> app 유저식별값 전달필요")
 				window.android.open(userIdx, courseId, date);
 			}
 			//<!-- IOS로 보낸다 -->
@@ -200,7 +194,7 @@
 		$(document).ready(function send_token() {
 			//<!-- 안드로이드로 보낸다 -->
 			if (android_agent > -1) {
-				alert("DB저장토큰 app내부로 전달, 앱내부dbToken함수 실행\n" + db_token)
+				//alert("DB저장토큰 app내부로 전달, 앱내부dbToken함수 실행\n" + db_token)
 				window.android.dbToken(db_token);
 			}
 			//<!-- IOS로 보낸다 -->
@@ -212,9 +206,7 @@
 		function receive_token(returnData) {
 			//<!-- 안드로이드에서 전달받음 -->
 			if (android_agent > -1) {
-				alert('휴대폰에서 받아온 토큰값.\n' + returnData);
-				//location.href = `/saveToken`;
-				//Controller에서 Mapping '/saveToken'인 함수 생성해서 DB저장
+				//alert('휴대폰에서 받아온 토큰값.\n' + returnData);
 				return_token += returnData;
 				let msg = {
 					returnData: returnData
@@ -225,7 +217,7 @@
 
 		function saveToken(msg) {
 			commonAjax('/saveToken', msg, 'get', function (result) {
-				alert("saveToken");
+				//alert("saveToken");
 			})
 		}
 	</script>

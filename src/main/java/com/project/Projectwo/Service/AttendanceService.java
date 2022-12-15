@@ -87,19 +87,22 @@ public class AttendanceService {
 		attendance.setToday(localDate);
 		attendance.setInTime(LocalTime.now());
 		
-		
-		//course 시작시간과 비교
-		attendance.setStatus("입실");
-		
-		if(course.getStartTime().isBefore(attendance.getInTime())) {
-			attendance.setStatus("지각");
+		if(attendance.getInTime().equals(null)) {
 			
-			if(course.getEndTime().isBefore(attendance.getInTime())) {
-				attendance.setStatus("결석");
-			}
-		}
 		
-		attendanceRepository.save(attendance);
+			//course 시작시간과 비교
+			attendance.setStatus("입실");
+			
+			if(course.getStartTime().isBefore(attendance.getInTime())) {
+				attendance.setStatus("지각");
+				
+				if(course.getEndTime().isBefore(attendance.getInTime())) {
+					attendance.setStatus("결석");
+				}
+			}
+			
+			attendanceRepository.save(attendance);
+		}
 	}
 	
 	//퇴실
@@ -144,8 +147,10 @@ public class AttendanceService {
 		long courseTime = endTime - startTime;
 		
 		//강의 시작 시간 - 입실 시간
-		long checkInTime = attendance.getInTime().getLong(ChronoField.MILLI_OF_DAY);
-		long gap = startTime - checkInTime;
+		long checkInTime = 0;
+		if(attendance.getInTime() != null) {
+			checkInTime = attendance.getInTime().getLong(ChronoField.MILLI_OF_DAY);
+		}long gap = startTime - checkInTime;
 		long delay = courseTime + gap;
 		
 		log.info("####startTime=" + startTime);
