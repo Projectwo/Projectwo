@@ -434,6 +434,14 @@
     color: #444;
 }
 
+.student-daily-check.출석 .daily-date span, .student-daily-check.결석 .daily-date span{
+    color:#fff;
+}
+
+.student-daily-check.출석 .daily-date b, .student-daily-check.결석 .daily-date b{
+    color:#eee;
+}
+
 .student-daily-check .daily-date b{
     font-size: 18px;
     color:#aaa;
@@ -445,6 +453,10 @@
     text-align: right;
     line-height: 0;
     color: #444;
+}
+
+.student-daily-check.출석 .daily-status, .student-daily-check.결석 .daily-status{
+    color:#fff;
 }
 
 .student-weekly {
@@ -462,7 +474,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    flex-direction: row-reverse;
+    flex-direction: row;
 }
 
 .student-weekly .student-weekly-check>a{
@@ -1228,6 +1240,7 @@
     border: 1px solid #aaa;
     border-radius: 6px;
     font-size: 14px;
+    color:#444;
 }
 
 .footer-left.academy .category-lecture {
@@ -2249,11 +2262,13 @@
 
 .student-daily-check.detail .daily-checkin-time span {
     font-size: 24px;
+    color:#fff;
 }
 
 .student-daily-check.detail .daily-checkin-time b {
     font-size: 28px;
     font-weight: 400;
+    color:#fff;
 }
 
 .student-daily-check.detail .daily-checkout-time {
@@ -2271,11 +2286,13 @@
 
 .student-daily-check.detail .daily-checkout-time span {
     font-size: 24px;
+    color:#fff;
 }
 
 .student-daily-check.detail .daily-checkout-time b {
     font-size: 28px;
     font-weight: 400;
+    color:#fff;
 }
 
 .check-inout-period.student {
@@ -2320,6 +2337,13 @@
 
 .student-period-check .student-period-check-daily b {
     color: #444;
+}
+
+.student-period-check .student-period-check-daily.출석 span, 
+.student-period-check .student-period-check-daily.출석 b, 
+.student-period-check .student-period-check-daily.결석 span,
+.student-period-check .student-period-check-daily.결석 b{
+    color:#fff;
 }
 
 /* ##### student_check.html end ##### */
@@ -2569,6 +2593,7 @@
     background: #2cae2c;
     font-size: 16px;
     font-weight: bold;
+    color:#fff;
 }
 
 /* ##### password_modify.html end ##### */
@@ -2685,6 +2710,7 @@
     align-items: center;
     justify-content: center;
     visibility: hidden;
+    color:#fff;
 }
 
 /* ##### password_forgot.html end ##### */

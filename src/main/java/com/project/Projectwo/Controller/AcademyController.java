@@ -127,6 +127,7 @@ public class AcademyController {
     												roomName, teacherName);
     }
     
+	// by 안준언, 강의 수정
     @PostMapping("/modifyCourse")
     @ResponseBody
     public void modifyCourse(@RequestParam HashMap<Object, Object> params) {

@@ -1,11 +1,11 @@
 <html layout:decorate="~{layout/layout}">
 
-<div th:fragment="academyNoticeFragment" id="academy" class="notice-fragment active">
+<div th:fragment="academyNoticeFragment" id="academy" class="notice-fragment academy active">
     <div class="notice-area">
         <div class="notice-recent" th:if="${academyNotices} != null" th:each="academyNotices : ${academyNotices}"> 
             <button th:text="${academyNotices.title}" class="notice-function-button">학원 공지</button>
             <button onclick="clickFormButton(this)" class="notice-function-modify modify-notice"
-                sec:authorize="hasRole('TEACHER')">
+                sec:authorize="hasRole('ADMIN')">
                 <i class="far fa-edit"></i>
             </button>
             <div th:text="${academyNotices.content}" class="notice-content academy"></div>
