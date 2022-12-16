@@ -28,11 +28,7 @@ public class FCMService {
     @Value("${fcm.key.path}")
     private String FCM_PRIVATE_KEY_PATH;
 
-
-//    //메시징만 권한 설정
-//    @Value("${fcm.key.scope}")
-//    private String fireBaseScope;
-
+    //by 박은영
     //fcm 기본 설정 진행
     //init: Firebase에 Admin계정을 인증하는 작업
     @PostConstruct
@@ -63,6 +59,7 @@ public class FCMService {
     }
 
 
+    //by 박은영
     //알림 보내기
 	public String sendMessage(String registrationToken) throws FirebaseMessagingException {
 			

@@ -21,7 +21,8 @@ public class QrService {
 	
 	private final MemberService memberService;
 	
-	//by 박은영 (IP주소 얻기)
+	//by 박은영 
+	//IP주소 얻기
 	public static String getIp(){
 	    String result = null;
 	    try {
@@ -33,7 +34,8 @@ public class QrService {
 	}
 	
 	
-	//by 박은영 (QR코드 생성)
+	//by 박은영
+	//QR코드 생성
 	public void createQr(HttpServletRequest request, HttpServletResponse response, Integer courseId) {
 
 		QrCodeView qrCodeView = new QrCodeView();

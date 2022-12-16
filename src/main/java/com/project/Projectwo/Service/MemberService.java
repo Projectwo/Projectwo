@@ -59,6 +59,7 @@ public class MemberService {
 	}
 
 	// by 박은영
+	// member, course로 student 반환
 		public Student getStudent(Member member, Course course) {
 			
 			Optional<Student> oStudent = studentRepository.findByStudentAndCourse(member, course);
