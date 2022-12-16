@@ -81,6 +81,7 @@ public class AttendanceService {
 		return todayAttendance;
 	}
 
+	//by 박은영
 	//입실
 	public void regAttendance(Course course, Student student, LocalDate localDate) {
 		Attendance attendance = new Attendance();
@@ -103,6 +104,7 @@ public class AttendanceService {
 		attendanceRepository.save(attendance);
 	}
 	
+	//by 박은영
 	//퇴실
 	public void regLeave(Course course, Student student, LocalDate localDate) {
 		Attendance attendance = this.getTodayAttendance(student, localDate);
@@ -132,7 +134,7 @@ public class AttendanceService {
 	}	
 
 	
-	
+	//by 박은영
 	//푸시알림 타이머
 	public void pushNotificationTimer(Member member, Course course, Attendance attendance) {
 		
