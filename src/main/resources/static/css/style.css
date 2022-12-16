@@ -434,11 +434,11 @@
     color: #444;
 }
 
-.student-daily-check.출석 .daily-date span, .student-daily-check.결석 .daily-date span{
+.student-daily-check.입실 .daily-date span, .student-daily-check.결석 .daily-date span{
     color:#fff;
 }
 
-.student-daily-check.출석 .daily-date b, .student-daily-check.결석 .daily-date b{
+.student-daily-check.입실 .daily-date b, .student-daily-check.결석 .daily-date b{
     color:#eee;
 }
 
@@ -455,7 +455,7 @@
     color: #444;
 }
 
-.student-daily-check.출석 .daily-status, .student-daily-check.결석 .daily-status{
+.student-daily-check.입실 .daily-status, .student-daily-check.결석 .daily-status{
     color:#fff;
 }
 
@@ -501,7 +501,7 @@
     color: #fff;
 }
 
-.출석{
+.입실{
     background-color: #2cae2c;
 }
 
@@ -2339,8 +2339,8 @@
     color: #444;
 }
 
-.student-period-check .student-period-check-daily.출석 span, 
-.student-period-check .student-period-check-daily.출석 b, 
+.student-period-check .student-period-check-daily.입실 span, 
+.student-period-check .student-period-check-daily.입실 b, 
 .student-period-check .student-period-check-daily.결석 span,
 .student-period-check .student-period-check-daily.결석 b{
     color:#fff;

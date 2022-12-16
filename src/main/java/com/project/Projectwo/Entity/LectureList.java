@@ -13,23 +13,12 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-public class Academy {
+public class LectureList {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 	
-	@NotNull
-	@Column(length = 30)
-	private String name;
-
-	@Column(columnDefinition = "TEXT")
-	private String history;
-	
-	@Column(length = 200)
-	private String address;
-	
-	@NotNull
-	@Column(length = 50)
-	private String tel;
+	@Column(unique = true, length = 50)
+	private String lectureTitle;
 }

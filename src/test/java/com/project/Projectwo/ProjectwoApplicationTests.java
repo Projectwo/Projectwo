@@ -1,5 +1,6 @@
 package com.project.Projectwo;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 import org.junit.jupiter.api.Test;
@@ -7,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import com.project.Projectwo.Entity.Member;
 import com.project.Projectwo.Repository.AttendanceRepository;
 import com.project.Projectwo.Repository.CourseRepository;
 import com.project.Projectwo.Repository.MemberRepository;

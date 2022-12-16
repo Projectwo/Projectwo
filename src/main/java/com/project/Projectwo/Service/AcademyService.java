@@ -452,7 +452,7 @@ public class AcademyService {
 			return sixAttList;
 		}
 	}
-	
+
 
 	// by 안준언, 출석 반환
 	public Attendance getAttendance(Integer attendanceId) {

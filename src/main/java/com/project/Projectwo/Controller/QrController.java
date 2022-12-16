@@ -90,9 +90,9 @@ public class QrController {
 
 			Student student = memberService.getStudent(member, course);
 
-			Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
+			Attendance attendance = academyService.getTodayAttendance(student);
 
-			if (attendance == null) {
+			if (attendance.getInTime() == null) {
 				attendanceService.regAttendance(course, student, localDate);
 
 			} else {
@@ -103,51 +103,51 @@ public class QrController {
 		return "redirect:/course/" + memberId + "/" + courseId;
 	}
 
-	// by 박은영
-	// 선생님 권한으로 학생 출결 정보 조회
-	@GetMapping("/teacher/{courseId}/{date}")
-	public String getAttendance(@PathVariable("courseId") Integer courseId, @PathVariable("date") String date,
-			Model model1, Model model2, Model model3, Model model4) {
-
-		// Date
-		String stringDate = date;
-
-		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-
-		LocalDate localDate = LocalDate.parse(stringDate, formatter);
-
-		model1.addAttribute("localDate", localDate);
-
-		// Course
-		Course course = academyService.getCourse(courseId);
-		model2.addAttribute("course", course);
-
-		log.info("강의명=" + course.getTitle());
-
-		// course로부터 학생 목록 가져오기
-		List<Student> classStudentList = this.academyService.getStudentList(course);
-
-		ArrayList<Member> studentMemberList = new ArrayList<Member>();
-		ArrayList<Attendance> todayAttendanceList = new ArrayList<Attendance>();
-
-		Map<Member, Attendance> map = new HashMap<Member, Attendance>();
-
-		for (int i = 0; i < classStudentList.size(); i++) {
-
-			// student에서 member로 전환 (이름 가져오려고)
-			Student student = classStudentList.get(i);
-			Member member = student.getStudent();
-
-			// "일별" 학생 출결 정보 가져오기
-			Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
-
-			map.put(member, attendance);
-
-		}
-		model3.addAttribute("map", map);
-
-		// ---------------------------------------------------------------------//
-
-		return "attendance";
-	}
+//	// by 박은영
+//	// 선생님 권한으로 학생 출결 정보 조회
+//	@GetMapping("/teacher/{courseId}/{date}")
+//	public String getAttendance(@PathVariable("courseId") Integer courseId, @PathVariable("date") String date,
+//			Model model1, Model model2, Model model3, Model model4) {
+//
+//		// Date
+//		String stringDate = date;
+//
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//
+//		LocalDate localDate = LocalDate.parse(stringDate, formatter);
+//
+//		model1.addAttribute("localDate", localDate);
+//
+//		// Course
+//		Course course = academyService.getCourse(courseId);
+//		model2.addAttribute("course", course);
+//
+//		log.info("강의명=" + course.getTitle());
+//
+//		// course로부터 학생 목록 가져오기
+//		List<Student> classStudentList = this.academyService.getStudentList(course);
+//
+//		ArrayList<Member> studentMemberList = new ArrayList<Member>();
+//		ArrayList<Attendance> todayAttendanceList = new ArrayList<Attendance>();
+//
+//		Map<Member, Attendance> map = new HashMap<Member, Attendance>();
+//
+//		for (int i = 0; i < classStudentList.size(); i++) {
+//
+//			// student에서 member로 전환 (이름 가져오려고)
+//			Student student = classStudentList.get(i);
+//			Member member = student.getStudent();
+//
+//			// "일별" 학생 출결 정보 가져오기
+//			Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
+//
+//			map.put(member, attendance);
+//
+//		}
+//		model3.addAttribute("map", map);
+//
+//		// ---------------------------------------------------------------------//
+//
+//		return "attendance";
+//	}
 }
