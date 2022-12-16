@@ -32,7 +32,7 @@ public class AttendanceService {
 	private final CourseRepository courseRepository;
 	private final StudentRepository studentRepository;
 	private final FCMService fcmService;
-	
+
 //	//by 박은영
 //	//선생님 권한으로 입실자 수 조회
 //	public int[] getAttendanceNum(Course course, LocalDate localDate) {
@@ -132,7 +132,8 @@ public class AttendanceService {
 		attendanceRepository.save(attendance);
 
 	}
-	//by 박은영
+
+	// by 박은영
 	// 푸시알림 타이머
 	public void pushNotificationTimer(Member member, Course course, Attendance attendance) {
 
@@ -140,59 +141,118 @@ public class AttendanceService {
 		log.info("##############push timer's token=" + token);
 
 		if (course != null) {
+			if (attendance.getOutTime() == null) {
 
-			// 강의 종료 시간 - 강의 시작 시간
-			long startTime = course.getStartTime().getLong(ChronoField.MILLI_OF_DAY);
-			long endTime = course.getEndTime().getLong(ChronoField.MILLI_OF_DAY);
-			long courseTime = endTime - startTime;
+				// 강의 종료 시간 - 강의 시작 시간
+				long startTime = course.getStartTime().getLong(ChronoField.MILLI_OF_DAY);
+				long endTime = course.getEndTime().getLong(ChronoField.MILLI_OF_DAY);
+				long courseTime = endTime - startTime;
 
-			// 강의 시작 시간 - 입실 시간
-			long checkInTime = 0;
-			// if(attendance.getInTime() != null) {
-			checkInTime = attendance.getInTime().getLong(ChronoField.MILLI_OF_DAY);
-			// }
-			long gap = startTime - checkInTime;
-			
-			//강의 졸료시간(delay) = 강의 진행시간 + (강의 시작시간 - 입실시간)을 통해 강의 종료시간에 맞춰 푸시알림이 가게 함 
-			long delay = courseTime + gap;
+				// 강의 시작 시간 - 입실 시간
+				long checkInTime = 0;
+				// if(attendance.getInTime() != null) {
+				checkInTime = attendance.getInTime().getLong(ChronoField.MILLI_OF_DAY);
+				// }
+				long gap = startTime - checkInTime;
 
-			log.info("####startTime=" + startTime);
-			log.info("####endTime=" + endTime);
-			log.info("####courseTime=" + courseTime);
-			log.info("####checkInTime=" + checkInTime);
-			log.info("####gap=" + gap);
-			log.info("####delay=" + delay);
+				// 강의 종료시간(delay) = 강의 진행시간 + (강의 시작시간 - 입실시간)을 통해 강의 종료시간에 맞춰 푸시알림이 가게 함
+				long delay = 0;
 
-			// 2분 간격
-			long period = 120000;
+				if (gap >= 0) { // 정상 출결인 경우
+					delay = courseTime + gap;
+				} else { // 지각인 경우
+					delay = courseTime - gap;
+				}
 
-			TimerTask timerTask = new TimerTask() {
+				log.info("####startTime=" + startTime);
+				log.info("####endTime=" + endTime);
+				log.info("####courseTime=" + courseTime);
+				log.info("####checkInTime=" + checkInTime);
+				log.info("####gap=" + gap);
+				log.info("####delay=" + delay);
 
-				@Override
-				public void run() {
+				// 2분 간격
+				long period = 120000;
 
-					// 데이터베이스 비교해서 입실 상태이면 "알림 보내기"
-					if (attendance.getStatus().equals("입실") || attendance.getStatus().equals("지각")) {
-						log.info("####푸시알림####");
+				TimerTask timerTask = new TimerTask() {
 
-						String response = "";
-						try {
-							response = fcmService.sendMessage(token);
+					@Override
+					public void run() {
 
-						} catch (FirebaseMessagingException e) {
+						// 데이터베이스 비교해서 입실 상태이면 "알림 보내기"
+						if (attendance.getStatus().equals("입실") || attendance.getStatus().equals("지각")) {
+							log.info("####푸시알림####");
 
-							e.printStackTrace();
+							String response = "";
+							try {
+								response = fcmService.sendMessage(token);
+
+							} catch (FirebaseMessagingException e) {
+
+								e.printStackTrace();
+							}
+
+							log.info("#######FirebaseMessaging=" + response);
+
 						}
-
-						log.info("#######FirebaseMessaging=" + response);
-
 					}
 				};
-			};
-			Timer timer = new Timer();
-			timer.schedule(timerTask, delay, period);
-			
-			//TODO: timer.cancel()은 아직 미구현
+				TimerTask timerTask2 = new TimerTask() {
+
+					@Override
+					public void run() {
+
+						// 데이터베이스 비교해서 입실 상태이면 "알림 보내기"
+						if (attendance.getStatus().equals("입실") || attendance.getStatus().equals("지각")) {
+							log.info("####푸시알림####");
+
+							String response = "";
+							try {
+								response = fcmService.sendMessage(token);
+
+							} catch (FirebaseMessagingException e) {
+
+								e.printStackTrace();
+							}
+
+							log.info("#######FirebaseMessaging=" + response);
+
+						}
+					};
+				};
+				TimerTask timerTask3 = new TimerTask() {
+
+					@Override
+					public void run() {
+
+						// 데이터베이스 비교해서 입실 상태이면 "알림 보내기"
+						if (attendance.getStatus().equals("입실") || attendance.getStatus().equals("지각")) {
+							log.info("####푸시알림####");
+
+							String response = "";
+							try {
+								response = fcmService.sendMessage(token);
+
+							} catch (FirebaseMessagingException e) {
+
+								e.printStackTrace();
+							}
+
+							log.info("#######FirebaseMessaging=" + response);
+
+						}
+					};
+				};
+
+				// 강의 종료시간부터 2분 간격으로 총 3번 알림
+				Timer timer = new Timer();
+				timer.schedule(timerTask, delay);
+				timer.schedule(timerTask2, (delay + period));
+				timer.schedule(timerTask3, (delay + period + period));
+
+			} else {
+				log.info("####결석/조퇴/미출결이라 푸시알림 안감");
+			}
 		}
 	}
 }
