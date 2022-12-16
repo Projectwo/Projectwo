@@ -27,10 +27,14 @@
 			</button>
 			<div class="teacher-create-qrcode">
 <<<<<<< HEAD
+<<<<<<< HEAD
 				<button href="javascript:;" th:href="@{|/createQr/${teacher.course.id}|}" id="QR_create_btn"
 =======
 				<button type="button" href="javascript:;" id="QR_create_btn" th:data-courseId="${course.id}"
 >>>>>>> yuran
+=======
+				<button type="button" href="javascript:;" id="QR_create_btn" th:data-courseId="${course.id}"
+>>>>>>> fb7de58fff8f7aa2fcc432f8e3b22912b4bd1124
 					th:text="|QR 생성|"></button>
 			</div>
 		</div><!-- sec:role teacher 일 때 -->
@@ -160,6 +164,12 @@
 			});
 		});
 
+		$(document).ready(function () {
+			$("#QR_create_btn").click(function (e) {
+				courseId = e.currentTarget.dataset.courseid;
+				location.href = `/createQr/`+courseId;
+			});
+		});
 		//by 장유란, 2. 버튼 클릭으로 함수 실행 시 app내부 open함수 실행
 		function send_beacon() {
 			//<!-- 안드로이드로 보낸다 -->

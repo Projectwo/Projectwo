@@ -332,53 +332,53 @@ public class AcademyService {
 		
 		this.studentRepository.save(classMember);
 		
-		for(LocalDate date = course.getStartDate(); date.isBefore(course.getEndDate().plusDays(1)); date = date.plusDays(1)) {
-
-			Attendance attendance = new Attendance();
-			attendance.setStudent(classMember);
-			attendance.setToday(date);
-			attendance.setStatus("미출결");
-			
-			DayOfWeek dayOfWeek = date.getDayOfWeek();
-			
-			switch(dayOfWeek) {
-			case SUNDAY :
-				if(course.isSun()) {
-					this.attendanceRepository.save(attendance);
-				}
-				break;
-			case MONDAY :
-				if(course.isMon()) {
-					this.attendanceRepository.save(attendance);
-				}
-				break;
-			case TUESDAY :
-				if(course.isTue()) {
-					this.attendanceRepository.save(attendance);
-				}
-				break;
-			case WEDNESDAY :
-				if(course.isWed()) {
-					this.attendanceRepository.save(attendance);
-				}
-				break;
-			case THURSDAY :
-				if(course.isThu()) {
-					this.attendanceRepository.save(attendance);
-				}
-				break;
-			case FRIDAY :
-				if(course.isFri()) {
-					this.attendanceRepository.save(attendance);
-				}
-				break;
-			case SATURDAY :
-				if(course.isSat()) {
-					this.attendanceRepository.save(attendance);
-				}
-				break;
-			}
-		}
+//		for(LocalDate date = course.getStartDate(); date.isBefore(course.getEndDate().plusDays(1)); date = date.plusDays(1)) {
+//
+//			Attendance attendance = new Attendance();
+//			attendance.setStudent(classMember);
+//			attendance.setToday(date);
+//			attendance.setStatus("미출결");
+//			
+//			DayOfWeek dayOfWeek = date.getDayOfWeek();
+//			
+//			switch(dayOfWeek) {
+//			case SUNDAY :
+//				if(course.isSun()) {
+//					this.attendanceRepository.save(attendance);
+//				}
+//				break;
+//			case MONDAY :
+//				if(course.isMon()) {
+//					this.attendanceRepository.save(attendance);
+//				}
+//				break;
+//			case TUESDAY :
+//				if(course.isTue()) {
+//					this.attendanceRepository.save(attendance);
+//				}
+//				break;
+//			case WEDNESDAY :
+//				if(course.isWed()) {
+//					this.attendanceRepository.save(attendance);
+//				}
+//				break;
+//			case THURSDAY :
+//				if(course.isThu()) {
+//					this.attendanceRepository.save(attendance);
+//				}
+//				break;
+//			case FRIDAY :
+//				if(course.isFri()) {
+//					this.attendanceRepository.save(attendance);
+//				}
+//				break;
+//			case SATURDAY :
+//				if(course.isSat()) {
+//					this.attendanceRepository.save(attendance);
+//				}
+//				break;
+//			}
+//		}
 	}
 		
 	// by 안준언, 강사 등록
