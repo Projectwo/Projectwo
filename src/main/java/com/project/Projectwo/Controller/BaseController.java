@@ -32,6 +32,7 @@ public class BaseController {
 	private final StudentRepository studentRepository;
 	private final MemberRepository memberRepository;
 	static int classCnt = 0;
+
 	@RequestMapping("/")
     public String root(){
         return "member/login";
@@ -53,89 +54,20 @@ public class BaseController {
     		return "member/member_step";
     	}
     }
-    
-    // @GetMapping("/signup")
-	// public String signup(MemberCreateForm memberCreateForm) {
-	// 	return "signup_form";
-	// }
-	
-	// public String signup(@Valid MemberCreateForm memberCreateForm,
-	// 						BindingResult bindingResult) {
-	// 	if(bindingResult.hasErrors()) {
-	// 		return "signup_form";
-	// 	}
-		
-	// 	if(!memberCreateForm.getPassword1().equals(memberCreateForm.getPassword2())) {
-	// 		bindingResult.rejectValue("password2", "passwordIncorrect",
-	// 									"2개의 비밀번호가 일치하지 않습니다.");
-	// 		return "signup_form";
-	// 	}
-		
-	// 	try {
-	// 		academyService.createMember(memberCreateForm.getIdentity(), memberCreateForm.getPassword1(),
-	// 				memberCreateForm.getName(), memberCreateForm.getEmail(),
-	// 				memberCreateForm.getBirth_date(), memberCreateForm.getAddress(),
-	// 				memberCreateForm.getTel());
-	// 	} catch(DataIntegrityViolationException e) {
-	// 		e.printStackTrace();
-	// 		bindingResult.reject("signupFailed", "이미 등록된 사용자입니다.");
-	// 		return "signup_form";
-	// 	} catch(Exception e) {
-	// 		e.printStackTrace();
-	// 		bindingResult.reject("signupFailed", e.getMessage());
-	// 		return "signup_form";
-	// 	}
 
-	// 	return "redirect:/";
-	// }
-
-	@RequestMapping("/main/lecture/detail")
-	public String lectureDetail(Principal principal, Model model){
-
-		Member member = this.memberService.getMember(principal.getName());
-
-		List<AcademyNotice> academyNotices = academyService.getAllAcademyNotice();
-		model.addAttribute("academyNotices", academyNotices);
-
-		if(member.getRole().equals("student")) {
-			List<Student> student = studentRepository.findByStudent(member);
-			List<Attendance> attendanceList= student.get(classCnt).getAttendanceList();
-			List<Student> studentClassList = member.getStudentClassList();
-			model.addAttribute("classList", studentClassList);
-			model.addAttribute("classCnt", classCnt);
-			model.addAttribute("attendanceList", attendanceList);
-			
-		}else if(member.getRole().equals("teacher")){
-			List<Teacher> teacherClassList = member.getTeacherClassList();
-			model.addAttribute("classList", teacherClassList);
-		}
-
-		return "lecture/lecture_detail";
+	@RequestMapping("/password/forgot")
+	public String forgotPassword(){
+		return "member/password_forgot";
 	}
 
-	@RequestMapping("/main/lecture/check/student")
-	public String studentCheck(){
-		return "member/student_check";
-	}
-
-	@RequestMapping("/main/lecture/check/teacher")
-	public String teacherCheck(){
-		return "member/teacher_check";
-	}
-
-	@RequestMapping("/main/password/modify")
-	public String passwordModify(){
+	@RequestMapping("/password/modify")
+	public String modifyPassword(){
 		return "member/password_modify";
 	}
 
-	@RequestMapping("/main/password/modify/complete")
-	public String passwordModifyComplete(){
+	@RequestMapping("/password/modify/complete")
+	public String completeModifyPassword(){
 		return "member/password_modify_complete";
-	}
-	
-	@RequestMapping("/password/forgot")
-	public String passwordForgot(){
-		return "member/password_forgot";
 	}
 
 	@GetMapping("/saveToken")

@@ -1,165 +1,89 @@
 <html layout:decorate="~{layout/layout}">
 
 <div layout:fragment="content" sec:authorize="hasAnyRole('STUDENT', 'TEACHER')">
-    <div class="main-profile">
-        <div class="main-profile-text">
-            그린 컴퓨터 아카데미<br><!-- b에 이름, span에 권한 -->
-            <b>홍길동</b>
-            <span sec:authorize="hasRole('STUDENT')">수강생</span>
-            <span sec:authorize="hasRole('TEACHER')">강사</span>
-            님
-        </div>
-    </div>
-    <div class="notice-new-alarm">
-        <b>읽지 않은 공지 1건</b>
-    </div>
-    <a th:href="@{/main/lecture/detail}">
-        <div class="main-lecture check">
-            <div class="lecture-name">
-                <!-- b에 강의명, span에 학원명 -->
-                <b>Java 기초 과정</b> @<span>426호실</span>
-            </div>
-        </div>
-    </a>
-    <div class="check-count-section">
-        <div class="check-count-all-day">
-            <b>총 일수</b>
-            <span>120</span>
-        </div>
-        <div class="check-count-in-day">
-            <b>출석일수</b>
-            <span>100</span>
-        </div>
-        <div class="check-count-in-rate">
-            <b>참여율</b>
-            <span>87.4%</span>
-        </div>
-    </div>
-    <div class="check-inout-today student">
-        Day <span>12/01</span>
-        <div class="student-daily-check detail">
-            <div class="daily-checkin-time">
-                <span>입실</span><br>
-                <b>10:02</b>
-            </div>
-            <div class="daily-checkout-time">
-                <span>퇴실</span><br>
-                <b>17:52</b>
-            </div>
-        </div>
-    </div>
-    <div class="check-inout-period student">
-        Period
-        <div class="student-period-check">
-            <a th:href="@{/main/lecture/check/student}">
-                <div class="student-period-check-daily">
-                    <span>12/01</span>
-                    <b>출석</b>
-                </div>
-            </a>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-            <div class="student-period-check-daily">
-                <span>12/01</span>
-                <b>출석</b>
-            </div>
-        </div>
-    </div>
-    <footer th:replace="fragments/main_footer :: mainFooterFragment"></footer>
+	<div class="main-profile">
+		<div class="main-profile-text">
+			그린 컴퓨터 아카데미<br><!-- b에 이름, span에 권한 -->
+			<b th:text="${member.name}">홍길동</b>
+			<span sec:authorize="hasRole('STUDENT')">수강생</span>
+			<span sec:authorize="hasRole('TEACHER')">강사</span>
+			님
+		</div>
+	</div>
+	<div class="notice-new-alarm">
+		<b>읽지 않은 공지 1건</b>
+	</div>
+	<a th:href="@{|/course/${member.id}/${course.id}/detail|}">
+		<div class="main-lecture check">
+			<div class="lecture-name" th:data-courseId=${course.id}>
+				<!-- b에 강의명, span에 학원명 -->
+				<b th:text="${course.title}">Java 기초 과정</b><span th:text="| @${course.room.name}호실|">426호실</span>
+			</div>
+		</div>
+	</a>
+	<div class="check-count-section">
+		<div class="check-count-all-day">
+			<b>총 일수</b>
+			<span th:text="${#lists.size(student.attendanceList)}">120</span>
+		</div>
+		<div class="check-count-in-day">
+			<b>출석일수</b>
+			<span th:text="${#numbers.formatInteger(attCnt, 1, 'COMMA')}">100</span>
+		</div>
+		<div class="check-count-in-rate">
+			<b>참여율</b>
+			<span th:text="|${#numbers.formatInteger(attAvg, 1, 'COMMA')}%|">87.4%</span>
+		</div>
+	</div>
+	<div class="check-inout-today student">
+		Day <span th:text="|${#temporals.month(_attendance.today)}/${#temporals.day(_attendance.today)}|">12/01</span>
+		<div class="student-daily-check detail">
+			<div class="daily-checkin-time">
+				<span>입실</span><br>
+				<b th:if="${_attendance.inTime == null}">--:--</b>
+				<b th:if="${_attendance.inTime != null}"
+					th:text="${#temporals.format(_attendance.inTime, 'HH:mm')}">10:02</b>
+			</div>
+			<div class="daily-checkout-time">
+				<span>퇴실</span><br>
+				<b th:if="${_attendance.outTime == null}" >--:--</b>
+				<b th:if="${_attendance.outTime != null}"
+					th:text="${#temporals.format(_attendance.outTime, 'HH:mm')}">10:02</b>
+			</div>
+		</div>
+	</div>
+	<div class="check-inout-period student">
+		Period
+		<div class="student-period-check">
+			<a th:each="attendance : ${student.attendanceList}"
+				th:href="@{|/course/${member.id}/${course.id}/attendance/${attendance.id}|}">
+				<div  class="student-period-check-daily" th:if="${attendance.status != '미출결'}"
+					th:switch="${attendance.status}" th:classappend="${attendance.status}">
+					<span
+						th:text="|${#temporals.month(attendance.today)}/${#temporals.day(attendance.today)}|">12/01</span>
+					<span th:case="${'출석'}" th:text="${attendance.status}">출석</span>
+					<span th:case="${'지각'}" th:text="${attendance.status}">지각</span>
+					<span th:case="${'조퇴'}" th:text="${attendance.status}">조퇴</span>
+					<span th:case="${'결석'}" th:text="${attendance.status}">결석</span>
+				</div>
+				<div class="student-period-check-daily"
+					th:if="${attendance.status == '미출결'} and ${#temporals.format(attendance.today, 'yyyy-MM-dd')} == ${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')} or ${#temporals.format(attendance.today, 'yyyy-MM-dd')} > ${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}"
+					th:classappend="${attendance.status}">
+					<span
+						th:text="|${#temporals.month(attendance.today)}/${#temporals.day(attendance.today)}|">12/01</span>
+					<span>미출결</span>
+				</div>
+				<div class="student-period-check-daily"
+					th:if="${attendance.status == '결석'} and ${#temporals.format(attendance.today, 'yyyy-MM-dd')} != ${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')} and ${#temporals.format(attendance.today, 'yyyy-MM-dd')} < ${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}"
+					th:classappend="결석">
+					<span
+						th:text="|${#temporals.month(attendance.today)}/${#temporals.day(attendance.today)}|">12/01</span>
+					<span>결석</span>
+				</div>
+			</a>
+		</div>
+	</div>
+	<footer th:replace="fragments/main_footer :: mainFooterFragment"></footer>
 </div>
 
 </html>

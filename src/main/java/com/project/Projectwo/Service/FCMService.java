@@ -28,11 +28,7 @@ public class FCMService {
     @Value("${fcm.key.path}")
     private String FCM_PRIVATE_KEY_PATH;
 
-
-//    //메시징만 권한 설정
-//    @Value("${fcm.key.scope}")
-//    private String fireBaseScope;
-
+    //by 박은영
     //fcm 기본 설정 진행
     //init: Firebase에 Admin계정을 인증하는 작업
     @PostConstruct
@@ -63,9 +59,25 @@ public class FCMService {
     }
 
 
+    //by 박은영
     //알림 보내기
 	public String sendMessage(String registrationToken) throws FirebaseMessagingException {
-			
+		int randNum = (int) (Math.random() * 3);
+		String msg = "";
+		switch (randNum) {
+			case 1:
+				msg = "퇴실이 완료되지 않았습니다.";
+				break;
+			case 2:
+				msg = "퇴실이 완료되지 않았습니다.";
+				break;
+			case 3:
+				msg = "퇴실이 완료되지 않았습니다.";
+				break;
+			default:
+				msg = "퇴실이 완료되지 않았습니다.";
+				break;
+			}
 			Message message = Message.builder()
 				    .setAndroidConfig(AndroidConfig.builder()
 				    		.setTtl(3600*1000)
@@ -73,8 +85,8 @@ public class FCMService {
 				    		.setRestrictedPackageName("com.project.projectapp")
 				    		.setDirectBootOk(true)
 				    		.setNotification(AndroidNotification.builder()
-				    				.setTitle("ProjectApp")
-				    				.setBody("미퇴실 알림")
+				    				.setTitle("@I'm here")
+				    				.setBody(msg)
 				    				.build())
 				    		.build())
 				    //.putData("requestId", Integer.toString(requestId))

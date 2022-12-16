@@ -17,7 +17,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.view.AbstractView;
 
 import com.google.zxing.BarcodeFormat;
-import com.google.zxing.WriterException;
 import com.google.zxing.client.j2se.MatrixToImageWriter;
 import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
@@ -52,26 +51,26 @@ public class QrCodeView extends AbstractView {
         outputStream.flush();
         
         
-        //QR코드 저장
-        BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
-		
-		//yyyyMMddHHmmss형식의 날짜 및 시간 정보 파일명에 추가
-		String datetimeStr = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
-		
-		String savePath = "C:\\dev\\ws_spring\\qrImage";
-		File file = new File(savePath);
-		String fileName;
-		try {
-			fileName = datetimeStr + "qr";
-			
-			//파일 생성
-			File temp = new File(savePath + "/" + fileName + ".png");
-			
-			//ImageIO를 사용하여 파일 쓰기
-			ImageIO.write(bufferedImage, "png", temp);
-		}catch (IOException e) {
-			e.printStackTrace();
-        
-		}
+//        //QR코드 저장
+//        BufferedImage bufferedImage = MatrixToImageWriter.toBufferedImage(bitMatrix);
+//		
+//		//yyyyMMddHHmmss형식의 날짜 및 시간 정보 파일명에 추가
+//		String datetimeStr = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMddHHmmss"));
+//		
+//		String savePath = "C:\\dev\\spring\\qrImage";
+//		File file = new File(savePath);
+//		String fileName;
+//		try {
+//			fileName = datetimeStr + "qr";
+//			
+//			//파일 생성
+//			File temp = new File(savePath + "/" + fileName + ".png");
+//			
+//			//ImageIO를 사용하여 파일 쓰기
+//			ImageIO.write(bufferedImage, "png", temp);
+//		}catch (IOException e) {
+//			e.printStackTrace();
+//        
+//		}
     }
 }
