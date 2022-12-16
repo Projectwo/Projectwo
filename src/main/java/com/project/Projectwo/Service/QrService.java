@@ -12,14 +12,6 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
 
-<<<<<<< HEAD
-import com.project.Projectwo.Entity.Member;
-import com.project.Projectwo.Entity.Student;
-import com.project.Projectwo.Entity.Teacher;
-import com.project.Projectwo.Service.MemberService;
-
-=======
->>>>>>> dev
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -29,13 +21,9 @@ import lombok.extern.slf4j.Slf4j;
 public class QrService {
 	
 	private final MemberService memberService;
-	
-<<<<<<< HEAD
-	//by 박은영 (IP주소 얻기)
-=======
+
 	//by 박은영 
 	//IP주소 얻기
->>>>>>> dev
 	public static String getIp(){
 	    String result = null;
 	    try {
@@ -46,13 +34,9 @@ public class QrService {
 	   return result; 
 	}
 	
-	
-<<<<<<< HEAD
-	//by 박은영 (QR코드 생성)
-=======
+
 	//by 박은영
 	//QR코드 생성
->>>>>>> dev
 	public void createQr(HttpServletRequest request, HttpServletResponse response, Integer courseId) {
 
 		QrCodeView qrCodeView = new QrCodeView();
@@ -62,12 +46,8 @@ public class QrService {
 		LocalDate localDate = LocalDate.now();
 		String stringDate = localDate.toString();
 
-<<<<<<< HEAD
-		String content = "http://" + ip + ":9090/attend/" + courseId + "/" + stringDate;
-		
-=======
 		String content = "http://" + "192.168.100.19" + ":9090/attend/" + courseId + "/" + stringDate;
->>>>>>> dev
+		
 		log.info("####QR주소=" + content);
 			
 		Map<String, Object> model = new HashMap<>();
