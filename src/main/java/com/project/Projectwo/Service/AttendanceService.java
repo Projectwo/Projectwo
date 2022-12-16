@@ -130,7 +130,8 @@ public class AttendanceService {
 		attendanceRepository.save(attendance);
 
 	}
-	//by 박은영
+
+	// by 박은영
 	// 푸시알림 타이머
 	public void pushNotificationTimer(Member member, Course course, Attendance attendance) {
 
@@ -150,8 +151,8 @@ public class AttendanceService {
 			checkInTime = attendance.getInTime().getLong(ChronoField.MILLI_OF_DAY);
 			// }
 			long gap = startTime - checkInTime;
-			
-			//강의 졸료시간(delay) = 강의 진행시간 + (강의 시작시간 - 입실시간)을 통해 강의 종료시간에 맞춰 푸시알림이 가게 함 
+
+			// 강의 졸료시간(delay) = 강의 진행시간 + (강의 시작시간 - 입실시간)을 통해 강의 종료시간에 맞춰 푸시알림이 가게 함
 			long delay = courseTime + gap;
 
 			log.info("####startTime=" + startTime);
@@ -187,10 +188,14 @@ public class AttendanceService {
 					}
 				};
 			};
-			Timer timer = new Timer();
-			timer.schedule(timerTask, delay, period);
-			
-			//TODO: timer.cancel()은 아직 미구현
+			if(delay>0) {
+				Timer timer = new Timer();
+				timer.schedule(timerTask, delay);
+				timer.schedule(timerTask, (delay + period));
+				timer.schedule(timerTask, (delay + period + period));
+			}
+
+			// TODO: timer.cancel()은 아직 미구현
 		}
 	}
 }

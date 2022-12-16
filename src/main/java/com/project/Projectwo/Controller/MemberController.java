@@ -63,9 +63,12 @@ public class MemberController {
 
 			//by 박은영
 			//출석 또는 지각 상태일 경우 강의 종료시간에 맞춰 푸시알림 
-//			if(attendance != null) {
-//				attendanceService.pushNotificationTimer(member, course, attendance);		
-//			}
+			if(attendance != null) {
+				if(attendance.getInTime() != null) {
+					
+					attendanceService.pushNotificationTimer(member, course, attendance);		
+				}
+			}
 		}
 		
 		if(member.getRole().equals("teacher")) {
