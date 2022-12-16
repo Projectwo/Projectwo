@@ -139,7 +139,7 @@
 			});
 			$("#QR_btn").click(function () {
 				if (attendCheckSetting() == true) {
-					if (attend_status2 == null) {
+					if (attend_status2 == null && attend_status != '결석') {
 						// by 장유란, 퇴실시간이 없고 출석이 가능한 상태일 때
 						send_qr();
 					} else {
