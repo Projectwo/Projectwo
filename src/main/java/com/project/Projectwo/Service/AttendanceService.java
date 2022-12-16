@@ -31,6 +31,7 @@ public class AttendanceService {
 	private final CourseRepository courseRepository;
 	private final StudentRepository studentRepository;
 	private final FCMService fcmService;
+	private final AcademyService academyService;
 	
 //	//by 박은영
 //	//선생님 권한으로 입실자 수 조회
@@ -69,33 +70,34 @@ public class AttendanceService {
 	
 	//by 박은영
 	//'당일' 학생 출결 정보 가져오기
-	public Attendance getTodayAttendance(Student student, LocalDate localDate) {
-		Optional<Attendance> oAttendance = attendanceRepository.findByStudentAndToday(student, localDate);
-		
-		if(oAttendance.isEmpty()) {
-			return null;
-		}
-		
-		Attendance todayAttendance = oAttendance.get();
-		return todayAttendance;
-	}
+//	public Attendance getTodayAttendance(Student student, LocalDate localDate) {
+//		Optional<Attendance> oAttendance = attendanceRepository.findByStudentAndToday(student, localDate);
+//		
+//		if(oAttendance.isEmpty()) {
+//			return null;
+//		}
+//		
+//		Attendance todayAttendance = oAttendance.get();
+//		return todayAttendance;
+//	}
 
 	//입실
 	public void regAttendance(Course course, Student student, LocalDate localDate) {
-		Attendance attendance = new Attendance();
+		Optional<Attendance> attendanceTmp = attendanceRepository.findByStudentAndToday(student, localDate);
+		Attendance attendance = attendanceTmp.get();
 		attendance.setStudent(student);
 		attendance.setToday(localDate);
 		attendance.setInTime(LocalTime.now());
 		
-		
 			//course 시작시간과 비교
 			attendance.setStatus("입실");
-			
-			if(course.getStartTime().isBefore(attendance.getInTime())) {
-				attendance.setStatus("지각");
-				
-				if(course.getEndTime().isBefore(attendance.getInTime())) {
-					attendance.setStatus("결석");
+			if(attendance.getInTime() != null) {
+				if(course.getStartTime().isBefore(attendance.getInTime())) {
+					attendance.setStatus("지각");
+					
+					if(course.getEndTime().isBefore(attendance.getInTime())) {
+						attendance.setStatus("결석");
+					}
 				}
 			}
 			
@@ -105,26 +107,28 @@ public class AttendanceService {
 	
 	//퇴실
 	public void regLeave(Course course, Student student, LocalDate localDate) {
-		Attendance attendance = this.getTodayAttendance(student, localDate);
+		//Attendance attendance = this.getTodayAttendance(student, localDate);
+		Optional<Attendance> attendanceTmp = attendanceRepository.findByStudentAndToday(student, localDate);
+		Attendance attendance = attendanceTmp.get();
 		attendance.setOutTime(LocalTime.now());
 		
 		attendance.setStatus("출석");
-		
-		if(course.getStartTime().isBefore(attendance.getInTime())) {
-			attendance.setStatus("지각");	
+		if(attendance.getInTime() != null) {
+			if(course.getStartTime().isBefore(attendance.getInTime())) {
+				attendance.setStatus("지각");	
+			}
+			
+			if(course.getEndTime().isAfter(attendance.getOutTime())) {
+				attendance.setStatus("조퇴");	
+			}
+			
+			if(course.getEndTime().isBefore(attendance.getInTime())) {
+				attendance.setStatus("결석");
+			}
+			if(attendance.getOutTime().isAfter(course.getEndTime().plusHours(1))) {
+				attendance.setStatus("결석");
+			}
 		}
-		
-		if(course.getEndTime().isAfter(attendance.getOutTime())) {
-			attendance.setStatus("조퇴");	
-		}
-		
-		if(course.getEndTime().isBefore(attendance.getInTime())) {
-			attendance.setStatus("결석");
-		}
-		if(attendance.getOutTime().isAfter(course.getEndTime().plusHours(1))) {
-			attendance.setStatus("결석");
-		}
-		
 		log.info("####attendance's status" + attendance.getStatus());
 		
 		attendanceRepository.save(attendance);
@@ -147,10 +151,7 @@ public class AttendanceService {
 			long courseTime = endTime - startTime;
 			
 			//강의 시작 시간 - 입실 시간
-			long checkInTime = 0;
-			//if(attendance.getInTime() != null) {
-			checkInTime = attendance.getInTime().getLong(ChronoField.MILLI_OF_DAY);
-			//}
+			long checkInTime = attendance.getInTime().getLong(ChronoField.MILLI_OF_DAY);
 			long gap = startTime - checkInTime;
 			long delay = courseTime + gap;
 			
@@ -190,7 +191,5 @@ public class AttendanceService {
 			Timer timer = new Timer();
 			timer.schedule(timerTask, delay, period);
 		}
-		
-		
 	}
 }

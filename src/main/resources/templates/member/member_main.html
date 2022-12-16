@@ -15,7 +15,7 @@
     </div>
     <a sec:authorize="hasRole('STUDENT')" th:href="@{|/course/${member.id}/${course.id}/detail|}">
         <div class="main-lecture">
-            <div class="lecture-name" th:data-courseId=${course.id}>
+            <div class="lecture-name" th:data-courseId="${course.id}">
                 <b th:text="${course.title}">Java 기초 과정</b><span th:text="| @${course.room.name}호실|"></span>
             </div>
             <div class="lecture-info">
@@ -80,8 +80,8 @@
     <div class="student-checkinout" sec:authorize="hasRole('STUDENT')">
         <div class="student-today">
             Today <span></span>
-            <div class="student-daily-check" th:if="${attendance == null}" style="background-color:#444">
-                <div class="daily-date">
+            <div class="student-daily-check" th:if="${attendance == null}" style="background-color:#444" >
+                <div class="daily-date" >
                     <span th:if="${#temporals.format(course.startDate, 'yyyy-MM-dd')} > ${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}" style="color:#fff;">아직 개강하지 않은 수업입니다.</span>
                     <span th:if="${#temporals.format(course.endDate, 'yyyy-MM-dd')} < ${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}" style="color:#fff;">이미 종료된 수업입니다.</span>
                 </div>
@@ -93,13 +93,14 @@
                         <b th:if="${attendance != null}" th:text="${#temporals.dayOfWeekNameShort(attendance.today)}"></b>
                         <span th:if="${attendance == null}">오늘은 수업이 없는 날입니다!</span>
                     </div>
-                    <span class="daily-status" th:if="${attendance != null}" th:text="${attendance.status}"></span>
+                    <span class="daily-status" th:if="${attendance != null}" th:text="${attendance.status}" th:data-status="${attendance.status}" th:data-outTime="${attendance.outTime}"></span>
                 </div>
             </a>
         </div>
         <div class="student-weekly">
             Recent
-            <div class="student-weekly-check">                <a th:href="@{|/course/${member.id}/${course.id}/attendance/${attendance.id}|}" th:each="attendance : ${sixAttList}">
+            <div class="student-weekly-check">                
+            <a th:href="@{|/course/${member.id}/${course.id}/attendance/${attendance.id}|}" th:each="attendance : ${sixAttList}">
                     <div class="student-weekly-date" th:if="${attendance.status != '미출결'}" th:switch="${attendance.status}" th:classappend="${attendance.status}">
                         <span th:text="|${#temporals.month(attendance.today)}/${#temporals.day(attendance.today)}|">12/01</span>
                         <span th:case="${'출석'}" th:text="${attendance.status}">출석</span>
@@ -110,7 +111,7 @@
                         <span th:text="|${#temporals.month(attendance.today)}/${#temporals.day(attendance.today)}|">12/01</span>
                         <span>미출결</span>
                     </div>
-                    <div class="student-weekly-date" th:if="${attendance.status == '미출결'} and ${#temporals.format(attendance.today, 'yyyy-MM-dd')} != ${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')} and ${#temporals.format(attendance.today, 'yyyy-MM-dd')} < ${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}" th:classappend="결석">
+                    <div class="student-weekly-date" th:if="${attendance.status == '결석'} and ${#temporals.format(attendance.today, 'yyyy-MM-dd')} != ${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')} and ${#temporals.format(attendance.today, 'yyyy-MM-dd')} < ${#calendars.format(#calendars.createNow(), 'yyyy-MM-dd')}" th:classappend="결석">
                         <span th:text="|${#temporals.month(attendance.today)}/${#temporals.day(attendance.today)}|">12/01</span>
                         <span>결석</span>
                     </div>

@@ -74,118 +74,100 @@
 			}
 		} // by 조성빈, 각 버튼 클릭 시 영역 닫기 기능
 	</script>
-	<!-- 자바 스크립트 및 j쿼리 파일 -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
 	<!-- 내부 자바스크립트 J쿼리 이벤트 지정 -->
 	<script>
-		var userIdx = 1; // app으로 보낼 유저 정보
+		var userIdx = 0; // app으로 보낼 유저 정보
 		var courseId = document.querySelector(".lecture-name").dataset.courseid;
 		var date = ""
-
+		var attend_TF = "";
+		var attend_status = "";
+		var attend_status2 = ""; // 퇴실 완료된 지각인지 아닌지를 구분
 		var uagent = navigator.userAgent.toLowerCase(); //<!-- 유저에이전트 문자열을 얻어 소문자로 변환-->
 		var android_agent = uagent.search("android");
 		var iphone = uagent.search("iphone");
 		var ipad = uagent.search("ipad");
 
-		//<!-- 모바일 디바이스 > JS -->
 		function beacon_true(returnData) {
-			//<!-- 안드로이드에서 전달받음 -->
 			if (android_agent > -1) {
-				//alert('Mobile > JS [Open] [A] [NONE]');
-				alert('Beacon 출석이 확인되었습니다.\n' + returnData);
-				date=returnData;
-				courseId = document.querySelector(".lecture-name").dataset.courseid;
-				location.href = `/attend/${courseId}/${date}`;
-			}
-			//<!-- IOS에서 전달받음 -->
-			else if (iphone > -1 || ipad > -1) {
-				alert('Mobile > JS [Open] [I] [NONE]');
+				// member_main에서 출석상태 유무 확인
+				date = returnData;
+				attendChecking();
 			}
 		}
 
 		function beacon_false() {
-			//<!-- 안드로이드에서 전달받음 -->
-			if (android_agent > -1) {
-				//alert('Mobile > JS [Open] [A] [NONE]');
-				alert('Beacon 인식에 실패했습니다.');
-			}
-			//<!-- IOS에서 전달받음 -->
-			else if (iphone > -1 || ipad > -1) {
-				alert('Mobile > JS [Open] [I] [NONE]');
+			alert('Beacon 인식에 실패했습니다.');
+		}
+
+		// by 장유란, 출석정보가 있는지 판별하는 메소드
+		var attendCheckSetting = function () {
+			attend_TF = $('.student-daily-check')[0].querySelector(".daily-status");
+			courseId = document.querySelector(".lecture-name").dataset.courseid;
+			if (attend_TF != null) {
+				attend_status = attend_TF.dataset.status;
+				attend_status2 = attend_TF.dataset.outtime;
+				return true;
+			} else {
+				attend_status = "";
+				alert("출석이 불가능한 상태입니다.")
+				return false;
 			}
 		}
 
-		//<!-- 모바일 디바이스 > JS -->
-		function qr_true(returnData) {
-			//<!-- 안드로이드에서 전달받음 -->
-			if (android_agent > -1) {
-				//alert('Mobile > JS [Open] [A] [NONE]');
-				alert('QR 출석이 확인되었습니다.\n' + returnData);
-				location.href = `/course/${courseId}/${date}`;
-			}
-			//<!-- IOS에서 전달받음 -->
-			else if (iphone > -1 || ipad > -1) {
-				alert('Mobile > JS [Open] [I] [NONE]');
-			}
-		}
-
-
-		function qr_false() {
-			//<!-- 안드로이드에서 전달받음 -->
-			if (android_agent > -1) {
-				//alert('Mobile > JS [Open] [A] [NONE]');
-				alert('Beacon 인식에 실패했습니다.');
-			}
-			//<!-- IOS에서 전달받음 -->
-			else if (iphone > -1 || ipad > -1) {
-				alert('Mobile > JS [Open] [I] [NONE]');
+		var attendChecking = function () {
+			if (attend_status == '입실' || (attend_status2 == null && attend_status == '지각')) {
+				alert('퇴실이 확인되었습니다.\n');
+				location.href = `/attend/${courseId}/${date}`;
+			} else if (attend_status == '미출결') {
+				alert('출석이 확인되었습니다.\n');
+				location.href = `/attend/${courseId}/${date}`;
+			} else if (attend_status == '결석') {
+				alert("출석이 불가능한 상태입니다.")
+			} else {
+				alert("이미 출결이 완료된 상태입니다.")
 			}
 		}
 
-		//////////////////////////////////////////////////
 		//by 장유란, 1. html 버튼 클릭 시 위의 send_beacon 함수 실행
-		//<!-- 버튼 클릭 이벤트 정의 --> 
 		$(document).ready(function () {
 			$("#Beacon_btn").click(function () {
-				send_beacon();
+				if (attendCheckSetting() == true) {
+					send_beacon();
+				}
 			});
 			$("#QR_btn").click(function () {
-				//alert('JS > Mobile : QR() 메소드 호출 실시');
-				//<!-- 자바스크립트 함수를 호출해서 모바일 디바이스 별 구분 처리 실시 -->
-				send_qr();
+				if (attendCheckSetting() == true) {
+					if (attend_status2 == null) {
+						// by 장유란, 퇴실시간이 없고 출석이 가능한 상태일 때
+						send_qr();
+					} else {
+						attendChecking();
+					}
+				}
 			});
 		});
 
 		$(document).ready(function () {
 			$("#QR_create_btn").click(function (e) {
 				courseId = e.currentTarget.dataset.courseid;
-				location.href = `/createQr/`+courseId;
+				location.href = `/createQr/` + courseId;
 			});
 		});
+
 		//by 장유란, 2. 버튼 클릭으로 함수 실행 시 app내부 open함수 실행
-		//<!-- JS > 모바일 디바이스 -->
 		function send_beacon() {
 			//<!-- 안드로이드로 보낸다 -->
 			if (android_agent > -1) {
 				window.android.open(userIdx, courseId, date);
 			}
-			//<!-- IOS로 보낸다 -->
-			else if (iphone > -1 || ipad > -1) {
-				window.location = 'open:';
-			}
 		}
 
-		//<!-- JS > 모바일 디바이스 -->
 		function send_qr() {
-			//<!-- 안드로이드로 보낸다 -->
 			var userIdx = 1;
 			if (android_agent > -1) {
 				window.android.close(userIdx, courseId, date);
-			}
-			//<!-- IOS로 보낸다 -->
-			else if (iphone > -1 || ipad > -1) {
-				window.location = 'close:JS TO Mobile';
 			}
 		}
 	</script>
@@ -194,23 +176,16 @@
 		var android_agent = uagent.search("android");
 		var iphone = uagent.search("iphone");
 		var ipad = uagent.search("ipad");
-		var db_token = '123123123'; //DB상에 저장된 토큰
 		let return_token = '';
-		
+
 		$(document).ready(function send_token() {
-			//<!-- 안드로이드로 보낸다 -->
 			if (android_agent > -1) {
-				//alert("DB저장토큰 app내부로 전달, 앱내부dbToken함수 실행\n" + db_token)
-				window.android.dbToken(db_token);
-			}
-			//<!-- IOS로 보낸다 -->
-			else if (iphone > -1 || ipad > -1) {
-				window.location = 'dbToken:';
+				window.android.dbToken();
 			}
 		})
 
+		// by 장유란, 토큰 받아옴
 		function receive_token(returnData) {
-			//<!-- 안드로이드에서 전달받음 -->
 			if (android_agent > -1) {
 				//alert('휴대폰에서 받아온 토큰값.\n' + returnData);
 				return_token += returnData;
@@ -221,9 +196,9 @@
 			}
 		}
 
+		// by 장유란, 토큰 저장
 		function saveToken(msg) {
 			commonAjax('/saveToken', msg, 'get', function (result) {
-				//alert("saveToken");
 			})
 		}
 	</script>

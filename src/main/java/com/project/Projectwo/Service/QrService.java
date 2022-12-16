@@ -43,7 +43,7 @@ public class QrService {
 		LocalDate localDate = LocalDate.now();
 		String stringDate = localDate.toString();
 
-		String content = "http://" + ip + ":9090/attend/" + courseId + "/" + stringDate;
+		String content = "http://" + "192.168.100.19" + ":9090/attend/" + courseId + "/" + stringDate;
 		log.info("####QR주소=" + content);
 			
 		Map<String, Object> model = new HashMap<>();
