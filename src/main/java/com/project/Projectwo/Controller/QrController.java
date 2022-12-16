@@ -89,9 +89,9 @@ public class QrController {
 
 			Student student = memberService.getStudent(member, course);
 
-			Attendance attendance = attendanceService.getTodayAttendance(student, localDate);
+			Attendance attendance = academyService.getTodayAttendance(student);
 
-			if (attendance == null) {
+			if (attendance.getInTime() == null) {
 				attendanceService.regAttendance(course, student, localDate);
 
 			} else {

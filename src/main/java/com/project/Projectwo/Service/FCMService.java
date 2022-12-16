@@ -62,7 +62,22 @@ public class FCMService {
     //by 박은영
     //알림 보내기
 	public String sendMessage(String registrationToken) throws FirebaseMessagingException {
-			
+		int randNum = (int) (Math.random() * 3);
+		String msg = "";
+		switch (randNum) {
+			case 1:
+				msg = "퇴실이 완료되지 않았습니다.";
+				break;
+			case 2:
+				msg = "퇴실이 완료되지 않았습니다.";
+				break;
+			case 3:
+				msg = "퇴실이 완료되지 않았습니다.";
+				break;
+			default:
+				msg = "퇴실이 완료되지 않았습니다.";
+				break;
+			}
 			Message message = Message.builder()
 				    .setAndroidConfig(AndroidConfig.builder()
 				    		.setTtl(3600*1000)
@@ -70,8 +85,8 @@ public class FCMService {
 				    		.setRestrictedPackageName("com.project.projectapp")
 				    		.setDirectBootOk(true)
 				    		.setNotification(AndroidNotification.builder()
-				    				.setTitle("ProjectApp")
-				    				.setBody("미퇴실 알림")
+				    				.setTitle("@I'm here")
+				    				.setBody(msg)
 				    				.build())
 				    		.build())
 				    //.putData("requestId", Integer.toString(requestId))
