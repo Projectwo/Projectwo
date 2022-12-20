@@ -1,0 +1,72 @@
+<html layout:decorate="~{layout/layout}">
+
+<div th:fragment="addLectureFragment" class="add-fragment lecture" id="add-lecture" style="display:none;">
+    <div class="modal-wrap addFunction">
+        <div class="add-lecture-form">
+            <div class="add-title">
+                과정명<br>
+                <input type="text" id="courseTitle" />
+            </div>
+            <div class="add-teacher-name">강사<br>
+                <select id="teacherSelect">
+                	<option></option>
+                </select>
+            </div>
+            <div class="check-lecture-week">
+                강의요일<br>
+                <div class="check-day-button">
+                    <input type="checkbox" class="day-button mon" id="courseMon" />
+                    <label for="courseMon">월</label>
+                    <input type="checkbox" class="day-button tue" id="courseTue" />
+                    <label for="courseTue">화</label>
+                    <input type="checkbox" class="day-button wed" id="courseWed" />
+                    <label for="courseWed">수</label>
+                    <input type="checkbox" class="day-button thu" id="courseThu" />
+                    <label for="courseThu">목</label>
+                    <input type="checkbox" class="day-button fri" id="courseFri" />
+                    <label for="courseFri">금</label>
+                    <input type="checkbox" class="day-button sat" id="courseSat" />
+                    <label for="courseSat">토</label>
+                    <input type="checkbox" class="day-button sun" id="courseSun" />
+                    <label for="courseSun">일</label>
+                </div>
+            </div>
+            <div class="add-lecture-period">
+                강의기간<br>
+                <input class="lecture-period-start" type="date" data-placeholder="강의 시작일" required
+                    aria-required="ture" id="courseStartDate" />
+                <input class="lecture-period-end" type="date" data-placeholder="강의 종료일" required
+                	aria-required="ture" id="courseEndDate" />
+            </div>
+            <div class="add-lecture-time">
+                강의시간<br>
+                <input class="lecture-time-start" type="time" data-placeholder="강의 시작시간" required
+                    aria-required="ture" id="courseStartTime" />
+                <input class="lecture-time-end" type="time" data-placeholder="강의 종료시간" required
+                	aria-required="ture" id="courseEndTime" />
+            </div>
+            <div class="add-lecture-room">
+                강의실<br>
+                <select id="roomSelect" name="roomSelect">
+                	<option> 1 </option>
+                </select>
+            </div>
+            <div class="add-lecture-count">
+                수용인원<br>
+                <div id="roomMaxSeat">
+                	<input type="text" />
+                </div>
+            </div>
+            <div class="add-button-section">
+                <div class="add-confirm">
+                    <button type="button" class="add-confirm-button" id="courseAddBtn">등록</button>
+                </div>
+                <div class="add-close">
+                    <button type="button" onclick="closeModal('add')" class="modal-close-button">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

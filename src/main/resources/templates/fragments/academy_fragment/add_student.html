@@ -1,0 +1,42 @@
+<html layout:decorate="~{layout/layout}">
+
+<div th:fragment="addStudentFragment" class="add-fragment student" id="add-student" style="display:none;">
+    <div class="modal-wrap addFunction">
+        <div class="add-student-form">
+            <div class="add-name">
+                이름<br>
+                <input type="text" id="studentName" />
+            </div>
+            <div class="add-birthday">
+                생년월일<br>
+                <input type="date" id="studentBirth_date" />
+            </div>
+            <div class="add-tel">
+                연락처<br>
+                <input type="text" id="studentTel" />
+            </div>
+            <div class="add-mail">
+                메일<br>
+                <input type="email" id="studentEmail" />
+            </div>
+            <div class="add-address">
+                거주지<br>
+                <input type="text" id="studentAddress" />
+            </div>
+            <div class="add-lecture-regist">
+                강의 등록<br>
+                <input type="button" value="강의 등록은 수강생 등록 이후 가능" />
+            </div>
+            <div class="add-button-section">
+                <div class="add-confirm">
+                    <button type="button" class="add-confirm-button" id="studentAddBtn">등록</button>
+                </div>
+                <div class="add-close">
+                    <button type ="button" onclick="closeModal('add')" class="modal-close-button">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+</html>

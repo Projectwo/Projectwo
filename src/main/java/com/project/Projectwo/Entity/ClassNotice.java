@@ -32,15 +32,10 @@ public class ClassNotice {
 	
 	@NotNull
 	private LocalDateTime createDate;
-	
-	@NotNull
+
 	private LocalDateTime modifyDate;
 	
 	@NotNull
 	@ManyToOne
-	private Lecture lecture;
-	
-	@NotNull
-	@ManyToOne
-	private ClassTeacher classTeacher;
+	private Course course;
 }

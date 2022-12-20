@@ -1,0 +1,42 @@
+<html layout:decorate="~{layout/layout}">
+
+<div th:fragment="lectureNoticeFragment" id="lecture" class="notice-fragment lecture">
+    <div class="notice-area">
+        <div class="notice-recent" th:if="${course.classNoticeList} != null" th:each="classNotice : ${course.classNoticeList}">
+            <button th:text="${classNotice.title}" class="notice-function-button">강의 공지</button>
+            <button onclick="clickFormButton(this)" class="notice-function-modify modify-notice"
+                sec:authorize="hasRole('TEACHER')">
+                <i class="far fa-edit"></i>
+            </button>
+            <div th:text="${classNotice.content}" class="notice-content lecture">
+                내용
+            </div>
+            <div th:replace="fragments/notice_fragment/lecture_notice_form :: lectureNoticeAddFragment"></div>
+            <div th:replace="fragments/notice_fragment/lecture_notice_modify :: lectureNoticeModifyFragment"></div>
+        </div>
+        <div class="notice-recent" th:if="${course.classNoticeList} == null">
+        	<div th:replace="fragments/notice_fragment/lecture_notice_form :: lectureNoticeAddFragment"></div>
+            <div th:replace="fragments/notice_fragment/lecture_notice_modify :: lectureNoticeModifyFragment"></div>
+        </div>
+    </div>
+    <script>
+        window.onload = function () {
+            noticeDetail()
+        }
+
+        function noticeDetail() {
+            // 데이터 매핑 완료한 후에 noticeDetail(noticeId)
+            $(".notice-function-button").off('click', ".notice-function-button").on('click', function () {
+                const target = this;
+
+                if (!$(this).parent().hasClass('active')) {
+                    $(this).parent().addClass('active')
+                } else {
+                    $(this).parent().removeClass('active')
+                }
+            })
+        }
+    </script>
+</div>
+
+</html>

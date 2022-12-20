@@ -1,0 +1,26 @@
+<html layout:decorate="~{layout/layout}">
+
+<div th:fragment="lectureNoticeAddFragment" class="form-fragment add-notice lecture" id="add-notice" style="display : none;">
+    <div class="modal-wrap noticeFormFunction">
+        <form class="notice-form" th:action="@{|/createNotice/${course.id}|}" method="POST">
+            <div class="notice-title-area">
+                제목<br>
+                <input type="text" class="notice-title-input" name="title"/>
+            </div>
+            <div class="notice-content-area">
+                내용<br>
+                <textarea type="text" class="notice-content-input" name="content"></textarea>
+            </div>
+            <div class="notice-button-section">
+                <div class="add-confirm notice">
+                    <button type="submit" class="notice-confirm-button">등록</button>
+                </div>
+                <div class="add-close notice">
+                    <button type="button" onclick="closeNoticeModal(this)" class="modal-close-button add-notice">취소</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+</html>

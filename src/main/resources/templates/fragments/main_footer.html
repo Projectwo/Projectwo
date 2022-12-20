@@ -1,0 +1,213 @@
+<html layout:decorate="~{layout/layout}">
+
+<footer th:fragment="mainFooterFragment">
+	<div class="footer-wrap">
+		<button th:onclick="'location.href=\'' + @{|/course/${member.id}/${course.id}|} + '\''" class="home-button">
+			<i class="fas fa-home"></i>
+		</button>
+		<div class="student-function" sec:authorize="hasRole('STUDENT')">
+			<div class="student-check-beacon">
+				<a href="javascript:;" id="Beacon_btn" th:text="|비콘|"></a>
+			</div>
+			<button onclick="memberFunctionButton('student-function')" class="student-function-button">
+				<i class="far fa-check-circle checked"></i>
+				<!-- 출석 여부 확인 후 checked로 색상 변경 -->
+			</button>
+			<div class="student-check-qrcode">
+				<a href="javascript:;" id="QR_btn" th:text="|QR|"></a>
+			</div>
+		</div><!-- sec:role student 일 때 //// 임시매핑-->
+		<div class="teacher-function" sec:authorize="hasRole('TEACHER')">
+			<div class="teacher-create-notice">
+				<button onclick="clickFormButton(this);" class="notice-function-add add-notice"
+					th:text="|공지 작성|"></button>
+			</div>
+			<button onclick="memberFunctionButton('teacher-function')" class="teacher-function-button">
+				<i class="fas fa-plus-circle"></i>
+			</button>
+			<div class="teacher-create-qrcode">
+				<button type="button" href="javascript:;" id="QR_create_btn" th:data-courseId="${course.id}"
+					th:text="|QR 생성|"></button>
+			</div>
+		</div><!-- sec:role teacher 일 때 -->
+		<div th:replace="fragments/nav_button :: navFragment"></div>
+	</div>
+	<script>
+		function memberFunctionButton(e) {
+			const currentRole = document.getElementsByClassName(e);
+			const functionButton = $(currentRole).children('div');
+
+			if (functionButton.css('display') === 'none') {
+				functionButton.css({
+					'display': 'block'
+				});
+			} else {
+				functionButton.css({
+					'display': 'none'
+				});
+			}
+		}
+
+		function clickFormButton(e) {
+			const clickedFormButton = e.className;
+			let arr = clickedFormButton.split(' ');
+			const selectedForm = $(".form-fragment." + arr[1]);
+			const formStatus = $(selectedForm).css('display');
+
+			if (clickedFormButton == 'notice-function-add add-notice') {
+				selectCategory('lecture');
+			}
+
+			if (formStatus == 'none') {
+				$(selectedForm).css('display', 'block');
+			}
+		} // by 조성빈, 각 버튼 클릭 시 영역 오픈 기능
+
+		function closeNoticeModal(e) {
+			const clickedFormButton = e.className;
+			let arr = clickedFormButton.split(' ');
+			const selectedForm = $(".form-fragment." + arr[1]);
+			const formStatus = $(selectedForm).css('display');
+
+			if (formStatus == 'block') {
+				$(selectedForm).css('display', 'none');
+			}
+		} // by 조성빈, 각 버튼 클릭 시 영역 닫기 기능
+	</script>
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+	<!-- 내부 자바스크립트 J쿼리 이벤트 지정 -->
+	<script>
+		var userIdx = 0; // app으로 보낼 유저 정보
+		var courseId = document.querySelector(".lecture-name").dataset.courseid;
+		var date = ""
+		var attend_TF = "";
+		var attend_status = "";
+		var attend_status2 = ""; // 퇴실 완료된 지각인지 아닌지를 구분
+		var uagent = navigator.userAgent.toLowerCase(); //<!-- 유저에이전트 문자열을 얻어 소문자로 변환-->
+		var android_agent = uagent.search("android");
+		var iphone = uagent.search("iphone");
+		var ipad = uagent.search("ipad");
+
+		function beacon_true(returnData) {
+			if (android_agent > -1) {
+				// member_main에서 출석상태 유무 확인
+				date = returnData;
+				attendChecking();
+			}
+		}
+
+		function beacon_false() {
+			alert('Beacon 인식에 실패했습니다.');
+		}
+
+		// by 장유란, 출석정보가 있는지 판별하는 메소드
+		var attendCheckSetting = function () {
+			attend_TF = $('.student-daily-check')[0].querySelector(".daily-status");
+			courseId = document.querySelector(".lecture-name").dataset.courseid;
+			if (attend_TF != null) {
+				attend_status = attend_TF.dataset.status;
+				attend_status2 = attend_TF.dataset.outtime;
+				return true;
+			} else {
+				attend_status = "";
+				alert("출석이 불가능한 상태입니다.")
+				return false;
+			}
+		}
+
+		var attendChecking = function () {
+			if (attend_status == '입실' || (attend_status2 == null && attend_status == '지각')) {
+				alert('퇴실이 확인되었습니다.\n');
+				location.href = `/attend/${courseId}/${date}`;
+			} else if (attend_status == '미출결') {
+				alert('출석이 확인되었습니다.\n');
+				location.href = `/attend/${courseId}/${date}`;
+			} else if (attend_status == '결석') {
+				alert("출석이 불가능한 상태입니다.")
+			} else {
+				alert("이미 출결이 완료된 상태입니다.")
+			}
+		}
+
+		//by 장유란, 1. html 버튼 클릭 시 위의 send_beacon 함수 실행
+		$(document).ready(function () {
+			$("#Beacon_btn").click(function () {
+				if (attendCheckSetting() == true) {
+					send_beacon();
+				}
+			});
+			$("#QR_btn").click(function () {
+				if (attendCheckSetting() == true) {
+					if (attend_status2 == null && attend_status != '결석') {
+						// by 장유란, 퇴실시간이 없고 출석이 가능한 상태일 때
+						send_qr();
+					} else {
+						attendChecking();
+					}
+				}
+			});
+		});
+
+		$(document).ready(function () {
+			$("#QR_create_btn").click(function (e) {
+				courseId = e.currentTarget.dataset.courseid;
+				location.href = `/createQr/` + courseId;
+			});
+		});
+
+		$(document).ready(function () {
+			$("#QR_create_btn").click(function (e) {
+				courseId = e.currentTarget.dataset.courseid;
+				location.href = `/createQr/`+courseId;
+			});
+		});
+		//by 장유란, 2. 버튼 클릭으로 함수 실행 시 app내부 open함수 실행
+		function send_beacon() {
+			//<!-- 안드로이드로 보낸다 -->
+			if (android_agent > -1) {
+				window.android.open(userIdx, courseId, date);
+			}
+		}
+
+		function send_qr() {
+			var userIdx = 1;
+			if (android_agent > -1) {
+				window.android.close(userIdx, courseId, date);
+			}
+		}
+	</script>
+	<script>
+		var uagent = navigator.userAgent.toLowerCase(); //<!-- 유저에이전트 문자열을 얻어 소문자로 변환-->
+		var android_agent = uagent.search("android");
+		var iphone = uagent.search("iphone");
+		var ipad = uagent.search("ipad");
+		let return_token = '';
+
+		$(document).ready(function send_token() {
+			if (android_agent > -1) {
+				window.android.dbToken();
+			}
+		})
+
+		// by 장유란, 토큰 받아옴
+		function receive_token(returnData) {
+			if (android_agent > -1) {
+				//alert('휴대폰에서 받아온 토큰값.\n' + returnData);
+				return_token += returnData;
+				let msg = {
+					returnData: returnData
+				}
+				saveToken(msg);
+			}
+		}
+
+		// by 장유란, 토큰 저장
+		function saveToken(msg) {
+			commonAjax('/saveToken', msg, 'get', function (result) {
+			})
+		}
+	</script>
+</footer>
+
+</html>

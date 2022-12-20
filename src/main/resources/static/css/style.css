@@ -1,0 +1,2716 @@
+@import url("reset.css");
+
+#wrap {
+    position: relative;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 320px;
+    height: 810px;
+    padding-top: 40px;
+    overflow: auto;
+}
+
+#prev-button {
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    font-size: 30px;
+    line-height: 0;
+    border: 1px solid #444;
+    border-radius: 6px;
+    left: 0;
+    top: 110px;
+}
+
+/* ##### login.html ##### */
+
+.index-logo {
+    position: relative;
+    width: 260px;
+    height: 300px;
+    margin: 0 auto;
+    margin-top: 100px;
+}
+
+.index-logo .fas.fa-desktop {
+    padding-top: 40px;
+    font-size: 220px;
+    color: #444;
+}
+
+.index-logo .far.fa-copyright {
+    position: absolute;
+    left: 130px;
+    top: 130px;
+    transform: translate(-50%, -50%);
+    font-size: 110px;
+    color: #2cae2c;
+}
+
+.login-text {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    left: 0;
+    text-align: left;
+}
+
+.login-form {
+    width: 100%;
+    margin-top: 20px;
+}
+
+.login-form .field {
+    position: relative;
+    margin: 10px 0;
+}
+
+.login-form .field>input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #efefef;
+    padding: 4px 8px;
+    color: #444;
+}
+
+.login-form .field>i {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.forgot-pw {
+    position: relative;
+    font-size: 12px;
+    text-align: right;
+    color: #aaa;
+    top: -6px;
+}
+
+.login-form .login-submit {
+    width: 100%;
+    height: 54px;
+    margin-top: 10px;
+    border: 1px solid #2cae2c;
+    border-radius: 6px;
+    color: #fff;
+    background: #2cae2c;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.function-login {
+    margin-top: 10px;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.function-login button {
+    margin: 0 10px;
+    width: 60px;
+    height: 60px;
+    border: 1px solid;
+    border-radius: 8px;
+}
+
+.contact-academy {
+    height: 140px;
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    color: #444;
+}
+
+/* ##### login.html end ##### */
+
+/* ##### nav_button.html ##### */
+
+.member-dropdown {
+    width: 50px;
+}
+
+.member-dropdown.active .member-dropdown-list {
+    display: block;
+}
+
+.member-dropdown-button {
+    position: relative;
+    width: 40px;
+    z-index: 10;
+}
+
+.member-dropdown-button i {
+    content: "\f0c9";
+    font-family: "Font Awesome 5 Free";
+    font-size: 36px;
+    color: #444;
+}
+
+.member-dropdown .member-dropdown-list {
+    display: none;
+    position: absolute;
+    top: -240px;
+    right: 35px;
+    width: 320px;
+    height: 240px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background-color: #444;
+    z-index: 5;
+}
+
+.dropdown-member-function {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    width: 70px;
+    display: flex;
+    justify-content: flex-end;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.dropdown-member-function a {
+    font-size: 12px;
+    text-decoration: underline;
+    z-index: 10;
+    color: #fff;
+}
+
+.dropdown-member-lecture {
+    position: relative;
+    margin-top: 10px;
+    padding: 0 10px;
+    text-align: left;
+    font-size: 22px;
+    color: #fff;
+}
+
+.dropdown-member-lecture ul {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    height: 170px;
+    overflow: auto;
+}
+
+.dropdown-member-lecture li {
+    padding: 4px 6px;
+}
+
+.dropdown-member-lecture li:first-child {
+    margin-top: 16px;
+}
+
+.dropdown-member-lecture li button {
+    width: 100%;
+    height: 44px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    text-align: left;
+    background: #fff;
+    padding-left: 10px;
+    cursor: pointer;
+    color: #444;
+}
+
+/* ##### nav_button.html end ##### */
+
+/* ##### member_step.html ##### */
+
+.member-step-lecture {
+    position: relative;
+    width: 320px;
+    margin-top: 200px;
+    padding: 0 10px;
+    font-size: 22px;
+}
+
+.member-step-lecture ul {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 20px;
+    align-items: center;
+}
+
+.member-step-lecture ul li {
+    margin: 6px 0;
+    width: 280px;
+    height: 44px;
+}
+
+.member-step-lecture button {
+    width: 100%;
+    height: 46px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #444;
+    padding-left: 10px;
+    cursor: pointer;
+    color: #fff;
+    text-align: center;
+    font-family: 'NOTO SANS BOLD';
+}
+
+/* ##### member_step.html end ##### */
+
+/* ##### member_main.html ##### */
+
+.main-profile {
+    width: 160px;
+    height: 60px;
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+.main-profile-text {
+    font-size: 14px;
+    text-align: left;
+    color: #444;
+}
+
+.main-profile-text b {
+    font-size: 22px;
+    color: #444;
+}
+
+.main-profile-text span {
+    font-size: 14px;
+    color: #444;
+}
+
+.notice-new-alarm {
+    position: absolute;
+    width: 160px;
+    height: 46px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    top: 66px;
+    right: 0;
+}
+
+.notice-new-alarm b {
+    line-height: 46px;
+    color: #444;
+    font-weight: 400;
+}
+
+.main-lecture {
+    position: relative;
+    margin: 0 auto;
+    margin-top: 10px;
+    width: 100%;
+    height: 130px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background: #444;
+}
+
+.main-lecture .lecture-name {
+    padding: 4px 8px;
+    text-align: left;
+    font-size: 14px;
+    color: #fff;
+}
+
+.main-lecture .lecture-name b {
+    font-size: 24px;
+    margin-left: 4px;
+    color: #fff;
+}
+
+.main-lecture .lecture-name span {
+    color: #fff;
+}
+
+.main-lecture .lecture-info {
+    margin-top: 0;
+    padding: 4px 6px;
+}
+
+.main-lecture .lecture-teacher {
+    position: absolute;
+    top: 30px;
+    padding-left: 6px;
+    font-size: 15px;
+    color: #eee;
+    text-align: left;
+}
+
+.main-lecture .lecture-info-schedule {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.main-lecture .lecture-info-schedule li {
+    width: 18px;
+    font-size: 14px;
+    line-height: 18px;
+    margin-left: 2px;
+    border: 1px solid;
+    border-radius: 4px;
+    background: #eee;
+    color: #444;
+}
+
+.main-lecture .lecture-info-schedule-checked {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.main-lecture .lecture-info-schedule-checked li {
+    width: 18px;
+    height: 18px;
+    padding: 1px 1px;
+    color: #eee;
+    margin-top: 2px;
+    margin-left: 2px;
+    background: #444;
+}
+
+.main-lecture .lecture-info-schedule-checked li span {
+    display: block;
+    width: 14px;
+    height: 14px;
+    font-size: 10px;
+}
+
+.main-lecture .lecture-info-schedule-time {
+    margin-top: 10px;
+    color: #fff;
+    text-align: right;
+}
+
+.main-lecture .lecture-info-schedule-time span {
+    color: #fff;
+}
+
+.student-checkinout {
+    height: 194px;
+    color: #444;
+}
+
+.student-checkinout a {
+    color: #444;
+}
+
+.student-checkinout .student-today {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 20px;
+    text-align: left;
+    color: #444;
+}
+
+.student-today .student-daily-check {
+    width: 100%;
+    height: 52px;
+    margin-top: 6px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.student-daily-check .daily-date {
+    margin-left: 10px;
+    font-size: 24px;
+    line-height: 0;
+    color: #444;
+}
+
+.student-daily-check .daily-date span {
+    font-size: 22px;
+    color: #444;
+}
+
+.student-daily-check.입실 .daily-date span, .student-daily-check.결석 .daily-date span{
+    color:#fff;
+}
+
+.student-daily-check.입실 .daily-date b, .student-daily-check.결석 .daily-date b{
+    color:#eee;
+}
+
+.student-daily-check .daily-date b{
+    font-size: 18px;
+    color:#aaa;
+}
+
+.student-daily-check .daily-status {
+    margin-right: 12px;
+    font-size: 22px;
+    text-align: right;
+    line-height: 0;
+    color: #444;
+}
+
+.student-daily-check.입실 .daily-status, .student-daily-check.결석 .daily-status{
+    color:#fff;
+}
+
+.student-weekly {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 20px;
+    text-align: left;
+    color: #444;
+}
+
+.student-weekly .student-weekly-check {
+    width: 100%;
+    height: 54px;
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    flex-direction: row;
+}
+
+.student-weekly .student-weekly-check>a{
+    margin:0 2px;
+}
+
+.student-weekly .student-weekly-check>a:last-child{
+    margin-left: 3px;
+}
+
+.student-weekly-check .student-weekly-date {
+    width: 49px;
+    height: 54px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    text-align: center;
+    line-height: 24px;
+    font-size: 18px;
+    color: #444;
+}
+
+.student-weekly-check .student-weekly-date span {
+    font-size: 16px;
+    color: #fff;
+}
+
+.입실{
+    background-color: #2cae2c;
+}
+
+.지각, .조퇴{
+    background-color: #f9f90f;
+}
+
+.student-weekly-date.지각 span, .student-weekly-date.조퇴 span{
+    color:#444;
+}
+
+.결석{
+    background-color: rgb(214, 18, 18);
+}
+
+.미출결{
+    background-color: #eee;
+}
+
+.student-weekly-date.미출결 span{
+    color:#444;
+}
+
+.teacher-checkinout {
+    height: 194px;
+    color: #444;
+}
+
+.teacher-checkinout a {
+    color: #444;
+}
+
+.teacher-checkinout .teacher-today {
+    width: 100%;
+    margin-top: 10px;
+    font-size: 20px;
+    text-align: left;
+    color: #444;
+}
+
+.teacher-today .teacher-daily-check {
+    width: 100%;
+    height: 156px;
+    margin-top: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.teacher-daily-check .daily-check {
+    width: 154px;
+    height: 150px;
+    border: 1px solid #2cae2c;
+    border-radius: 6px;
+    background: #2cae2c;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.teacher-daily-check .daily-check span {
+    line-height: 0;
+    font-size: 28px;
+    color: #fff;
+}
+
+.teacher-daily-check .daily-check b {
+    font-size: 48px;
+    color: #fff;
+}
+
+.teacher-daily-check .daily-non-check {
+    width: 154px;
+    height: 150px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.teacher-daily-check .daily-non-check span {
+    line-height: 0;
+    font-size: 28px;
+    color: #444;
+}
+
+.teacher-daily-check .daily-non-check b {
+    font-size: 48px;
+    color: #444;
+}
+
+.main-notice {
+    position: relative;
+    width: 100%;
+    margin-top: 10px;
+    font-size: 20px;
+    text-align: left;
+    color: #444;
+}
+
+.main-notice .notice-category {
+    position: absolute;
+    top: 7px;
+    left: 70px;
+    display: flex;
+    align-items: flex-end;
+    font-size: 12px;
+    color: #444;
+}
+
+.main-notice .notice-category button {
+    color: #aaa;
+    font-size: 14px;
+
+}
+
+.main-notice .notice-category button.active {
+    color: #444;
+    font-family: 'NOTO SANS BOLD';
+}
+
+.main-notice .notice-area {
+    position: relative;
+    width: 100%;
+    height: 226px;
+    margin-top: 6px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    overflow: auto;
+}
+
+.main-notice .notice-fragment {
+    display: none;
+}
+
+.main-notice .notice-fragment.active {
+    display: block;
+}
+
+.notice-area .notice-recent {
+    position: relative;
+    width: 300px;
+    height: 44px;
+    padding: 0 6px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    overflow: hidden;
+    color: #444;
+}
+
+.notice-area .notice-recent.active {
+    height: 210px;
+}
+
+.notice-area .notice-recent .notice-function-modify {
+    position: absolute;
+    width: 40px;
+    height: 36px;
+    top: 0;
+    right: 0;
+    text-align: center;
+    display: none;
+}
+
+.notice-area .notice-recent.active .notice-function-modify {
+    display: block;
+}
+
+.notice-recent .notice-function-modify i {
+    content: "\f044";
+    font-family: "Font Awesome 5 Free";
+    padding-top: 10px;
+    font-size: 20px;
+    color: #444;
+}
+
+.notice-recent .notice-content {
+    position: relative;
+    width: 100%;
+    height: 158px;
+    padding: 4px 6px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    overflow: auto;
+    color: #444;
+}
+
+.notice-area .notice-recent>button {
+    position: relative;
+    width: 250px;
+    height: 44px;
+    padding-bottom: 4px;
+    font-size: 22px;
+    text-align: left;
+    color: #444;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.notice-area .notice-recent:first-child {
+    margin-top: 10px;
+}
+
+/* ##### member_main.html end ##### */
+
+/* ##### academy_main.html ##### */
+
+.academy-list-tab {
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.academy-list-tab .tab {
+    padding: 4px 14px;
+    border: 1px solid #aaa;
+    border-radius: 10px;
+    font-size: 20px;
+    color: #444;
+}
+
+.academy-list-tab .tab.active {
+    background-color: #2cae2c;
+    color: #fff;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+}
+
+/* ##### academy_main.html end ##### */
+
+/* ##### academy_class.html ##### */
+
+.academy-lecture-list {
+    width: 100%;
+    height: 640px;
+    overflow-y: scroll;
+}
+
+.main-lecture.academy-list {
+    position: relative;
+    margin: 16px 0;
+    height: 110px;
+}
+
+.main-lecture.academy-list:first-child {
+    margin-top: 20px;
+}
+
+.main-lecture.academy-list .lecture-info {
+    position: absolute;
+    margin-top: 0;
+    width: 100%;
+    height: 100%;
+    ;
+}
+
+.main-lecture.academy-list .lecture-modify-button {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    right: 6px;
+    top: 6px;
+    border: 1px solid #2cae2c;
+    border-radius: 50%;
+    background: #2cae2c;
+}
+
+.main-lecture.academy-list .lecture-modify-button i {
+    content: "\f044";
+    font-family: "Font Awesome 5 Free";
+    padding: 0 6px 10px 6px;
+    font-size: 16px;
+}
+
+.main-lecture.academy-list .lecture-title {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 36px;
+    padding-bottom: 10px;
+}
+
+.main-lecture.academy-list .lecture-name {
+    position: relative;
+    top: 0;
+    padding: 0 8px;
+    text-align: left;
+    font-size: 20px;
+}
+
+.main-lecture.academy-list .lecture-name b {
+    font-size: 22px;
+    color: #fff;
+    margin-left: 0;
+}
+
+.main-lecture.academy-list .lecture-teacher {
+    position: relative;
+    top: 0;
+    font-size: 18px;
+}
+
+.main-lecture.academy-list .lecture-teacher b {
+    color: #eee;
+}
+
+.main-lecture.academy-list .lecture-info-schedule {
+    justify-content: flex-start;
+    margin-left: 4px;
+}
+
+.main-lecture.academy-list .lecture-info-schedule-checked {
+    justify-content: flex-start;
+    margin-left: 4px;
+}
+
+.main-lecture.academy-list .lecture-info-schedule-period {
+    position: absolute;
+    text-align: right;
+    height: 20px;
+    line-height: 17px;
+    top: 40px;
+    right: 6px;
+    color: #fff;
+}
+
+.main-lecture.academy-list .lecture-info-schedule-period span {
+    color: #fff;
+}
+
+.main-lecture.academy-list .lecture-info-schedule-time {
+    position: absolute;
+    margin-top: 4px;
+    top: 54px;
+    right: 6px;
+    font-size: 16px;
+}
+
+.main-lecture.academy-list .lecture-info-room {
+    position: absolute;
+    right: 6px;
+    top: 80px;
+    text-align: right;
+    color: #eee;
+    font-size: 16px;
+}
+
+.main-lecture.academy-list .lecture-info-count {
+    text-align: left;
+    margin-top: 2px;
+    color: #eee;
+    font-size: 14px;
+    font-weight: 300;
+    margin-left: 8px;
+}
+
+.main-lecture.academy-list .lecture-info-count span {
+    font-size: 14px;
+    color: #eee;
+}
+
+.main-lecture.academy-list #courseId {
+    display: none;
+}
+
+/* ##### academy_class.html end ##### */
+
+/* ##### academy_teacher.html ##### */
+
+.academy-teacher-list {
+    width: 100%;
+    height: 640px;
+    overflow-y: scroll;
+    margin-top: 10px;
+}
+
+.academy-teacher {
+    position: relative;
+    width: 100%;
+    height: 90px;
+    margin: 20px 0;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background: #444;
+}
+
+.academy-teacher:first-child {
+    margin-top: 10px;
+}
+
+.academy-teacher .teacher-info {
+    position: absolute;
+    width: 100%;
+}
+
+.teacher-modify-button {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    right: 6px;
+    top: 6px;
+    border: 1px solid #2cae2c;
+    border-radius: 50%;
+    background: #2cae2c;
+}
+
+.teacher-modify-button i {
+    content: "\f044";
+    font-family: "Font Awesome 5 Free";
+    padding: 0 6px 10px 6px;
+    font-size: 16px;
+}
+
+.academy-teacher .teacher-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+.academy-teacher .teacher-name b {
+    font-size: 24px;
+    height: 20px;
+    margin: 4px 12px;
+    color: #fff;
+}
+
+.academy-teacher .teacher-class b {
+    font-size: 18px;
+    height: 20px;
+    color: #eee;
+}
+
+.academy-teacher .teacher-info-detail {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 16px;
+}
+
+.academy-teacher .teacher-birthday {
+    position: relative;
+    text-align: left;
+    color: #fff;
+}
+
+.academy-teacher .teacher-birthday span {
+    color: #fff;
+}
+
+.academy-teacher .teacher-tel {
+    position: relative;
+    text-align: left;
+    color: #fff;
+}
+
+.academy-teacher .teacher-address {
+    position: absolute;
+    text-align: left;
+    top: 58px;
+    left: 16px;
+    color: #fff;
+}
+
+.academy-teacher .teacher-id {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    transform: scale(0);
+}
+
+/* ##### academy_teacher.html end ##### */
+
+/* ##### academy_student.html ##### */
+
+.academy-student-list {
+    width: 100%;
+    height: 640px;
+    overflow-y: scroll;
+    margin-top: 10px;
+}
+
+.academy-student {
+    position: relative;
+    width: 100%;
+    height: 90px;
+    margin: 20px 0;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background: #444;
+}
+
+.academy-student:first-child {
+    margin-top: 10px;
+}
+
+.academy-student .teacher-info {
+    position: absolute;
+    width: 100%;
+}
+
+.student-modify-button {
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    right: 6px;
+    top: 6px;
+    border: 1px solid #2cae2c;
+    border-radius: 50%;
+    background: #2cae2c;
+}
+
+.student-modify-button i {
+    content: "\f044";
+    font-family: "Font Awesome 5 Free";
+    padding: 0 6px 10px 6px;
+    font-size: 16px;
+}
+
+.academy-student .student-title {
+    display: flex;
+    justify-content: flex-start;
+    align-items: baseline;
+}
+
+.academy-student .student-name b {
+    font-size: 24px;
+    height: 20px;
+    margin: 4px 12px;
+    color: #fff;
+}
+
+.academy-student .student-class b {
+    font-size: 18px;
+    height: 20px;
+    color: #eee;
+}
+
+.academy-student .student-info-detail {
+    display: flex;
+    justify-content: flex-start;
+    margin-left: 16px;
+
+}
+
+.academy-student .student-birthday {
+    position: relative;
+    text-align: left;
+    color: #fff;
+}
+
+.academy-student .student-birthday span {
+    color: #fff;
+}
+
+.academy-student .student-tel {
+    position: relative;
+    text-align: left;
+    color: #fff;
+}
+
+.academy-student .student-address {
+    position: absolute;
+    text-align: left;
+    top: 58px;
+    left: 16px;
+    color: #fff;
+}
+
+.student-lecture-regist .student-lecture-regist-button {
+    position: absolute;
+    width: 60px;
+    font-size: 14px;
+    top: 60px;
+    right: 4px;
+    text-decoration: underline;
+    color: #fff;
+}
+
+.student-lecture-regist .lecture-regist-list-section {
+    position: absolute;
+    top: 2px;
+    right: 2px;
+    width: 160px;
+    height: 84px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #fff;
+    text-align: left;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    visibility: hidden;
+    z-index: -1;
+}
+
+.student-lecture-regist .lecture-regist-list-section.active {
+    z-index: 0;
+}
+
+.student-lecture-regist .lecture-regist-list {
+    position: relative;
+    width: 130px;
+    height: 26px;
+    padding: 2px 4px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #444;
+}
+
+.student-lecture-regist .lecture-regist-list-button {
+    display: flex;
+    justify-content: space-evenly;
+    width: 120px;
+}
+
+.student-lecture-regist .lecture-regist-list-button>button {
+    border: 1px solid;
+    border-radius: 6px;
+    margin: 0 10px;
+    padding: 1px 4px;
+    font-size: 14px;
+    color: #444;
+}
+
+.student-lecture-regist .lecture-regist-list-button>button:first-child {
+    border-color: #2cae2c;
+    background: #2cae2c;
+    color: #fff;
+}
+
+.academy-student .student-id {
+    display: none;
+}
+
+/* ##### academy_student.html end ##### */
+
+/* ##### academy_footer.html ##### */
+
+.academy-function {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.academy-new {
+    position: absolute;
+    width: 100%;
+    left: 0;
+}
+
+.academy-new .new-lecture {
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-lecture .footer-middle.academy {
+    position: relative;
+    width: 100px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.footer-middle.academy .academy-function-button {
+    position: relative;
+    display: none;
+}
+
+.footer-middle.academy .academy-function-button.active {
+    display: block;
+}
+
+.footer-middle.academy .academy-function-button>button {
+    position: relative;
+    width: 48px;
+    height: 48px;
+    left: 50%;
+    top: 10px;
+    transform: translate(-50%, -50%);
+}
+
+.footer-middle.academy .academy-function-button>button i {
+    font-size: 48px;
+}
+
+.footer-middle.academy a {
+    position: relative;
+    display: inline-block;
+    height: 20px;
+    text-align: left;
+    font-size: 20px;
+    line-height: 22px;
+    top: 14px;
+    left: -25px;
+}
+
+.new-lecture .footer-left.academy {
+    position: relative;
+    width: 120px;
+    height: 60px;
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.footer-left.academy .search-lecture {
+    position: relative;
+    width: 100px;
+    height: 26px;
+    padding: 2px 8px;
+    margin-top: 4px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    font-size: 14px;
+    color:#444;
+}
+
+.footer-left.academy .category-lecture {
+    position: relative;
+    width: 100px;
+    height: 26px;
+    padding: 2px 4px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    font-size: 14px;
+    color: #444;
+}
+
+.footer-left.academy .category-lecture option {
+    color: #444;
+}
+
+.new-lecture .footer-right.academy {
+    position: relative;
+    width: 120px;
+    height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.footer-right.academy .modify-password {
+    position: relative;
+    width: 100px;
+    height: 26px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #444;
+    z-index: 0;
+    font-size: 14px;
+}
+
+.footer-right.academy .logout {
+    position: relative;
+    width: 100px;
+    height: 26px;
+    margin-top: 4px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #444;
+    z-index: 0;
+    font-size: 14px;
+}
+
+/* ##### academy_footer.html end ##### */
+
+/* ##### main_footer.html ##### */
+
+.footer-wrap {
+    position: fixed;
+    width: 390px;
+    height: 100px;
+    bottom: 0;
+    background: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.footer-wrap .home-button {
+    width: 50px;
+}
+
+.footer-wrap .home-button i {
+    content: "\f015";
+    font-family: "Font Awesome 5 Free";
+    padding: 0 6px;
+    font-size: 36px;
+    color: #444;
+}
+
+.student-function {
+    width: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.student-function>div {
+    width: 60px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 4px 10px;
+    display: none;
+}
+
+.student-function>div a {
+    font-size: 18px;
+    line-height: 0;
+    text-align: center;
+}
+
+.student-function .student-function-button {
+    border-radius: 6px;
+    padding: 6px 10px;
+}
+
+.student-function .student-function-button i {
+    content: "\f058";
+    font-family: "Font Awesome 5 Free";
+    font-size: 56px;
+    color: #444;
+}
+
+.student-function .student-function-button i.checked {
+    color: #2cae2c;
+}
+
+.teacher-function {
+    width: 220px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.teacher-function>div {
+    width: 60px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    padding: 4px 10px;
+    display: none;
+}
+
+.teacher-function>div a {
+    font-size: 18px;
+    line-height: 0;
+    text-align: center;
+}
+
+.teacher-function .teacher-function-button {
+    padding: 6px 10px;
+}
+
+.teacher-function .teacher-function-button i {
+    content: "\f055";
+    font-family: "Font Awesome 5 Free";
+    font-size: 56px;
+}
+
+.teacher-create-qrcode .modal-wrap.qrcode {
+    display: none;
+}
+
+.modal-wrap.qrcode .create-qr-layer {
+    position: absolute;
+    width: 320px;
+    height: 320px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 1px solid #444;
+    border-radius: 6px;
+    background-color: #444;
+    color: #fff;
+    z-index: 5;
+}
+
+.modal-wrap.qrcode .created-qrcode {
+    position: relative;
+    width: 280px;
+    height: 280px;
+    margin: 20px;
+    border: 1px solid #eee;
+    background: #eee;
+}
+
+/* ##### main_footer.html end ##### */
+
+/* ##### add_lecture.html ##### */
+
+.add-fragment {
+    position: fixed;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 390px;
+    height: 844px;
+    z-index: 50;
+}
+
+.modal-wrap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(200, 200, 200, 0.7);
+    z-index: 100;
+}
+
+.add-lecture-form {
+    position: absolute;
+    width: 320px;
+    height: 620px;
+    top: 95px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #fff;
+    text-align: left;
+}
+
+.add-lecture-form .add-title {
+    position: relative;
+    padding: 6px 10px;
+    font-size: 24px;
+    color: #444;
+}
+
+.add-lecture-form .add-title input {
+    position: relative;
+    width: 240px;
+    height: 36px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
+    background: none;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #444;
+    font-size: 24px;
+    text-align: center;
+}
+
+.add-lecture-form .add-teacher-name {
+    position: relative;
+    padding: 6px 10px;
+    font-size: 24px;
+    color: #444;
+}
+
+.add-lecture-form .add-teacher-name select {
+    position: relative;
+    width: 150px;
+    height: 36px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
+    background: none;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #444;
+    font-size: 20px;
+    text-align: center;
+}
+
+.add-lecture-form .check-lecture-week {
+    position: relative;
+    width: 300px;
+    height: 70px;
+    left: 0;
+    margin: 10px;
+    font-size: 24px;
+    color: #444;
+}
+
+.check-lecture-week .check-day-button {
+    width: 100%;
+    height: 36px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.check-lecture-week .check-day-button>input {
+    width: 32px;
+    height: 32px;
+    border: 1px solid #444;
+    border-radius: 6px;
+}
+
+.check-day-button input[type="checkbox"]+label {
+    display: inline-block;
+    width: 36px;
+    height: 36px;
+    text-align: center;
+    line-height: 30px;
+    color: #aaa;
+    border: 2px solid #aaa;
+    cursor: pointer;
+}
+
+.check-day-button input[type="checkbox"]:checked+label {
+    border-color: #2cae2c;
+    background: #2cae2c;
+    color: #fff;
+}
+
+.check-day-button input[type="checkbox"] {
+    display: none;
+}
+
+.add-lecture-form .add-lecture-period {
+    position: relative;
+    padding: 6px 10px;
+    font-size: 24px;
+    width: 320px;
+    color: #444;
+}
+
+.add-lecture-period .lecture-period-start {
+    position: absolute;
+    left: 6px;
+    color: #444;
+}
+
+.add-lecture-period .lecture-period-end {
+    position: absolute;
+    right: 6px;
+    color: #444;
+}
+
+.add-lecture-form .add-lecture-time {
+    position: relative;
+    margin-top: 36px;
+    padding: 6px 10px;
+    font-size: 24px;
+    width: 320px;
+    color: #444;
+}
+
+.add-lecture-time .lecture-time-start {
+    position: absolute;
+    left: 6px;
+    color: #444;
+}
+
+.add-lecture-time .lecture-time-end {
+    position: absolute;
+    right: 6px;
+    color: #444;
+}
+
+.add-lecture-form .add-lecture-room {
+    position: relative;
+    padding: 6px 10px;
+    margin-top: 36px;
+    font-size: 24px;
+    color: #444;
+}
+
+.add-lecture-form .add-lecture-room select {
+    position: relative;
+    width: 120px;
+    height: 36px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
+    background: none;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #444;
+    font-size: 20px;
+    text-align: center;
+}
+
+.add-lecture-form .add-lecture-count {
+    position: absolute;
+    padding: 6px 10px;
+    width: 140px;
+    top: 434px;
+    right: 30px;
+    font-size: 24px;
+    text-align: left;
+    color: #444;
+}
+
+.add-lecture-count #roomMaxSeat {
+    margin-top: 2px;
+    margin-left: 30px;
+    font-size: 24px;
+    color: #444;
+}
+
+.add-lecture-count #modifyRoomMaxSeat {
+    margin-top: 2px;
+    margin-left: 30px;
+    font-size: 24px;
+    color: #444;
+}
+
+.add-lecture-form .add-lecture-count input {
+    display: none;
+}
+
+.add-lecture-form #modifyCourseId {
+    display: none;
+}
+
+.add-button-section {
+    margin-top: 100px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.add-lecture-form .add-button-section {
+    margin-top: 30px;
+}
+
+.add-close {
+    position: relative;
+    width: 100px;
+    z-index: 20;
+}
+
+.modal-close-button {
+    position: relative;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    padding: 10px;
+    width: 100px;
+    font-size: 20px;
+    color: #444;
+    background-color: #fff;
+}
+
+.add-confirm {
+    position: relative;
+    width: 100px;
+    z-index: 20;
+}
+
+.add-confirm-button {
+    position: relative;
+    border: 1px solid #2cae2c;
+    border-radius: 6px;
+    background: #2cae2c;
+    padding: 10px;
+    width: 100px;
+    font-size: 20px;
+}
+
+/* ##### add_lecture.html end ##### */
+
+/* ##### add_teacher.html ##### */
+
+.add-teacher-form {
+    position: absolute;
+    width: 320px;
+    height: 620px;
+    top: 95px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #fff;
+    text-align: left;
+}
+
+.add-teacher-form .add-name {
+    position: relative;
+    padding: 6px 10px;
+    font-size: 24px;
+    color: #444;
+}
+
+.add-teacher-form .add-name input {
+    position: relative;
+    width: 240px;
+    height: 36px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
+    background: none;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #444;
+    font-size: 24px;
+    text-align: center;
+}
+
+.add-teacher-form .add-birthday {
+    position: relative;
+    padding: 6px 10px;
+    font-size: 24px;
+    color: #444;
+}
+
+.add-teacher-form .add-birthday input {
+    position: relative;
+    width: 240px;
+    height: 36px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
+    background: none;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #444;
+    font-size: 24px;
+    text-align: center;
+}
+
+.add-teacher-form .add-tel {
+    position: relative;
+    padding: 6px 10px;
+    font-size: 24px;
+    color: #444;
+}
+
+.add-teacher-form .add-tel input {
+    position: relative;
+    width: 240px;
+    height: 36px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
+    background: none;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #444;
+    font-size: 24px;
+    text-align: center;
+}
+
+.add-teacher-form .add-mail {
+    position: relative;
+    padding: 6px 10px;
+    font-size: 24px;
+    color: #444;
+}
+
+.add-teacher-form .add-mail input {
+    position: relative;
+    width: 240px;
+    height: 36px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
+    background: none;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #444;
+    font-size: 24px;
+    text-align: center;
+}
+
+.add-teacher-form .add-address {
+    position: relative;
+    padding: 6px 10px;
+    font-size: 24px;
+    color: #444;
+}
+
+.add-teacher-form .add-address input {
+    position: relative;
+    width: 240px;
+    height: 36px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
+    background: none;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #444;
+    font-size: 24px;
+    text-align: center;
+}
+
+.add-teacher-form #modifyTeacherId {
+    position: absolute;
+    transform: scale(0);
+}
+
+/* ##### add_teacher.html end ##### */
+
+/* ##### add_student.html ##### */
+
+.add-student-form {
+    position: absolute;
+    width: 320px;
+    height: 620px;
+    top: 95px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #fff;
+    text-align: left;
+}
+
+.add-student-form .add-name {
+    position: relative;
+    padding: 6px 10px;
+    font-size: 24px;
+    color: #444;
+}
+
+.add-student-form .add-name input {
+    position: relative;
+    width: 240px;
+    height: 36px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
+    background: none;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #444;
+    font-size: 24px;
+    text-align: center;
+}
+
+.add-student-form .add-birthday {
+    position: relative;
+    padding: 6px 10px;
+    font-size: 24px;
+    color: #444;
+}
+
+.add-student-form .add-birthday input {
+    position: relative;
+    width: 240px;
+    height: 36px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
+    background: none;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #444;
+    font-size: 24px;
+    text-align: center;
+}
+
+.add-student-form .add-tel {
+    position: relative;
+    padding: 6px 10px;
+    font-size: 24px;
+    color: #444;
+}
+
+.add-student-form .add-tel input {
+    position: relative;
+    width: 240px;
+    height: 36px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
+    background: none;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #444;
+    font-size: 24px;
+    text-align: center;
+}
+
+.add-student-form .add-mail {
+    position: relative;
+    padding: 6px 10px;
+    font-size: 24px;
+    color: #444;
+}
+
+.add-student-form .add-mail input {
+    position: relative;
+    width: 240px;
+    height: 36px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
+    background: none;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #444;
+    font-size: 24px;
+    text-align: center;
+}
+
+.add-student-form .add-address {
+    position: relative;
+    padding: 6px 10px;
+    font-size: 24px;
+    color: #444;
+}
+
+.add-student-form .add-address input {
+    position: relative;
+    width: 240px;
+    height: 36px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
+    background: none;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #444;
+    font-size: 24px;
+    text-align: center;
+}
+
+.add-student-form .add-lecture-regist {
+    position: relative;
+    padding: 6px 10px;
+    font-size: 24px;
+    color: #444;
+}
+
+.add-student-form .add-lecture-regist input {
+    position: relative;
+    width: 240px;
+    height: 36px;
+    margin: 4px 8px 0 8px;
+    padding: 4px;
+    background: none;
+    border: 1px solid #444;
+    border-radius: 6px;
+    color: #444;
+    font-size: 14px;
+    text-align: center;
+}
+
+.add-student-form #modifyStudentId {
+    position: absolute;
+    transform: scale(0);
+}
+
+.add-student-form .add-button-section {
+    margin-top: 20px;
+    width: 100%;
+    height: 50px;
+    display: flex;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+#modifyStudent .add-button-section {
+    margin-top: 100px;
+}
+
+.modify-delete-button {
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    font-size: 14px;
+    text-decoration: underline;
+    color: #444;
+}
+
+/* ##### add_student.html end ##### */
+
+/* ##### modify_fragment ##### */
+
+.modify-fragment {
+    position: fixed;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 390px;
+    height: 844px;
+    z-index: 50;
+}
+
+/* ##### modify_fragment end ##### */
+
+/* ##### lecture_detail.html ##### */
+
+.detail-academy-profile {
+    position: relative;
+    width: 100%;
+    height: 46px;
+    margin-top: 26px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #444;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    padding: 2px 10px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.detail-academy-profile span {
+    color: #444;
+}
+
+.detail-academy-profile .detail-academy-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.detail-academy-profile .detail-academy-info>b {
+    line-height: 18px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #444;
+}
+
+.main-lecture.detail {
+    position: relative;
+    margin: 0 auto;
+    width: 100%;
+    height: 280px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background: #444;
+    margin-top: 18px;
+}
+
+.main-lecture.detail .lecture-name b {
+    font-size: 24px;
+    color: #fff;
+}
+
+.lecture-about-section {
+    width: 320px;
+    display: flex;
+    color:#eee;
+}
+
+.main-lecture.detail .lecture-info.detail {
+    margin-top: 0;
+    margin-left: 4px;
+    width: 150px;
+}
+
+.lecture-info.detail .lecture-info-schedule {
+    display: flex;
+    justify-content: flex-start;
+}
+
+.lecture-info.detail .lecture-info-schedule-checked {
+    display: flex;
+    justify-content: flex-start;
+    color: #fff;
+}
+
+.lecture-info.detail .lecture-info-count {
+    margin-top: 0;
+    margin-left: 4px;
+    font-size: 14px;
+    font-weight: 400;
+    text-align: left;
+    color: #eee;
+}
+
+.lecture-info.detail .lecture-info-count span {
+    color: #eee;
+}
+
+.lecture-info-about.detail {
+    width: 160px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 3px;
+    padding-right: 6px;
+    line-height: 20px;
+    color: #eee;
+    font-size: 14px;
+}
+
+.lecture-info-about.detail>div {
+    color: #eee;
+    margin-top: 1px;
+}
+
+.lecture-info-about.detail>div span{
+    color:#eee;
+}
+
+.main-lecture.detail .lecture-about-desc {
+    max-width: 300px;
+    height: 60px;
+    margin: 0 auto;
+    margin-top: 14px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #fff;
+}
+
+.main-lecture.detail .lecture-about-desc span {
+    font-size: 16px;
+    line-height: 60px;
+    color: #444;
+}
+
+.main-lecture.detail .teacher-info.detail {
+    margin-top: 6px;
+    padding: 6px 8px;
+    text-align: left;
+    font-size: 24px;
+    color: #eee;
+}
+
+.main-lecture.detail .teacher-info.detail b {
+    font-size: 22px;
+    color: #eee;
+}
+
+.main-lecture.detail .teacher-about.detail {
+    width: 280px;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+}
+
+.main-lecture.detail .teacher-about.detail b {
+    font-size: 20px;
+    margin-left: 10px;
+}
+.main-lecture.detail .teacher-about.detail b:last-child{
+    margin-right: 10px;
+}
+
+.main-notice.detail .notice-area {
+    height: 280px;
+}
+
+/* ##### lecture_detail.html end ##### */
+
+/* ##### student_check.html ##### */
+
+.main-lecture.check {
+    height: 40px;
+}
+
+.check-count-section {
+    width: 320px;
+    height: 130px;
+    margin-top: 6px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.check-count-section>div {
+    width: 100px;
+    height: 120px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 8px 8px;
+    font-size: 20px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.check-count-section>div:first-child {
+    background: #444;
+}
+
+.check-count-section>div:first-child span {
+    color: #fff;
+}
+
+.check-count-section>div:first-child b {
+    color: #fff;
+}
+
+.check-count-section>div:last-child {
+    background: #2cae2c;
+}
+
+.check-count-section>div:last-child span {
+    color: #fff;
+}
+
+.check-count-section>div:last-child b {
+    color: #fff;
+}
+
+.check-count-section>div b {
+    font-size: 20px;
+    color: #444;
+}
+
+.check-count-section>div span {
+    font-size: 28px;
+    line-height: 64px;
+    color: #444;
+}
+
+.check-inout-today.student {
+    width: 320px;
+    font-size: 20px;
+    text-align: left;
+    color: #444;
+}
+
+.check-inout-today.student>span {
+    color: #444;
+}
+
+.check-inout-today.student .student-daily-check.detail {
+    width: 100%;
+    height: 50px;
+    margin-top: 6px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    color: #444;
+}
+
+.student-daily-check.detail .daily-checkin-time {
+    width: 154px;
+    height: 50px;
+    padding: 2px 10px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background-color: #2cae2c;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.student-daily-check.detail .daily-checkin-time span {
+    font-size: 24px;
+    color:#fff;
+}
+
+.student-daily-check.detail .daily-checkin-time b {
+    font-size: 28px;
+    font-weight: 400;
+    color:#fff;
+}
+
+.student-daily-check.detail .daily-checkout-time {
+    width: 154px;
+    height: 50px;
+    padding: 2px 10px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background: #444;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.student-daily-check.detail .daily-checkout-time span {
+    font-size: 24px;
+    color:#fff;
+}
+
+.student-daily-check.detail .daily-checkout-time b {
+    font-size: 28px;
+    font-weight: 400;
+    color:#fff;
+}
+
+.check-inout-period.student {
+    width: 320px;
+    margin-top: 10px;
+    font-size: 20px;
+    text-align: left;
+    color: #444;
+}
+
+.check-inout-period.student .student-period-check {
+    width: 320px;
+    height: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: flex-start;
+    overflow: auto;
+}
+
+.student-period-check a {
+    color: #444;
+}
+
+.student-period-check .student-period-check-daily {
+    width: 60px;
+    height: 56px;
+    border: 1px solid #aaa;
+    border-radius: 8px;
+    margin: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    line-height: 26px;
+}
+
+.student-period-check .student-period-check-daily span {
+    color: #444;
+}
+
+.student-period-check .student-period-check-daily b {
+    color: #444;
+}
+
+.student-period-check .student-period-check-daily.입실 span, 
+.student-period-check .student-period-check-daily.입실 b, 
+.student-period-check .student-period-check-daily.결석 span,
+.student-period-check .student-period-check-daily.결석 b{
+    color:#fff;
+}
+
+/* ##### student_check.html end ##### */
+
+/* ##### teacher_check.html ##### */
+
+.check-inout-today.teacher {
+    width: 320px;
+    height: 400px;
+    font-size: 20px;
+    text-align: left;
+    color: #444;
+}
+
+.check-inout-today.teacher .teacher-daily-check.detail {
+    width: 100%;
+    height: 100%;
+    margin-top: 6px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: column;
+}
+
+.teacher-daily-check.detail .daily-checkin-student {
+    position: relative;
+    width: 320px;
+    height: 190px;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #2cae2c;
+    text-align: center;
+}
+
+.teacher-daily-check.detail .daily-checkin-student.none {
+    background: #fff;
+}
+
+.teacher-daily-check.detail .daily-checkin-student.none span {
+    color: #444;
+}
+
+.teacher-daily-check.detail .daily-checkin-student span {
+    font-size: 20px;
+}
+
+.daily-checkin-student .checkin-box {
+    position: relative;
+    width: 300px;
+    height: 150px;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-content: flex-start;
+    overflow: auto;
+}
+
+.daily-checkin-student .checkin-box .checkin-student span {
+    display: inline-block;
+    width: 70px;
+    border: 1px solid;
+    border-radius: 8px;
+    background: #fff;
+    margin: 4px 2px 4px 3px;
+    padding: 2px;
+    font-size: 16px;
+    color: #444;
+}
+
+.daily-checkin-student .checkin-box .checkin-student.none span {
+    background: #444;
+    color: #fff;
+}
+
+
+/* ##### teacher_check.html end ##### */
+
+/* ##### academy_notice_form.html ##### */
+
+.form-fragment {
+    position: fixed;
+    margin: 0 auto;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 390px;
+    height: 844px;
+    z-index: 50;
+}
+
+.notice-form {
+    position: absolute;
+    width: 320px;
+    height: 470px;
+    top: 270px;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0 auto;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #fff;
+    text-align: left;
+}
+
+.notice-title-area {
+    position: relative;
+    height: 80px;
+    padding: 10px 0 10px 10px;
+    font-size: 24px;
+    color: #444;
+}
+
+.notice-title-area input {
+    position: relative;
+    width: 280px;
+    height: 40px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    margin: 4px 0 0 10px;
+    padding: 2px 4px;
+    font-size: 20px;
+    color: #444;
+}
+
+.notice-content-area {
+    position: relative;
+    height: 320px;
+    padding: 10px 0 10px 10px;
+    font-size: 24px;
+    color: #444;
+}
+
+.notice-content-area textarea {
+    position: relative;
+    width: 280px;
+    height: 240px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    margin: 4px 0 0 10px;
+    padding: 2px 4px;
+    font-size: 18px;
+    resize: none;
+    color: #444;
+}
+
+.notice-button-section {
+    position: relative;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.notice-button-section .add-confirm.notice .notice-confirm-button {
+    border: 1px solid #2cae2c;
+    border-radius: 6px;
+    width: 100px;
+    height: 50px;
+    font-size: 20px;
+    background-color: #2cae2c;
+    text-align: center;
+    padding-bottom: 0;
+}
+
+.notice-button-section .add-close.notice button {
+    font-size: 20px;
+    height: 50px;
+    text-align: center;
+    padding: 0;
+
+}
+
+.notice-form .modify-delete-button {
+    position: absolute;
+    padding-right: 2px;
+    font-size: 14px;
+}
+
+/* ##### academy_notice_form.html end ##### */
+
+/* ##### password_modify.html ##### */
+
+.password-modify-text {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    margin-top: 130px;
+    text-align: left;
+    font-family: 'NOTO SANS BOLD';
+    font-size: 24px;
+    line-height: 24px;
+    color: #444;
+}
+
+.password-modify-text span {
+    font-size: 18px;
+    line-height: 0px;
+    color: #444;
+}
+
+.password-modify-form {
+    width: 100%;
+    margin-top: 44px;
+}
+
+.password-modify-form .field {
+    position: relative;
+    margin: 10px 0;
+}
+
+.password-modify-form .field>input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #efefef;
+    padding: 4px 8px;
+    color: #444;
+}
+
+.password-modify-form .field>i {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.forgot-pw {
+    position: relative;
+    font-size: 14px;
+    text-align: right;
+    color: #aaa;
+    top: -6px;
+}
+
+.password-modify-form .password-modify-submit {
+    width: 100%;
+    height: 54px;
+    margin-top: 40px;
+    border: 1px solid #2cae2c;
+    border-radius: 6px;
+    background: #2cae2c;
+    font-size: 16px;
+    font-weight: bold;
+    color:#fff;
+}
+
+/* ##### password_modify.html end ##### */
+
+/* ##### password_modify_complete.html ##### */
+
+.password-modify-complete-section {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.password-modify-complete-logo {
+    width: 200px;
+    height: 200px;
+}
+
+.password-modify-complete-logo i {
+    font-size: 140px;
+}
+
+.password-modify-complete-text {
+    font-family: 'NOTO SANS BOLD';
+    font-size: 24px;
+}
+
+.password-modify-complete-text span {
+    font-size: 18px;
+    color: #444;
+}
+
+.password-modify-complete-section button {
+    position: relative;
+    width: 100%;
+    height: 54px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+    border: 1px solid #000;
+    border-radius: 6px;
+    color: #fff;
+    background: #000;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* ##### password_modify_complete.html end ##### */
+
+/* ##### password_forgot.html ##### */
+
+.password-forgot-text {
+    position: relative;
+    width: 100%;
+    height: 100px;
+    margin-top: 130px;
+    text-align: left;
+    font-family: 'NOTO SANS BOLD';
+    font-size: 24px;
+    line-height: 24px;
+    color: #444;
+}
+
+.password-forgot-text span {
+    font-size: 18px;
+    line-height: 0px;
+    color: #444;
+}
+
+.password-forgot-form {
+    width: 100%;
+    margin-top: 44px;
+}
+
+.password-forgot-form .field {
+    position: relative;
+    margin: 10px 0;
+}
+
+.password-forgot-form .field>input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #aaa;
+    border-radius: 6px;
+    background: #efefef;
+    padding: 4px 8px;
+}
+
+.password-forgot-form .password-forgot-submit {
+    width: 320px;
+    height: 54px;
+    margin-top: 40px;
+    border: 1px solid #2cae2c;
+    border-radius: 6px;
+    color: #fff;
+    background: #2cae2c;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.password-find-message {
+    position: absolute;
+    width: 320px;
+    height: 190px;
+    top: 276px;
+    border: 1px solid #444;
+    background: #444;
+    border-radius: 6px;
+    z-index: 10;
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    visibility: hidden;
+    color:#fff;
+}
+
+/* ##### password_forgot.html end ##### */
