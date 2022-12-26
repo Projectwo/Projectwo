@@ -5,7 +5,7 @@
 
 
 <b>테스트 계정</b><br/>
-학생 id=aaa / pw=aaa<br/>
+학생 id=bbb / pw=bbb<br/>
 선생님 id=ccc / pw=ccc<br/>
 관리자 id=admin / pw=admin<br/>
 
